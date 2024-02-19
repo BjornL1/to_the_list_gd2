@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=$y3wjj_dqr4h)--yhgf)9sy&xevf46stji2&xf3qtqpoggf_v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.gitpod.io','.herokuapp.com']
 
@@ -41,12 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'user_authentication',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -73,6 +76,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'to_the_list.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = [
+    'https://8000-bjornl1-tothelistgd2-ld7gyr3oiiq.ws-eu108.gitpod.io',
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
