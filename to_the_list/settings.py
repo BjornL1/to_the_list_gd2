@@ -76,9 +76,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'to_the_list.wsgi.application'
 
-CORS_ORIGIN_WHITELIST = [
-    'https://8000-bjornl1-tothelistgd2-ld7gyr3oiiq.ws-eu108.gitpod.io',
-]
+CSRF_TRUSTED_ORIGINS = [
+     "https://*.gitpod.io",
+     "https://*.herokuapp.com"
+ ]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
