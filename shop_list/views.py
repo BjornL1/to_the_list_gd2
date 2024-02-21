@@ -1,23 +1,42 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from .forms import ShoppingListForm
+from django.contrib.auth.decorators import login_required  # Importing login_required decorator
+from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList
 
+#@login_required  # Applying login_required decorator
 def create_shopping_list(request):
     if request.method == 'POST':
         form = ShoppingListForm(request.POST)
         if form.is_valid():
-            shopping_list = form.save()
+            shopping_list = form.save(commit=False)
+            owner_id = 4
+            shopping_list.owner = User.objects.get(pk=owner_id)
+            shopping_list.save()
             messages.success(request, 'Shopping list created successfully!')
-            # Redirect to a success page or another view
-            return redirect('create_shopping_list')  # Redirect to the shop list page after creating the shopping list
+            return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
+#@login_required  # Applying login_required decorator
 def show_shopping_lists(request):
     lists = ShoppingList.objects.all()  # Fetch all shopping lists from the database
     return render(request, 'shop_list/show_shopping_lists.html', {'lists': lists})
+
+#@login_required  # Applying login_required decorator
+def add_item(request, list_id):
+    shopping_list = ShoppingList.objects.get(pk=list_id)
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.shopping_list = shopping_list
+            item.save()
+            return redirect('show_shopping_lists')
+    else:
+        form = ItemForm()
+    return render(request, 'shop_list/add_item.html', {'form': form, 'shopping_list': shopping_list})
 
 '''
 from django.shortcuts import render
