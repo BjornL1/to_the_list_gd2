@@ -17,10 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from user_authentication import views
-from shop_list.views import my_shop_list
+from shop_list.views import create_shopping_list
+
 
 urlpatterns = [
     path('', views.home, name='home'),  # Map the home view to the root URL
     path('admin/', admin.site.urls),
-    path('shop_list/', my_shop_list, name='shop_list'),   # Admin URL remains unchanged
+    path('shop_list/create/', create_shopping_list, name='create_shopping_list'),
 ]
+
+'''
+   path('shop_list/', my_shop_list, name='shop_list'),   # Admin URL remains unchanged
+'''
