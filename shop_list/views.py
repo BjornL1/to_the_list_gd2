@@ -15,6 +15,10 @@ def create_shopping_list(request):
         form = ShoppingListForm()
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
+def show_shopping_lists(request):
+    lists = ShoppingList.objects.all()  # Fetch all shopping lists from the database
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists': lists})
+
 '''
 from django.shortcuts import render
 from django.http import HttpResponse
