@@ -13,3 +13,22 @@
     </ul>
 </body>
 </html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Lists</title>
+</head>
+<body>
+    <h1>Shopping Lists</h1>
+    
+    <ul>
+    {% for shopping_list in shopping_lists %}
+        <li><a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+-->
