@@ -19,7 +19,7 @@ from django.urls import path
 from user_authentication import views
 from shop_list.views import create_shopping_list
 from shop_list.views import show_shopping_lists
-from shop_list.views import add_item
+from shop_list.views import add_item, show_items
 
 
 urlpatterns = [
@@ -28,6 +28,7 @@ urlpatterns = [
     path('shop_list/create/', create_shopping_list, name='create_shopping_list'),
     path('shop_list/', show_shopping_lists, name='show_shopping_lists'),
     path('shop_list/<int:list_id>/add_item/', add_item, name='add_item'),
+    path('shop_list/<int:list_id>/', show_items, name='show_items'),
 ]
 
 '''

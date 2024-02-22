@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required  # Importing login_required decorator
 from .forms import ShoppingListForm, ItemForm
-from .models import ShoppingList
+from .models import ShoppingList, Item
 
 #@login_required  # Applying login_required decorator
 def create_shopping_list(request):
@@ -37,6 +37,12 @@ def add_item(request, list_id):
     else:
         form = ItemForm()
     return render(request, 'shop_list/add_item.html', {'form': form, 'shopping_list': shopping_list})
+
+#@login_required  # Applying login_required decorator
+def show_items(request, list_id):
+    shopping_list = ShoppingList.objects.get(pk=list_id)
+    items = Item.objects.filter(shopping_list=shopping_list)
+    return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
 
 '''
 from django.shortcuts import render

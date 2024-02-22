@@ -7,14 +7,24 @@
 <body>
     <h1>Shopping Lists</h1>
     <ul>
-        {% for list in lists %}
-            <li>{{ list.name }}</li>
-        {% endfor %}
+    {% for list in lists %}
+        <a href="{% url 'show_items' list_id=list.id %}">{{ list.name }}</a><br>
+    {% endfor %}
     </ul>
 </body>
 </html>
 
 <!--
+ {% for list in lists %}
+            <li>{{ list.name }}</li>
+        {% endfor %}
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
