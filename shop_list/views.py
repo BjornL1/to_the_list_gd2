@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required  # Importing login_req
 from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList, Item
 
+def index(request):
+    return render(request, 'shop_list/index.html')
+
 #@login_required  # Applying login_required decorator
 def create_shopping_list(request):
     if request.method == 'POST':
@@ -43,6 +46,8 @@ def show_items(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     items = Item.objects.filter(shopping_list=shopping_list)
     return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
+
+
 
 '''
 from django.shortcuts import render
