@@ -22,12 +22,12 @@ def create_shopping_list(request):
         form = ShoppingListForm()
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
+@login_required
 def show_shopping_lists(request):
-    # Fetch all shopping lists from the database
-    lists_with_usernames = []
-    for shopping_list in ShoppingList.objects.all():
-        owner_username = User.objects.get(pk=shopping_list.owner_id).username
-        lists_with_usernames.append((shopping_list, owner_username))
+    # Fetch shopping lists associated with the current user
+    user_shopping_lists = ShoppingList.objects.filter(owner_id=request.user.id)
+    # Create a list of tuples containing each shopping list and the username of the logged-in user
+    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in user_shopping_lists]
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
 
 #@login_required  # Applying login_required decorator
@@ -51,6 +51,32 @@ def show_items(request, list_id):
     return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
 
 '''
+@login_required
+def show_shopping_lists(request):
+    # Fetch shopping lists associated with the current user
+    user_shopping_lists = ShoppingList.objects.filter(owner_id=request.user.id)
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': user_shopping_lists})
+
+
+@login_required
+def show_shopping_lists(request):
+    # Fetch shopping lists associated with the current user
+    user_shopping_lists = ShoppingList.objects.filter(owner_id=request.user.id)
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': user_shopping_lists})
+
+def show_shopping_lists(request):
+    # Fetch all shopping lists from the database
+    lists_with_usernames = []
+    for shopping_list in ShoppingList.objects.all():
+        owner_username = User.objects.get(pk=shopping_list.owner_id).username
+        lists_with_usernames.append((shopping_list, owner_username))
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+
+
+
+
+
+
 
 def create_shopping_list(request):
     if request.method == 'POST':

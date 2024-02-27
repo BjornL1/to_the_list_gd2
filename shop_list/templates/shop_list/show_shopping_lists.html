@@ -21,6 +21,24 @@
 </html>
 
 <!--
+{% for shopping_list in user_shopping_lists %}
+        <li>
+            <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+            <span>Created by: {{ request.user.username }}</span>
+        </li>
+        {% endfor %}
+
+
+
+    {% for shopping_list, owner_username in lists_with_usernames %}
+        <li>
+            <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+            <span>Created by: {{ owner_username }}</span>
+        </li>
+        {% endfor %}
+    
+    
+    
     {% for list in lists %}
         <a href="{% url 'show_items' list_id=list.id %}">{{ list.name }}</a><br>
     {% endfor %}
