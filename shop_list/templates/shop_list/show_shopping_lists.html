@@ -13,9 +13,17 @@
         <li>
             <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
             <span>Created by: {{ owner_username }}</span>
+            <button onclick="toggleList('{{shopping_list.id}}')">Toggle Privacy</button>
         </li>
         {% endfor %}
     </ul>
+    <script>
+        function toggleList(listId) {
+            // Your JavaScript logic to toggle the privacy of the shopping list goes here
+            // You can use AJAX to send a request to your Django view to update the list's privacy status
+            console.log('List ID:', listId); // For testing purposes
+        }
+    </script>
 </body>
 
 </html>
