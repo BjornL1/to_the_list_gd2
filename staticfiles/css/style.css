@@ -161,10 +161,11 @@ body {
 }
 
 .bg-green {
-    color: grey;
+    background-color: rgb(248, 252, 3);
 }
 /*'#F9FAFC;'*/
 .custom-landingpage {
     max-width: 200px;
     height: auto;
 }
+
