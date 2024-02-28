@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required  # Importing login_req
 from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList, Item
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
 def index(request):
     return render(request, 'shop_list/index.html')
@@ -49,6 +51,20 @@ def show_items(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     items = Item.objects.filter(shopping_list=shopping_list)
     return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
+
+ # Disable CSRF protection for this view (for demonstration purposes only)
+def toggle_list_status(request, list_id):
+    if request.method == 'POST':
+        try:
+            shopping_list = ShoppingList.objects.get(pk=list_id)
+            # Toggle the privacy status of the shopping list (update the model accordingly)
+            shopping_list.is_private = not shopping_list.is_private
+            shopping_list.save()
+            return JsonResponse({'status': 'success', 'is_public': not shopping_list.is_private})
+        except ShoppingList.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Shopping list not found'}, status=404)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 '''
 @login_required

@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from user_authentication import views
+from user_authentication import views as auth_views
 from shop_list.views import create_shopping_list
 from shop_list.views import show_shopping_lists
-from shop_list.views import add_item, show_items, index
+from shop_list.views import add_item, show_items, index, toggle_list_status
 
 
 urlpatterns = [
@@ -29,7 +29,8 @@ urlpatterns = [
     path('shop_list/', show_shopping_lists, name='show_shopping_lists'),
     path('shop_list/<int:list_id>/add_item/', add_item, name='add_item'),
     path('shop_list/<int:list_id>/', show_items, name='show_items'),
-    path('accounts/', include('allauth.urls')),  
+    path('accounts/', include('allauth.urls')),
+    path('toggle-list-status/<int:list_id>/', toggle_list_status, name='toggle_list_status'),  
 ]
 
 '''

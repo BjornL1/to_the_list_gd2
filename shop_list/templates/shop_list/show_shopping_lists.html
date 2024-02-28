@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Lists</title>
+    <style>
+        .public {
+            background-color: green;
+            color: white;
+        }
+
+        .private {
+            background-color: yellow;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,22 +24,134 @@
         <li>
             <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
             <span>Created by: {{ owner_username }}</span>
-            <button onclick="toggleList('{{shopping_list.id}}')">Toggle Privacy</button>
+            <button class="toggle-button" data-list-id="{{ shopping_list.id }}">Toggle Privacy</button>
         </li>
         {% endfor %}
     </ul>
     <script>
+        // Add event listener to toggle buttons
+        document.addEventListener("DOMContentLoaded", function () {
+            var toggleButtons = document.querySelectorAll('.toggle-button');
+            toggleButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var listId = button.dataset.listId;
+                    console.log(listId)
+                    toggleList(listId);
+                });
+            });
+        });
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
         function toggleList(listId) {
-            // Your JavaScript logic to toggle the privacy of the shopping list goes here
-            // You can use AJAX to send a request to your Django view to update the list's privacy status
-            console.log('List ID:', listId); // For testing purposes
+            console.log('Toggling list with ID:', listId);
+            // Simulate toggling the privacy status
+            console.log('Privacy status toggled successfully!');
+
+            // Fetch request to toggle the privacy status
+            var csrftoken = getCookie('csrftoken');
+            fetch(`/toggle-list-status/${listId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                })
+                .then(() => {
+                    console.log('Request sent successfully.');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         }
     </script>
+
 </body>
 
 </html>
 
 <!--
+
+    code to be inserted later
+
+        function toggleList(listId) {
+            var csrftoken = getCookie('csrftoken');
+            fetch(`/toggle-list-status/${listId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrftoken
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    try {
+                        JSON.parse(data);
+                    } catch (error) {
+                        console.log('Error parsing JSON:', error, data);
+                    }
+                    if (data.status === 'success') {
+                        // Toggle the color of the button
+                        var button = document.querySelector(`.toggle-button[data-list-id="${listId}"]`);
+                        button.classList.toggle('public');
+                        button.classList.toggle('private');
+                        // Update button text
+                        button.textContent = data.is_public ? 'Public' : 'Private';
+                    } else {
+                        // Handle error
+                        console.error('Error:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+  
+
+
+
+
+
+
+
+function toggleList(listId) {
+            // Your JavaScript logic to toggle the privacy of the shopping list goes here
+            // You can use AJAX to send a request to your Django view to update the list's privacy status
+            console.log('List ID:', listId);
+ } // For testing purposes
+
+
+
+
 {% for shopping_list in user_shopping_lists %}
         <li>
             <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
