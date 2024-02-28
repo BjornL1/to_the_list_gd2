@@ -8,6 +8,11 @@ class ShoppingList(models.Model):
 
     def __str__(self):
         return self.name
+        
+class ShoppingListPreference(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
+    is_private = models.BooleanField(default=True)
 
 class Item(models.Model):
     name = models.CharField(max_length=100)

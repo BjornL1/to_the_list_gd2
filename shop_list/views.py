@@ -1,8 +1,8 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required  # Importing login_required decorator
 from .forms import ShoppingListForm, ItemForm
-from .models import ShoppingList, Item
+from .models import ShoppingList, Item, ShoppingListPreference
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -26,10 +26,18 @@ def create_shopping_list(request):
 
 @login_required
 def show_shopping_lists(request):
-    # Fetch shopping lists associated with the current user
-    user_shopping_lists = ShoppingList.objects.filter(owner_id=request.user.id)
+    # Fetch private lists associated with the current user
+    private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
+    
+    # Fetch all public lists
+    public_lists = ShoppingList.objects.filter(is_private=False)
+    
     # Create a list of tuples containing each shopping list and the username of the logged-in user
-    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in user_shopping_lists]
+    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in private_lists]
+    
+    # Append public lists to the list
+    lists_with_usernames += [(shopping_list, shopping_list.owner.username) for shopping_list in public_lists]
+    
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
 
 #@login_required  # Applying login_required decorator
@@ -52,13 +60,19 @@ def show_items(request, list_id):
     items = Item.objects.filter(shopping_list=shopping_list)
     return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
 
- # Disable CSRF protection for this view (for demonstration purposes only)
+@login_required # Disable CSRF protection for this view (for demonstration purposes only)
 def toggle_list_status(request, list_id):
     if request.method == 'POST':
         try:
-            shopping_list = ShoppingList.objects.get(pk=list_id)
-            # Toggle the privacy status of the shopping list (update the model accordingly)
-            shopping_list.is_private = not shopping_list.is_private
+            shopping_list = get_object_or_404(ShoppingList, pk=list_id)
+            # Check if the user has a preference for the list's privacy status
+            user_preference = ShoppingListPreference.objects.filter(user=request.user, shopping_list=shopping_list).first()
+            if user_preference:
+                # Use the user's preference if available
+                shopping_list.is_private = user_preference.is_private
+            else:
+                # Otherwise, toggle the privacy status as before
+                shopping_list.is_private = not shopping_list.is_private
             shopping_list.save()
             return JsonResponse({'status': 'success', 'is_public': not shopping_list.is_private})
         except ShoppingList.DoesNotExist:
@@ -66,7 +80,43 @@ def toggle_list_status(request, list_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
+
+
 '''
+@login_required
+def show_shopping_lists(request):
+    # Fetch private lists associated with the current user
+    private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
+    
+    # Fetch all public lists
+    public_lists = ShoppingList.objects.filter(is_private=False)
+    
+    # Create a list of tuples containing each shopping list and the username of the logged-in user
+    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in private_lists]
+    
+    # Append public lists to the list
+    lists_with_usernames += [(shopping_list, shopping_list.owner.username) for shopping_list in public_lists]
+    
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+
+
+
+def show_shopping_lists(request):
+    # Fetch shopping lists associated with the current user
+    user_shopping_lists = ShoppingList.objects.filter(owner_id=request.user.id)
+    # Create a list of tuples containing each shopping list and the username of the logged-in user
+    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in user_shopping_lists]
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+
+
+
+
+
+
+
+
+
+
 @login_required
 def show_shopping_lists(request):
     # Fetch shopping lists associated with the current user

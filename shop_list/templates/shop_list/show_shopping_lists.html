@@ -24,10 +24,24 @@
         <li>
             <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
             <span>Created by: {{ owner_username }}</span>
-            <button class="toggle-button" data-list-id="{{ shopping_list.id }}">Toggle Privacy</button>
+            <button class="toggle-button {% if shopping_list.is_private %}private{% else %}public{% endif %}" data-list-id="{{ shopping_list.id }}">
+                {% comment %} Button text will be updated dynamically by JavaScript {% endcomment %}
+            </button>
         </li>
         {% endfor %}
     </ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toggleButtons = document.querySelectorAll('.toggle-button');
+            toggleButtons.forEach(function (button) {
+                var listId = button.dataset.listId;
+                var initialButtonText = button.classList.contains('private') ? 'Private' : 'Public';
+                button.textContent = initialButtonText;
+            });
+        });
+    </script>
+
     <script>
         // Add event listener to toggle buttons
         document.addEventListener("DOMContentLoaded", function () {
@@ -79,7 +93,7 @@
                         button.classList.toggle('public');
                         button.classList.toggle('private');
                         // Update button text based on privacy status
-                        button.textContent = data.is_public ? 'Public' : 'Private';
+                        button.textContent = (button.textContent === 'Public') ? 'Private' : 'Public';
                     } else {
                         // Handle error
                         console.error('Error:', data.error);
@@ -97,7 +111,64 @@
 
 <!--
 
-    code to be inserted later
+{% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+
+
+// Function to toggle between private and public status
+function toggleListStatus(listId, status) {
+  // Make a POST request to updateListStatus endpoint
+  fetch(`/updateListStatus/${listId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ status: status })
+  })
+  .then(response => {
+    if (response.ok) {
+      // Status updated successfully, update UI or show success message
+      console.log('List status updated successfully');
+    } else {
+      // Handle error response
+      console.error('Failed to update list status');
+    }
+  })
+  .catch(error => {
+    console.error('Error updating list status:', error);
+  });
+}
+
+// Function to fetch and display user's list
+function getUserList() {
+  // Make a GET request to userList endpoint
+  fetch('/userList')
+  .then(response => {
+    if (response.ok) {
+      return response.json(); // Assuming response is JSON, adapt as needed
+    } else {
+      // Handle error response
+      throw new Error('Failed to fetch user list');
+    }
+  })
+  .then(data => {
+    // Display user's list in the UI
+    console.log('User List:', data);
+  })
+  .catch(error => {
+    console.error('Error fetching user list:', error);
+  });
+}
+    
+
+
+
+
+
+
+
+
+
+code to be inserted later
 
         function toggleList(listId) {
             var csrftoken = getCookie('csrftoken');
