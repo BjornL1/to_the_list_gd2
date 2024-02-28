@@ -29,14 +29,14 @@ def show_shopping_lists(request):
     # Fetch private lists associated with the current user
     private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
     
-    # Fetch all public lists
+    # Fetch all public lists (including the logged-in user's public lists)
     public_lists = ShoppingList.objects.filter(is_private=False)
     
-    # Create a list of tuples containing each shopping list and the username of the logged-in user
-    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in private_lists]
+    # Combine private and public lists
+    all_lists = private_lists | public_lists
     
-    # Append public lists to the list
-    lists_with_usernames += [(shopping_list, shopping_list.owner.username) for shopping_list in public_lists]
+    # Create a list of tuples containing each shopping list and the username of the owner
+    lists_with_usernames = [(shopping_list, shopping_list.owner.username) for shopping_list in all_lists]
     
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
 
@@ -83,6 +83,25 @@ def toggle_list_status(request, list_id):
 
 
 '''
+
+@login_required
+def show_shopping_lists(request):
+    # Fetch private lists associated with the current user
+    private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
+    
+    # Fetch all public lists
+    public_lists = ShoppingList.objects.filter(is_private=False)
+    
+    # Create a list of tuples containing each shopping list and the username of the logged-in user
+    lists_with_usernames = [(shopping_list, request.user.username) for shopping_list in private_lists]
+    
+    # Append public lists to the list
+    lists_with_usernames += [(shopping_list, shopping_list.owner.username) for shopping_list in public_lists]
+    
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+
+
+
 @login_required
 def show_shopping_lists(request):
     # Fetch private lists associated with the current user
