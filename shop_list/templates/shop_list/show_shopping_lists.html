@@ -71,8 +71,19 @@
                         'X-CSRFToken': csrftoken
                     },
                 })
-                .then(() => {
-                    console.log('Request sent successfully.');
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Toggle the color of the button
+                        var button = document.querySelector(`.toggle-button[data-list-id="${listId}"]`);
+                        button.classList.toggle('public');
+                        button.classList.toggle('private');
+                        // Update button text based on privacy status
+                        button.textContent = data.is_public ? 'Public' : 'Private';
+                    } else {
+                        // Handle error
+                        console.error('Error:', data.error);
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
