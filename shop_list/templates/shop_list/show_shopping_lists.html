@@ -28,6 +28,12 @@
                 {% comment %} Button text will be updated dynamically by JavaScript {% endcomment %}
             </button>
         </li>
+        <div>
+            <h2>{{ shopping_list.name }}</h2>
+            <p>Owner: {{ shopping_list.owner }}</p>
+            <!-- Add link to edit page -->
+            <a href="{% url 'edit_lists' shopping_list.id %}">Edit</a>
+        </div>
         {% endfor %}
     </ul>
 

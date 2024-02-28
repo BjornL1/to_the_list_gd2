@@ -39,6 +39,7 @@ def show_shopping_lists(request):
     lists_with_usernames = [(shopping_list, shopping_list.owner.username) for shopping_list in all_lists]
     
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+ 
 
 #@login_required  # Applying login_required decorator
 def add_item(request, list_id):
@@ -80,7 +81,24 @@ def toggle_list_status(request, list_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
+def clone_list(request, list_id):
+    original_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Find the highest extension number for cloned lists
+    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
+    
+    # Determine the new name for the cloned list
+    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
+    
+    # Update the name of the original list
+    original_list.name = new_name
+    original_list.save()
+    
+    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
 
+def edit_lists(request, list_id):
+    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
+    return render(request, 'shop_list/edit_lists.html', {'shopping_list': shopping_list})
 
 '''
 

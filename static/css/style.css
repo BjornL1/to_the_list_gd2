@@ -168,3 +168,21 @@ body {
     max-width: 200px;
     height: auto;
 }
+
+.mobile-edit-button {
+    display: none; /* Hide by default */
+}
+
+@media only screen and (max-width: 768px) {
+    .edit-button {
+        display: none; /* Hide edit button on small screens */
+    }
+    
+    .mobile-edit-button {
+        display: block; /* Show mobile edit button on small screens */
+    }
+    
+    .options {
+        display: none; /* Hide options menu by default */
+    }
+}

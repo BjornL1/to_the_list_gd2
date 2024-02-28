@@ -19,7 +19,7 @@ from django.urls import path, include
 from user_authentication import views as auth_views
 from shop_list.views import create_shopping_list
 from shop_list.views import show_shopping_lists
-from shop_list.views import add_item, show_items, index, toggle_list_status
+from shop_list.views import add_item, show_items, index, toggle_list_status, edit_lists
 
 
 urlpatterns = [
@@ -30,7 +30,8 @@ urlpatterns = [
     path('shop_list/<int:list_id>/add_item/', add_item, name='add_item'),
     path('shop_list/<int:list_id>/', show_items, name='show_items'),
     path('accounts/', include('allauth.urls')),
-    path('toggle-list-status/<int:list_id>/', toggle_list_status, name='toggle_list_status'),  
+    path('toggle-list-status/<int:list_id>/', toggle_list_status, name='toggle_list_status'),
+    path('shop_list/<int:list_id>/edit/', edit_lists, name='edit_lists'),  
 ]
 
 '''

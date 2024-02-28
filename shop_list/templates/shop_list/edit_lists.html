@@ -1,0 +1,17 @@
+<div class="edit-button-container">
+    <!-- Add Clone, Rename, and Delete options here -->
+    <a href="{% url 'clone_list' list.id %}" class="edit-button">Clone</a>
+    <a href="{% url 'rename_list' list.id %}" class="edit-button">Rename</a>
+    <a href="{% url 'delete_list' list.id %}" class="edit-button">Delete</a>
+    
+    <!-- Existing Edit button -->
+    <a href="{% url 'edit_list' list.id %}" class="edit-button">Edit</a>
+    
+    <!-- Mobile edit button -->
+    <div class="mobile-edit-button">
+        <button class="more-options-button" onclick="showOptions()">&#10247;</button>
+        <div class="options">
+            <a href="{% url 'edit_list' list.id %}">Edit</a>
+            <!-- Add other options here if needed -->
+        </div>
+    </div>
