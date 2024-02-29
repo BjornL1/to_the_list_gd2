@@ -5,6 +5,7 @@ class ShoppingList(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=4)
     is_private = models.BooleanField(default=False)
+    original_list_id = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name

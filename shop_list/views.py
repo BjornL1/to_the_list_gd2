@@ -6,6 +6,7 @@ from .models import ShoppingList, Item, ShoppingListPreference
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.utils.text import slugify
 
 def index(request):
     return render(request, 'shop_list/index.html')
@@ -81,21 +82,26 @@ def toggle_list_status(request, list_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
+@login_required
 def clone(request, list_id):
     original_list = ShoppingList.objects.get(pk=list_id)
     
-    # Find the highest extension number for cloned lists
-    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
+    # Clone the list
+    cloned_list = ShoppingList.objects.create(
+        name=f"{original_list.name} (Copy)",
+        owner=request.user,  # Set the owner to the current user
+        is_private=original_list.is_private
+    )
     
-    # Determine the new name for the cloned list
-    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
-    
-    # Update the name of the original list
-    original_list.name = new_name
-    original_list.save()
-    
-    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+    # Optionally, you can also copy the items from the original list to the cloned list
+    for item in original_list.item_set.all():
+        cloned_item = Item.objects.create(
+            name=item.name,
+            quantity=item.quantity,
+            shopping_list=cloned_list
+        )
 
+    return redirect('show_shopping_lists')
 
 def rename(request, list_id):
     original_list = ShoppingList.objects.get(pk=list_id)
@@ -133,15 +139,64 @@ def edit_lists(request, list_id):
     return render(request, 'shop_list/edit_lists.html', {'shopping_list': shopping_list})
 
 
-
-
-
-
-
-
-
-
 '''
+
+
+def clone(request, list_id):
+    original_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Create a new ShoppingList object with the copied attributes
+    cloned_list = ShoppingList.objects.create(
+        name=f"{original_list.name} (Copy)",  # Update the name
+        owner=original_list.owner,            # Keep the same owner
+        is_private=original_list.is_private,  # Keep the same privacy status
+        original_list_id=original_list.id     # Keep track of the original list ID
+    )
+    
+    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+
+
+
+
+
+
+
+
+
+
+def clone(request, list_id):
+    original_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Find the highest extension number for cloned lists
+    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
+    
+    # Determine the new name for the cloned list
+    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
+    
+    # Update the name of the original list
+    original_list.name = new_name
+    original_list.save()
+    
+    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @login_required
 def show_shopping_lists(request):
