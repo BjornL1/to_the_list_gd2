@@ -4,6 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Items for {{ shopping_list.name }}</title>
+<!-- JavaScript function for confirmation message -->
+<script>
+    function confirmClone() {
+        var result = confirm("Clone this list? Yes/Cancel");
+        if (result) {
+            // If the user clicks "Yes", proceed with the clone action
+            return true;
+        } else {
+            // If the user clicks "Cancel", do nothing
+            return false;
+        }
+    }
+</script>
+
+
 </head>
 
 <body>
@@ -20,7 +35,7 @@
     <!-- Clone List Button -->
     <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
         {% csrf_token %}
-        <button type="submit">Clone List</button>
+        <button type="submit" onclick="return confirmClone()">Clone List</button>
     </form>
 
     <!-- Rename List Button -->
@@ -34,11 +49,6 @@
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
-
-
-
-
-
 
 
 </body>
