@@ -5,7 +5,7 @@ from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList, Item, ShoppingListPreference
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseForbidden
 from django.utils.text import slugify
 
 def index(request):
@@ -119,24 +119,23 @@ def rename(request, list_id):
     return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
 
 
+@login_required
 def delete(request, list_id):
-    original_list = ShoppingList.objects.get(pk=list_id)
+    # Get the shopping list object
+    shopping_list = ShoppingList.objects.get(pk=list_id)
     
-    # Find the highest extension number for cloned lists
-    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
-    
-    # Determine the new name for the cloned list
-    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
-    
-    # Update the name of the original list
-    original_list.name = new_name
-    original_list.save()
-    
-    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+    # Check if the current user is the owner of the list
+    if request.user == shopping_list.owner:
+        # Delete the list
+        shopping_list.delete()
+        return redirect('show_shopping_lists')
+    else:
+        # If the user is not the owner, return a forbidden response
+        return HttpResponseForbidden("You are not authorized to delete this list.")
 
-def edit_lists(request, list_id):
+def edit(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
-    return render(request, 'shop_list/edit_lists.html', {'shopping_list': shopping_list})
+    return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list})
 
 
 '''

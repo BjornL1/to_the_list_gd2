@@ -32,7 +32,7 @@
             <h2>{{ shopping_list.name }}</h2>
             <p>Owner: {{ shopping_list.owner }}</p>
             <!-- Add link to edit page -->
-            <a href="{% url 'edit_lists' shopping_list.id %}">Edit</a>
+            <a href="{% url 'edit' shopping_list.id %}">Edit</a>
         </div>
         {% endfor %}
     </ul>

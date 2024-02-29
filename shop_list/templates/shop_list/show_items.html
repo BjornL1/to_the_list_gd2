@@ -18,6 +18,16 @@
     }
 </script>
 
+<script>
+    function confirmDelete(listName) {
+        var result = confirm("Do you really want to delete " + listName + "?");
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 
 </head>
 
@@ -45,7 +55,7 @@
     </form>
 
 <!-- Delete button -->
-     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}" onsubmit="return confirmDelete('{{ shopping_list.name }}')">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
