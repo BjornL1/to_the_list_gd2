@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clone Shopping List</title>
+</head>
+<body>
+    <h1>Clone "{{ shopping_list.name }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Optionally, you can include fields to customize the cloned list -->
+        <!-- For example, you could allow the user to specify a new name for the cloned list -->
+        <label for="new_name">New Name:</label>
+        <input type="text" id="new_name" name="new_name"><br><br>
+        
+        <button type="submit">Clone List</button>
+    </form>
+</body>
+</html>

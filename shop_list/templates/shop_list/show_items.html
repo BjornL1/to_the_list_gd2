@@ -14,5 +14,12 @@
     </ul>
     
     <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
+
+     <!-- Clone List Button -->
+     <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit">Clone List</button>
+    </form>
+
 </body>
 </html>

@@ -81,7 +81,7 @@ def toggle_list_status(request, list_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
-def clone_list(request, list_id):
+def clone(request, list_id):
     original_list = ShoppingList.objects.get(pk=list_id)
     
     # Find the highest extension number for cloned lists
