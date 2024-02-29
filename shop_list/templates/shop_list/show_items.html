@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Items for {{ shopping_list.name }}</title>
 </head>
+
 <body>
     <h1>Items for {{ shopping_list.name }}</h1>
-    
+
     <ul>
-    {% for item in items %}
+        {% for item in items %}
         <li>{{ item.name }} - Quantity: {{ item.quantity }}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
-    
+
     <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
 
-     <!-- Clone List Button -->
-     <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+    <!-- Clone List Button -->
+    <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
         {% csrf_token %}
         <button type="submit">Clone List</button>
     </form>
 
+    <!-- Rename List Button -->
+     <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit">Rename List</button>
+    </form>
+
+<!-- Delete button -->
+     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+
+
+
+
+
+
 </body>
 </html>
+
+

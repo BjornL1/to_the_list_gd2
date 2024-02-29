@@ -96,9 +96,50 @@ def clone(request, list_id):
     
     return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
 
+
+def rename(request, list_id):
+    original_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Find the highest extension number for cloned lists
+    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
+    
+    # Determine the new name for the cloned list
+    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
+    
+    # Update the name of the original list
+    original_list.name = new_name
+    original_list.save()
+    
+    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+
+
+def delete(request, list_id):
+    original_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Find the highest extension number for cloned lists
+    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
+    
+    # Determine the new name for the cloned list
+    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
+    
+    # Update the name of the original list
+    original_list.name = new_name
+    original_list.save()
+    
+    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+
 def edit_lists(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
     return render(request, 'shop_list/edit_lists.html', {'shopping_list': shopping_list})
+
+
+
+
+
+
+
+
+
 
 '''
 
