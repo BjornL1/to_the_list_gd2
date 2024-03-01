@@ -60,7 +60,11 @@ def add_item(request, list_id):
 def show_items(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     items = Item.objects.filter(shopping_list=shopping_list)
-    return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items})
+
+    # Check if the current user is the owner of the list
+    is_owner = shopping_list.owner == request.user
+
+    return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
 
 @login_required # Disable CSRF protection for this view (for demonstration purposes only)
 def toggle_list_status(request, list_id):
@@ -102,27 +106,28 @@ def clone(request, list_id):
         )
 
     return redirect('show_shopping_lists')
-
+    
+@login_required
 def rename(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     
     # Check if the current user is the owner of the list
-    if request.user == shopping_list.owner:
-        # Find the highest extension number for cloned lists
-        highest_extension = ShoppingList.objects.filter(name__startswith=f"{shopping_list.name} (Copy)").count()
-        
-        # Determine the new name for the cloned list
-        new_name = f"{shopping_list.name} (Copy{highest_extension + 1})"
-        
-        # Update the name of the original list
-        shopping_list.name = new_name
-        shopping_list.save()
-        return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
-    else:
-        # If the user is not the owner, set the not_authorized_message
-        not_authorized_message = "You are not authorized to rename this list."
-        return render(request, 'shop_list/rename.html', {'not_authorized_message': not_authorized_message})
-
+    is_owner = request.user == shopping_list.owner
+    
+    if not is_owner:
+        return render(request, 'shop_list/rename.html', {'not_authorized_message': 'You are not authorized to rename this list.', 'is_owner': False})
+    
+    if request.method == 'POST':
+        new_name = request.POST.get('new_name')
+        if new_name:
+            shopping_list.name = new_name
+            shopping_list.save()
+            messages.success(request, 'List renamed successfully!')
+            return redirect('show_shopping_lists')
+        else:
+            messages.error(request, 'New name cannot be empty!')
+    
+    return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
 
 def delete(request, list_id):
     # Get the shopping list object
@@ -143,6 +148,25 @@ def edit(request, list_id):
 
 
 '''
+@login_required
+def rename(request, list_id):
+    shopping_list = ShoppingList.objects.get(pk=list_id)
+    
+    # Check if the current user is the owner of the list
+    if request.user != shopping_list.owner:
+        return render(request, 'shop_list/rename.html', {'not_authorized_message': 'You are not authorized to rename this list.'})
+    
+    if request.method == 'POST':
+        new_name = request.POST.get('new_name')
+        if new_name:
+            shopping_list.name = new_name
+            shopping_list.save()
+            messages.success(request, 'List renamed successfully!')
+            return redirect('show_shopping_lists')
+        else:
+            messages.error(request, 'New name cannot be empty!')
+    
+    return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list})
 
 
 def clone(request, list_id):

@@ -31,7 +31,7 @@
 
     <script>
         function confirmRename(listName) {
-            var result = confirm("Do you really want to rename this list?");
+            var result = confirm("Do you really want to rename this listeee?");
             if (result) {
                 return true;
             } else {
@@ -44,19 +44,19 @@
 </head>
 
 <body>
-    <!-- Display not authorized message -->
+    <!-- Display error message if the user is not authorized to rename -->
     {% if not_authorized_message %}
     <p>{{ not_authorized_message }}</p>
-    {% endif %}
-    
-    <!-- Rename form -->
+    {% else %}
     <h1>Rename "{{ shopping_list.name }}"</h1>
-    
-    <!-- Display rename error message -->
-    {% if rename_error_message %}
-    <p>{{ rename_error_message }}</p>
+    <form id="renameForm" method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <label for="new_name">New Name for:</label>
+        <input type="text" id="new_name" name="new_name" required>
+        <button id="renameButton" type="submit" onclick="return confirmRename('{{ shopping_list.name }}')">Rename List</button>
+    </form>
     {% endif %}
-    
+
     <h1>Items for {{ shopping_list.name }}</h1>
 
     <ul>
@@ -73,11 +73,6 @@
         <button type="submit" onclick="return confirmClone()">Clone List</button>
     </form>
 
-    <!-- Rename List Button -->
-    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="submit" onclick="return confirm('Do you really want to rename this list?')">Rename List</button>
-    </form>
 
     <!-- Delete button -->
     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
@@ -90,3 +85,17 @@
 </body>
 
 </html>
+
+
+<!-- Rename List Button
+{% if is_owner %}
+<form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirmRename()">Rename List</button>
+</form>
+{% else %}
+<button type="button" disabled>Rename List</button>
+<p><i>Only the owner can rename this list.</i></p>
+{% endif %}
+
+-->
