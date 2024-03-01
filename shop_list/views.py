@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseForbidden
 from django.utils.text import slugify
 
+
 def index(request):
     return render(request, 'shop_list/index.html')
 
