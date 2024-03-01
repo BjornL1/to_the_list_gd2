@@ -104,22 +104,26 @@ def clone(request, list_id):
     return redirect('show_shopping_lists')
 
 def rename(request, list_id):
-    original_list = ShoppingList.objects.get(pk=list_id)
+    shopping_list = ShoppingList.objects.get(pk=list_id)
     
-    # Find the highest extension number for cloned lists
-    highest_extension = ShoppingList.objects.filter(name__startswith=f"{original_list.name} (Copy)").count()
-    
-    # Determine the new name for the cloned list
-    new_name = f"{original_list.name} (Copy{highest_extension + 1})"
-    
-    # Update the name of the original list
-    original_list.name = new_name
-    original_list.save()
-    
-    return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+    # Check if the current user is the owner of the list
+    if request.user == shopping_list.owner:
+        # Find the highest extension number for cloned lists
+        highest_extension = ShoppingList.objects.filter(name__startswith=f"{shopping_list.name} (Copy)").count()
+        
+        # Determine the new name for the cloned list
+        new_name = f"{shopping_list.name} (Copy{highest_extension + 1})"
+        
+        # Update the name of the original list
+        shopping_list.name = new_name
+        shopping_list.save()
+        return redirect('show_shopping_lists')  # Redirect to the page showing all shopping lists
+    else:
+        # If the user is not the owner, set the not_authorized_message
+        not_authorized_message = "You are not authorized to rename this list."
+        return render(request, 'shop_list/rename.html', {'not_authorized_message': not_authorized_message})
 
 
-@login_required
 def delete(request, list_id):
     # Get the shopping list object
     shopping_list = ShoppingList.objects.get(pk=list_id)

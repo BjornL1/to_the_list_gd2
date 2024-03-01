@@ -4,34 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Items for {{ shopping_list.name }}</title>
-<!-- JavaScript function for confirmation message -->
-<script>
-    function confirmClone() {
-        var result = confirm("Clone this list? Yes/Cancel");
-        if (result) {
-            // If the user clicks "Yes", proceed with the clone action
-            return true;
-        } else {
-            // If the user clicks "Cancel", do nothing
-            return false;
+    <!-- JavaScript function for confirmation message -->
+    <script>
+        function confirmClone() {
+            var result = confirm("Clone this list? Yes/Cancel");
+            if (result) {
+                // If the user clicks "Yes", proceed with the clone action
+                return true;
+            } else {
+                // If the user clicks "Cancel", do nothing
+                return false;
+            }
         }
-    }
-</script>
+    </script>
 
-<script>
-    function confirmDelete(listName) {
-        var result = confirm("Do you really want to delete " + listName + "?");
-        if (result) {
-            return true;
-        } else {
-            return false;
+    <script>
+        function confirmDelete(listName) {
+            var result = confirm("Do you really want to delete " + listName + "?");
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
         }
-    }
-</script>
+    </script>
+
+    <script>
+        function confirmRename(listName) {
+            var result = confirm("Do you really want to rename this list?");
+            if (result) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+
 
 </head>
 
 <body>
+    <!-- Display not authorized message -->
+    {% if not_authorized_message %}
+    <p>{{ not_authorized_message }}</p>
+    {% endif %}
+    
+    <!-- Rename form -->
+    <h1>Rename "{{ shopping_list.name }}"</h1>
+    
+    <!-- Display rename error message -->
+    {% if rename_error_message %}
+    <p>{{ rename_error_message }}</p>
+    {% endif %}
+    
     <h1>Items for {{ shopping_list.name }}</h1>
 
     <ul>
@@ -49,19 +74,19 @@
     </form>
 
     <!-- Rename List Button -->
-     <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
         {% csrf_token %}
-        <button type="submit">Rename List</button>
+        <button type="submit" onclick="return confirm('Do you really want to rename this list?')">Rename List</button>
     </form>
 
-<!-- Delete button -->
-     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}" onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+    <!-- Delete button -->
+    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+        onsubmit="return confirmDelete('{{ shopping_list.name }}')">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
 
 
 </body>
+
 </html>
-
-

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rename Shopping List</title>
+</head>
+<body>
+    <h1>Rename "{{ shopping_list.name }}"</h1>
+    
+    <!-- Display error message if there's any -->
+    {% if not_authorized_message %}
+        <p>{{ not_authorized_message }}</p>
+    {% endif %}
+    
+    {% if rename_error_message %}
+        <p>{{ rename_error_message }}</p>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="new_name">New Name:</label>
+        <input type="text" id="new_name" name="new_name"><br><br>
+        
+        <button type="submit">Rename List</button>
+    </form>
+</body>
+</html>
