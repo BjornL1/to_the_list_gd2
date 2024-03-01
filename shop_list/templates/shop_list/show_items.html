@@ -44,19 +44,7 @@
 </head>
 
 <body>
-    <!-- Display error message if the user is not authorized to rename -->
-    {% if not_authorized_message %}
-    <p>{{ not_authorized_message }}</p>
-    {% else %}
-    <h1>Rename "{{ shopping_list.name }}"</h1>
-    <form id="renameForm" method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <label for="new_name">New Name for:</label>
-        <input type="text" id="new_name" name="new_name" required>
-        <button id="renameButton" type="submit" onclick="return confirmRename('{{ shopping_list.name }}')">Rename List</button>
-    </form>
-    {% endif %}
-
+    
     <h1>Items for {{ shopping_list.name }}</h1>
 
     <ul>
@@ -73,6 +61,17 @@
         <button type="submit" onclick="return confirmClone()">Clone List</button>
     </form>
 
+    <!-- Rename List Button -->
+    {% if is_owner %}
+    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit">Rename List</button>
+    </form>
+    {% else %}
+    <button type="button" disabled>Rename List</button>
+    <span id="infoIcon">ℹ️</span>
+    <p><i>Only the owner can rename this list.</i></p>
+    {% endif %}
 
     <!-- Delete button -->
     <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
@@ -81,13 +80,43 @@
         <button type="submit">Delete</button>
     </form>
 
+    <script>
+        // Function to display information message when clicking the info icon
+        document.getElementById('infoIcon').addEventListener('click', function () {
+            alert('Only the owner can rename this list.');
+        });
+    </script>
 
 </body>
 
 </html>
 
+<!--
+Add the messages code here 
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
-<!-- Rename List Button
+
+  Display error message if the user is not authorized to rename 
+ {% if not_authorized_message %}
+ <p>{{ not_authorized_message }}</p>
+ {% else %}
+ <h1>Rename "{{ shopping_list.name }}"</h1>
+ <form id="renameForm" method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+     {% csrf_token %}
+     <label for="new_name">New Name for:</label>
+     <input type="text" id="new_name" name="new_name" required>
+     <button id="renameButton" type="submit" onclick="return confirmRename('{{ shopping_list.name }}')">Rename List</button>
+ </form>
+ {% endif %}
+
+
+ Rename List Button
 {% if is_owner %}
 <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
     {% csrf_token %}
