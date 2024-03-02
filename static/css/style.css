@@ -185,4 +185,12 @@ body {
     .options {
         display: none; /* Hide options menu by default */
     }
+    .navbar-toggler {
+        background-color: blue; /* Change background color */
+        color: white; /* Change text color */
+        border: none; /* Remove border */
+    }
+    .navbar {
+        color: white;
+    }
 }
