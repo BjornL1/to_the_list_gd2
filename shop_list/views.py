@@ -98,7 +98,10 @@ def clone(request, list_id):
         owner=request.user,  # Set the owner to the current user
         is_private=original_list.is_private
     )
-    
+    # Increment the clone count
+    original_list.clone_count += 1
+    original_list.save()
+
     # Optionally, you can also copy the items from the original list to the cloned list
     for item in original_list.item_set.all():
         cloned_item = Item.objects.create(

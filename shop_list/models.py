@@ -6,6 +6,7 @@ class ShoppingList(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=4)
     is_private = models.BooleanField(default=False)
     original_list_id = models.IntegerField(null=True, blank=True)
+    clone_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

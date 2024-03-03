@@ -27,6 +27,7 @@
             <button class="toggle-button {% if shopping_list.is_private %}private{% else %}public{% endif %}" data-list-id="{{ shopping_list.id }}">
                 {% comment %} Button text will be updated dynamically by JavaScript {% endcomment %}
             </button>
+            <span>Clone Count: {{ shopping_list.clone_count }}</span>
         </li>
         <div>
             <h2>{{ shopping_list.name }}</h2>
