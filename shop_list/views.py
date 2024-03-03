@@ -20,7 +20,8 @@ def create_shopping_list(request):
             shopping_list = form.save(commit=False)
             shopping_list.owner_id = request.user.id  # Set owner_id to the ID of the logged-in user
             shopping_list.save()
-            messages.success(request, 'Shopping list created successfully!')
+            shopping_list_name = shopping_list.name
+            messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
             return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
@@ -149,6 +150,11 @@ def edit(request, list_id):
 
 
 '''
+messages.success(request, 'Shopping list { } created successfully!')
+
+
+
+
 @login_required
 def rename(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
