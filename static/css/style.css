@@ -6,7 +6,8 @@ body {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
+    font-style: italic;
+    color: yellow;
 }
 
 .red-o {
@@ -26,7 +27,7 @@ body {
 }
 
 .main-bg {
-    background-color: #33ff33;
+    background-color:yellow;
 }
 
 .card {
@@ -161,7 +162,7 @@ body {
 }
 
 .bg-green {
-    background-color: yellow;
+    background-color:  #0e920e;
 }
 /*'#F9FAFC;'*/
 .custom-landingpage {
@@ -173,7 +174,7 @@ body {
     display: none; /* Hide by default */
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */
     }
