@@ -1,5 +1,6 @@
 body {
     background-color: green;
+    color: white;
 }
 
 .brand {
@@ -125,7 +126,7 @@ body {
 }
 
 .link {
-    color: #23BBBB;
+    color: yellow;
     text-decoration: none;
 }
 
@@ -174,6 +175,9 @@ body {
     display: none; /* Hide by default */
 }
 
+.nav-link {
+    color:#fff;
+}
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */
