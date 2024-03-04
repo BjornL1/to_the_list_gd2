@@ -178,6 +178,15 @@ body {
 .nav-link {
     color:#fff;
 }
+
+.ul li {
+    list-style-type: none;
+}
+
+.margin {
+    margin-top:10px;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */
@@ -196,6 +205,6 @@ body {
         border: none; /* Remove border */
     }
     .navbar {
-        color: white;
+        display: white;
     }
 }
