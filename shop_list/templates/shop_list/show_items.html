@@ -59,13 +59,15 @@
         {% for item in items %}
         <li>
             <!-- Checkbox input for each item -->
-            <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}">
+            <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}"
+                {% if item.is_done %}checked{% endif %}>
             <!-- Label for the checkbox, displaying the item name and quantity -->
             <label for="item_{{ item.id }}" class="checkbox-label">{{ item.name }} - Quantity:
                 {{ item.quantity }}</label>
         </li>
         {% endfor %}
     </ul>
+
     <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
 
     <!-- Clone List Button -->
@@ -100,11 +102,83 @@
         });
     </script>
 
+    <script>
+        // Add event listener to each item checkbox
+        document.addEventListener("DOMContentLoaded", function () {
+            var itemList = document.querySelectorAll('input[type="checkbox"]');
+            itemList.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+                    toggleItemDone(itemId);
+                });
+            });
+        });
+
+        // Define the getCookie function
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Check if the cookie name matches the parameter
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        // Function to toggle "done" status of an item
+        function toggleItemDone(itemId) {
+            // Send AJAX request to update "done" status
+            fetch(`/toggle-item-done/${itemId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update UI based on response
+                    if (data.status === 'success') {
+                        console.log('Item status toggled successfully.');
+                        // Toggle "done" status
+                        var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
+                        itemLabel.classList.toggle('done');
+                    } else {
+                        // Handle error
+                        console.error('Error:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+
 </body>
 
 </html>
 
 <!--
+
+<ul>
+        {% for item in items %}
+        <li>
+             Checkbox input for each item 
+            <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}">
+       Label for the checkbox, displaying the item name and quantity --
+            <label for="item_{{ item.id }}" class="checkbox-label">{{ item.name }} - Quantity:
+                {{ item.quantity }}</label>
+        </li>
+        {% endfor %}
+    </ul>
+
+    
 Add the messages code here 
 {% if messages %}
 <ul class="messages">

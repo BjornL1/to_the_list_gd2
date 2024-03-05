@@ -9,6 +9,7 @@ from django.http import JsonResponse, HttpResponseForbidden
 from django.utils.text import slugify
 
 
+
 def index(request):
     return render(request, 'shop_list/index.html')
 
@@ -65,6 +66,14 @@ def show_items(request, list_id):
 
     # Check if the current user is the owner of the list
     is_owner = shopping_list.owner == request.user
+
+    if request.method == 'POST':
+        # Handle checkbox state changes
+        item_ids = request.POST.getlist('item_ids')  
+        for item_id in item_ids:
+            item = Item.objects.get(pk=item_id)
+            item.is_done = not item.is_done  # Toggle the state of the checkbox
+            item.save()  # Save the changes to the database
 
     return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
 
@@ -151,8 +160,32 @@ def edit(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
     return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list})
 
+def toggle_item_done(request, item_id):
+    if request.method == 'POST':
+        try:
+            item = Item.objects.get(pk=item_id)
+            item.is_done = not item.is_done  # Toggle the "done" status
+            item.save()
+            return JsonResponse({'status': 'success'})
+        except Item.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Item not found'}, status=404)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 '''
+def show_items(request, list_id):
+    shopping_list = ShoppingList.objects.get(pk=list_id)
+    items = Item.objects.filter(shopping_list=shopping_list)
+
+    # Check if the current user is the owner of the list
+    is_owner = shopping_list.owner == request.user
+
+    return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
+
+
+
+
+
 messages.success(request, 'Shopping list { } created successfully!')
 
 
