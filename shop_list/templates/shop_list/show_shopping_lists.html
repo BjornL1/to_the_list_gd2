@@ -39,6 +39,16 @@
             margin-left: 20px;
             /* Adjust the distance between the toggle switch and the shape */
         }
+
+        .private {
+            color: yellow;
+            /* Change to the color you want for private status */
+        }
+
+        .public {
+            color: white;
+            /* Change to the color you want for public status */
+        }
     </style>
 </head>
 
@@ -47,14 +57,15 @@
     <ul>
         {% for shopping_list, owner_username in lists_with_usernames %}
         <li>
-            <a class="text-warning" href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+            <a class="text-warning"
+                href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
             <span>Created by: {{ owner_username }}</span>
             <input type="range"
                 class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
                 data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-            <span class="status-text">{% if shopping_list.is_private %}Private{% else %}Public{% endif %}</span>
-            <span>Clone Count: {{ shopping_list.clone_count }}</span>
-            </div>
+            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+            </span>
             {% comment %} Button text will be updated dynamically by JavaScript {% endcomment %}
             <span>Clone Count: {{ shopping_list.clone_count }}</span>
         </li>
