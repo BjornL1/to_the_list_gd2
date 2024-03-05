@@ -187,6 +187,10 @@ body {
     margin-top:10px;
 }
 
+a {
+    color: white !important;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */
@@ -209,9 +213,6 @@ body {
         display: white;
     }
 
-    a {
-        color: white !important;
-    }
     .custom-container {
         margin-bottom: 20px; /* Set the color to red */
     }
