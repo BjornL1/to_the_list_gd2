@@ -1,12 +1,14 @@
 body {
     background-color: green;
+    color: black;
 }
 
 .brand {
     font-family: Lato, sans-serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
+    font-style: italic;
+    color: yellow;
 }
 
 .red-o {
@@ -26,7 +28,7 @@ body {
 }
 
 .main-bg {
-    background-color: #33ff33;
+    background-color: yellow;
 }
 
 .card {
@@ -161,11 +163,57 @@ body {
 }
 
 .bg-green {
-    background-color: rgb(248, 252, 3);
+    background-color:  #0e920e;
 }
 /*'#F9FAFC;'*/
 .custom-landingpage {
     max-width: 200px;
     height: auto;
+}
+
+.mobile-edit-button {
+    display: none; /* Hide by default */
+}
+
+.nav-link {
+    color:#fff;
+}
+
+.ul li {
+    list-style-type: none;
+}
+
+.margin {
+    margin-top:10px;
+}
+
+@media only screen and (max-width: 992px) {
+    .edit-button {
+        display: none; /* Hide edit button on small screens */
+    }
+    
+    .mobile-edit-button {
+        display: block; /* Show mobile edit button on small screens */
+    }
+    
+    .options {
+        display: none; /* Hide options menu by default */
+    }
+    .navbar-toggler {
+        background-color: yellow; /* Change background color */
+        color: black; /* Change text color */
+        border: black; /* Remove border */
+        margin-bottom: 20px;
+    }
+    .navbar {
+        display: white;
+    }
+
+    a {
+        color: white !important;
+    }
+    .custom-container {
+        margin-bottom: 20px; /* Set the color to red */
+    }
 }
 

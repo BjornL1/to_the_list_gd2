@@ -43,11 +43,11 @@
 </head>
 
 <body>
-    <h1>Shopping Lists</h1>
+    <h1 class="custom-container">Shopping Lists</h1>
     <ul>
         {% for shopping_list, owner_username in lists_with_usernames %}
         <li>
-            <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+            <a class="text-warning" href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
             <span>Created by: {{ owner_username }}</span>
             <input type="range"
                 class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
