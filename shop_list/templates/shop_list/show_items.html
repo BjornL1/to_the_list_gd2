@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Items for {{ shopping_list.name }}</title>
+    <style>
+        /* Define your CSS styles for checkboxes and labels */
+        .checkbox-label {
+            display: inline-block;
+            margin-right: 10px;
+            /* Adjust as needed */
+        }
+    </style>
     <!-- JavaScript function for confirmation message -->
     <script>
         function confirmClone() {
@@ -44,15 +52,20 @@
 </head>
 
 <body>
-    
+
     <h1>Items for {{ shopping_list.name }}</h1>
 
     <ul>
         {% for item in items %}
-        <li>{{ item.name }} - Quantity: {{ item.quantity }}</li>
+        <li>
+            <!-- Checkbox input for each item -->
+            <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}">
+            <!-- Label for the checkbox, displaying the item name and quantity -->
+            <label for="item_{{ item.id }}" class="checkbox-label">{{ item.name }} - Quantity:
+                {{ item.quantity }}</label>
+        </li>
         {% endfor %}
     </ul>
-
     <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
 
     <!-- Clone List Button -->
