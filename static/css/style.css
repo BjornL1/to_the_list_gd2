@@ -187,6 +187,10 @@ body {
     margin-top:10px;
 }
 
+.listitems-header {
+    color:aqua;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */

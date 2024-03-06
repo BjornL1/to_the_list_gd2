@@ -1,3 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Items for {{ shopping_list.name }}</title>
+{% endblock %}
+
+{% block content %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,9 +60,9 @@
 </head>
 
 <body>
-
-    <h1>Items for {{ shopping_list.name }}</h1>
-
+    <div class="listitems-header">
+    <h1 class="listitems-header">Items for {{ shopping_list.name }}</h1>
+    </div>
     <ul>
         {% for item in items %}
         <li>
@@ -163,7 +171,7 @@
 </body>
 
 </html>
-
+{% endblock %}
 <!--
 
 <ul>
