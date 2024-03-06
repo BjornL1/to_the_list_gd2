@@ -69,7 +69,11 @@
             </div>
         </div>
     </nav>
+
+    {% block landing_page_image %}
     <img src="{% static 'images/land_page_t.jpg' %}" alt="Land Page Image" class="custom-landingpage">
+    {% endblock landing_page_image %}
+    
     <main class="flex-shrink-0 bg-green">
 
         {% block content %}
