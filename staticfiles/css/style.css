@@ -200,6 +200,24 @@ a {
     color:aqua;
 }
 
+.list-container {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-slider {
+    width: 50px; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+    margin-left: 50px; /* Adjust the spacing between the link and the slider */
+    position: relative;
+    top: -2px; /* Adjust vertical positioning if needed */
+    /* Other styles as needed */
+}
+
+.status-text {
+    margin-left: 50px;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */

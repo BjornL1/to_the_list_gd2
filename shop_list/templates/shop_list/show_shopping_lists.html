@@ -57,20 +57,21 @@
     <ul>
         {% for shopping_list, owner_username in lists_with_usernames %}
         <li>
-            <a class="text-warning"
-                href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
-            <span>Created by: {{ owner_username }}</span>
-            <input type="range"
-                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
-                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
-                {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+            <span class="list-container">
+                <a class="text-warning"
+                    href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+                <input type="range"
+                    class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
+                    data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                    {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+                </span>
             </span>
-            {% comment %} Button text will be updated dynamically by JavaScript {% endcomment %}
+            <span>Created by: {{ owner_username }}</span>
             <span>Clone Count: {{ shopping_list.clone_count }}</span>
         </li>
         <div>
-            <h2>{{ shopping_list.name }}</h2>
+            <!--<h2>{{ shopping_list.name }}</h2>-->
             <p>Owner: {{ shopping_list.owner }}</p>
             <!-- Add link to edit page -->
             <a href="{% url 'edit' shopping_list.id %}">Edit</a>
