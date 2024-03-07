@@ -54,31 +54,52 @@
 
 <body>
     <h1 class="custom-container">Shopping Lists</h1>
-    <ul>
-        {% for shopping_list, owner_username in lists_with_usernames %}
-        <li>
-            <span class="list-container">
-                <a class="text-warning"
-                    href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
-                <input type="range"
-                    class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
-                    data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-                <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
-                    {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
-                </span>
-            </span>
-            <span>Created by: {{ owner_username }}</span>
-            <span>Clone Count: {{ shopping_list.clone_count }}</span>
-        </li>
-        <div>
-            <!--<h2>{{ shopping_list.name }}</h2>-->
-            <p>Owner: {{ shopping_list.owner }}</p>
-            <!-- Add link to edit page -->
-            <a href="{% url 'edit' shopping_list.id %}">Edit</a>
+    <div class="container">
+        <div class="row">
+            {% for shopping_list, owner_username in lists_with_usernames %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ shopping_list.name }}</h5>
+                        <p class="card-text">Created by: {{ owner_username }}</p>
+                        <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
+                        <!-- Toggle slider and status text -->
+                        <div class="d-flex align-items-end">
+                            <input type="range"
+                                   class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
+                                   data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                                {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+                            </span>
+                        </div>
+                        <!-- List of items -->
+                        <ul>
+                            {% for item in shopping_list.items.all %}
+                            <li>
+                                <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}"
+                                       {% if item.is_done %}checked{% endif %}>
+                                <label for="item_{{ item.id }}">{{ item.name }} - Quantity: {{ item.quantity }}</label>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!-- Other list information here -->
+                        <div class="mt-auto">
+                            <div class="row button-row">
+                                <div class="col">
+                                    <a href="{% url 'show_items' list_id=shopping_list.id %}" class="btn btn-primary">View Items</a>
+                                </div>
+                                <div class="col">
+                                    <a href="{% url 'edit' shopping_list.id %}" class="btn btn-secondary">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </ul>
-
+    </div>
+        
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var toggleSliders = document.querySelectorAll('.toggle-slider');
@@ -160,6 +181,44 @@
 {% endblock %}
 <!--
 
+<ul>
+        {% for shopping_list, owner_username in lists_with_usernames %}
+        <li>
+            <span class="list-container">
+                <a class="text-warning"
+                    href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a><br>
+                <input type="range"
+                    class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %}"
+                    data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                    {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+                </span>
+            </span>
+            <span>Created by: {{ owner_username }}</span>
+            <span>Clone Count: {{ shopping_list.clone_count }}</span>
+        </li>
+        <div>
+            <--<h2>{{ shopping_list.name }}</h2>-->
+            <!--<p>Owner: {{ shopping_list.owner }}</p>-->
+            <!-- Add link to edit page --
+            <a href="{% url 'edit' shopping_list.id %}">Edit</a>
+        </div>
+        {% endfor %}
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
 
 
