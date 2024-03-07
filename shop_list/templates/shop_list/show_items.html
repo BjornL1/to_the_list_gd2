@@ -83,38 +83,7 @@
 
     <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
 
-    <!-- Clone List Button -->
-    <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="submit" onclick="return confirmClone()">Clone List</button>
-    </form>
-
-    <!-- Rename List Button -->
-    {% if is_owner %}
-    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="submit">Rename List</button>
-    </form>
-    {% else %}
-    <button type="button" disabled>Rename List</button>
-    <span id="infoIcon">ℹ️</span>
-    <p><i>Only the owner can rename this list.</i></p>
-    {% endif %}
-
-    <!-- Delete button -->
-    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-        onsubmit="return confirmDelete('{{ shopping_list.name }}')">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
-
-    <script>
-        // Function to display information message when clicking the info icon
-        document.getElementById('infoIcon').addEventListener('click', function () {
-            alert('Only the owner can rename this list.');
-        });
-    </script>
-
+    
     <script>
         // Add event listener to each item checkbox
         document.addEventListener("DOMContentLoaded", function () {

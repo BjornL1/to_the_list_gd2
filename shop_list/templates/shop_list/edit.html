@@ -1,17 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+
+<body>
+
+    <!-- Clone List Button -->
+    <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirmClone()">Clone List</button>
+    </form>
+
+    <!-- Rename List Button -->
+    {% if is_owner %}
+    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit">Rename List</button>
+    </form>
+    {% else %}
+    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="button" disabled>Rename List</button>
+        <span id="infoIconRename">ℹ️</span>
+    </form>
+    {% endif %}
+
+    <!-- Delete button -->
+    {% if is_owner %}
+    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+        onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    {% else %}
+    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="button" disabled>Delete</button>
+        <span id="infoIconDelete">ℹ️</span>
+    </form>
+    {% endif %}
+
+    <script>
+        // Function to display information message when clicking the info icon for Rename
+        document.getElementById('infoIconRename').addEventListener('click', function () {
+            alert('Only the owner can rename this list.');
+        });
+
+        // Function to display information message when clicking the info icon for Delete
+        document.getElementById('infoIconDelete').addEventListener('click', function () {
+            alert('Only the owner can delete this list.');
+        });
+    </script>
+
+</body>
+
+</html>
+{% endblock %}
+
+<!--
+
 <div class="edit-button-container">
-    <!-- Add Clone, Rename, and Delete options here -->
+     Add Clone, Rename, and Delete options here --
     <a href="{% url 'clone_list' list.id %}" class="edit-button">Clone</a>
     <a href="{% url 'rename_list' list.id %}" class="edit-button">Rename</a>
     <a href="{% url 'delete_list' list.id %}" class="edit-button">Delete</a>
     
-    <!-- Existing Edit button -->
+    -- Existing Edit button --
     <a href="{% url 'edit' list.id %}" class="edit-button">Edit</a>
     
-    <!-- Mobile edit button -->
+    -- Mobile edit button --
     <div class="mobile-edit-button">
         <button class="more-options-button" onclick="showOptions()">&#10247;</button>
         <div class="options">
             <a href="{% url 'edit' list.id %}">Edit</a>
-            <!-- Add other options here if needed -->
+            -- Add other options here if needed --
         </div>
     </div>
+    <p><i>Only the owner can rename this list.</i></p>
+    
+-->

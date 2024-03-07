@@ -142,7 +142,8 @@ def rename(request, list_id):
             messages.error(request, 'New name cannot be empty!')
     
     return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
-
+    
+@login_required
 def delete(request, list_id):
     # Get the shopping list object
     shopping_list = ShoppingList.objects.get(pk=list_id)
@@ -157,8 +158,22 @@ def delete(request, list_id):
         return HttpResponseForbidden("You are not authorized to delete this list.")
 
 def edit(request, list_id):
-    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
-    return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list})
+    shopping_list = ShoppingList.objects.get(pk=list_id)
+    items = Item.objects.filter(shopping_list=shopping_list)
+
+    # Check if the current user is the owner of the list
+    is_owner = shopping_list.owner == request.user
+
+    if request.method == 'POST':
+        # Handle checkbox state changes
+        item_ids = request.POST.getlist('item_ids')  
+        for item_id in item_ids:
+            item = Item.objects.get(pk=item_id)
+            item.is_done = not item.is_done  # Toggle the state of the checkbox
+            item.save()  # Save the changes to the database
+
+    return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
+
 
 def toggle_item_done(request, item_id):
     if request.method == 'POST':
@@ -173,6 +188,13 @@ def toggle_item_done(request, item_id):
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 '''
+
+
+def edit(request, list_id):
+    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
+    return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list})
+
+
 def show_items(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     items = Item.objects.filter(shopping_list=shopping_list)
