@@ -57,7 +57,7 @@ LOGIN_REDIRECT_URL = '/shop_list/'
 LOGOUT_REDIRECT_URL = '/'
 
 MESSAGE_TAGS = {
-    messages.SUCCESS: 'alert-success',
+    messages.SUCCESS: 'success',
 }
 
 MIDDLEWARE = [

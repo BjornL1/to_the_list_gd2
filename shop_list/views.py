@@ -13,19 +13,30 @@ from django.utils.text import slugify
 def index(request):
     return render(request, 'shop_list/index.html')
 
-@login_required # Applying login_required decorator
+@login_required
 def create_shopping_list(request):
+    # Clear any existing messages if the user is authenticated
+    if request.user.is_authenticated:
+        storage = messages.get_messages(request)
+        new_messages = []
+        for message in storage:
+            if "You have signed out." not in message.message and "Successfully signed in as" not in message.message:
+                new_messages.append(message)
+        # Replace the messages in the storage with the filtered messages
+        request._messages._loaded_data = new_messages
+
     if request.method == 'POST':
         form = ShoppingListForm(request.POST)
         if form.is_valid():
             shopping_list = form.save(commit=False)
-            shopping_list.owner_id = request.user.id  # Set owner_id to the ID of the logged-in user
+            shopping_list.owner_id = request.user.id  
             shopping_list.save()
             shopping_list_name = shopping_list.name
             messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
             return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
+    
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
 @login_required

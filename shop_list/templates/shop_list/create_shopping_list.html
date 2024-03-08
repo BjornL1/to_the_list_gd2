@@ -10,7 +10,9 @@
     {% if messages %}
         <ul>
             {% for message in messages %}
-                <li>{{ message }}</li>
+                {% if message.tags == 'success' %}
+                    <li>{{ message }}</li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% endif %}
