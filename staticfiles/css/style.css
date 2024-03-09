@@ -208,7 +208,7 @@ a {
 .toggle-slider {
     width: 50px; /* Adjust width as needed */
     height: 20px; /* Adjust height as needed */
-    margin-left: 50px; /* Adjust the spacing between the link and the slider */
+    margin-left: 0; /* Adjust the spacing between the link and the slider */
     position: relative;
     top: -2px; /* Adjust vertical positioning if needed */
     /* Other styles as needed */
@@ -228,6 +228,10 @@ h1 {
 
 p {
     margin-left: 20px;
+}
+
+p.card-text {
+    margin-left: 0;
 }
 
 @media only screen and (max-width: 992px) {
