@@ -218,6 +218,18 @@ a {
     margin-left: 50px;
 }
 
+.margin-createbutton {
+    margin: 0 0 20px 70px; /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
+}
+
+h1 {
+    margin: 10px 0 20px 20px;
+} 
+
+p {
+    margin-left: 20px;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */

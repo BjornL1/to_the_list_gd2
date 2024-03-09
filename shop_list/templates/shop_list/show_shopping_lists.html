@@ -1,4 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block landing_page_image %}
+<!-- Empty block to override the landing page image -->
+{% endblock landing_page_image %}
+
+{% block title %}
+    <title>Items for {{ shopping_list.name }}</title>
+{% endblock %}
 
 {% block content %}
 
