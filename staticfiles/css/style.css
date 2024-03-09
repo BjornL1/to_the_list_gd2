@@ -208,14 +208,14 @@ a {
 .toggle-slider {
     width: 50px; /* Adjust width as needed */
     height: 20px; /* Adjust height as needed */
-    margin-left: 0; /* Adjust the spacing between the link and the slider */
+    margin: 0 0 15px 0; /* Adjust the spacing between the link and the slider */
     position: relative;
     top: -2px; /* Adjust vertical positioning if needed */
     /* Other styles as needed */
 }
 
 .status-text {
-    margin-left: 50px;
+    margin: 0 0 15px 20px;
 }
 
 .margin-createbutton {
