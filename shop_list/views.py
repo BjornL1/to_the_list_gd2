@@ -25,6 +25,9 @@ def create_shopping_list(request):
         # Replace the messages in the storage with the filtered messages
         request._messages._loaded_data = new_messages
 
+    if 'form_page_visited' in request.session:
+        del request.session['form_page_visited']
+        
     if request.method == 'POST':
         form = ShoppingListForm(request.POST)
         if form.is_valid():
@@ -38,6 +41,7 @@ def create_shopping_list(request):
         form = ShoppingListForm()
     
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
+
 
 @login_required
 def show_shopping_lists(request):
@@ -199,7 +203,31 @@ def toggle_item_done(request, item_id):
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 '''
+@login_required
+def create_shopping_list(request):
+    # Clear any existing messages if the user is authenticated
+    if request.user.is_authenticated:
+        storage = messages.get_messages(request)
+        new_messages = []
+        for message in storage:
+            if "You have signed out." not in message.message and "Successfully signed in as" not in message.message:
+                new_messages.append(message)
+        # Replace the messages in the storage with the filtered messages
+        request._messages._loaded_data = new_messages
 
+    if request.method == 'POST':
+        form = ShoppingListForm(request.POST)
+        if form.is_valid():
+            shopping_list = form.save(commit=False)
+            shopping_list.owner_id = request.user.id  
+            shopping_list.save()
+            shopping_list_name = shopping_list.name
+            messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
+            return redirect('create_shopping_list')
+    else:
+        form = ShoppingListForm()
+    
+    return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
 def edit(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
