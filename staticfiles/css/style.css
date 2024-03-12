@@ -162,9 +162,15 @@ body {
     color: rgb(222, 146, 168);
 }
 
+.password-label {
+    padding-right: 5px; /* Adjust the margin value as needed */
+    margin: 10px 0 20px 0; 
+}
+
 .bg-green {
     background-color:  #0e920e;
 }
+
 /*'#F9FAFC;'*/
 .custom-landingpage {
     max-width: 200px;

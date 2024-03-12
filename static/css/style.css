@@ -165,6 +165,9 @@ body {
 .bg-green {
     background-color:  #0e920e;
 }
+.password-label {
+    margin-left: 100px; /* Adjust the margin value as needed */
+}
 /*'#F9FAFC;'*/
 .custom-landingpage {
     max-width: 200px;
