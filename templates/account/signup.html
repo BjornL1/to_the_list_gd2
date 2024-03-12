@@ -1,6 +1,11 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
+
+
+{% block landing_page_image %}
+<!-- Empty block to override the landing page image -->
+{% endblock landing_page_image %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock head_title %}
 
