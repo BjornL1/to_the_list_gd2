@@ -60,7 +60,7 @@ def show_shopping_lists(request):
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
  
 
-#@login_required  # Applying login_required decorator
+@login_required
 def add_item(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     if request.method == 'POST':
@@ -69,9 +69,11 @@ def add_item(request, list_id):
             item = form.save(commit=False)
             item.shopping_list = shopping_list
             item.save()
-            return redirect('show_shopping_lists')
+            return redirect('show_items', list_id=list_id)  # Redirect to the show_items page
     else:
         form = ItemForm()
+    
+    return render(request, 'shop_list/add_item.html', {'form': form, 'shopping_list': shopping_list})
 
 @login_required  # Applying login_required decorator
 def show_items(request, list_id):

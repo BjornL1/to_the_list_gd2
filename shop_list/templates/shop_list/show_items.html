@@ -5,7 +5,7 @@
 {% endblock landing_page_image %}
 
 {% block title %}
-    <title>Items for {{ shopping_list.name }}</title>
+<title>Items for {{ shopping_list.name }}</title>
 {% endblock %}
 
 {% block content %}
@@ -25,65 +25,36 @@
             /* Adjust as needed */
         }
     </style>
-    <!-- JavaScript function for confirmation message -->
-    <script>
-        function confirmClone() {
-            var result = confirm("Clone this list? Yes/Cancel");
-            if (result) {
-                // If the user clicks "Yes", proceed with the clone action
-                return true;
-            } else {
-                // If the user clicks "Cancel", do nothing
-                return false;
-            }
-        }
-    </script>
-
-    <script>
-        function confirmDelete(listName) {
-            var result = confirm("Do you really want to delete " + listName + "?");
-            if (result) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
-
-    <script>
-        function confirmRename(listName) {
-            var result = confirm("Do you really want to rename this listeee?");
-            if (result) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    </script>
-
 
 </head>
 
 <body>
     <div class="listitems-header">
-    <h1 class="listitems-header">Items for {{ shopping_list.name }}</h1>
+        <h1 class="listitems-header">Items for {{ shopping_list.name }}</h1>
     </div>
-    <ul>
+    <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-primary mb-3">Add Item</a>
+    <div class="card-columns">
         {% for item in items %}
-        <li>
-            <!-- Checkbox input for each item -->
-            <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}"
-                {% if item.is_done %}checked{% endif %}>
-            <!-- Label for the checkbox, displaying the item name and quantity -->
-            <label for="item_{{ item.id }}" class="checkbox-label">{{ item.name }} - Quantity:
-                {{ item.quantity }}</label>
-        </li>
+        <div class="card mb-3">
+            <div class="card-body d-flex align-items-center">
+                <!-- Checkbox input for each item -->
+                <input type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}"
+                       {% if item.is_done %}checked{% endif %}>
+                <!-- Item name and quantity -->
+                <div class="ml-3">
+                    <!-- Item name -->
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <!-- Quantity -->
+                    <p class="card-text mb-0">Quantity: {{ item.quantity }}</p>
+                </div>
+                <!-- "Done" text -->
+                <p class="card-text ml-auto mb-0 {% if item.is_done %}text-success{% endif %}">
+                    {% if item.is_done %}Done{% endif %}
+                </p>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
-
-    <a href="{% url 'add_item' list_id=shopping_list.id %}">Add Item</a>
-
-    
+    </div>
     <script>
         // Add event listener to each item checkbox
         document.addEventListener("DOMContentLoaded", function () {
