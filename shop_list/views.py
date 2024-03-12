@@ -72,9 +72,8 @@ def add_item(request, list_id):
             return redirect('show_shopping_lists')
     else:
         form = ItemForm()
-    return render(request, 'shop_list/add_item.html', {'form': form, 'shopping_list': shopping_list})
 
-#login_required  # Applying login_required decorator
+@login_required  # Applying login_required decorator
 def show_items(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
     items = Item.objects.filter(shopping_list=shopping_list)

@@ -5,7 +5,7 @@
 {% endblock landing_page_image %}
 
 {% block title %}
-    <title>Items for {{ shopping_list.name }}</title>
+<title>Items for {{ shopping_list.name }}</title>
 {% endblock %}
 
 {% block content %}
@@ -68,7 +68,9 @@
         <div class="col-md-6 col-lg-4">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">{{ shopping_list.name }}</h5>
+                    <h5 class="card-title">
+                        <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a>
+                    </h5>
                     <p class="card-text">Created by: {{ owner_username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
 
@@ -106,7 +108,8 @@
                             <a href="{% url 'edit' shopping_list.id %}"
                                 class="btn btn-secondary position-absolute bottom-right-button">Edit</a>
                             {% else %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-secondary position-absolute bottom-right-button">Clone</a>
+                            <a href="{% url 'edit' shopping_list.id %}"
+                                class="btn btn-secondary position-absolute bottom-right-button">Clone</a>
                             {% endif %}
                         </div>
                     </div>
