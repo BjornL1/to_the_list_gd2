@@ -79,20 +79,16 @@ A visitor to Easy Eater would be someone who is most likely an adult who enjoys 
 - As a Site User, I can view a paginated list of recipes so that I can select a recipe to view.
 - As a Site User, I can click on a recipe so that I can read the full recipe, ingredients required and view comments left by users.
 
-#### EPIC | Recipe Management
+#### EPIC | List management
 - As a Site User, I can input my favourite recipes onto the app through an easy to use interface so that I can share them with other users.
 - As a Site User, I can edit and delete recipes that I have created so that I can easily make changes without having to start over.
 - As a Site User I can view my recipes so that I can see and manage all recipes I have created in the one location.
 - As a Site User I can view my bookmarked recipes so I can find them easily in the one location.
 
-#### EPIC | Recipe Interaction
+#### EPIC | Item management
 - As a Site User, I can save other user's recipes to my bookmarks so that I can find them easily at a later date.
 - As a Site User, I can comment on other people's recipes so I can give my feedback.
 - As a Site User, I can edit and delete comments that I have created so that I can easily make changes if I have made a mistake.
-
-#### EPIC | Mealplan Management
-- As a Site User, I can add/delete recipes to my meal planner for a particular day of the week so that I can create a meal plan for the week ahead.
-- As a Site User, I can view my meal plan for the week when I log into my account so that I can plan for the week ahead.
 
 #### EPIC | Site Administration
 - As a Site Administrator, I can create, read, update and delete recipes, comments and meal plan items so that I can manage the app content.
@@ -101,12 +97,11 @@ A visitor to Easy Eater would be someone who is most likely an adult who enjoys 
 
 The following user stories were scoped out of the project due to time constraints and labelled as "Won't Have" on the project board on Github. It is intended that these user stories will be implemented at a later date. 
 
-- As a Site User, I can export the ingredients from the recipes on my meal plan to a shopping list and remove the ones that are not necessary so that I can have all my required ingredients for the week in one place.
-- As a Site User, I can search and filter recipes so that I can find the one I want.
+- As a User, I can create a list based on prepared template with ten predefined items.
 
 ### Design
 
-The site has a very simple and clean design which was purposely chosen in order to keep in theme with the site's goal. i.e. invoking a sense of calm in the user and reducing stress when it comes to everyday cooking. 
+The site is designed to enable the user to immediately start interacting with the features to create and swiftly storing and easy share.
 
 #### Colour Scheme
 Colour palette from Coolors
@@ -118,7 +113,7 @@ The colour scheme of the site is mainly pale cream, pink and brown with thin gol
 Great care was taken to establish a good contrast between background colours and text at all times to ensure maximum user accessibility. 
 
 #### Imagery
-There is only one static image on the site depicting a family dinner on the home page. The rest of the imagery will be uploaded by users for their individual recipes. 
+There is only one static image on the site depicting a family dinner on the home page.
 
 #### Fonts
 The Montserrat font is the main font used for the body of the website with the Playfair Display font used for the main headings on the home page. These fonts were imported via Google Fonts. Sans Serif is the backup font, in case for any reason the main font isn't being imported into the site correctly.
@@ -165,7 +160,7 @@ The Montserrat font is the main font used for the body of the website with the P
 
 Github projects was used to manage the development process using an agile approach. Please see link to project board [here](https://github.com/AliOKeeffe/PP4_My_Meal_Planner/projects/2)
 
-The 6 Epics listed above were documented within the Github project as Milestones. A Github Issue was created for each User Story which was then allocated to a milestone(Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution.
+The 5 Epics listed above were documented within the Github project as Milestones. A Github Issue was created for each User Story which was then allocated to a milestone(Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution.
 
 ## Data Model
 I used principles of Object-Oriented Programming throughout this project and Django’s Class-Based Generic Views.  
