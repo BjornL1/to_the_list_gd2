@@ -32,8 +32,8 @@ body {
 }
 
 .card {
-    border: none;
-    background-color: transparent;
+    border: 1px solid black;
+    background-color: whitesmoke;
 }
 
 .image-container {
@@ -227,7 +227,7 @@ h1 {
 } 
 
 p {
-    margin-left: 20px;
+    margin-left: 0;
 }
 
 p.card-text {
