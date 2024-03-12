@@ -240,6 +240,19 @@ p.card-text {
     margin-left: 0;
 }
 
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-right: 30%;
+    margin-left:12px;
+}
+
+.button-container form {
+    margin-bottom: 5px;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */

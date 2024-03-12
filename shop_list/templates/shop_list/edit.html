@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block landing_page_image %}
+<!-- Empty block to override the landing page image -->
+{% endblock landing_page_image %}
+
 {% block title %}
 Edit
 {% endblock %}
@@ -16,42 +20,44 @@ Edit
 </head>
 
 <body>
+    <div class="button-container">
+        <!-- Clone List Button -->
+        <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirmClone()">Clone List</button>
+        </form>
 
-    <!-- Clone List Button -->
-    <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="submit" onclick="return confirmClone()">Clone List</button>
-    </form>
+        <!-- Rename List Button -->
+        {% if is_owner %}
+        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit">Rename List</button>
+        </form>
+        {% else %}
+        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="button" disabled>Rename List</button>
+            <span id="infoIconRename">ℹ️</span>
+        </form>
+        {% endif %}
 
-    <!-- Rename List Button -->
-    {% if is_owner %}
-    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="submit">Rename List</button>
-    </form>
-    {% else %}
-    <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="button" disabled>Rename List</button>
-        <span id="infoIconRename">ℹ️</span>
-    </form>
-    {% endif %}
+        <!-- Delete List button -->
+        {% if is_owner %}
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+        </form>
+        {% else %}
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="button" disabled>Delete</button>
+            <span id="infoIconDelete">ℹ️</span>
+        </form>
+        {% endif %}
 
-    <!-- Delete button -->
-    {% if is_owner %}
-    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-        onsubmit="return confirmDelete('{{ shopping_list.name }}')">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
-    {% else %}
-    <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
-        {% csrf_token %}
-        <button type="button" disabled>Delete</button>
-        <span id="infoIconDelete">ℹ️</span>
-    </form>
-    {% endif %}
-
+        <a href="{% url 'show_items' list_id=shopping_list.id %}">Items</a>
+    </div>
     <script>
         // Function to display information message when clicking the info icon for Rename
         document.getElementById('infoIconRename').addEventListener('click', function () {
