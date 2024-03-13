@@ -83,10 +83,12 @@
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav d-none d-lg-flex">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fas fa-cog"></i>
-                            </a>
-                        </li>
+                            <!-- Symbol -->
+                            <div id="symbol" style="cursor: pointer;"><i class="fas fa-cog"></i></div>
+
+                            <!-- Clickable link -->
+                            <div id="link" style="display: none;">
+                                <a href="#">Your Link</a>
                     </ul>
                     {% endif %}
                 </div>
@@ -95,12 +97,26 @@
 
         <!-- Your other content goes here -->
         <script>
-            document.getElementById('settingsLink').addEventListener('click', function () {
-                var settingsCollapse = document.getElementById('settingsCollapse');
+            var settingsLink = document.getElementById('settingsLink');
+            var settingsCollapse = document.getElementById('settingsCollapse');
+
+            // Function to toggle collapse when settings link is clicked
+            settingsLink.addEventListener('click', function () {
                 if (settingsCollapse.classList.contains('show')) {
                     settingsCollapse.classList.remove('show');
                 } else {
                     settingsCollapse.classList.add('show');
+                }
+            });
+        </script>
+
+        <script>
+            document.getElementById('symbol').addEventListener('click', function () {
+                var linkElement = document.getElementById('link');
+                if (linkElement.style.display === 'none') {
+                    linkElement.style.display = 'block';
+                } else {
+                    linkElement.style.display = 'none';
                 }
             });
         </script>
