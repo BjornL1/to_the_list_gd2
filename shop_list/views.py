@@ -116,23 +116,26 @@ def toggle_list_status(request, list_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
+
 @login_required
 def clone(request, list_id):
-    original_list = ShoppingList.objects.get(pk=list_id)
-    
-    # Clone the list
+    # Get the original shopping list
+    original_list = get_object_or_404(ShoppingList, pk=list_id)
+
+    # Clone the shopping list
     cloned_list = ShoppingList.objects.create(
         name=f"{original_list.name} (Copy)",
-        owner=request.user,  # Set the owner to the current user
+        owner=request.user,
         is_private=original_list.is_private
     )
+
     # Increment the clone count
     original_list.clone_count += 1
     original_list.save()
 
-    # Optionally, you can also copy the items from the original list to the cloned list
-    for item in original_list.item_set.all():
-        cloned_item = Item.objects.create(
+    # Copy items from the original list to the cloned list
+    for item in original_list.items.all():  # Use items instead of item_set
+        Item.objects.create(
             name=item.name,
             quantity=item.quantity,
             shopping_list=cloned_list
