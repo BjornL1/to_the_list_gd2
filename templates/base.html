@@ -32,49 +32,59 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-green">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">To<span
-                        class="red-o"></span>TheList<span class="thin"></span></span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText1"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText1">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Learn</a>
-                    </li>
-                </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-green">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <span class="brand">To<span class="red-o"></span>TheList<span class="thin"></span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Learn</a>
+                </li>
                 {% if user.is_authenticated %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                </ul>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                </li>
                 {% else %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                </ul>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'account_login' %}">Login</a>
+                </li>
                 {% endif %}
-                <i class="fas fa-cog"></i>
-            </div>
+                <li class="nav-item d-lg-none">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav d-none d-lg-flex">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
+
+
 
     {% block landing_page_image %}
     <img src="{% static 'images/land_page_t.jpg' %}" alt="Land Page Image" class="custom-landingpage">
     {% endblock landing_page_image %}
-    
+
     <main class="flex-shrink-0 bg-green">
 
         {% block content %}
