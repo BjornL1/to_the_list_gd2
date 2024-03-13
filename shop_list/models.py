@@ -19,7 +19,7 @@ class ShoppingListPreference(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=100)
     quantity = models.IntegerField(default=1)
-    shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE)
+    shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE, related_name='items')
     is_done = models.BooleanField(default=False)
 
     def __str__(self):

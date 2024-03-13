@@ -54,8 +54,11 @@ def show_shopping_lists(request):
     # Combine private and public lists
     all_lists = private_lists | public_lists
     
-    # Create a list of tuples containing each shopping list and the username of the owner
-    lists_with_usernames = [(shopping_list, shopping_list.owner.username) for shopping_list in all_lists]
+    # Create a list of tuples containing each shopping list, the username of the owner, and the count of done items
+    lists_with_usernames = []
+    for shopping_list in all_lists:
+        done_count = shopping_list.items.filter(is_done=True).count()
+        lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
     
     return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
  
@@ -204,6 +207,23 @@ def toggle_item_done(request, item_id):
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 '''
+@login_required
+def show_shopping_lists(request):
+    # Fetch private lists associated with the current user
+    private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
+    
+    # Fetch all public lists (including the logged-in user's public lists)
+    public_lists = ShoppingList.objects.filter(is_private=False)
+    
+    # Combine private and public lists
+    all_lists = private_lists | public_lists
+    
+    # Create a list of tuples containing each shopping list and the username of the owner
+    lists_with_usernames = [(shopping_list, shopping_list.owner.username) for shopping_list in all_lists]
+    
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+
+
 @login_required
 def create_shopping_list(request):
     # Clear any existing messages if the user is authenticated
