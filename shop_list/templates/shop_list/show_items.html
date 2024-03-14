@@ -52,8 +52,9 @@
                     {% if item.is_done %}Done{% endif %}
                 </p>
                 <!-- Edit button link -->
-                <a href="{% url 'edit_item' item.id %}" class="btn btn-primary ml-2">Edit</a>
+                <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary ml-2">Edit</a>
             </div>
+            <p>Generated URL: {% url 'edit_item' item.id %}</p>
         </div>
         {% endfor %}
     </div>

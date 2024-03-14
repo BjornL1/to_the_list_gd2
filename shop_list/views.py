@@ -144,11 +144,14 @@ def clone(request, list_id):
             original_list.save()
 
             for item in original_list.items.all():
-                Item.objects.create(
+                cloned_item = Item.objects.create(
                     name=item.name,
                     quantity=item.quantity,
-                    shopping_list=cloned_list
+                    shopping_list=cloned_list  # Associate the cloned item with the newly created cloned list
                 )
+
+            # Delete the original list if needed
+            # original_list.delete()
 
             # Render the clone confirmation template
             return render(request, 'shop_list/clone_confirmation.html', {'shopping_list': original_list, 'new_name': new_name})
@@ -156,6 +159,8 @@ def clone(request, list_id):
         form = CloneForm()
 
     return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
+
+
     
 @login_required
 def rename(request, list_id):
@@ -233,9 +238,21 @@ def toggle_item_done(request, item_id):
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
 def edit_item(request, item_id):
-    # Your view logic here
-    return render(request, 'shop_list/edit_item.html', context)
+    # Retrieve the item object
+    item = get_object_or_404(Item, pk=item_id)
 
+    # Assuming you have code to get the associated shopping list
+    shopping_list = item.shopping_list
+
+    # Other view logic...
+
+    context = {
+        'item': item,
+        'shopping_list': shopping_list,  # Pass the shopping_list object to the context
+        # Other context variables...
+    }
+
+    return render(request, 'shop_list/edit_item.html', context)
 '''
 @login_required
 def show_shopping_lists(request):

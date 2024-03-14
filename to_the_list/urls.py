@@ -37,9 +37,8 @@ urlpatterns = [
     path('shop_list/<int:list_id>/rename/', rename, name='rename'),  # Define the URL pattern for renaming the list
     path('shop_list/<int:list_id>/delete/', delete, name='delete'),  # Define the URL pattern for renaming the list
     path('toggle-item-done/<int:item_id>/', toggle_item_done, name='toggle_item_done'),
-    path('shop_list/<int:item_id>/edit/', edit_item, name='edit_item'),
+    path('shop_list/edit_item/<int:item_id>/', edit_item, name='edit_item'),
 ]
-
 '''
    path('shop_list/', my_shop_list, name='shop_list'),   # Admin URL remains unchanged
     path('', views.home, name='home'),
