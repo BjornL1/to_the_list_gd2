@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block landing_page_image %}
+<!-- Empty block to override the landing page image -->
+{% endblock landing_page_image %}
+
+{% block title %}
+Edit Item
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Item</title>
+</head>
+
+<body>
+    <div class="button-container">
+        <!-- Clone Item Button -->
+        <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirmCloneItem()">Clone Item</button>
+        </form>
+
+        <!-- Rename Item Button -->
+        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit">Rename Item</button>
+        </form>
+
+        <!-- Delete Item button -->
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+            {% csrf_token %}
+            <button type="submit">Delete Item</button>
+        </form>
+
+        <a href="{% url 'show_items' list_id=shopping_list.id %}">Items</a>
+    </div>
+    <script>
+        function confirmDelete(listName) {
+            return confirm(`Are you sure you want to delete the list "${listName}"?`);
+        }
+
+        function confirmCloneItem() {
+            return confirm("Are you sure you want to clone this item?");
+        }
+    </script>
+</body>

@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from user_authentication import views as auth_views
 from shop_list.views import create_shopping_list
-from shop_list.views import show_shopping_lists
+from shop_list.views import show_shopping_lists, edit_item
 from shop_list.views import add_item, show_items, index, toggle_list_status, edit, clone, rename, delete, toggle_item_done
 from django.urls import path 
 
@@ -37,6 +37,7 @@ urlpatterns = [
     path('shop_list/<int:list_id>/rename/', rename, name='rename'),  # Define the URL pattern for renaming the list
     path('shop_list/<int:list_id>/delete/', delete, name='delete'),  # Define the URL pattern for renaming the list
     path('toggle-item-done/<int:item_id>/', toggle_item_done, name='toggle_item_done'),
+    path('shop_list/<int:item_id>/edit/', edit_item, name='edit_item'),
 ]
 
 '''

@@ -232,6 +232,10 @@ def toggle_item_done(request, item_id):
     else:
         return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
 
+def edit_item(request, item_id):
+    # Your view logic here
+    return render(request, 'shop_list/edit_item.html', context)
+
 '''
 @login_required
 def show_shopping_lists(request):
