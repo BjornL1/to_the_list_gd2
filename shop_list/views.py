@@ -158,7 +158,7 @@ def clone(request, list_id):
     
 @login_required
 def rename(request, list_id):
-    shopping_list = ShoppingList.objects.get(pk=list_id)
+    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
     
     # Check if the current user is the owner of the list
     is_owner = request.user == shopping_list.owner
@@ -171,8 +171,7 @@ def rename(request, list_id):
         if new_name:
             shopping_list.name = new_name
             shopping_list.save()
-            messages.success(request, 'List renamed successfully!')
-            return redirect('show_shopping_lists')
+            return render(request, 'shop_list/rename_confirmation.html', {'shopping_list': shopping_list, 'new_name': new_name})
         else:
             messages.error(request, 'New name cannot be empty!')
     
