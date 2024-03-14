@@ -5,7 +5,7 @@ from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList, Item, ShoppingListPreference
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseForbidden
+from django.http import JsonResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.utils.text import slugify
 from .forms import CloneForm
 
@@ -178,19 +178,29 @@ def rename(request, list_id):
     
     return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
     
-@login_required
 def delete(request, list_id):
-    # Get the shopping list object
-    shopping_list = ShoppingList.objects.get(pk=list_id)
-    
-    # Check if the current user is the owner of the list
-    if request.user == shopping_list.owner:
-        # Delete the list
-        shopping_list.delete()
-        return redirect('show_shopping_lists')
-    else:
-        # If the user is not the owner, return a forbidden response
-        return HttpResponseForbidden("You are not authorized to delete this list.")
+    try:
+        shopping_list = ShoppingList.objects.get(pk=list_id)
+
+        # Check if the current user is the owner of the list
+        if request.user != shopping_list.owner:
+            return HttpResponseForbidden("You are not authorized to delete this list.")
+
+        # If the request method is POST, it means the user has confirmed the deletion
+        if request.method == 'POST':
+            # Delete the list
+            shopping_list.delete()
+            # Render the deletion confirmation template
+            return render(request, 'shop_list/delete_confirmation.html', {'shopping_list': shopping_list})
+
+        # If the request method is GET, it means the user is viewing the confirmation page
+        else:
+            # Redirect to the confirmation page
+            return redirect('delete_confirmation', list_id=list_id)
+
+    except ShoppingList.DoesNotExist:
+        # If the shopping list does not exist, return a 404 response
+        return HttpResponseNotFound("Shopping List not found.")
 
 def edit(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
