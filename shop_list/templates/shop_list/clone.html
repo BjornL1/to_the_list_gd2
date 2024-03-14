@@ -2,19 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Clone Shopping List</title>
+    <title>Clone "{{ shopping_list.name }}"</title>
 </head>
 <body>
     <h1>Clone "{{ shopping_list.name }}"</h1>
-
-    <form method="post">
+    <form id="cloneForm" method="post">
         {% csrf_token %}
-        <!-- Optionally, you can include fields to customize the cloned list -->
-        <!-- For example, you could allow the user to specify a new name for the cloned list -->
         <label for="new_name">New Name:</label>
-        <input type="text" id="new_name" name="new_name"><br><br>
-        
-        <button type="submit">Clone List</button>
+        <input type="text" id="new_name" name="new_name" required>
+        <button id="cloneButton" type="submit">Clone List</button>
     </form>
+    
+    <script>
+        // Confirm cloning action before submitting the form
+        document.getElementById('cloneForm').addEventListener('submit', function(event) {
+            // Get the new name entered by the user
+            var newName = document.getElementById('new_name').value;
+            
+            // Display a confirmation dialog
+            var confirmed = confirm('Are you sure you want to clone the list with the name "' + newName + '"?');
+            
+            // Prevent form submission if user cancels the action
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

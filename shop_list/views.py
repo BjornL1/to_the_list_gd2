@@ -150,7 +150,8 @@ def clone(request, list_id):
                     shopping_list=cloned_list
                 )
 
-            return redirect('show_shopping_lists')
+            # Render the clone confirmation template
+            return render(request, 'shop_list/clone_confirmation.html', {'shopping_list': original_list, 'new_name': new_name})
     else:
         form = CloneForm()
 

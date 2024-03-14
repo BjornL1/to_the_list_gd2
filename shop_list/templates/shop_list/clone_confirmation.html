@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Clone Confirmation
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Confirmation</title>
+    <!-- Add your CSS links or styles here if needed -->
+</head>
+<body>
+    <div>
+        <p>List "{{ shopping_list.name }}" has been cloned successfully with the new name "{{ new_name }}".</p>
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+    </div>
+</body>
+{% endblock %}
