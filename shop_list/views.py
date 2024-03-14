@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseForbidden
 from django.utils.text import slugify
-
+from .forms import CloneForm
 
 
 def index(request):
@@ -119,29 +119,42 @@ def toggle_list_status(request, list_id):
 
 @login_required
 def clone(request, list_id):
-    # Get the original shopping list
     original_list = get_object_or_404(ShoppingList, pk=list_id)
 
-    # Clone the shopping list
-    cloned_list = ShoppingList.objects.create(
-        name=f"{original_list.name} (Copy)",
-        owner=request.user,
-        is_private=original_list.is_private
-    )
+    if request.method == 'POST':
+        form = CloneForm(request.POST)
+        if form.is_valid():
+            new_name = form.cleaned_data['new_name']
 
-    # Increment the clone count
-    original_list.clone_count += 1
-    original_list.save()
+            # Check if a list with the same name already exists
+            base_name = new_name
+            suffix = 1
+            while ShoppingList.objects.filter(name=new_name).exists():
+                new_name = f"{base_name} Copy {suffix}"
+                suffix += 1
 
-    # Copy items from the original list to the cloned list
-    for item in original_list.items.all():  # Use items instead of item_set
-        Item.objects.create(
-            name=item.name,
-            quantity=item.quantity,
-            shopping_list=cloned_list
-        )
+            # Clone the shopping list
+            cloned_list = ShoppingList.objects.create(
+                name=new_name,
+                owner=request.user,
+                is_private=original_list.is_private
+            )
 
-    return redirect('show_shopping_lists')
+            original_list.clone_count += 1
+            original_list.save()
+
+            for item in original_list.items.all():
+                Item.objects.create(
+                    name=item.name,
+                    quantity=item.quantity,
+                    shopping_list=cloned_list
+                )
+
+            return redirect('show_shopping_lists')
+    else:
+        form = CloneForm()
+
+    return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
     
 @login_required
 def rename(request, list_id):

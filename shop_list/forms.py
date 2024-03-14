@@ -11,3 +11,6 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['name', 'quantity']
+
+class CloneForm(forms.Form):
+    new_name = forms.CharField(label='New Name', max_length=100)
