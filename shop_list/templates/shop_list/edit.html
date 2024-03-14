@@ -69,7 +69,11 @@ Edit
             alert('Only the owner can delete this list.');
         });
     </script>
-
+    <script>
+        function confirmDelete(listName) {
+            return confirm(`Are you sure you want to delete the list "${listName}"?`);
+        }
+    </script>
 </body>
 
 </html>
