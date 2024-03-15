@@ -27,13 +27,13 @@ Edit Item
         </form>
 
         <form method="post" action="{% url 'rename_item' item_id=item.id %}">
-        {% csrf_token %}
-        <button type="submit">Rename Item</button>
+            {% csrf_token %}
+            <button type="submit">Rename Item</button>
         </form>
 
         <!-- Delete Item button -->
-        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+        <form method="post" action="{% url 'delete_item' item_id=item.id %}"
+            onsubmit="return confirmDelete('{{ item.name }}')">
             {% csrf_token %}
             <button type="submit">Delete Item</button>
         </form>

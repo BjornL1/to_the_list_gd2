@@ -235,6 +235,7 @@ def item_rename(request, item_id):
     
     return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner})
 
+@login_required
 def delete(request, list_id):
     try:
         shopping_list = ShoppingList.objects.get(pk=list_id)
@@ -258,6 +259,31 @@ def delete(request, list_id):
     except ShoppingList.DoesNotExist:
         # If the shopping list does not exist, return a 404 response
         return HttpResponseNotFound("Shopping List not found.")
+
+@login_required
+def delete_item(request, item_id):
+    try:
+        item = Item.objects.get(pk=item_id)
+
+        # Check if the current user is the owner of the item's shopping list
+        if request.user != item.shopping_list.owner:
+            return HttpResponseForbidden("You are not authorized to delete this item.")
+
+        # If the request method is POST, it means the user has confirmed the deletion
+        if request.method == 'POST':
+            # Delete the item
+            item.delete()
+            # Render the deletion confirmation template
+            return render(request, 'shop_list/delete_item_confirmation.html', {'item': item})
+
+        # If the request method is GET, it means the user is viewing the confirmation page
+        else:
+            # Redirect to the confirmation page
+            return redirect('delete_item_confirmation', item_id=item_id)
+
+    except Item.DoesNotExist:
+        # If the item does not exist, return a 404 response
+        return HttpResponseNotFound("Item not found.")
 
 def edit(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
