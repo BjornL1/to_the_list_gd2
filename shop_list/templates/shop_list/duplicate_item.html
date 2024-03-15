@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duplicate "{{ item.name }}"</title>
+</head>
+<body>
+    <h1>Duplicate "{{ item.name }}"</h1>
+    <form id="duplicateForm" method="post">
+        {% csrf_token %}
+        <label for="new_name">New Name:</label>
+        <input type="text" id="new_name" name="new_name" required>
+        <button id="duplicateButton" type="submit">Duplicate Item</button>
+    </form>
+    
+    <script>
+        // Confirm duplication action before submitting the form
+        document.getElementById('duplicateForm').addEventListener('submit', function(event) {
+            // Get the new name entered by the user
+            var newName = document.getElementById('new_name').value;
+            
+            // Display a confirmation dialog
+            var confirmed = confirm('Are you sure you want to duplicate the item with the name "' + newName + '"?');
+            
+            // Prevent form submission if user cancels the action
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

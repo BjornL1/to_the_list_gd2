@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.utils.text import slugify
-from .forms import CloneForm
+from .forms import CloneForm, DuplicateItemForm
 
 
 def index(request):
@@ -159,6 +159,36 @@ def clone(request, list_id):
         form = CloneForm()
 
     return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
+
+@login_required
+def duplicate_item(request, item_id):
+    original_item = get_object_or_404(Item, pk=item_id)
+
+    if request.method == 'POST':
+        form = DuplicateItemForm(request.POST)
+        if form.is_valid():
+            new_name = form.cleaned_data['new_name']
+
+            # Check if an item with the same name already exists
+            base_name = new_name
+            suffix = 1
+            while Item.objects.filter(name=new_name).exists():
+                new_name = f"{base_name} Copy {suffix}"
+                suffix += 1
+
+            # Duplicate the item
+            duplicated_item = Item.objects.create(
+                name=new_name,
+                quantity=original_item.quantity,
+                shopping_list=original_item.shopping_list,  # Associate the duplicated item with the same shopping list
+            )
+
+            # Render the duplicate confirmation template
+            return render(request, 'shop_list/duplicate_item_confirmation.html', {'item': original_item, 'new_name': new_name})
+    else:
+        form = DuplicateItemForm()
+
+    return render(request, 'shop_list/duplicate_item.html', {'form': form, 'item': original_item})
 
 @login_required
 def rename(request, list_id):

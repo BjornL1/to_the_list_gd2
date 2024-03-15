@@ -21,10 +21,9 @@ Edit Item
 
 <body>
     <div class="button-container">
-        <!-- Clone Item Button -->
-        <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+        <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
             {% csrf_token %}
-            <button type="submit" onclick="return confirmCloneItem()">Clone Item</button>
+            <button type="submit" onclick="return confirmDuplicateItem()">Duplicate Item</button>
         </form>
 
         <form method="post" action="{% url 'rename_item' item_id=item.id %}">
