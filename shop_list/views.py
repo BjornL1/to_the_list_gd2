@@ -160,8 +160,6 @@ def clone(request, list_id):
 
     return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
 
-
-    
 @login_required
 def rename(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
@@ -172,17 +170,41 @@ def rename(request, list_id):
     if not is_owner:
         return render(request, 'shop_list/rename.html', {'not_authorized_message': 'You are not authorized to rename this list.', 'is_owner': False})
     
+    old_name = shopping_list.name  # Get the old name before updating
+    
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
         if new_name:
             shopping_list.name = new_name
             shopping_list.save()
-            return render(request, 'shop_list/rename_confirmation.html', {'shopping_list': shopping_list, 'new_name': new_name})
+            return render(request, 'shop_list/rename_confirmation.html', {'old_name': old_name, 'new_name': new_name})
         else:
             messages.error(request, 'New name cannot be empty!')
     
     return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
+
+@login_required
+def item_rename(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    shopping_list = item.shopping_list
+
+    # Check if the current user is the owner of the item
+    is_owner = request.user == shopping_list.owner
     
+    if not is_owner:
+        return render(request, 'shop_list/rename_item.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
+    
+    if request.method == 'POST':
+        new_name = request.POST.get('new_name')
+        if new_name:
+            item.name = new_name
+            item.save()
+            return render(request, 'shop_list/rename_confirmation.html', {'item': item, 'new_name': new_name})
+        else:
+            messages.error(request, 'New name cannot be empty!')
+    
+    return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner})
+
 def delete(request, list_id):
     try:
         shopping_list = ShoppingList.objects.get(pk=list_id)

@@ -27,10 +27,9 @@ Edit Item
             <button type="submit" onclick="return confirmCloneItem()">Clone Item</button>
         </form>
 
-        <!-- Rename Item Button -->
-        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-            {% csrf_token %}
-            <button type="submit">Rename Item</button>
+        <form method="post" action="{% url 'rename_item' item_id=item.id %}">
+        {% csrf_token %}
+        <button type="submit">Rename Item</button>
         </form>
 
         <!-- Delete Item button -->
