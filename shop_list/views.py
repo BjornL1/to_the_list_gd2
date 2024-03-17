@@ -222,7 +222,7 @@ def item_rename(request, item_id):
     is_owner = request.user == shopping_list.owner
     
     if not is_owner:
-        return render(request, 'shop_list/rename_item.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
+        return render(request, 'shop_list/item_rename.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
     
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
