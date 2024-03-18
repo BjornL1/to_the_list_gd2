@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.utils.text import slugify
 from .forms import CloneForm, DuplicateItemForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def index(request):
@@ -60,7 +61,17 @@ def show_shopping_lists(request):
         done_count = shopping_list.items.filter(is_done=True).count()
         lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
     
-    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+    # Pagination
+    paginator = Paginator(lists_with_usernames, 10)  # 10 lists per page
+    page_number = request.GET.get('page', 1)
+    try:
+        lists_paginated = paginator.page(page_number)
+    except PageNotAnInteger:
+        lists_paginated = paginator.page(1)
+    except EmptyPage:
+        lists_paginated = paginator.page(paginator.num_pages)
+    
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_paginated': lists_paginated})
  
 
 @login_required
@@ -153,11 +164,9 @@ def clone(request, list_id):
                 cloned_item = Item.objects.create(
                     name=item.name,
                     quantity=item.quantity,
-                    shopping_list=cloned_list  # Associate the cloned item with the newly created cloned list
+                    shopping_list=cloned_list,  # Associate the cloned item with the newly created cloned list
+                    created_by=request.user  # Set the created_by field to the current user
                 )
-
-            # Delete the original list if needed
-            # original_list.delete()
 
             # Render the clone confirmation template
             return render(request, 'shop_list/clone_confirmation.html', {'shopping_list': original_list, 'new_name': new_name})
