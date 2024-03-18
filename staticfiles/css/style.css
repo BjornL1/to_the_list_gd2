@@ -104,6 +104,7 @@ body {
 .post-link:hover,
 .page-link {
     color: #E84610;
+    margin-top: 0;
 }
 
 .post-title {
