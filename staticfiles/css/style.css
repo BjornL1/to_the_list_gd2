@@ -262,6 +262,10 @@ p.card-text {
 .pen-icon {
     color: #E84610;
 }
+
+.username-postion {
+    margin-top: 500px;
+}
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none; /* Hide edit button on small screens */

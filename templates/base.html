@@ -59,6 +59,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link">Logged in as: {{ user.username|slice:":20" }}</a>
+                        </li>
                         <li class="nav-item d-lg-none">
                             <a class="nav-link" href="#" id="settingsLink">
                                 <i class="fas fa-cog"></i>
