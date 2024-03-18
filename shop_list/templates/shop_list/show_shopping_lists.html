@@ -90,14 +90,16 @@
                         <!-- Public/Private text and toggle -->
                         <div class="d-flex align-items-center justify-content-between mt-3">
                             <div>
-                                <span
-                                    class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                                {% if shopping_list.owner == request.user %}
+                                <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                                     {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                                 </span>
                                 <!-- Toggle -->
-                                <input type="range"
-                                    class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
+                                <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
                                     data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                                {% else %}
+                                <span class="status-text external">External</span>
+                                {% endif %}
                             </div>
                             <!-- Clone/Edit button -->
                             <div>
