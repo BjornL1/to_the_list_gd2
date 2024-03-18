@@ -21,6 +21,7 @@ class Item(models.Model):
     quantity = models.IntegerField(default=1)
     shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE, related_name='items')
     is_done = models.BooleanField(default=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # Add this field
 
     def __str__(self):
         return self.name

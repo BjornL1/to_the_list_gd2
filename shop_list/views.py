@@ -65,12 +65,18 @@ def show_shopping_lists(request):
 
 @login_required
 def add_item(request, list_id):
-    shopping_list = ShoppingList.objects.get(pk=list_id)
+    # Fetch the shopping list
+    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
+
     if request.method == 'POST':
         form = ItemForm(request.POST)
         if form.is_valid():
             item = form.save(commit=False)
             item.shopping_list = shopping_list
+            
+            # Set the created_by field to the current user
+            item.created_by = request.user
+            
             item.save()
             return redirect('show_items', list_id=list_id)  # Redirect to the show_items page
     else:

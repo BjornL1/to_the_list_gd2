@@ -9,21 +9,11 @@ Edit Item
 {% endblock %}
 
 {% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Item</title>
-</head>
-
-<body>
-    <div class="button-container">
+    {% if item.created_by == request.user %}
+        <!-- Display buttons for the item creator -->
         <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
             {% csrf_token %}
-            <button type="submit" onclick="return confirmDuplicateItem()">Duplicate Item</button>
+            <button type="submit">Duplicate Item</button>
         </form>
 
         <form method="post" action="{% url 'rename_item' item_id=item.id %}">
@@ -31,15 +21,18 @@ Edit Item
             <button type="submit">Rename Item</button>
         </form>
 
-        <!-- Delete Item button -->
         <form method="post" action="{% url 'delete_item' item_id=item.id %}"
             onsubmit="return confirmDelete('{{ item.name }}')">
             {% csrf_token %}
             <button type="submit">Delete Item</button>
         </form>
-
-        <a href="{% url 'show_items' list_id=shopping_list.id %}">Items</a>
-    </div>
+    {% else %}
+        <!-- Display button for non-creators -->
+        <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
+            {% csrf_token %}
+            <button type="submit">Duplicate Item</button>
+        </form>
+    {% endif %}
     <script>
         function confirmDelete(listName) {
             return confirm(`Are you sure you want to delete the list "${listName}"?`);
@@ -49,5 +42,4 @@ Edit Item
             return confirm("Are you sure you want to clone this item?");
         }
     </script>
-</body>
 {% endblock %}
