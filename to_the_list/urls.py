@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from user_authentication import views as auth_views
 from shop_list.views import create_shopping_list
-from shop_list.views import show_shopping_lists, edit_item, item_rename, duplicate_item, delete_item
+from shop_list.views import show_shopping_lists, edit_item, item_rename, dupicate_item, delete_item
 from shop_list.views import add_item, show_items, index, toggle_list_status, edit, clone, rename, delete, toggle_item_done
 from django.urls import path
 from . import views
