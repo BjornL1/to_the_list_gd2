@@ -21,6 +21,7 @@ from shop_list.views import create_shopping_list
 from shop_list.views import show_shopping_lists, edit_item, item_rename, duplicate_item, delete_item
 from shop_list.views import add_item, show_items, index, toggle_list_status, edit, clone, rename, delete, toggle_item_done
 from django.urls import path
+from . import views
 
 
 urlpatterns = [
@@ -41,6 +42,7 @@ urlpatterns = [
     path('shop_list/<int:item_id>/item_rename/', item_rename, name='rename_item'),
     path('shop_list/<int:item_id>/duplicate_item/', duplicate_item, name='duplicate_item'),
     path('shop_list/<int:item_id>/delete_item/', delete_item, name='delete_item'),
+    path('learn/', views.learn_view, name='learn'),
 ]
 '''
    path('shop_list/', my_shop_list, name='shop_list'),   # Admin URL remains unchanged

@@ -357,6 +357,10 @@ def edit_item(request, item_id):
     }
 
     return render(request, 'shop_list/edit_item.html', context)
+
+def learn_view(request):
+    # Your view logic goes here
+    return render(request, 'learn.html')
 '''
 @login_required
 def show_shopping_lists(request):
