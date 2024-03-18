@@ -19,34 +19,19 @@
         {% csrf_token %}
         <label for="new_name">New Name:</label>
         <input type="text" id="new_name" name="new_name" required>
-        <button id="renameButton" type="submit" class="{% if not is_owner %}disabled{% endif %}">Rename Item</button>
+        <button id="renameButton" type="submit">Rename Item</button>
         <span id="infoIcon">ℹ️</span>
     </form>
     <div id="infoMessage" style="display: none;">Only the owner can rename this item.</div>
     {% endif %}
 
     <script>
-        // Function to display confirmation dialog before renaming
+        // Function to display confirmation dialog with a message before renaming
         function confirmRename() {
             var newName = document.getElementById('new_name').value;
-            var confirmed = confirm("Rename '{{ item.name }}' to '" + newName + "'?");
+            var message = "Are you sure you want to rename '{{ item.name }}' to '" + newName + "'?";
+            var confirmed = confirm(message);
             return confirmed;
-        }
-
-        // Check if the current user is the owner of the item
-        const isOwner = "{{ is_owner }}";
-
-        if (isOwner === "False") {
-            // If the user is not the owner, disable the rename button and show info message
-            const renameButton = document.getElementById('renameButton');
-            renameButton.classList.add('disabled');
-
-            const infoIcon = document.getElementById('infoIcon');
-            infoIcon.style.cursor = 'pointer';
-            infoIcon.addEventListener('click', () => {
-                const infoMessage = document.getElementById('infoMessage');
-                infoMessage.style.display = 'block';
-            });
         }
     </script>
 </body>

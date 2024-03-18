@@ -76,7 +76,7 @@ def add_item(request, list_id):
             
             # Set the created_by field to the current user
             item.created_by = request.user
-            
+            print("Item created by:", item.created_by)
             item.save()
             return redirect('show_items', list_id=list_id)  # Redirect to the show_items page
     else:
@@ -187,6 +187,7 @@ def duplicate_item(request, item_id):
                 name=new_name,
                 quantity=original_item.quantity,
                 shopping_list=original_item.shopping_list,  # Associate the duplicated item with the same shopping list
+                created_by=request.user  # Set the created_by field to the current user
             )
 
             # Render the duplicate confirmation template
@@ -226,8 +227,9 @@ def item_rename(request, item_id):
 
     # Check if the current user is the owner of the item
     is_owner = request.user == shopping_list.owner
+    is_creator = request.user == item.created_by
     
-    if not is_owner:
+    if not is_owner and not is_creator:
         return render(request, 'shop_list/item_rename.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
     
     if request.method == 'POST':

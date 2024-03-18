@@ -9,37 +9,39 @@ Edit Item
 {% endblock %}
 
 {% block content %}
-    {% if item.created_by == request.user %}
-        <!-- Display buttons for the item creator -->
-        <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
-            {% csrf_token %}
-            <button type="submit">Duplicate Item</button>
-        </form>
+{% if item.created_by == request.user %}
+<script>
+    console.log("Item created by:", "{{ item.created_by }}");
+    console.log("Current user:", "{{ request.user }}");
+</script>
+<form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
+    {% csrf_token %}
+    <button type="submit">Duplicate Item</button>
+</form>
 
-        <form method="post" action="{% url 'rename_item' item_id=item.id %}">
-            {% csrf_token %}
-            <button type="submit">Rename Item</button>
-        </form>
+<form method="post" action="{% url 'rename_item' item_id=item.id %}">
+    {% csrf_token %}
+    <button type="submit">Rename Item</button>
+</form>
 
-        <form method="post" action="{% url 'delete_item' item_id=item.id %}"
-            onsubmit="return confirmDelete('{{ item.name }}')">
-            {% csrf_token %}
-            <button type="submit">Delete Item</button>
-        </form>
-    {% else %}
-        <!-- Display button for non-creators -->
-        <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
-            {% csrf_token %}
-            <button type="submit">Duplicate Item</button>
-        </form>
-    {% endif %}
-    <script>
-        function confirmDelete(listName) {
-            return confirm(`Are you sure you want to delete the list "${listName}"?`);
-        }
+<form method="post" action="{% url 'delete_item' item_id=item.id %}" onsubmit="return confirmDelete('{{ item.name }}')">
+    {% csrf_token %}
+    <button type="submit">Delete Item</button>
+</form>
+{% else %}
+<!-- Display button for non-creators -->
+<form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
+    {% csrf_token %}
+    <button type="submit">Duplicate Item</button>
+</form>
+{% endif %}
+<script>
+    function confirmDelete(listName) {
+        return confirm(`Are you sure you want to delete the list "${listName}"?`);
+    }
 
-        function confirmCloneItem() {
-            return confirm("Are you sure you want to clone this item?");
-        }
-    </script>
+    function confirmCloneItem() {
+        return confirm("Are you sure you want to clone this item?");
+    }
+</script>
 {% endblock %}
