@@ -97,21 +97,30 @@ def add_item(request, list_id):
 
 @login_required  # Applying login_required decorator
 def show_items(request, list_id):
-    shopping_list = ShoppingList.objects.get(pk=list_id)
-    items = Item.objects.filter(shopping_list=shopping_list)
+    # Retrieve the shopping list object
+    shopping_list = get_object_or_404(ShoppingList, pk=list_id)
 
-    # Check if the current user is the owner of the list
-    is_owner = shopping_list.owner == request.user
+    # Retrieve all items associated with the shopping list
+    all_items = shopping_list.items.all()
 
-    if request.method == 'POST':
-        # Handle checkbox state changes
-        item_ids = request.POST.getlist('item_ids')  
-        for item_id in item_ids:
-            item = Item.objects.get(pk=item_id)
-            item.is_done = not item.is_done  # Toggle the state of the checkbox
-            item.save()  # Save the changes to the database
+    # Paginate the items
+    paginator = Paginator(all_items, 5)  # Show 10 items per page
+    page_number = request.GET.get('page')
+    try:
+        items_paginated = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        items_paginated = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range, deliver last page of results
+        items_paginated = paginator.page(paginator.num_pages)
 
-    return render(request, 'shop_list/show_items.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
+    context = {
+        'shopping_list': shopping_list,
+        'items_paginated': items_paginated,
+    }
+
+    return render(request, 'shop_list/show_items.html', context)
 
 @login_required # Disable CSRF protection for this view (for demonstration purposes only)
 def toggle_list_status(request, list_id):

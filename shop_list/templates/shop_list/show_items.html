@@ -9,32 +9,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="container">
+    <h1 class="custom-container">Items for {{ shopping_list.name }}</h1>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Items for {{ shopping_list.name }}</title>
-    <style>
-        /* Define your CSS styles for checkboxes and labels */
-        .checkbox-label {
-            display: inline-block;
-            margin-right: 10px;
-            /* Adjust as needed */
-        }
-    </style>
-
-</head>
-
-<body>
-    <div class="listitems-header">
-        <h1 class="listitems-header">Items for {{ shopping_list.name }}</h1>
-    </div>
+    <!-- Add Item button -->
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-primary mb-3">Add Item</a>
+
+    <!-- Iterate over the paginated items -->
     <div class="card-columns">
-        {% for item in items %}
+        {% for item in items_paginated %}
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
@@ -60,63 +43,88 @@
         </div>
         {% endfor %}
     </div>
-    <script>
-        // Add event listener to each item checkbox
-        document.addEventListener("DOMContentLoaded", function () {
-            var itemList = document.querySelectorAll('input[type="checkbox"]');
-            itemList.forEach(function (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
-                    toggleItemDone(itemId);
-                });
+
+    <!-- Pagination links -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if items_paginated.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ items_paginated.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            <li class="page-item active"><span class="page-link">Page {{ items_paginated.number }} of
+                    {{ items_paginated.paginator.num_pages }}</span></li>
+            {% if items_paginated.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ items_paginated.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ items_paginated.paginator.num_pages }}">Last &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+<script>
+    // Add event listener to each item checkbox
+    document.addEventListener("DOMContentLoaded", function () {
+        var itemList = document.querySelectorAll('input[type="checkbox"]');
+        itemList.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+                toggleItemDone(itemId);
             });
         });
+    });
 
-        // Define the getCookie function
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Check if the cookie name matches the parameter
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
+    // Define the getCookie function
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Check if the cookie name matches the parameter
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
             }
-            return cookieValue;
         }
+        return cookieValue;
+    }
 
-        // Function to toggle "done" status of an item
-        function toggleItemDone(itemId) {
-            // Send AJAX request to update "done" status
-            fetch(`/toggle-item-done/${itemId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': getCookie('csrftoken')
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Update UI based on response
-                    if (data.status === 'success') {
-                        console.log('Item status toggled successfully.');
-                        // Toggle "done" status
-                        var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
-                        itemLabel.classList.toggle('done');
-                    } else {
-                        // Handle error
-                        console.error('Error:', data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    </script>
+    // Function to toggle "done" status of an item
+    function toggleItemDone(itemId) {
+        // Send AJAX request to update "done" status
+        fetch(`/toggle-item-done/${itemId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update UI based on response
+                if (data.status === 'success') {
+                    console.log('Item status toggled successfully.');
+                    // Toggle "done" status
+                    var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
+                    itemLabel.classList.toggle('done');
+                } else {
+                    // Handle error
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
 
 </body>
 
