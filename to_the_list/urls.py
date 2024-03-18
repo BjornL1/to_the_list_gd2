@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from user_authentication import views as auth_views
 from shop_list.views import create_shopping_list
-from shop_list.views import show_shopping_lists, edit_item, item_rename, dupicate_item, delete_item
+from shop_list.views import show_shopping_lists, edit_item, item_rename, duplicate_item, delete_item
 from shop_list.views import add_item, show_items, index, toggle_list_status, edit, clone, rename, delete, toggle_item_done
 from django.urls import path
 from . import views
-
+from django.views.defaults import page_not_found
 
 urlpatterns = [
     path('', index, name='home'), # Map the home view to the root URL
@@ -43,10 +43,10 @@ urlpatterns = [
     path('shop_list/<int:item_id>/duplicate_item/', duplicate_item, name='duplicate_item'),
     path('shop_list/<int:item_id>/delete_item/', delete_item, name='delete_item'),
     path('learn/', views.learn_view, name='learn'),
+    path('error/', views.error_view, name='error'),
 ]
-'''
-   path('shop_list/', my_shop_list, name='shop_list'),   # Admin URL remains unchanged
-    path('', views.home, name='home'),
-'''
+
+handler404 = 'to_the_list.views.error_404_view'
+
 
  
