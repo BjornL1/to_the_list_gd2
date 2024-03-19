@@ -338,7 +338,9 @@ p.card-text {
     /* Optional: Set a background color for the navbar */
 }
 
-
+.homepage-buttons-container {
+    margin-left: 150px;
+}
 
 @media only screen and (max-width: 992px) {
     .edit-button {
