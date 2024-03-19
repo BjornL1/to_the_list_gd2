@@ -34,9 +34,13 @@
                     <div class="ml-3">
                         <p class="card-text mb-0">Quantity: {{ item.quantity }}</p>
                     </div>
-                    <!-- Edit button -->
+                    <!-- Edit or Duplicate button based on the creator -->
                     <div class="ml-auto">
-                        <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
+                        {% if logged_in_user == item.created_by %}
+                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
+                        {% else %}
+                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-primary">Duplicate</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
