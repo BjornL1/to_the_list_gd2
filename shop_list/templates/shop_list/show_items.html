@@ -16,37 +16,47 @@
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-primary mb-3">Add Item</a>
 
     <!-- Iterate over the paginated items -->
-    <div class="card-columns">
+    <div class="container">
         {% for item in items_paginated %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{ item.name }}</h5>
-                <div class="d-flex align-items-center">
-                    <!-- Checkbox input for each item -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
-                            name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
-                        <label class="form-check-label" for="item_{{ item.id }}">
-                            Done
-                        </label>
-                    </div>
-                    <!-- Quantity -->
-                    <div class="ml-3">
-                        <p class="card-text mb-0">Quantity: {{ item.quantity }}</p>
-                    </div>
-                    <!-- Edit or Duplicate button based on the creator -->
-                    <div class="ml-auto">
-                        {% if logged_in_user == item.created_by %}
-                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
-                        {% else %}
-                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-primary">Duplicate</a>
-                        {% endif %}
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Items inside the card displayed in a row -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="card-title mr-3">{{ item.name }}</h5>
+                                    <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-end">
+                                <!-- Checkbox input for each item -->
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
+                                        name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
+                                    <label class="form-check-label" for="item_{{ item.id }}">
+                                        Done
+                                    </label>
+                                </div>
+                                <!-- Edit or Duplicate button based on the creator -->
+                                <div>
+                                    {% if logged_in_user == item.created_by %}
+                                    <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
+                                    {% else %}
+                                    <a href="{% url 'duplicate_item' item_id=item.id %}"
+                                        class="btn btn-primary">Duplicate</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+
 
     <!-- Pagination links -->
     <nav aria-label="Page navigation">
