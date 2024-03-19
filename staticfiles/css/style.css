@@ -247,6 +247,48 @@ a {
     /* Other styles as needed */
 }
 
+.toggle-container {
+    position: relative;
+    display: inline-block;
+}
+
+.toggle-shape {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    /* Adjust width as needed */
+    height: 100px;
+    /* Adjust height as needed */
+    background-color: blue;
+}
+
+
+.public .toggle-shape {
+    background-color: green;
+}
+
+.private .toggle-shape {
+    background-color: yellow;
+}
+
+.private {
+    color: black;
+    /* Change to the color you want for private status */
+}
+
+.public {
+    color: rgb(10, 153, 13);
+    /* Change to the color you want for public status */
+}
+
+.bottom-right-button {
+    /* Position the button 2rem from the bottom and 2rem from the right */
+    bottom: 15%;
+    right: 20%;
+}
+
+
 .status-text {
     margin: 0 0 15px 30px;
 }
