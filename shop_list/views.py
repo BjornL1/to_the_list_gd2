@@ -114,6 +114,7 @@ def show_items(request, list_id):
         'shopping_list': shopping_list,
         'enumerated_items': enumerated_items,
         'logged_in_user': request.user,
+        'all_items': all_items,  # Include all_items in the context
     }
 
     return render(request, 'shop_list/show_items.html', context)

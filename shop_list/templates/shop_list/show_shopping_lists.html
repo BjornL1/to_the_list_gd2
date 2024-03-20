@@ -15,14 +15,13 @@
     <!-- My Lists -->
     <h2>My Lists</h2>
     {% for shopping_list, owner_username, done_count in lists_with_usernames %}
-    {% if shopping_list.owner == request.user %}
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class="card-title">
-                        <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a>
+                        <a href="javascript:void(0)" onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
                     </h5>
                     <!-- Other details in a row -->
                     <div class="row">
@@ -39,14 +38,11 @@
                     <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between mt-3">
                         <div>
-                            <span
-                                class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                                 {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                             </span>
                             <!-- Toggle -->
-                            <input type="range"
-                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
-                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                            <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
                         </div>
                         <!-- Clone/Edit button -->
                         <div>
@@ -61,13 +57,21 @@
             </div>
         </div>
     </div>
-    {% endif %}
+    <!-- Items section, initially hidden -->
+    <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
+        <div class="item-list">
+            <ul>
+                {% for item in shopping_list.items.all %}
+                <li>{{ item.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
     {% endfor %}
 
     <!-- Public Lists -->
     <h2>Other lists</h2>
     {% for shopping_list, owner_username, done_count in lists_with_usernames %}
-    {% if shopping_list.owner != request.user %}
     <div class="row mb-4">
         <div class="col-12">
             <div class="card">
@@ -91,14 +95,11 @@
                     <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between mt-3">
                         <div>
-                            <span
-                                class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                                 {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                             </span>
                             <!-- Toggle -->
-                            <input type="range"
-                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
-                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                            <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
                         </div>
                         <!-- Clone/Edit button -->
                         <div>
@@ -113,82 +114,90 @@
             </div>
         </div>
     </div>
-    {% endif %}
     {% endfor %}
 </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var toggleSliders = document.querySelectorAll('.toggle-slider');
-            toggleSliders.forEach(function (slider) {
-                var listId = slider.dataset.listId;
-                slider.value = slider.classList.contains('private') ? 1 : 0;
-            });
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleSliders = document.querySelectorAll('.toggle-slider');
+        toggleSliders.forEach(function (slider) {
+            var listId = slider.dataset.listId;
+            slider.value = slider.classList.contains('private') ? 1 : 0;
         });
+    });
 
-        // Add event listener to toggle sliders
-        document.addEventListener("change", function (event) {
-            console.log('Change event triggered');
-            if (event.target && event.target.classList.contains('toggle-slider')) {
-                console.log('Toggle slider clicked');
-                var listId = event.target.dataset.listId;
-                toggleList(listId, event.target.value);
+    // Add event listener to toggle sliders
+    document.addEventListener("change", function (event) {
+        console.log('Change event triggered');
+        if (event.target && event.target.classList.contains('toggle-slider')) {
+            console.log('Toggle slider clicked');
+            var listId = event.target.dataset.listId;
+            toggleList(listId, event.target.value);
 
-                var textElement = event.target.parentElement.querySelector('.status-text');
-                if (textElement) {
-                    // Update the text based on the toggle status
-                    textElement.textContent = event.target.value === '1' ? 'Private' : 'Public';
+            var textElement = event.target.parentElement.querySelector('.status-text');
+            if (textElement) {
+                // Update the text based on the toggle status
+                textElement.textContent = event.target.value === '1' ? 'Private' : 'Public';
+            } else {
+                console.error('Status text element not found.');
+            }
+        }
+    });
+
+    function toggleList(listId) {
+        console.log('Toggling list with ID:', listId);
+        // Simulate toggling the privacy status
+        console.log('Privacy status toggled successfully!');
+
+        // Fetch request to toggle the privacy status
+        var csrftoken = getCookie('csrftoken');
+        fetch(`/toggle-list-status/${listId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Toggle the color of the button
+                    var slider = document.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
+                    slider.classList.toggle('public');
+                    slider.classList.toggle('private');
                 } else {
-                    console.error('Status text element not found.');
+                    // Handle error
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
                 }
             }
-        });
-
-        function toggleList(listId) {
-            console.log('Toggling list with ID:', listId);
-            // Simulate toggling the privacy status
-            console.log('Privacy status toggled successfully!');
-
-            // Fetch request to toggle the privacy status
-            var csrftoken = getCookie('csrftoken');
-            fetch(`/toggle-list-status/${listId}/`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftoken
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // Toggle the color of the button
-                        var slider = document.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
-                        slider.classList.toggle('public');
-                        slider.classList.toggle('private');
-                    } else {
-                        // Handle error
-                        console.error('Error:', data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
         }
+        return cookieValue;
+    }
 
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
+    function toggleItems(listId) {
+        var itemsSection = document.getElementById('items_' + listId);
+        if (itemsSection.style.display === 'none') {
+            itemsSection.style.display = 'block';
+        } else {
+            itemsSection.style.display = 'none';
         }
-    </script>
-    {% endblock %}
+    }
+</script>
+{% endblock %}
