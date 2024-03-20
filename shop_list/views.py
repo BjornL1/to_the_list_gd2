@@ -104,7 +104,7 @@ def show_items(request, list_id):
     all_items = shopping_list.items.all()
 
     # Paginate the items
-    paginator = Paginator(all_items, 5)  # Show 10 items per page
+    paginator = Paginator(all_items, 5)  # Show 5 items per page
     page_number = request.GET.get('page')
     try:
         items_paginated = paginator.page(page_number)
@@ -115,9 +115,12 @@ def show_items(request, list_id):
         # If page is out of range, deliver last page of results
         items_paginated = paginator.page(paginator.num_pages)
 
+    # Enumerate the paginated items
+    enumerated_items = [(index + 1, item) for index, item in enumerate(items_paginated)]
+
     context = {
         'shopping_list': shopping_list,
-        'items_paginated': items_paginated,
+        'enumerated_items': enumerated_items,
         'logged_in_user': request.user,
     }
 
