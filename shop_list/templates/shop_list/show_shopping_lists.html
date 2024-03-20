@@ -21,7 +21,8 @@
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class="card-title">
-                        <a href="javascript:void(0)" onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
+                        <a href="javascript:void(0)"
+                            onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
                     </h5>
                     <!-- Other details in a row -->
                     <div class="row">
@@ -38,11 +39,14 @@
                     <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between mt-3">
                         <div>
-                            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                            <span
+                                class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                                 {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                             </span>
                             <!-- Toggle -->
-                            <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                            <input type="range"
+                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
+                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
                         </div>
                         <!-- Clone/Edit button -->
                         <div>
@@ -59,10 +63,16 @@
     </div>
     <!-- Items section, initially hidden -->
     <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
-        <div class="item-list">
+        <div class="item-list" style="max-height: 200px; overflow-y: auto;">
             <ul>
                 {% for item in shopping_list.items.all %}
-                <li>{{ item.name }}</li>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">Quantity: {{ item.quantity }}</p>
+                        <!-- Additional item details can be displayed here -->
+                    </div>
+                </div>
                 {% endfor %}
             </ul>
         </div>
@@ -95,11 +105,14 @@
                     <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between mt-3">
                         <div>
-                            <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                            <span
+                                class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                                 {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                             </span>
                             <!-- Toggle -->
-                            <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                            <input type="range"
+                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
+                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
                         </div>
                         <!-- Clone/Edit button -->
                         <div>
