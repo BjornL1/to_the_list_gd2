@@ -46,33 +46,25 @@ def create_shopping_list(request):
 
 @login_required
 def show_shopping_lists(request):
-    # Fetch private lists associated with the current user
-    private_lists = ShoppingList.objects.filter(owner=request.user, is_private=True)
+    # Fetch current user's lists
+    my_lists = ShoppingList.objects.filter(owner=request.user)
+
+    # Fetch other public lists excluding the current user's lists
+    other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user)
     
-    # Fetch all public lists (including the logged-in user's public lists)
-    public_lists = ShoppingList.objects.filter(is_private=False)
+    # Sort current user's lists to appear first
+    my_lists = my_lists.order_by('-id')  # Using the primary key as a fallback sorting criteria
     
-    # Combine private and public lists
-    all_lists = private_lists | public_lists
-    
+    # Combine both lists, current user's lists first
+    all_lists = list(my_lists) + list(other_lists)
+
     # Create a list of tuples containing each shopping list, the username of the owner, and the count of done items
     lists_with_usernames = []
     for shopping_list in all_lists:
         done_count = shopping_list.items.filter(is_done=True).count()
         lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
     
-    # Pagination
-    paginator = Paginator(lists_with_usernames, 10)  # 10 lists per page
-    page_number = request.GET.get('page', 1)
-    try:
-        lists_paginated = paginator.page(page_number)
-    except PageNotAnInteger:
-        lists_paginated = paginator.page(1)
-    except EmptyPage:
-        lists_paginated = paginator.page(paginator.num_pages)
-    
-    return render(request, 'shop_list/show_shopping_lists.html', {'lists_paginated': lists_paginated})
- 
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
 
 @login_required
 def add_item(request, list_id):
