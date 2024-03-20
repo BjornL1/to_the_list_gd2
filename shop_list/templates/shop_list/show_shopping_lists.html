@@ -88,8 +88,12 @@
                                 <!-- Edit or Duplicate button based on the creator -->
                                 <div>
                                     {% if logged_in_user == item.created_by %}
+                                    <p>Logged in user: {{ logged_in_user }}</p>
+                                    <p>Item created by: {{ item.created_by }}</p>
                                     <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
                                     {% else %}
+                                    <p>Logged in user: {{ logged_in_user }}</p>
+                                    <p>Item created by: {{ item.created_by }}</p>
                                     <a href="{% url 'duplicate_item' item_id=item.id %}"
                                         class="btn btn-primary">Duplicate</a>
                                     {% endif %}
@@ -164,6 +168,17 @@
             slider.value = slider.classList.contains('private') ? 1 : 0;
         });
 
+        // Add event listener to each item checkbox
+        document.addEventListener("DOMContentLoaded", function () {
+            var itemList = document.querySelectorAll('input[type="checkbox"]');
+            itemList.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    var itemId = checkbox.id.split('_')[
+                        1]; // Extract item ID from checkbox ID
+                    toggleItemDone(itemId);
+                });
+            });
+        });
         // Add event listener to each item checkbox
         var itemList = document.querySelectorAll('input[type="checkbox"]');
         itemList.forEach(function (checkbox) {

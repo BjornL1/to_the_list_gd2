@@ -64,7 +64,9 @@ def show_shopping_lists(request):
         done_count = shopping_list.items.filter(is_done=True).count()
         lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
     
-    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames})
+    logged_in_user = request.user  # Get the logged-in user
+
+    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames, 'logged_in_user': logged_in_user})
 
 @login_required
 def add_item(request, list_id):
