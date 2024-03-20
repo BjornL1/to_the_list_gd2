@@ -61,15 +61,41 @@
             </div>
         </div>
     </div>
-    <!-- Items section, initially hidden -->
+    
+    <!--Items to be under each card-->
     <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
         <div class="item-list" style="max-height: 200px; overflow-y: auto;">
             <ul>
                 {% for item in shopping_list.items.all %}
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ item.name }}</h5>
-                        <p class="card-text">Quantity: {{ item.quantity }}</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="card-title mr-3">{{ item.name }}</h5>
+                                    <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-center justify-content-end">
+                                <!-- Checkbox input for each item -->
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
+                                        name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
+                                    <label class="form-check-label" for="item_{{ item.id }}">
+                                        Done
+                                    </label>
+                                </div>
+                                <!-- Edit or Duplicate button based on the creator -->
+                                <div>
+                                    {% if logged_in_user == item.created_by %}
+                                    <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
+                                    {% else %}
+                                    <a href="{% url 'duplicate_item' item_id=item.id %}"
+                                        class="btn btn-primary">Duplicate</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                         <!-- Additional item details can be displayed here -->
                     </div>
                 </div>

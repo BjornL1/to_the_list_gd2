@@ -15,15 +15,6 @@
     <!-- Add Item button -->
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-primary mb-3">Add Item</a>
 
-    <!-- Item list -->
-    <div class="item-list">
-        <ul>
-            {% for item in all_items %}
-            <li>{{ item.name }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-
     <!-- Iterate over the paginated items -->
     <div class="container">
         {% for index, item in enumerated_items %}
