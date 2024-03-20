@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--Items to be under each card-->
     <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
         <div class="item-list" style="max-height: 200px; overflow-y: auto;">
@@ -163,6 +163,15 @@
             var listId = slider.dataset.listId;
             slider.value = slider.classList.contains('private') ? 1 : 0;
         });
+
+        // Add event listener to each item checkbox
+        var itemList = document.querySelectorAll('input[type="checkbox"]');
+        itemList.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+                toggleItemDone(itemId);
+            });
+        });
     });
 
     // Add event listener to toggle sliders
@@ -238,5 +247,34 @@
             itemsSection.style.display = 'none';
         }
     }
+
+    // Function to toggle "done" status of an item
+    function toggleItemDone(itemId) {
+        // Send AJAX request to update "done" status
+        fetch(`/toggle-item-done/${itemId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update UI based on response
+                if (data.status === 'success') {
+                    console.log('Item status toggled successfully.');
+                    // Toggle "done" status
+                    var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
+                    itemLabel.classList.toggle('done');
+                } else {
+                    // Handle error
+                    console.error('Error:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 </script>
+
 {% endblock %}
