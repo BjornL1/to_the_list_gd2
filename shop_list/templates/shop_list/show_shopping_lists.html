@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class="card-title">
-                        <a href="javascript:void(0)" onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
                     <!-- Other details -->
                     <p class="card-text">Created by: {{ owner_username }}</p>
@@ -53,8 +53,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="d-flex align-items-center">
-                                                <h6 class="card-title mr-3">{{ item.name }}</h6>
-                                                <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                                <h6 class="card-title mr-3">{{ forloop.counter }}. {{ item.name }}</h6>
+                                                <p class="card-text">({{ item.quantity }})</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6 d-flex align-items-center justify-content-end">
