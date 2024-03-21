@@ -1,6 +1,6 @@
 # TO THE LIST
 
-Tp the list is a website whichs primary goal is to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks.
+TheList is a website whichs primary goal is to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
 
 
 The live link can be found here - [The Easy Eater](https://tothelist-gd-20bd5040c185.herokuapp.com/)
@@ -64,44 +64,50 @@ The live link can be found here - [The Easy Eater](https://tothelist-gd-20bd5040
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 ## User Experience (UX)
 
-A visitor to Easy Eater would be someone who is most likely an adult who enjoys their food and trying new recipes but also wants to save time and effort when deciding what to cook for dinner every night of the week.
+## User Experience (UX)
+
+A typical user of ToTheList is someone who wants to efficiently manage their shopping lists and facilitate seamless sharing with family and friends, allowing others to contribute and update items collaborativel
 
 ### User Stories
 
-#### EPIC | User Profile
-- As a Site User I can register an account so that I can add/edit/delete my recipes and comment on and bookmark other people's recipes and add recipes to my meal planner.
+#### EPIC User Profile
+- As a Site User, I can register an account so that I can create, read, update and delete my lists and items.
 - As a Site User, I can log in or log out of my account so that I can keep my account secure.
 - As a Site User I can see my login status so that I know if I'm logged in or out.
 
-#### EPIC | User Navigation
-- As a Site User I can immediately understand the purpose of the site so that I can decide if it meets my needs.
+#### EPIC User Navigation
+- As a Site User, I can immediately understand the purpose of the site so that I can decide if it meets my needs.
 - As a Site User, I can intuitively navigate around the site so that I can find content and understand where I am on the site.
-- As a Site User, I can view a paginated list of recipes so that I can select a recipe to view.
-- As a Site User, I can click on a recipe so that I can read the full recipe, ingredients required and view comments left by users.
+- As a Site User, I can view which items belong to each list so that I don't misunderstand which items belong to which list.
 
-#### EPIC | List management
-- As a Site User, I can input my favourite recipes onto the app through an easy to use interface so that I can share them with other users.
-- As a Site User, I can edit and delete recipes that I have created so that I can easily make changes without having to start over.
-- As a Site User I can view my recipes so that I can see and manage all recipes I have created in the one location.
-- As a Site User I can view my bookmarked recipes so I can find them easily in the one location.
+#### EPIC Lists interaction
+- As a Site User, I can create lists so that I can easily organize items.
+- As a Site User, I can rename a list so that I don't need to delete and recreate a new list if I accidentally named it wrong.
+- As a Site User, I can delete lists so that I can remove ones that are no longer needed.
+- As a Site User, I can view and copy an existing list created by another user so that I can reuse items in my own lists.
+- As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list.
+- As a Site User, I can see how frequently my lists are copied, so that I can adapt and prioritize sharing lists that are most meaningful. 
 
-#### EPIC | Item management
-- As a Site User, I can save other user's recipes to my bookmarks so that I can find them easily at a later date.
-- As a Site User, I can comment on other people's recipes so I can give my feedback.
-- As a Site User, I can edit and delete comments that I have created so that I can easily make changes if I have made a mistake.
+#### EPIC Items interaction
+- As a Site User, I can add and view items to a list so that I can easily store and find my items.
+- As a Site User, I can rename an item so that I don't need to delete and recreate a new item if I accidentally named it wrong.
+- As a Site User, I can delete items so that I can remove ones that are no longer needed.
+- As a Site User, I can duplicate an item so that I can reuse the name and quantity and quickly create a similar item which can easily be adapted if needed instead of creating a new one.
+- As a Site User, I can add/delete/rename my items added to other users' public lists so that I can easily share my items with other users.
 
-#### EPIC | Site Administration
-- As a Site Administrator, I can create, read, update and delete recipes, comments and meal plan items so that I can manage the app content.
+#### EPIC Site Administration
+- As a Site Administrator, I can create, read, update and delete lists and items.
 
 #### User stories not yet implemented
 
 The following user stories were scoped out of the project due to time constraints and labelled as "Won't Have" on the project board on Github. It is intended that these user stories will be implemented at a later date. 
 
-- As a User, I can create a list based on prepared template with ten predefined items.
+- As a Site User, I can move items between different lists.
+- As a Site User, I can search and filter lists.
 
 ### Design
 
-The site is designed to enable the user to immediately start interacting with the features to create and swiftly storing and easy share.
+The site's intentionally simple and clean design reflects its overarching goal: to cultivate a serene and organized environment that aligns with its purpose. By embracing minimalism, it aims to evoke a sense of tranquility and provide users with a clutter-free space conducive to efficient organization.
 
 #### Colour Scheme
 Colour palette from Coolors
@@ -113,7 +119,7 @@ The colour scheme of the site is mainly pale cream, pink and brown with thin gol
 Great care was taken to establish a good contrast between background colours and text at all times to ensure maximum user accessibility. 
 
 #### Imagery
-There is only one static image on the site depicting a family dinner on the home page.
+The site features a singular static image, portraying a wall adorned with lists, effectively accentuating the site's core purpose.
 
 #### Fonts
 The Montserrat font is the main font used for the body of the website with the Playfair Display font used for the main headings on the home page. These fonts were imported via Google Fonts. Sans Serif is the backup font, in case for any reason the main font isn't being imported into the site correctly.
