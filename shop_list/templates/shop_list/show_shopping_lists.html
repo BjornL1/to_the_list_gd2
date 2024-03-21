@@ -11,43 +11,25 @@
 {% block content %}
 <div class="container">
     <h1 class="custom-container">Shopping Lists</h1>
-
     <!-- My Lists -->
-    <h2>My Lists</h2>
-    {% for shopping_list, owner_username, done_count in lists_with_usernames %}
-    <div class="row mb-4">
-        <div class="col-12">
+    <div class="row">
+        {% for shopping_list, owner_username, done_count in lists_with_usernames %}
+        <div class="col-lg-4 col-md-4 mb-4"> <!-- Adjusted Bootstrap classes -->
             <div class="card">
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class="card-title">
-                        <a href="javascript:void(0)"
-                            onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
+                        <a href="javascript:void(0)" onclick="toggleItems({{ shopping_list.id }})">{{ shopping_list.name }}</a>
                     </h5>
-                    <!-- Other details in a row -->
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Created by: {{ owner_username }}</p>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <p>Items: {{ done_count }}/{{ shopping_list.items.count }} Done</p>
-                        </div>
-                    </div>
+                    <!-- Other details -->
+                    <p class="card-text">Created by: {{ owner_username }}</p>
+                    <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
+                    <p class="card-text">Items: {{ done_count }}/{{ shopping_list.items.count }} Done</p>
                     <!-- Public/Private text and toggle -->
-                    <div class="d-flex align-items-center justify-content-between mt-3">
-                        <div>
-                            <span
-                                class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
-                                {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
-                            </span>
-                            <!-- Toggle -->
-                            <input type="range"
-                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
-                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-                        </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                            {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
+                        </span>
                         <!-- Clone/Edit button -->
                         <div>
                             {% if shopping_list.owner == request.user %}
@@ -59,55 +41,49 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!--Items to be under each card-->
-    <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
-        <div class="item-list" style="max-height: 200px; overflow-y: auto;">
-            <ul>
-                {% for item in shopping_list.items.all %}
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <h5 class="card-title mr-3">{{ item.name }}</h5>
-                                    <p class="card-text">Quantity: {{ item.quantity }}</p>
+            <!-- Items under each card -->
+            <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
+                <div class="item-list" style="max-height: 200px; overflow-y: auto;">
+                    <ul>
+                        {% for item in shopping_list.items.all %}
+                        <li>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center">
+                                                <h6 class="card-title mr-3">{{ item.name }}</h6>
+                                                <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-center justify-content-end">
+                                            <!-- Checkbox input for each item -->
+                                            <div class="form-check mr-3">
+                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
+                                                <label class="form-check-label" for="item_{{ item.id }}">Done</label>
+                                            </div>
+                                            <!-- Edit or Duplicate button based on the creator -->
+                                            <div>
+                                                {% if logged_in_user == item.created_by %}
+                                                <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                                {% else %}
+                                                <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-primary btn-sm">Duplicate</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Additional item details can be displayed here -->
                                 </div>
                             </div>
-                            <div class="col-md-6 d-flex align-items-center justify-content-end">
-                                <!-- Checkbox input for each item -->
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
-                                        name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
-                                    <label class="form-check-label" for="item_{{ item.id }}">
-                                        Done
-                                    </label>
-                                </div>
-                                <!-- Edit or Duplicate button based on the creator -->
-                                <div>
-                                    {% if logged_in_user == item.created_by %}
-                                    <p>Logged in user: {{ logged_in_user }}</p>
-                                    <p>Item created by: {{ item.created_by }}</p>
-                                    <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
-                                    {% else %}
-                                    <p>Logged in user: {{ logged_in_user }}</p>
-                                    <p>Item created by: {{ item.created_by }}</p>
-                                    <a href="{% url 'duplicate_item' item_id=item.id %}"
-                                        class="btn btn-primary">Duplicate</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Additional item details can be displayed here -->
-                    </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                {% endfor %}
-            </ul>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 
     <!-- Public Lists -->
     <h2>Other lists</h2>
