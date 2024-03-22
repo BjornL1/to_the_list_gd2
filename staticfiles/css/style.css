@@ -381,7 +381,7 @@ p.card-text {
     }
 
     .navbar-toggler {
-        background-color: yellow;
+        background-color: #E84610;
         /* Change background color */
         color: black;
         /* Change text color */
@@ -392,6 +392,9 @@ p.card-text {
 
     .navbar {
         display: white;
+    }
+    .custom-toggler {
+        background-color: #E84610;
     }
 
 }

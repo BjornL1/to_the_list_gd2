@@ -9,26 +9,28 @@
     <!-- Navigation -->
     <nav class="navbar-expand-lg transparent-navbar">
         <div class="container-fluid">
-            <!-- Custom navbar toggler button with text -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText2"
+            <!-- Custom navbar toggler button without text -->
+            <button class="navbar-toggler d-none d-lg-block" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText2"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                List & Items +
+                <!-- No text here -->
             </button>
 
-            <div class="collapse navbar-collapse homepage-buttons-container" id="navbarText2">
+            <!-- Navbar links (always visible) -->
+            <div class="homepage-buttons-container">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="btn btn-primary homepage-buttons" href="{% url 'create_shopping_list' %}">
                             Add List
                         </a>
                     </li>
-                    <!--
-                    <li class="nav-item">
-                        <a class="btn btn-primary homepage-buttons" href="{% url 'show_shopping_lists' %}">
-                            My lists
-                        </a>
-                    </li>
-                    -->
+                    <!-- Add more navbar links here if needed -->
+                </ul>
+            </div>
+
+            <!-- Navbar links (collapsible) -->
+            <div class="collapse navbar-collapse homepage-buttons-container" id="navbarText2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Add more navbar links here if needed -->
                 </ul>
             </div>
         </div>
