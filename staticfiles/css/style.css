@@ -211,7 +211,8 @@ body {
 }
 
 .homepage-buttons {
-    margin-top: 10px;
+ background-color: #E84610;
+ border: 2px;
 }
 
 a {
@@ -324,7 +325,7 @@ p.card-text {
 }
 
 .pen-icon {
-    color: #E84610;
+    color: yellow;
 }
 
 .username-postion {
@@ -336,10 +337,31 @@ p.card-text {
     /* Remove background image for navbar */
     background-color: green;
     /* Optional: Set a background color for the navbar */
+   
 }
 
 .homepage-buttons-container {
     margin-left: 150px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link  {
+    color: white;
+}
+
+.nav-item {
+    color: white;
+}
+
+
+.home-colour {
+    color: white;
+}
+
+.transparent {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.transparent-navbar {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 @media only screen and (max-width: 992px) {
