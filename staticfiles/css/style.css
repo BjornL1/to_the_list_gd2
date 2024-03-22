@@ -186,7 +186,7 @@ body {
 }
 
 .bg-green {
-    background-color: #0e920e;
+    background-color: rgb(135, 201, 135, 0.55);
 
 }
 
@@ -211,7 +211,7 @@ body {
 }
 
 .homepage-buttons {
- background-color: #E84610;
+ background-color: #d83f11;
  border: 2px;
 }
 
@@ -396,5 +396,7 @@ p.card-text {
     .custom-toggler {
         background-color: #E84610;
     }
-
+    .add-list-btn {
+        margin-left: -135px;
+    }
 }

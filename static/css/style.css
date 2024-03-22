@@ -324,5 +324,7 @@ p.card-text {
     .navbar {
         display: white;
     }
-
+    .add-list-btn {
+        margin-left: -135px;
+    }
 }
