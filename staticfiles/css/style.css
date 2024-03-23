@@ -134,7 +134,15 @@ body {
 .btn-edit {
     background-color: #188181;
     color: #fff;
+    margin-left: 110px;
 }
+
+
+.signup-margin {
+    margin: 0;
+    text-decoration: underline;
+}
+
 
 .btn-signup:hover,
 .btn-signup:active {
@@ -143,7 +151,7 @@ body {
 }
 
 .link {
-    color: #23BBBB;
+    color: red;
     text-decoration: none;
 }
 
@@ -364,6 +372,14 @@ p.card-text {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+label[for="id_password"] {
+    margin-right: 35px;
+}
+
+
+label[for="id_login"] {
+    margin-right: 30px;
+}
 
 @media only screen and (max-width: 992px) {
     .edit-button {
