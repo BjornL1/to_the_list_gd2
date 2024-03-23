@@ -134,9 +134,15 @@ body {
 .btn-edit {
     background-color: #188181;
     color: #fff;
-    margin-left: 110px;
+    margin-left: 20px;
 }
 
+.btn-signout,
+.btn-edit {
+    background-color: #d83f11;
+    color: #fff;
+    margin: 0 0 20px 0;
+}
 
 .signup-margin {
     margin: 0;
@@ -150,6 +156,9 @@ body {
     color: #23BBBB;
 }
 
+.margin-but-left {
+    margin-left: 10px;
+}
 .link {
     color: red;
     text-decoration: none;
