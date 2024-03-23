@@ -144,6 +144,15 @@ body {
     margin: 0 0 20px 0;
 }
 
+.btn-signin {
+    background-color: #188181;
+    color: #fff;
+    margin-left: 110px;
+}
+
+
+
+
 .signup-margin {
     margin: 0;
     text-decoration: underline;
@@ -385,8 +394,26 @@ label[for="id_password"] {
     margin-right: 35px;
 }
 
-
 label[for="id_login"] {
+    margin-right: 30px;
+}
+
+label[for="id_username"] {
+    margin-left: 20px;
+    padding-right: 60px;
+}
+
+label[for="id_email"] {
+    margin-left: 20px;
+    padding-right: 20px;
+}
+
+label[for="id_password1"] {
+    margin-right: 20px;
+    padding-right: 65px;
+}
+
+label[for="id_password2"] {
     margin-right: 30px;
 }
 

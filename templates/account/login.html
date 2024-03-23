@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="form-group" style="margin-bottom: 20px;">
-                    <button class="btn btn-signup homepage-buttons" type="submit">{% trans "Sign In" %}</button>
+                    <button class="btn btn-signin homepage-buttons" type="submit">{% trans "Sign In" %}</button>
                 </div>
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
