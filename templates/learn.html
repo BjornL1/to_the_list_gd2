@@ -1,17 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Learn</title>
-</head>
-<body>
-    <h1>Welcome to the list</h1>
-    <p>This page is designed to help you learn how to use our list management system effectively. Explore the features and functionalities to get 
-        started with organizing your tasks efficiently. As user you will be able to create, copy, edit and share lists and items. It it also possible for other users to add items to shared lists.</p>
-    <h2>How To</h2>
-    <h3>Lists</h3>
-    <p>1. Create a list by using the "Add item" on the landing page</p>
-    <h3>Items</h3>
+{% extends 'base.html'%}
 
-    </body>
-</html>
+{% block content %}
+
+    <h1>Welcome to the list</h1>
+    <p>This page is designed to help you learn how to use our list management system effectively. Explore the features
+        and functionalities to get
+        started with organizing your tasks efficiently. As user you will be able to create, copy, edit and share lists
+        and items. It it also possible for other users to add items to shared lists.</p>
+    <h2>How To</h2>
+    <h3>Lists Overview</h3>
+    "The first step in adding items is to gather them in lists. Lists can be created in two ways: either from the
+    homepage or by cloning a list from another shared (public) list. It is possible for other users to add items to
+    another user's public lists. The user adding items also has the possibility to remove or rename the items added,
+    allowing for changes. When a user clones a list, all items in the list will be owned by the user cloning the list.<br>
+
+    Lists are presented in two ways: the lists owned by the logged-in user will display the following information: Name,
+    Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status.<br>
+
+    Name: Name of the list.
+    Number of Items: Number of items added to the list.
+    Status of Items: Whether an item has been marked as done or not.
+    Public/Private: For each list, a toggle switch displays the status of the list. Public lists are shared lists
+    visible to any logged-in user, whereas private lists are only seen by the owner of the list.
+    An example of a list named "My List 1", created by user "Mr. Smith", cloned two times by other users, containing 7
+    items where 3 are marked as done, can be displayed as follows:
+
+    Name: My List 1
+    Created by: Mr. Smith
+    Clone Count: 3/6
+    Status: Public
+    Actions: Edit"
+
+    <ul>
+        <li>
+            <p>1. Create a list</p>
+            <ul>
+                <li>
+                    <p>1.1 Subtask 1</p>
+                </li>
+                <!-- Add more subtasks here if needed -->
+            </ul>
+        </li>
+        <li>
+            <p>2. Rename a list</p>
+            <ul>
+                <li>
+                    <p>2.1 Subtask 1</p>
+                </li>
+                <!-- Add more subtasks here if needed -->
+            </ul>
+        </li>
+        <li>
+            <p>3. Clone a list</p>
+            <ul>
+                <li>
+                    <p>3.1 Subtask 1</p>
+                </li>
+                <!-- Add more subtasks here if needed -->
+            </ul>
+        </li>
+        <li>
+            <p>4. Delete a list</p>
+            <ul>
+                <li>
+                    <p>4.1 Subtask 1</p>
+                </li>
+                <!-- Add more subtasks here if needed -->
+            </ul>
+        </li>
+        <li>
+            <p>5. Share a list</p>
+            <!-- You can add subtasks or details here if needed -->
+        </li>
+    </ul>
+
+{% endblock %}
