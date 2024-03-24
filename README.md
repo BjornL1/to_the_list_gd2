@@ -219,45 +219,39 @@ Custom Error Pages were created to give the user more information on the error a
 
 Logo: Positioned prominently, the logo serves as a visual identifier for the platform, fostering brand recognition and trust.
 
-Navigation Bar: The navigation bar offers intuitive access to various sections and functionalities of the platform, ensuring seamless user experience and easy exploration.
+Header: The navigation bar in the header offers intuitive access to various sections and functionalities of the platform, ensuring seamless user experience and easy exploration.
 
 Add List Button: A prominent call-to-action button invites users to initiate list creation swiftly. Placed strategically, this button encourages immediate engagement and facilitates the creation of new lists.
 
 Homepage Information: Informative content provides users with an overview of the platform's features and benefits. This information aims to orient users, helping them understand the platform's value proposition and encouraging further exploration.
 
-![header](docs/readme_images/homepage.png)
+![](docs/readme_images/homepage.png)
 
-
-![header](docs/readme_images/features/callout_logged_in.png)
-
-**What We Do Section**
-
-![header](docs/readme_images/features/what_we_do.png)
-
-- The "What We Do' section gives a brief overview of what the site has to offer and summarises the basic features with three simple steps illustrated with font-awesome icons.
 
 ### Header
 
-![header](docs/readme_images/features/nav_loggedout.png)
+![](docs/readme_images/features/nav_loggedout.png)
 
 **Logo**
-- A customised logo was created using Hatchful by Shopify which is a free logo generator.
-- This logo is positioned in the top left of the navigation bar. The logo is linked to the home page for ease of navigation for the user.
+- The logo is positioned in the top left of the navigation bar. The logo is linked to the home page for ease of navigation for the user.
 
 **Navigation Bar**
 
-- The navigation bar is present at the top of every page and includes all links to the various other pages.
-- The My Account navigation link is a drop down menu which includes the Sign up and Log in links. 
-- When the user has logged in, the My Account drop down menu changes to display the user's name and a profile icon.
+- The navigation bar is consistently located at the top of every page, providing users with convenient access to various sections and functionalities of the platform. Depending on whether the user is logged in or not, the header will dynamically display different links, offering tailored navigation options.
 
-![header](docs/readme_images/features/header.png)
+- On smaller screens, such as mobile devices, the header links are concealed under a hamburger button. Upon clicking this symbol, the links are revealed, allowing users to easily navigate through the platform's content.
 
-- The options to Sign up or Log in will change to the option to log out once a user has logged in.
-- Once a user has signed in, more options such as 'Add Recipe', 'My Meal Plan', 'My Recipes' and 'My Bookmarks' become available.
-- The navigation bar is fully responsive, collapsing into a hamburger menu when the screen size becomes too small.
-- Hovering over the links will lighten the font.
+***Logged-out user***
 
+- The header displays the following options: 'Home', 'Learn', 'Register', and 'Login'.
+- 'Home' provides easy access to the homepage.
+- 'Learn' offers a site description and instructions for users.
+- 'Register' presents a signup form for creating a new account.
+- 'Login' directs users to the sign-in page.
 
+![](docs/readme_images/header_logged_out.png)
+
+***Logged-in user***
 ### Footer
 
 ![header](docs/readme_images/features/footer.png)
