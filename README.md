@@ -213,6 +213,29 @@ Custom Error Pages were created to give the user more information on the error a
 
 ## Features
 
+### Home Page
+
+- The homepage comprises several key features and pieces of information designed to enhance user interaction:
+
+Logo: Positioned prominently, the logo serves as a visual identifier for the platform, fostering brand recognition and trust.
+
+Navigation Bar: The navigation bar offers intuitive access to various sections and functionalities of the platform, ensuring seamless user experience and easy exploration.
+
+Add List Button: A prominent call-to-action button invites users to initiate list creation swiftly. Placed strategically, this button encourages immediate engagement and facilitates the creation of new lists.
+
+Homepage Information: Informative content provides users with an overview of the platform's features and benefits. This information aims to orient users, helping them understand the platform's value proposition and encouraging further exploration.
+
+![header](docs/readme_images/homepage.png)
+
+
+![header](docs/readme_images/features/callout_logged_in.png)
+
+**What We Do Section**
+
+![header](docs/readme_images/features/what_we_do.png)
+
+- The "What We Do' section gives a brief overview of what the site has to offer and summarises the basic features with three simple steps illustrated with font-awesome icons.
+
 ### Header
 
 ![header](docs/readme_images/features/nav_loggedout.png)
@@ -242,24 +265,7 @@ Custom Error Pages were created to give the user more information on the error a
 - The footer section includes links to Facebook, Instagram, Twitter and Youtube.
 - Clicking the links in the footer opens a separate browser tab to avoid pulling the user away from the site.
 
-### Home Page
 
-**Call to Action Section**
-
-![header](docs/readme_images/features/call_out.png)
-
-- The home page includes a call to action section which encourages the user to sign up to the site with the message "Take the stress out of everyday cooking!" and an image of a family dinner.
-- The CTA includes a sign up button which takes the user to the sign up page.
-- If a user is already signed in the message changes to 'Welcome back to The Easy Eater' and the user is encouraged to create a new recipe.
-- The sign up button changes to a 'Create' button which takes the user to the 'Add recipe' page. 
-
-![header](docs/readme_images/features/callout_logged_in.png)
-
-**What We Do Section**
-
-![header](docs/readme_images/features/what_we_do.png)
-
-- The "What We Do' section gives a brief overview of what the site has to offer and summarises the basic features with three simple steps illustrated with font-awesome icons.
 
 ### User Account Pages
 
