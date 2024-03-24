@@ -225,12 +225,10 @@ Add List Button: A prominent call-to-action button invites users to initiate lis
 
 Homepage Information: Informative content provides users with an overview of the platform's features and benefits. This information aims to orient users, helping them understand the platform's value proposition and encouraging further exploration.
 
-![](docs/readme_images/homepage.png)
+![header](docs/readme_images/homepage.png)
 
 
 ### Header
-
-![](docs/readme_images/features/nav_loggedout.png)
 
 **Logo**
 - The logo is positioned in the top left of the navigation bar. The logo is linked to the home page for ease of navigation for the user.
@@ -249,9 +247,18 @@ Homepage Information: Informative content provides users with an overview of the
 - 'Register' presents a signup form for creating a new account.
 - 'Login' directs users to the sign-in page.
 
-![](docs/readme_images/header_logged_out.png)
+![header](docs/readme_images/header_logged_out.png)
 
 ***Logged-in user***
+
+- The header displays the following options: 'Home', 'Learn', 'Logout', and 'Logged in as:'.
+- 'Home' provides easy access to the homepage.
+- 'Learn' offers a site description and instructions for users.
+- 'Logout' provides a sign-out option for users to log out of their accounts.
+- 'Logged in as:' displays the name of the currently logged-in user.
+
+![header](docs/readme_images/header_logged_in.png)
+
 ### Footer
 
 ![header](docs/readme_images/features/footer.png)
@@ -276,7 +283,7 @@ Homepage Information: Informative content provides users with an overview of the
 ![header](docs/readme_images/features/logout.png)
 
 - Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
-- Success messages inform the user if they have logged in/ logged out successfully.
+
 
 ### Browse Recipes
 
