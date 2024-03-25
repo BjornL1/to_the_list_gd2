@@ -390,6 +390,60 @@ The owner of a list can adjust its privacy settings, toggling between public and
    - Click on the list title in the "Other Lists" section. This will display the list items on a separate page.
    - To return to the previous pages, use the browser's back button.
 
+### Item management
+
+All items are associated with a list and can be added either by creating them or by cloning existing ones. Moreover, users have the ability to rename and delete items.
+Each item in a list can be marked as 'done' or 'not done'. Users can add items to their own lists or to public lists owned by other users.
+The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
+If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
+In below example the difference between the an item owned by the user and an "external" item are presented.
+
+**Create and cloning items**
+
+1. From the list view:
+   - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page. 
+   - On the item page, click on the "Add item" button, and an item adding page will be displayed.
+   - Enter a new name and click on the "Add item" button to confirm the changes.
+   - The new item will be displayed on the dedicated items page.
+   - Use the browser's back button to return to the list view.
+2. From the list view:
+   - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+   - On the items page, locate the item you wish to clone and click on its "Edit" button. This action will display the edit item page.
+   - On the edit item page, click on the "Duplicate Item" button. This will prompt the display of a duplicate item page.
+   - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+   - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+   - Click on the "Close" button to return to the list view.
+3. From the list view:
+    - From the list view, click on a list containing items.
+    - Click on an item with the "Edit" button visible. This action will display the edit item page.
+    - On the edit item page, click on the "Duplicate Item" button. This will prompt the display of a duplicate item page.
+    - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+    - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+    - Click on the "Close" button to return to the list view.
+4. From the list view:
+    - Click on a list containing items.
+    - Click on an item with the "Duplicate" button visible. This action will prompt the display of a duplicate item page.
+    - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+    - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+    - Click on the "Close" button to return to the list view
+
+
+**Rename items**
+
+
+
+**Delete items**
+
+
+
+**Change an item to done**
+
+
+
+
+
 
 
 ### Error Pages
