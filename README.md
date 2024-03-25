@@ -284,7 +284,7 @@ The header offers various options, including: Home, Learn, Register, Login, Logg
 
 - Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
 
-### Lists
+### List management
 All lists include the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status, along with an edit/clone button. Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
 
 For a logged-in user, the following information will be presented for all lists (owned by either the logged-in user or other users):
@@ -322,7 +322,7 @@ Any items belonging to the list will be displayed on a separate page by clicking
 
 ![header](docs/readme_images/other_lists.png)
 
-### Create a list
+**Create and cloning lists**
 
 A list can be created from four different locations:
 
@@ -347,11 +347,50 @@ A list can be created from four different locations:
     - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
 
 
+**Rename a list**
+
+A logged-in user can rename a list from the list view by following these steps:
+
+  - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+  - On the edit options page, locate and click the "Rename list" button. This will bring up a dedicated renaming page.
+  - On the renaming page, enter the desired new name for the list.
+  - After entering the new name, click on the "Rename List" button to confirm the changes.
+  - A message will promptly appear, confirming the successful renaming of the list along with the new name. Additionally, a "Close" button will be provided.
+  - To return to the list view, simply click on the "Close" button.
 
 
+**Delete a list**
+
+A logged-in user can delete a list from the list view by following these steps:
+
+  - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+  - On the edit options page, locate and click the "Delete list" button. This will prompt a confirmation message box, ensuring the user wants to delete the list.
+  - Click "OK" to proceed with the deletion. After the list is deleted, a confirmation page will be displayed. Additionally, a "Close" button will be provided.
+  - To return to the list view, simply click on the "Close" button.
+
+**Change public and private status**
+
+The owner of a list can adjust its privacy settings, toggling between public and private modes, by following these steps:
+
+- To change a list from public to private:
+  - Click the toggle symbol. This action will prompt the toggle symbol to move, and the accompanying information text will switch from "public" to "private".
+
+- To change a list from private to public:
+  - Click the toggle symbol. Similar to the previous step, this action will cause the toggle symbol to move, and the information text will change from "private" to "public
+
+**View items in a list**
+
+1. For a user owning the list:
+   - Click on the list title. This action will display all items directly under the list. To hide the items, simply click on the list title again.
+2. For a user owning the list:
+   - Click on the "Edit" button for the list. This will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This action will display the items on a separate page.
+   - To return to the previous pages, simply use the browser's back button.
+3. For a user viewing other users' public lists:
+   - Click on the list title in the "Other Lists" section. This will display the list items on a separate page.
+   - To return to the previous pages, use the browser's back button.
 
 
-**Recipe Header Section**
 
 ### Error Pages
 
