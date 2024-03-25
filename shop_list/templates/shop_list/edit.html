@@ -20,21 +20,22 @@ Edit List
 </head>
 
 <body>
-    <div class="d-flex justify-content-center align-items-center flex-column mt-4">
+    <div class="d-flex justify-content-center align-items-center flex-column mt-0 bg-green">
         <!-- Clone List Button -->
-        <div class="mb-2">
+        <div class="mb-4 mt-4"> 
             <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
                 {% csrf_token %}
-                <button type="submit" onclick="return confirmClone()" class="btn btn-primary">Clone List</button>
+                <button type="submit" onclick="return confirmClone()" class="btn btn-primary homepage-buttons">Clone
+                    List</button>
             </form>
         </div>
 
         <!-- Rename List Button -->
-        <div class="mb-2">
+        <div class="mb-4">
             {% if is_owner %}
             <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Rename List</button>
+                <button type="submit" class="btn btn-primary homepage-buttons">Rename List</button>
             </form>
             {% else %}
             <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
@@ -46,24 +47,25 @@ Edit List
         </div>
 
         <!-- Delete List button -->
-        <div class="mb-2">
+        <div class="mb-4">
             {% if is_owner %}
             <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
                 onsubmit="return confirmDelete('{{ shopping_list.name }}')">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-primary homepage-buttons">Delete List</button>
             </form>
             {% else %}
             <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
                 {% csrf_token %}
-                <button type="button" disabled class="btn btn-danger">Delete</button>
+                <button type="button" disabled class="btn btn-primary homepage-buttons">Delete List</button>
                 <span id="infoIconDelete">ℹ️</span>
             </form>
             {% endif %}
         </div>
-        <div class="mb-2">
+        <div class="mb-4">
             <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
-                <button type="submit" class="btn btn-secondary">Items</button>
+                {% csrf_token %}
+                <button type="submit" class="btn btn-warning mt-3">Items</button>
             </form>
         </div>
     </div>

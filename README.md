@@ -324,15 +324,27 @@ Any items belonging to the list will be displayed on a separate page by clicking
 
 ### Create a list
 
-A list can be created in three different ways 
+A list can be created from four different locations:
 
+1. Logged-out users: They can create a list by clicking the "Add list" button on the homepage.
+    - Click the "Add list" button -> Sign-in form is displayed.
+    - Enter login credentials or sign up. Click "Sign in" or "Sign Up" -> Create list form is displayed.
+    - Enter a name for the list and click "Create" -> The newly created list is confirmed with a message.
+    - On the create list page click "View lists" -> The latest created list will be displayed on the list view.
 
+2. Logged-in: "Add list" button from list view.
+    - Click the "Add list" button from lists view -> Create list form is displayed.
+    - Repeat the same steps as stated under point nr 1 in previous section.
 
+3. Logged-in: By cloning a list using clone via "Edit" button on list view.
+    - From the list view, click on the "Edit" button. -> An edit page will be displayed.
+    - From the edit page, click on the "Clone list" button -> Create list form is displayed.
+    - Repeat the same steps as stated under point number 1 in the previous section.
 
-
-
-
-
+4. Logged-in: By cloning a list using "Clone" button on list view.
+    - From the list view, click on the "Clone" button. -> A clone list page will be displayed.
+    - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
+    - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
 
 
 

@@ -429,6 +429,13 @@ label[for="id_email"] {
 .btn-list {
     margin-left: 100px;
 }
+
+.btn-warning:hover {
+    background-color: #212529; /* Change to your desired color */
+    border-color: #212529; /* Change to your desired color */
+    color: #fff; /* Change to your desired text color */
+  }
+  
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;
