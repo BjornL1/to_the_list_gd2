@@ -432,14 +432,56 @@ In below example the difference between the an item owned by the user and an "ex
 
 **Rename items**
 
+A logged-in user can rename an item from the list view by following these steps:
 
+1. From the list view:
+   - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+   - On the items page, locate the item you wish to rename and click on its "Edit" button. This action will display the edit item page.
+   - On the edit item page, click on the "Rename item" button. This will prompt the display of a rename item page.
+   - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
+   - A confirmation page will then be displayed, showing the name of the renamed item along with a "Close" button.
+   - Click on the "Close" button to return to the list view.
+
+2. From the list view:
+   - Click on a list containing items.
+   - Click on an item with the "Edit" button visible. This action will display the edit item page.
+   - On the edit item page, click on the "Rename" button. This will prompt the display of a rename item page.
+   - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
+   - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+   - Click on the "Close" button to return to the list view.
 
 **Delete items**
 
+1. From the list view:
+   - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+   - On the items page, locate the item you wish to delete and click on its "Edit" button. This action will display the edit item page.
+   - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
+   - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
+   - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
+   - Click on the "Close" button to return to the list view.
+
+2. From the list view:
+   - Click on a list containing items.
+   - Click on an item with the "Edit" button visible. This action will display the edit item page.
+   - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
+   - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
+   - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
+   - Click on the "Close" button to return to the list view.
 
 
 **Change an item to done**
 
+Changing an item from not done to done can be done either directly from the list view for a users own list or by accessing 
+the items through edit button on the list view.
+
+1. From the list view, logged-in users list:
+   - Click on the title of the list, click on the done checkbox shown for each item.
+2. From the list view, other lists, item owned by logged-in user:
+   - Click on the "Edit" button. This action will direct the user to a page with various edit options.
+   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+   - Click on click on the done checkbox shown for the items displayed.  
 
 
 
