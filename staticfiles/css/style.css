@@ -209,7 +209,6 @@ body {
 
 .bg-green {
     background-color: #b2dcaf;
-    margin-top: 20px;
 }
 
 /*'#F9FAFC;'*/
@@ -262,7 +261,7 @@ a {
     /* Adjust width as needed */
     height: 20px;
     /* Adjust height as needed */
-    margin: 0 0 0 20px;
+    margin: 0 20px 0 0px;
     /* Adjust the spacing between the link and the slider */
     position: relative;
     top: 3px;

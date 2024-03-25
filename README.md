@@ -239,174 +239,98 @@ Homepage Information: Informative content provides users with an overview of the
 
 - On smaller screens, such as mobile devices, the header links are concealed under a hamburger button. Upon clicking this symbol, the links are revealed, allowing users to easily navigate through the platform's content.
 
-***Logged-out user***
-
-- The header displays the following options: 'Home', 'Learn', 'Register', and 'Login'.
+The header offers various options, including: Home, Learn, Register, Login, Logged in as, and Logout.
 - 'Home' provides easy access to the homepage.
 - 'Learn' offers a site description and instructions for users.
 - 'Register' presents a signup form for creating a new account.
 - 'Login' directs users to the sign-in page.
+- 'Logout' provides a sign-out option for users to log out of their accounts.
+- 'Logged in as:' displays the name of the currently logged-in user.
+
+***Logged-out user***
+
+- The header displays the following options: 'Home', 'Learn', 'Register', and 'Login'.
+
 
 ![header](docs/readme_images/header_logged_out.png)
 
 ***Logged-in user***
 
 - The header displays the following options: 'Home', 'Learn', 'Logout', and 'Logged in as:'.
-- 'Home' provides easy access to the homepage.
-- 'Learn' offers a site description and instructions for users.
-- 'Logout' provides a sign-out option for users to log out of their accounts.
-- 'Logged in as:' displays the name of the currently logged-in user.
 
 ![header](docs/readme_images/header_logged_in.png)
 
 ### Footer
 
-![header](docs/readme_images/features/footer.png)
+![header](docs/readme_images/footer.png)
 
 - The footer section includes links to Facebook, Instagram, Twitter and Youtube.
 - Clicking the links in the footer opens a separate browser tab to avoid pulling the user away from the site.
-
 
 
 ### User Account Pages
 
 **Sign Up**
 
-![header](docs/readme_images/features/signup.png)
+![header](docs/readme_images/signup.png)
 
 **Log In**
 
-![header](docs/readme_images/features/login.png)
+![header](docs/readme_images/signin.png)
 
 **Log Out**
 
-![header](docs/readme_images/features/logout.png)
+![header](docs/readme_images/signout.png)
 
 - Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
 
+### Lists
+All lists include the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status, along with an edit/clone button. Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
 
-### Browse Recipes
+For a logged-in user, the following information will be presented for all lists (owned by either the logged-in user or other users):
 
-![header](docs/readme_images/features/browse_page.png)
+- Name: Name of the list.
+- Created by: The owner of the list.
+- Clone Count: Displays how many times the list have cloned by other users.
+- Number of Items: Number of items added to the list.
+- Status of Items: Whether an item has been marked as done or not.
 
-- This page displays all recipes with a status of published with the most recent recipes displayed first.
-- The recipe cards are paginated after every 8 recipes. 
-- Each card displays the recipe's image, Title and Cook Time. 
-- Clicking anywhere inside the recipe card will take you directly to that recipe's detailed page.
+For lists owned by the logged-in user, the following additional information will be displayed:
+
+- Public/Private: For each list, a toggle switch displays the status of the list.
+- Public lists are shared lists visible to any logged-in user.
+- Private lists are only visible and editable by the logged-in user.
+- Edit button: This button leads to an editing page where the user can choose to clone, rename, or delete the list, or access the items that belong to the list.
+
+For public lists shared by other users, the following additional information will be displayed to the logged-in user:
+- External: A text indicating that it belongs to another user.
+- Clone button: This button allows the logged-in user to clone the list.
+
+**My Lists**
+
+If the logged-in user has created lists, they will be displayed at the top of the page.
+If the user adds items to the list, they will be linked under the card and will be scrollable directly below the card.
+In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done, indicated by "1/2" in the card. The list is set to "public," and the edit button is visible since the logged-in user owns the list. 
+
+![header](docs/readme_images/lists.png)
+
+
+**Other lists**
+
+- This page displays all private and private and public lists owned by the logged in user.
+- The user's own lists will be displayed under the header "My Lists."
+- Lists owned by the logged-in user will display the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private status.
+- Name: Name of the list.
+- Number of Items: Number of items added to the list.
+- Status of Items: Whether an item has been marked as done or not.
+- Public/Private: For each list, a toggle switch displays the status of the list.
+- Public lists are shared lists visible to any logged-in user. 
+- Private lists are only visible and editable by the logged-in user.
+- Edit button: The button will lead to an editing page where the user can choose to either clone, rename, or delete the list or - access the items that belong to the list.
+
 
 ### Recipe Detail Page
 **Recipe Header Section**
-
-![header](docs/readme_images/features/recipe_header.png)
-
-The recipe header section at the top of the page shows the recipe image, title, author, prep time and cook time.
-
-**Recipe Action Buttons**
-
-The following buttons will display if the user is logged in:
-
-![header](docs/readme_images/features/buttons_not_author.png)
-
-- Add to Meal Plan Button - Clicking on the button opens the Meal Plan Modal (see below).
-- Bookmark button - Clicking the outlined bookmark button renders the recipe 'bookmarked' by the user which will then fill the bookmark icon and add the recipe to the user's bookmarks page. Clicking the button again will remove the recipe from the user's bookmarks and turn the icon back to an outline.
-
-The following buttons will display if the user is logged in and is the recipe author:
-
-![header](docs/readme_images/features/action_buttons.png)
-
-- Update Recipe Button - Clicking the button opens the update recipe form prepopulated with the current recipe details.
-- Delete Recipe Button - Clicking the button opens the confirm delete recipe page. 
-
-**Meal Plan Modal**
-
-![header](docs/readme_images/features/mealplan_modal.png)
-
-- The meal plan modal includes a form which allows the user to select a day of the week.
-- Once the user clicks the add to meal plan button, the recipe is added to the user's meal plan for the selected day.
-- Only one recipe can be added per day so if a user already has a meal plan item for a particular day, adding another one will overwrite the existing one. 
-- The user receives a success message notifiying them that the recipe has been successfully added to their meal plan.
-
-**Recipe Details Section**
-
-![header](docs/readme_images/features/recipe_details.png)
-
-- The main body of the page consists of the recipe description, ingredients, and method. 
-
-**Comments Section**
-
-![header](docs/readme_images/features/comment.png)
-
-![header](docs/readme_images/features/add_comment.png)
-
-- The comments section lists all comments left by users for that particular recipe.
-- Comments can only be left if a user is logged in. Any comments left by the user that is currently signed in can be updated or deleted using the buttons in the comment header. 
-    
-![header](docs/readme_images/features/edit_comment.png)
-
-![header](docs/readme_images/features/delete_comment.png)
-
-- The user receives a success message notifying them that the comment has been successfully added, updated or deleted.
-- If a user tries to edit or delete a comment (by changing the url) without being signed in they are redirected to the log in page.
-- If a user tries to edit/delete another user's comment (by changing the url) they receive a custom 403 error.
-
-### Add Recipe Form
-
-![header](docs/readme_images/features/add_recipe.png)
-
-- If the user is logged in, then they can add a recipe by clicking the link on the navigation bar.
-- The form fields for 'Ingredients' and 'Method' include a WYSIWYG editor called Summernote to help the user format their content by adding bullet points, headings etc.
-- The user can upload a photo if they wish. If they choose not to, a default image displays as their recipe image.
-- The user can choose to publish the recipe now or save for later through a drop down menu. If they choose to 'save for later', the recipe will not appear on the Browse Recipe page but the user will be able to access it in their 'My Recipes' page and it will be labelled as 'DRAFT'.
-- Failing to fill out the recipe's Title, Description, Ingredients, or Method, results in the form failing and rendering a message stating which fields you have missed.
-- If a user tries to add a recipe (by changing the url) without being signed in they are redirected to the log in page.
-- The user will receive a success message notifying them that the recipe has been successfully added.
-
-### Update Recipe Form
-
-![header](docs/readme_images/features/update_recipe.png)
-
-- If the user is logged in and is the author or the recipe they can choose to edit the recipe by clicking the edit button on the recipe detail page. 
-- The form opens with all fields populated with the original content.
-- If a user tries to update a recipe (by changing the url) without being signed in they are redirected to the log in page.
-- If a user tries to update another user's recipe (by changing the url) they receive a custom 403 error.
-- The user will receive a success message notifying them that the recipe has been successfully updated.
-
-### Delete Recipe
-
- ![header](docs/readme_images/features/delete_recipe.png)
-
-- If the user is logged in and is the author or the recipe they can choose to delete the recipe by clicking the delete button on the recipe detail page.  
-- The user is asked to confirm if they wish to delete the recipe or cancel.
-- The user will receive a success message notifying them that the recipe has been successfully deleted.
-
-### My Meal Plan
-
-![header](docs/readme_images/features/mealplan_page.png)
-
-- This page displays the logged in user's meal plan for the week.
-- The meal plan cards are ordered Monday to Sunday. 
-- If a user has added a recipe to their meal plan for a particular day, the card will display the recipe image and title. Clicking anywhere inside the meal plan card will take you directly to that recipe's detailed page.
-- If there is no meal plan for a particular day, that card will display a plus icon and the text "Add Recipe". Clicking anywhere inside the meal plan card will take you to the browse recipes page.
-- If a user tries to access this page (by changing the url) without being signed in they are redirected to the log in page.
-
-### My Recipes Page
-
-![header](docs/readme_images/features/myrecipes_page.png)
-
-- This page displays all recipes which the logged in user has created.
-- The recipe cards are paginated after every 8 recipes. 
-- Each card displays the recipe's image, Title and Cook Time. 
-- If the recipe is not yet published the word 'DRAFT' will appear in red next to the recipe title.
-- Clicking anywhere inside the recipes card will take you directly to that recipe's detailed page.
-- If a user tries to access this page (by changing the url) without being signed in they are redirected to the log in page.
-
-### My Bookmarks Page
-
-![header](docs/readme_images/features/my_bookmarks.png)
-
-- This page displays all recipes which the logged in user has added to their bookmarks.
-- Clicking anywhere inside the recipes card will take you directly to that recipe's detailed page.
-- If a user tries to access this page (by changing the url) without being signed in they are redirected to the log in page.
 
 ### Error Pages
 
