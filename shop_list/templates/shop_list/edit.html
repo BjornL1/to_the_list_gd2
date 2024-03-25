@@ -20,43 +20,52 @@ Edit List
 </head>
 
 <body>
-    <div class="button-container">
+    <div class="d-flex justify-content-center align-items-center flex-column mt-4">
         <!-- Clone List Button -->
-        <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
-            {% csrf_token %}
-            <button type="submit" onclick="return confirmClone()">Clone List</button>
-        </form>
+        <div class="mb-2">
+            <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirmClone()" class="btn btn-primary">Clone List</button>
+            </form>
+        </div>
 
         <!-- Rename List Button -->
-        {% if is_owner %}
-        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-            {% csrf_token %}
-            <button type="submit">Rename List</button>
-        </form>
-        {% else %}
-        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-            {% csrf_token %}
-            <button type="button" disabled>Rename List</button>
-            <span id="infoIconRename">ℹ️</span>
-        </form>
-        {% endif %}
+        <div class="mb-2">
+            {% if is_owner %}
+            <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Rename List</button>
+            </form>
+            {% else %}
+            <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+                {% csrf_token %}
+                <button type="button" disabled class="btn btn-primary">Rename List</button>
+                <span id="infoIconRename">ℹ️</span>
+            </form>
+            {% endif %}
+        </div>
 
         <!-- Delete List button -->
-        {% if is_owner %}
-        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
-            {% csrf_token %}
-            <button type="submit">Delete</button>
-        </form>
-        {% else %}
-        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
-            {% csrf_token %}
-            <button type="button" disabled>Delete</button>
-            <span id="infoIconDelete">ℹ️</span>
-        </form>
-        {% endif %}
-
-        <a href="{% url 'show_items' list_id=shopping_list.id %}">Items</a>
+        <div class="mb-2">
+            {% if is_owner %}
+            <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+                onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            {% else %}
+            <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+                {% csrf_token %}
+                <button type="button" disabled class="btn btn-danger">Delete</button>
+                <span id="infoIconDelete">ℹ️</span>
+            </form>
+            {% endif %}
+        </div>
+        <div class="mb-2">
+            <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
+                <button type="submit" class="btn btn-secondary">Items</button>
+            </form>
+        </div>
     </div>
     <script>
         // Function to display information message when clicking the info icon for Rename
@@ -78,26 +87,3 @@ Edit List
 
 </html>
 {% endblock %}
-
-<!--
-
-<div class="edit-button-container">
-     Add Clone, Rename, and Delete options here --
-    <a href="{% url 'clone_list' list.id %}" class="edit-button">Clone</a>
-    <a href="{% url 'rename_list' list.id %}" class="edit-button">Rename</a>
-    <a href="{% url 'delete_list' list.id %}" class="edit-button">Delete</a>
-    
-    -- Existing Edit button --
-    <a href="{% url 'edit' list.id %}" class="edit-button">Edit</a>
-    
-    -- Mobile edit button --
-    <div class="mobile-edit-button">
-        <button class="more-options-button" onclick="showOptions()">&#10247;</button>
-        <div class="options">
-            <a href="{% url 'edit' list.id %}">Edit</a>
-            -- Add other options here if needed --
-        </div>
-    </div>
-    <p><i>Only the owner can rename this list.</i></p>
-    
--->
