@@ -309,27 +309,36 @@ For public lists shared by other users, the following additional information wil
 **My Lists**
 
 If the logged-in user has created lists, they will be displayed at the top of the page.
-If the user adds items to the list, they will be linked under the card and will be scrollable directly below the card.
-In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done, indicated by "1/2" in the card. The list is set to "public," and the edit button is visible since the logged-in user owns the list. 
+Any items in the list will be linked under the card and will be scrollable directly below the card if the user clicks on the list title.
+In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done, indicated by "1/2" in the card. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
 
 ![header](docs/readme_images/lists.png)
 
 
-**Other lists**
+**Other Lists**
 
-- This page displays all private and private and public lists owned by the logged in user.
-- The user's own lists will be displayed under the header "My Lists."
-- Lists owned by the logged-in user will display the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private status.
-- Name: Name of the list.
-- Number of Items: Number of items added to the list.
-- Status of Items: Whether an item has been marked as done or not.
-- Public/Private: For each list, a toggle switch displays the status of the list.
-- Public lists are shared lists visible to any logged-in user. 
-- Private lists are only visible and editable by the logged-in user.
-- Edit button: The button will lead to an editing page where the user can choose to either clone, rename, or delete the list or - access the items that belong to the list.
+In this section of the page, public lists are listed under 'Other Lists.'
+Any items belonging to the list will be displayed on a separate page by clicking on the title of the list."
+
+![header](docs/readme_images/other_lists.png)
+
+### Create a list
+
+A list can be created in three different ways 
 
 
-### Recipe Detail Page
+
+
+
+
+
+
+
+
+
+
+
+
 **Recipe Header Section**
 
 ### Error Pages

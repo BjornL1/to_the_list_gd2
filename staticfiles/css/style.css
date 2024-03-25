@@ -422,6 +422,13 @@ label[for="id_email"] {
     margin: 0 0 30px 20px;
 }
 
+.title-list {
+    font-size: large;
+}
+
+.btn-list {
+    margin-left: 100px;
+}
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;

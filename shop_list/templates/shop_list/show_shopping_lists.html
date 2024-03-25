@@ -10,7 +10,16 @@
 
 {% block content %}
 <div class="container bg-green">
-    <h1 class="custom-container">My Lists</h1>
+    <div class="row">
+        <div class="col d-flex align-items-center">
+            <span class="custom-container">My Lists</span>
+        </div>
+        <div class="col-auto d-flex align-items-center justify-content-end">
+            <a class="btn btn-primary homepage-buttons" href="{% url 'create_shopping_list' %}">
+                Add List
+            </a>
+        </div>
+    </div>
     <!-- My Lists -->
     <div class="row">
         {% for shopping_list, owner_username, done_count in lists_with_usernames %}
@@ -71,16 +80,19 @@
                                         <div class="col-auto ml-auto">
                                             <!-- Checkbox input for each item -->
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
+                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
+                                                    name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
                                                 <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                             </div>
                                         </div>
                                         <div class="col-auto ms-auto mb-2">
                                             <!-- Edit or Duplicate button based on the creator -->
                                             {% if logged_in_user == item.created_by %}
-                                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary btn-sm mt-0">Edit</a>
+                                            <a href="{% url 'edit_item' item_id=item.id %}"
+                                                class="btn btn-primary btn-sm mt-0">Edit</a>
                                             {% else %}
-                                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-primary btn-sm mt-0">Duplicate</a>
+                                            <a href="{% url 'duplicate_item' item_id=item.id %}"
+                                                class="btn btn-primary btn-sm mt-0">Duplicate</a>
                                             {% endif %}
                                         </div>
                                     </div>
