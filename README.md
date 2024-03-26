@@ -365,7 +365,9 @@ A logged-in user can rename a list from the list view by following these steps:
   - A message will promptly appear, confirming the successful renaming of the list along with the new name. Additionally, a "Close" button will be provided.
   - To return to the list view, simply click on the "Close" button.
 
+In below image an example of how list "BjornL List 1" is displayed before renaming the list.
 
+![header](docs/readme_images/renamelist.png)
 **Delete a list**
 
 A logged-in user can delete a list from the list view by following these steps:

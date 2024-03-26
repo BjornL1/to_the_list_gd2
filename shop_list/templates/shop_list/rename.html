@@ -12,6 +12,7 @@ Edit
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Rename "{{ shopping_list.name }}"</title>
@@ -22,19 +23,21 @@ Edit
         }
     </style>
 </head>
+
 <body>
     {% if not_authorized_message %}
     <p>{{ not_authorized_message }}</p>
     {% else %}
-    <h1>Rename "{{ shopping_list.name }}"</h1>
-    <form id="renameForm" method="post" onsubmit="return confirmRename()">
-        {% csrf_token %}
-        <label for="new_name">New Name:</label>
-        <input type="text" id="new_name" name="new_name" required>
-        <button id="renameButton" type="submit" class="{% if not is_owner %}disabled{% endif %}">Rename List</button>
-        <span id="infoIcon">ℹ️</span>
-    </form>
-    <div id="infoMessage" style="display: none;">Only the owner can rename this list.</div>
+    <div class="text-center p-4 mt-3 bg-green">
+        <p style="font-weight: bold">Rename "{{ shopping_list.name }}"</p>
+        <form id="renameForm" method="post" onsubmit="return confirmRename()">
+            {% csrf_token %}
+            <label for="new_name">New Name:</label>
+            <input type="text" id="new_name" name="new_name" required>
+            <button id="renameButton" class="btn btn-primary homepage-buttons mt-3" type="submit" class="{% if not is_owner %}disabled{% endif %}">Rename
+                List</button>
+        </form>
+    </div>
     {% endif %}
 
     <script>
@@ -62,5 +65,6 @@ Edit
         }
     </script>
 </body>
+
 </html>
 {% endblock %}
