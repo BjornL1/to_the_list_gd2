@@ -295,6 +295,9 @@ p.card-text {
     /* Optional: Set a background color for the navbar */
 }
 
+.margin-signin {
+    margin-top: 20px;
+}
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;

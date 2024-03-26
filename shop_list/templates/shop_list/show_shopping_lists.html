@@ -48,9 +48,9 @@
                         <!-- Clone/Edit button -->
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-secondary">Edit</a>
+                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons">Edit</a>
                             {% else %}
-                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-secondary">Clone</a>
+                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
                             {% endif %}
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <!-- Quantity -->
-                                            <p class="card-text">({{ item.quantity }})</p>
+                                            <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
                                         </div>
                                         <div class="col-auto ml-auto">
                                             <!-- Checkbox input for each item -->
@@ -89,10 +89,10 @@
                                             <!-- Edit or Duplicate button based on the creator -->
                                             {% if logged_in_user == item.created_by %}
                                             <a href="{% url 'edit_item' item_id=item.id %}"
-                                                class="btn btn-primary btn-sm mt-0">Edit</a>
+                                                class="btn btn-warning btn-sm mt-0">Edit</a>
                                             {% else %}
                                             <a href="{% url 'duplicate_item' item_id=item.id %}"
-                                                class="btn btn-primary btn-sm mt-0">Duplicate</a>
+                                                class="btn btn-warning btn-sm mt-0">Duplicate</a>
                                             {% endif %}
                                         </div>
                                     </div>

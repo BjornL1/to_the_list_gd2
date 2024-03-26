@@ -310,9 +310,13 @@ a {
     right: 20%;
 }
 
-
 .status-text {
     margin: 0 0 15px 30px;
+    display: inline-block; /* Ensures the container only takes the necessary space */
+    padding: 4px 8px; /* Adjust padding as needed */
+    background-color: blue; /* Set the background color to blue */
+    color: white; /* Set text color to white */
+    border-radius: 4px; /* Adds rounded corners to the box */
 }
 
 .margin-createbutton {
@@ -435,7 +439,24 @@ label[for="id_email"] {
     border-color: #212529; /* Change to your desired color */
     color: #fff; /* Change to your desired text color */
   }
+
+.margin-signin {
+    margin-top: 20px;
+}
+
+.quantity-container {
+    width: 30px; /* Adjust the width and height as needed */
+    height: 30px;
+    background-color: blue; /* Adjust the background color as needed */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
   
+  .quantity {
+    color: #fff; /* Adjust the text color as needed */
+  }
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;
