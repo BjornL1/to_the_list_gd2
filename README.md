@@ -3,7 +3,7 @@
 TheList is a website whichs primary goal is to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
 
 
-The live link can be found here - [The Easy Eater](https://tothelist-gd-20bd5040c185.herokuapp.com/)
+The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
 
 ![Colour Palette](docs/readme_images/site_mockup.png)
 ## Table of Contents
@@ -12,12 +12,11 @@ The live link can be found here - [The Easy Eater](https://tothelist-gd-20bd5040
   - [Table of Contents](#table-of-contents)
   - [User Experience (UX)](#user-experience-ux)
     - [User Stories](#user-stories)
-      - [EPIC | User Profile](#epic--user-profile)
-      - [EPIC | User Navigation](#epic--user-navigation)
-      - [EPIC | Recipe Management](#epic--recipe-management)
-      - [EPIC | Recipe Interaction](#epic--recipe-interaction)
-      - [EPIC | Mealplan Management](#epic--mealplan-management)
-      - [EPIC | Site Administration](#epic--site-administration)
+      - [EPIC | User Profile](#epic-user-profile)
+      - [EPIC | User Navigation](#epic-user-navigation)
+      - [EPIC | Lists Interaction](#epic-lists-interaction)
+      - [EPIC | Items Interaction](#epic-items-interaction)
+      - [EPIC | Site Administration](#epic-site-administration)
       - [User stories not yet implemented](#user-stories-not-yet-implemented)
     - [Design](#design)
       - [Colour Scheme](#colour-scheme)
@@ -102,21 +101,21 @@ A typical user of ToTheList is someone who wants to efficiently manage their sho
 
 The following user stories were scoped out of the project due to time constraints and labelled as "Won't Have" on the project board on Github. It is intended that these user stories will be implemented at a later date. 
 
-- As a Site User, I can move items between different lists.
-- As a Site User, I can search and filter lists.
+- As a Site User, I can move items between different lists so that I can increase flexibility of item management.
+- As a Site User, I can search and filter lists so that i can find lists based on specific search criteria.
 
 ### Design
 
 The site's intentionally simple and clean design reflects its overarching goal: to cultivate a serene and organized environment that aligns with its purpose. By embracing minimalism, it aims to evoke a sense of tranquility and provide users with a clutter-free space conducive to efficient organization.
 
 #### Colour Scheme
-Colour palette from Coolors
+Colour created in Coolors.
 
-![Colour Palette](docs/readme_images/colour_scheme.png)
+![Colour Palette](docs/readme_images/background_colour.png)
 
-The colour scheme of the site is mainly pale cream, pink and brown with thin gold borders. The colours chosen are quite neutral and calming. 
+The color scheme of the site predominantly features a blend of green and celadon (light grey). The primary focus was on maintaining a distinct header while ensuring that the background color for sign-in/up/out pages and list/item views is calm yet clearly delineates and distinguishes the content for the user.
 
-Great care was taken to establish a good contrast between background colours and text at all times to ensure maximum user accessibility. 
+The color palette was created using Coolors, while extracting the colors from the website was accomplished using Pick Color Online
 
 #### Imagery
 The site features a singular static image, portraying a wall adorned with lists, effectively accentuating the site's core purpose.
@@ -468,8 +467,7 @@ A logged-in user can rename an item from the list view by following these steps:
    - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
    - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
    - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
-   - Click on the "Close" button to return to the list view.
-
+   - Click on the "Close" button to return to the list view
 
 **Change an item to done**
 
@@ -483,32 +481,28 @@ the items through edit button on the list view.
    - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
    - Click on click on the done checkbox shown for the items displayed.  
 
-
-
-
-
-
 ### Error Pages
 
 Custom Error Pages were created to give the user more information on the error and to guide them back to the site.
 
-![header](docs/readme_images/features/403_error.png)
+Example below for a 404 page.
 
-- 400 Bad Request - The Easy Eater is unable to handle this request.
+![header](docs/readme_images/404_error.png)
+
+- 400 Bad Request - ToTheList is unable to handle this request.
 - 403 Page Forbidden - Looks like you're trying to access forbidden content. Please log out and sign in to the correct account.
 - 404 Page Not Found - The page you're looking for doesn't exist.
-- 500 Server Error - The Easy Eater is currently unable to handle this request
+- 500 Server Error - ToTheList is currently unable to handle this request
 
 ### Future Features
 The following user stories were scoped out of the project due to time constraints and labelled as "Could Have" on the project board in Github. It is intended that these user stories will be implemented at a later date. 
 
-- As a Site User, I can export the ingredients from the recipes on my meal plan to a shopping list and remove the ones that are not necessary so that I can have all my required ingredients for the week in one place.
-- As a Site User, I can search and filter recipes so that I can find the one I want.
-Searching and filtering
+- As a Site User, I can move items between different lists so that I can increase flexibility of item management.
+- As a Site User, I can search and filter lists so that i can find lists based on specific search criteria.
 
 Other potential features include:
-- Adding extra categories on the Meal Plan Item for breakfast, lunch, dinner and snacks so the user can plan out their meals for the full day rather than just for dinner.
-- Adding vegan and vegetarian labels to the recipe so the user can filter by these options.
+- Adding additional functionality, such as creating a flexible template that includes the ten most popular items currently. This template would be continuously updated based on statistics.
+- Allowing users to utilize the template when creating their own lists by incorporating the most popular items at the moment.
 
 ## Deployment - Heroku
 
@@ -531,8 +525,6 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 - Update the settings.py file to import the env.py file and add the SECRETKEY and DATABASE_URL file paths.
 - Comment out the default database configuration.
 - Save files and make migrations.
-- Add Cloudinary URL to env.py
-- Add the cloudinary libraries to the list of installed apps.
 - Add the STATIC files settings - the url, storage path, directory path, root path, media url and default file storage path.
 - Link the file to the templates directory in Heroku.
 - Change the templates directory to TEMPLATES_DIR
@@ -546,7 +538,6 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 ### Update Heroku Config Vars
 Add the following Config Vars in Heroku:
 - SECRET_KEY value 
-- CLOUDINARY_URL
 - PORT = 8000
 - DISABLE_COLLECTSTATIC = 1
 
@@ -594,6 +585,7 @@ To clone this repository follow the below steps:
 - [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
 - [Jshint](https://jshint.com/) - used to validate javascript
 - [Coolors](https://coolors.co/) - Used to create colour palette.
+- [Pick Color Online](https://pickcoloronline.com/) - Used for extracting colour sample from the website.
 - [Favicon](https://favicon.io/) - Used to create the favicon.
 - [Lucidchart](https://lucid.app/documents#/dashboard) - used to create the database schema design
 - [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
@@ -609,18 +601,13 @@ To clone this repository follow the below steps:
 
 - [W3Schools](https://www.w3schools.com/)
 - [Django Docs](https://docs.djangoproject.com/en/4.0/)
-- [Bootstrap 4.6 Docs](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- [Bootstrap 5.0 Docs](https://getbootstrap.com/docs/5.0/getting-started/introduction//)
 - [Stack Overflow](https://stackoverflow.com/)
-- [Pexels](https://www.pexels.com/): All imagery on the site was sourced from Pexels.com
-- [BBC Goodfood](https://www.bbcgoodfood.com/): All recipe content was sourced from BBC Goodfood.
 - [Update View](https://pytutorial.com/django-updateview-example)
 - [Pagination](https://docs.djangoproject.com/en/2.2/topics/pagination/#using-paginator-in-a-view)
-- [AutoSlugField](https://django-extensions.readthedocs.io/en/latest/field_extensions.html)
 - [Code Institute - Blog Walkthrough Project](https://github.com/Code-Institute-Solutions/Django3blog)
-- [Ian Meigh - Custom Validator function](eateasy/validators.py)
 
 ## Acknowledgments
 
-Many thanks to my mentor Antonio for his support and advice. Thanks to 
-The Code Institute slack community for their quick responses and very helpful feedback in particular Ian Meigh.
+Thanks to my mentor Antonio for his support and advice.
 
