@@ -5,7 +5,8 @@ TheList is a website whichs primary goal is to empower users with functionality 
 
 The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
 
-![Colour Palette](docs/readme_images/site_mockup.png)
+![header](docs/readme_images/landingpage.png)
+
 ## Table of Contents
 
 - [TO THE LIST](#to-the-list)
@@ -36,15 +37,8 @@ The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.
     - [Footer](#footer)
     - [Home Page](#home-page)
     - [User Account Pages](#user-account-pages)
-    - [Browse Recipes](#browse-recipes)
-    - [Recipe Detail Page](#recipe-detail-page)
-    - [Add Recipe Form](#add-recipe-form)
-    - [Update Recipe Form](#update-recipe-form)
-    - [Delete Recipe](#delete-recipe)
-    - [My Meal Plan](#my-meal-plan)
-    - [My Recipes Page](#my-recipes-page)
-    - [My Bookmarks Page](#my-bookmarks-page)
-    - [Error Pages](#error-pages)
+    - [List management](#list-management)
+    - [Item management](#item-management)
     - [Future Features](#future-features)
   - [Deployment - Heroku](#deployment---heroku)
     - [Create the Heroku App:](#create-the-heroku-app)
@@ -111,7 +105,7 @@ The site's intentionally simple and clean design reflects its overarching goal: 
 #### Colour Scheme
 Colour created in Coolors.
 
-![Colour Palette](docs/readme_images/background_colour.png)
+v
 
 The color scheme of the site predominantly features a blend of green and celadon (light grey). The primary focus was on maintaining a distinct header while ensuring that the background color for sign-in/up/out pages and list/item views is calm yet clearly delineates and distinguishes the content for the user.
 
@@ -129,21 +123,21 @@ The Montserrat font is the main font used for the body of the website with the P
 
  <summary>Landing Page</summary>
 
-![Landing Page](docs/wireframe_landingpage.png)
+![Landing page](docs/readme_images/wireframe_landingpage.png)
 </details>
 
 <details>
 
 <summary>Sign Up/Sign In</summary>
 
-![Browse Recipes](docs/wireframe_signup.png)
+![Sign Up /Sign In](docs/readme_images/wireframe_signup.png)
 </details>
 
 
 <details>
 <summary>Lists and Items</summary>
 
-![Add Recipe](docs/wireframe_lists_items.png)
+![Lists and Items](docs/readme_images/wireframe_lists_items.png)
 </details>
 
 
@@ -158,15 +152,15 @@ I used principles of Object-Oriented Programming throughout this project and Dja
 
 Django AllAuth was used for the user authentication system.
 
-In order for the users to create recipes a custom recipe model was required. The recipe author is a foreign key to the User model given a recipe can only have one author.
+To facilitate the management of shopping lists, a custom ShoppingList model was developed. Each shopping list is associated with a single user who acts as its owner. Therefore, the owner attribute of the ShoppingList model is a foreign key to the User model.
 
-The Comment model allows users to comment on individual recipes and the Recipe is a foreign key in the comment model given a comment can only be linked to one recipe. 
+In addition to the ShoppingList model, a ShoppingListPreference model was implemented to handle user preferences related to shopping lists. This model allows users to specify whether a shopping list should be deleted or retained. . The user attribute of the ShoppingListPreference model is a foreign key to the User model, indicating that each preference setting is linked to a single user. Similarly, the shopping_list attribute is a foreign key to the ShoppingList model, indicating that each preference setting corresponds to a specific shopping list.
 
-The meal plan item model allows users to add recipes to a meal plan for a particular day. A meal plan item can only have one user and one recipe and is therefore linked to the User and Recipe models through foreign keys.
+Furthermore, the Item model represents individual items within a shopping list. Each item is associated with a single shopping list, represented by the shopping_list attribute, which is a foreign key to the ShoppingList model. Additionally, the created_by attribute of the Item model signifies the user who created the item, and it is a foreign key to the User model, indicating that each item is linked to its creator.
 
 The diagram below details the database schema.
 
-![Database Schema](docs/readme_images/database_schema.png)
+![Database Scheme](docs/readme_images/database_scheme.png)
 
 ## Testing
 
