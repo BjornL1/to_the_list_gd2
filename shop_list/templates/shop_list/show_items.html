@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="custom-container">Items for {{ shopping_list.name }}</h1>
+<div class="container bg-green">
+    <h4 class="custom-container">Items for {{ shopping_list.name }}</h4>
 
     <!-- Add Item button -->
-    <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-primary mb-3">Add Item</a>
+    <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-warning mb-3">Add Item</a>
 
     <!-- Iterate over the paginated items -->
     <div class="container">
@@ -27,7 +27,7 @@
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center">
                                     <h5 class="card-title mr-3">{{ index }}. {{ item.name }}</h5>
-                                    <p class="card-text">Quantity: {{ item.quantity }}</p>
+                                    <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
                                 </div>
                             </div>
                             <div class="col-md-6 d-flex align-items-center justify-content-end">
@@ -42,10 +42,10 @@
                                 <!-- Edit or Duplicate button based on the creator -->
                                 <div>
                                     {% if logged_in_user == item.created_by %}
-                                    <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning">Edit</a>
                                     {% else %}
                                     <a href="{% url 'duplicate_item' item_id=item.id %}"
-                                        class="btn btn-primary">Duplicate</a>
+                                        class="btn btn-warning">Duplicate</a>
                                     {% endif %}
                                 </div>
                             </div>

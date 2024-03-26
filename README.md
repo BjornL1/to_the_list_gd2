@@ -129,41 +129,27 @@ The Montserrat font is the main font used for the body of the website with the P
 
  <summary>Landing Page</summary>
 
-![Landing Page](docs/wireframes/landing_wireframe.png)
+![Landing Page](docs/wireframe_landingpage.png)
 </details>
 
 <details>
 
-<summary>Browse Recipes</summary>
+<summary>Sign Up/Sign In</summary>
 
-![Browse Recipes](docs/wireframes/browse_wireframe.png)
+![Browse Recipes](docs/wireframe_signup.png)
 </details>
 
 
 <details>
+<summary>Lists and Items</summary>
 
-<summary>Add Recipe</summary>
-
-![Add Recipe](docs/wireframes/addrecipe_wireframe.png)
+![Add Recipe](docs/wireframe_lists_items.png)
 </details>
 
-<details>
-
-<summary>My Recipes</summary>
-
-![My Recipes](docs/wireframes/myrecipes_wireframe.png)
-</details>
-
-<details>
-
-<summary>My Bookmarks</summary>
-
-![My Bookmarks](docs/wireframes/mybookmarks_wireframe.png)
-</details>
 
 ## Agile Methodology
 
-Github projects was used to manage the development process using an agile approach. Please see link to project board [here](https://github.com/AliOKeeffe/PP4_My_Meal_Planner/projects/2)
+Github projects was used to manage the development process using an agile approach. Please see link to project board [here](https://github.com/users/BjornL1/projects/6)
 
 The 5 Epics listed above were documented within the Github project as Milestones. A Github Issue was created for each User Story which was then allocated to a milestone(Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution.
 
@@ -205,10 +191,10 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 
 Custom Error Pages were created to give the user more information on the error and to provide them with buttons to guide them back to the site.
 
-- 400 Bad Request - The Easy Eater is unable to handle this request.
+- 400 Bad Request - ToTheList is unable to handle this request.
 - 403 Page Forbidden - Looks like you're trying to access forbidden content. Please log out and sign in to the correct account.
 - 404 Page Not Found - The page you're looking for doesn't exist.
-- 500 Server Error - The Easy Eater is currently unable to handle this request
+- 500 Server Error - ToTheList is currently unable to handle this request
 
 ## Features
 
@@ -473,11 +459,9 @@ A logged-in user can rename an item from the list view by following these steps:
    - Click on the "Close" button to return to the list view.
 
 
+In the image below, you can see an example of how the item "testid" is displayed before renaming the item.
 
-
-
-
-
+![header](docs/readme_images/rename_item.png)
 
 
 **Delete items**
@@ -497,7 +481,12 @@ A logged-in user can rename an item from the list view by following these steps:
    - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
    - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
    - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
-   - Click on the "Close" button to return to the list view
+   - Click on the "Close" button to return to the list view.
+
+   
+In the image below, you can see an example of how the item "Bread" is confirmed deleted.
+
+![header](docs/readme_images/delete_item_confirmed.png)
 
 **Change an item to done**
 
@@ -510,6 +499,9 @@ the items through edit button on the list view.
    - Click on the "Edit" button. This action will direct the user to a page with various edit options.
    - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
    - Click on click on the done checkbox shown for the items displayed.  
+
+In the image below, you can see an example of how the two items in the separated page item view, where on itme is marked as done.
+![header](docs/readme_images/done_separated_itemview.png)
 
 ### Error Pages
 
@@ -579,14 +571,14 @@ Add the following Config Vars in Heroku:
 
 The site is now live and operational.
 ## Forking this repository
-- Locate the repository at this link [The Easy Eater](https://github.com/AliOKeeffe/PP4_My_Meal_Planner).
+- Locate the repository at this link [ToTheList](https://github.com/BjornL1/to_the_list_gd2).
 - At the top of the repository, on the right side of the page, select "Fork" from the buttons available. 
 - A copy of the repository is now created.
 
 ## Cloning this repository
 To clone this repository follow the below steps: 
 
-1. Locate the repository at this link [The Easy Eater](https://github.com/AliOKeeffe/PP4_My_Meal_Planner). 
+1. Locate the repository at this link [ToTheList](https://github.com/BjornL1/to_the_list_gd2). 
 2. Under **'Code'**, see the different cloning options, HTTPS, SSH, and GitHub CLI. Click the prefered cloning option, and then copy the link provided. 
 3. Open **Terminal**.
 4. In Terminal, change the current working directory to the desired location of the cloned directory.

@@ -13,14 +13,19 @@ Delete List Confirmation
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Delete Confirmation</title>
 </head>
+
 <body>
-    <h1>Item Deleted Successfully</h1>
-    <p>The item "{{ item.name }}" has been deleted.</p>
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+    <div class="text-center bg-green mt-3 p-4">
+        <p>Item Deleted Successfully</p>
+        <p>The item "{{ item.name }}" has been deleted.</p>
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-warning">Close</a>
+    </div>
 </body>
+
 </html>
 {% endblock %}

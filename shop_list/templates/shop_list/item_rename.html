@@ -28,7 +28,9 @@ Rename Item
     <p>{{ not_authorized_message }}</p>
     {% else %}
     <div class="text-center p-4 mt-3 bg-green">
-        <p style="font-weight: bold">Rename "{{ item.name }}"</p>
+        <div style="margin-right: 50px">
+            <p style="font-weight: bold;">Rename "{{ item.name }}"</p>
+        </div>
         <form id="renameForm" method="post" onsubmit="return confirmRename()">
             {% csrf_token %}
             <label for="new_name">New Name:</label>

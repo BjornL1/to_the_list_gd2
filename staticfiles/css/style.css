@@ -244,6 +244,7 @@ a {
 .custom-container {
     margin-bottom: 20px;
     margin-left: 20px;
+    padding-top: 10px;
     /* Set the color to red */
 }
 
@@ -437,14 +438,17 @@ label[for="id_email"] {
 }
 
 #renameItem {
-    padding-left: 20px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    
 }
 
 #new_name {
     margin-left: 35px;
+    margin-right: 35px
 }
 .signup-text {
-    margin: 0 0 30px 20px;
+    margin: 0 20px 30px 20px;
 }
 
 .title-list {
