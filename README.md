@@ -54,9 +54,6 @@ The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.
   - [Credits](#credits)
   - [Acknowledgments](#acknowledgments)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-## User Experience (UX)
-
 ## User Experience (UX)
 
 A typical user of ToTheList is someone who wants to efficiently manage their shopping lists and facilitate seamless sharing with family and friends, allowing others to contribute and update items collaborativel
@@ -105,11 +102,10 @@ The site's intentionally simple and clean design reflects its overarching goal: 
 #### Colour Scheme
 Colour created in Coolors.
 
-v
-
 The color scheme of the site predominantly features a blend of green and celadon (light grey). The primary focus was on maintaining a distinct header while ensuring that the background color for sign-in/up/out pages and list/item views is calm yet clearly delineates and distinguishes the content for the user.
 
 The color palette was created using Coolors, while extracting the colors from the website was accomplished using Pick Color Online
+![header](docs/readme_images/background_colour.png)
 
 #### Imagery
 The site features a singular static image, portraying a wall adorned with lists, effectively accentuating the site's core purpose.
@@ -602,16 +598,12 @@ To clone this repository follow the below steps:
 - [Jshint](https://jshint.com/) - used to validate javascript
 - [Coolors](https://coolors.co/) - Used to create colour palette.
 - [Pick Color Online](https://pickcoloronline.com/) - Used for extracting colour sample from the website.
-- [Favicon](https://favicon.io/) - Used to create the favicon.
-- [Lucidchart](https://lucid.app/documents#/dashboard) - used to create the database schema design
-- [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
+- [Favicon](https://favicon.io/) - Used to create the favicon symbol next to the logo.
 - [Summernote](https://summernote.org/): A WYSIWYG editor to allow users to edit their posts
-- [Techsini](https://techsini.com/multi-mockup/index.php) - Site mockup generator
 - [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to manage Django Forms
 - [Cloudinary](https://cloudinary.com/): the image hosting service used to upload images
-- [Bootstrap 4.6](https://getbootstrap.com/docs/4.6/getting-started/introduction/): CSS Framework for developing responsiveness and styling
-- [Hatchful](https://hatchful.shopify.com/): Used to generate custom logo
-- [Tables Generator](https://www.tablesgenerator.com/markdown_tables): Used to convert excel testing tables to markdown
+- [Bootstrap 5.0](https://getbootstrap.com/docs/5.0/getting-started/introduction/): CSS Framework for developing responsiveness and styling
+
 
 ## Credits
 
@@ -619,8 +611,6 @@ To clone this repository follow the below steps:
 - [Django Docs](https://docs.djangoproject.com/en/4.0/)
 - [Bootstrap 5.0 Docs](https://getbootstrap.com/docs/5.0/getting-started/introduction//)
 - [Stack Overflow](https://stackoverflow.com/)
-- [Update View](https://pytutorial.com/django-updateview-example)
-- [Pagination](https://docs.djangoproject.com/en/2.2/topics/pagination/#using-paginator-in-a-view)
 - [Code Institute - Blog Walkthrough Project](https://github.com/Code-Institute-Solutions/Django3blog)
 
 ## Acknowledgments
