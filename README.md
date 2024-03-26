@@ -345,11 +345,11 @@ A list can be created from four different locations:
     - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
     - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
 
-In below image an example of how list "BjornL List 1" is displayed before cloning the list.
+In the image below, you can see an example of how the list "BjornL List 1" is displayed before cloning the list.
 
 ![header](docs/readme_images/clonelist.png)
 
-In below image the list has been cloned and renamed to "BjornL List 1 Cloned"
+In the image below, the list has been cloned and renamed to "BjornL List 1 Cloned".
 
 ![header](docs/readme_images/clonelist_confirmed.png)
 
@@ -365,9 +365,10 @@ A logged-in user can rename a list from the list view by following these steps:
   - A message will promptly appear, confirming the successful renaming of the list along with the new name. Additionally, a "Close" button will be provided.
   - To return to the list view, simply click on the "Close" button.
 
-In below image an example of how list "BjornL List 1" is displayed before renaming the list.
+In the image below, there is an example of how the list "BjornL List 1" is displayed before renaming the list.
 
 ![header](docs/readme_images/renamelist.png)
+
 **Delete a list**
 
 A logged-in user can delete a list from the list view by following these steps:
@@ -377,6 +378,10 @@ A logged-in user can delete a list from the list view by following these steps:
   - Click "OK" to proceed with the deletion. After the list is deleted, a confirmation page will be displayed. Additionally, a "Close" button will be provided.
   - To return to the list view, simply click on the "Close" button.
 
+In the image below, there is an example of a confirmation message before deleting the list
+
+![header](docs/readme_images/delete_confirm.png)
+
 **Change public and private status**
 
 The owner of a list can adjust its privacy settings, toggling between public and private modes, by following these steps:
@@ -385,7 +390,11 @@ The owner of a list can adjust its privacy settings, toggling between public and
   - Click the toggle symbol. This action will prompt the toggle symbol to move, and the accompanying information text will switch from "public" to "private".
 
 - To change a list from private to public:
-  - Click the toggle symbol. Similar to the previous step, this action will cause the toggle symbol to move, and the information text will change from "private" to "public
+  - Click the toggle symbol. Similar to the previous step, this action will cause the toggle symbol to move, and the information text will change from "private" to "public".
+
+In the image below, there is an example of a public and private list positioned next to each other. Please note the text displayed in the blue box and the position of the toggle switch.
+
+![header](docs/readme_images/public_private.png)
 
 **View items in a list**
 
@@ -405,7 +414,7 @@ All items are associated with a list and can be added either by creating them or
 Each item in a list can be marked as 'done' or 'not done'. Users can add items to their own lists or to public lists owned by other users.
 The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
 If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
-In below example the difference between the an item owned by the user and an "external" item are presented.
+In below sections the difference between the an item owned by the user and an "external" item are presented.
 
 **Create and cloning items**
 
@@ -438,6 +447,9 @@ In below example the difference between the an item owned by the user and an "ex
     - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
     - Click on the "Close" button to return to the list view
 
+In the image below, you can see an example of how the item "testid" is displayed before duplicating the item.
+
+![header](docs/readme_images/duplicate_item.png)
 
 **Rename items**
 
@@ -459,6 +471,14 @@ A logged-in user can rename an item from the list view by following these steps:
    - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
    - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
    - Click on the "Close" button to return to the list view.
+
+
+
+
+
+
+
+
 
 **Delete items**
 

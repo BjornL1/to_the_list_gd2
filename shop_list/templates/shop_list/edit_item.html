@@ -10,30 +10,35 @@ Edit Item
 
 {% block content %}
 {% if item.created_by == request.user %}
-<script>
-    console.log("Item created by:", "{{ item.created_by }}");
-    console.log("Current user:", "{{ request.user }}");
-</script>
-<form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
-    {% csrf_token %}
-    <button type="submit">Duplicate Item</button>
-</form>
 
-<form method="post" action="{% url 'rename_item' item_id=item.id %}">
-    {% csrf_token %}
-    <button type="submit">Rename Item</button>
-</form>
+<div class="text-center bg-green mt-3 p-4">
+    <script>
+        console.log("Item created by:", "{{ item.created_by }}");
+        console.log("Current user:", "{{ request.user }}");
+    </script>
 
-<form method="post" action="{% url 'delete_item' item_id=item.id %}" onsubmit="return confirmDelete('{{ item.name }}')">
-    {% csrf_token %}
-    <button type="submit">Delete Item</button>
-</form>
-{% else %}
-<!-- Display button for non-creators -->
-<form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
-    {% csrf_token %}
-    <button type="submit">Duplicate Item</button>
-</form>
+    <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning mb-3">Duplicate Item</button>
+    </form>
+
+    <form method="post" action="{% url 'rename_item' item_id=item.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning mb-3">Rename Item</button>
+    </form>
+
+    <form method="post" action="{% url 'delete_item' item_id=item.id %}"
+        onsubmit="return confirmDelete('{{ item.name }}')">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Delete Item</button>
+    </form>
+    {% else %}
+    <!-- Display button for non-creators -->
+    <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning mb-3">Duplicate Item</button>
+    </form>
+</div>
 {% endif %}
 <script>
     function confirmDelete(listName) {

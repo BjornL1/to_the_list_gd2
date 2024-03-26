@@ -11,6 +11,7 @@ Rename Item
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Rename "{{ item.name }}"</title>
@@ -21,21 +22,22 @@ Rename Item
         }
     </style>
 </head>
+
 <body>
     {% if not_authorized_message %}
     <p>{{ not_authorized_message }}</p>
     {% else %}
-    <h1>Rename "{{ item.name }}"</h1>
-    <form id="renameForm" method="post" onsubmit="return confirmRename()">
-        {% csrf_token %}
-        <label for="new_name">New Name:</label>
-        <input type="text" id="new_name" name="new_name" required>
-        <button id="renameButton" type="submit">Rename Item</button>
-        <span id="infoIcon">ℹ️</span>
-    </form>
-    <div id="infoMessage" style="display: none;">Only the owner can rename this item.</div>
+    <div class="text-center p-4 mt-3 bg-green">
+        <p style="font-weight: bold">Rename "{{ item.name }}"</p>
+        <form id="renameForm" method="post" onsubmit="return confirmRename()">
+            {% csrf_token %}
+            <label for="new_name">New Name:</label>
+            <input type="text" id="new_name" name="new_name" required>
+            <button id="renameItem" class="btn btn-warning mt-3" type="submit">Rename Item</button>
+        </form>
+        <div id="infoMessage" style="display: none;">Only the owner can rename this item.</div>
+    </div>
     {% endif %}
-
     <script>
         // Function to display confirmation dialog with a message before renaming
         function confirmRename() {
@@ -46,5 +48,6 @@ Rename Item
         }
     </script>
 </body>
+
 </html>
 {% endblock %}
