@@ -12,7 +12,7 @@
 <div class="container bg-green">
     <div class="row">
         <div class="col d-flex align-items-center">
-            <span class="custom-container">My Lists</span>
+            <span class="custom-container list-title">My Lists</span>
         </div>
         <div class="col-auto d-flex align-items-center justify-content-end">
             <a class="btn btn-primary homepage-buttons" href="{% url 'create_shopping_list' %}">
@@ -48,9 +48,9 @@
                         <!-- Clone/Edit button -->
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons">Edit</a>
+                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Edit</a>
                             {% else %}
-                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
+                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Clone</a>
                             {% endif %}
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                     <ul>
                         {% for item in shopping_list.items.all %}
                         <li>
-                            <div class="card">
+                            <div class="card mb-1 mt-1">
                                 <div class="card-body">
                                     <!-- First row: Title -->
                                     <div class="row mb-2">

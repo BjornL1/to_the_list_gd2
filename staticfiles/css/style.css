@@ -457,6 +457,10 @@ label[for="id_email"] {
     color: #fff; /* Adjust the text color as needed */
   }
 
+  .list-title {
+    font-size: 20px;
+    padding-top: 10px;
+  }
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;
