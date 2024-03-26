@@ -345,6 +345,14 @@ A list can be created from four different locations:
     - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
     - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
 
+In below image an example of how list "BjornL List 1" is displayed before cloning the list.
+
+![header](docs/readme_images/clonelist.png)
+
+In below image the list has been cloned and renamed to "BjornL List 1 Cloned"
+
+![header](docs/readme_images/clonelist_confirmed.png)
+
 
 **Rename a list**
 

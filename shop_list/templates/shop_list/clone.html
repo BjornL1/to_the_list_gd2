@@ -12,34 +12,44 @@ Clone List
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Clone "{{ shopping_list.name }}"</title>
 </head>
+
 <body>
-    <h1>Clone "{{ shopping_list.name }}"</h1>
-    <form id="cloneForm" method="post">
-        {% csrf_token %}
-        <label for="new_name">New Name:</label>
-        <input type="text" id="new_name" name="new_name" required>
-        <button id="cloneButton" type="submit">Clone List</button>
-    </form>
-    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 bg-green mt-3 p-4">
+                <p style="font-weight: bold">Clone "{{ shopping_list.name }}"</p>
+                <form id="cloneForm" method="post">
+                    {% csrf_token %}
+                    <label for="new_name">New Name:</label>
+                    <input type="text" id="new_name" name="new_name" required>
+                    <button id="cloneButton" class="btn btn-primary homepage-buttons" type="submit">Clone List</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <script>
         // Confirm cloning action before submitting the form
-        document.getElementById('cloneForm').addEventListener('submit', function(event) {
+        document.getElementById('cloneForm').addEventListener('submit', function (event) {
             // Get the new name entered by the user
             var newName = document.getElementById('new_name').value;
-            
+
             // Display a confirmation dialog
-            var confirmed = confirm('Are you sure you want to clone the list with the name "' + newName + '"?');
-            
+            var confirmed = confirm('Are you sure you want to clone the list with the name "' + newName +
+                '"?');
+
             // Prevent form submission if user cancels the action
             if (!confirmed) {
                 event.preventDefault();
             }
         });
     </script>
+    </div>
 </body>
+
 </html>
 {% endblock %}

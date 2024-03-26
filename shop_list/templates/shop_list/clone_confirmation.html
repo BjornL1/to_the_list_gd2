@@ -14,9 +14,9 @@ Clone Confirmation
     <!-- Add your CSS links or styles here if needed -->
 </head>
 <body>
-    <div>
-        <p>List "{{ shopping_list.name }}" has been cloned successfully with the new name "{{ new_name }}".</p>
-        <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+    <div class="text-center bg-green mt-3 p-4">
+        <p style="font-weight: bold">List "{{ shopping_list.name }}" has been cloned successfully with the new name "{{ new_name }}".</p>
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary homepage-buttons">Close</a>
     </div>
 </body>
 {% endblock %}
