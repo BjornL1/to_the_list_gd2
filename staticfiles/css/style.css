@@ -227,6 +227,10 @@ body {
     color: #fff;
 }
 
+.navbar-nav .nav-link.active {
+    text-decoration: underline;
+} 
+
 .ul li {
     list-style-type: none;
 }
