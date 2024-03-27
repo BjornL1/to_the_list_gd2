@@ -12,17 +12,22 @@ Add Item
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Item to Shopping List</title>
 </head>
+
 <body>
-    <h1>Add Item to "{{ shopping_list.name }}"</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Item</button>
-    </form>
+    <div class="text-center bg-green mt-3 p-4">
+        <h1>Add Item to "{{ shopping_list.name }}"</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-warning margin-rename">Add Item</button>
+        </form>
+    </div>
 </body>
+
 </html>
 {% endblock %}

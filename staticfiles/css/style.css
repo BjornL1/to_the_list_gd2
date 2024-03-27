@@ -325,6 +325,14 @@ a {
     /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
 }
 
+.margin-rename {
+    margin-right: 30px;
+}
+
+.margin-additem {
+    margin-left: 60px;
+}
+
 h1 {
     margin: 10px 0 20px 20px;
 }
@@ -421,6 +429,10 @@ label[for="id_username"] {
 label[for="id_email"] {
     margin-left: 20px;
     padding-right: 20px;
+}
+
+label[for="id_name"] {
+    margin-left: 20px;
 }
 
 #cloneButton {

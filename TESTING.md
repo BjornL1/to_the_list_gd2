@@ -262,15 +262,14 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Signup         |           95 |           100 |             100 | 91  |
 | Login          |           95 |           100 |             100 | 91  |
 | Logout         |          Tbu |           Tbu |             Tbu | Tbu |
-
 | Lists view     |           67 |            90 |             100 | 82  |
 | Create list    |           95 |           100 |             100 | 82  |
 | Clone list     |           94 |           100 |             100 | 82  |
 | Clone list cfm |           95 |           100 |             100 | 82  |
-| My Bookmarks   |           99 |           100 |             100 | 100 |
-| My Meal Plan   |           99 |           100 |             100 | 100 |
-| Update Recipe  |           99 |            98 |             100 | 100 |
-| Delete Recipe  |           99 |           100 |             100 | 100 |
+| Rename         |           92 |           100 |             100 | 82  |
+| Rename cfm     |           92 |           100 |             100 | 82  |
+| Add item       |           93 |           100 |             100 | 82  |
+| Items view     |           95 |           100 |             100 | 82 |
 | Update Comment |           99 |           100 |             100 | 100 |
 | Delete Comment |           99 |           100 |             100 | 100 |
 

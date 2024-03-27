@@ -12,15 +12,19 @@ Edit
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rename Confirmation</title>
     <!-- Add your CSS links or styles here if needed -->
 </head>
+
 <body>
-    <h1>List "{{ old_name }}" has been renamed successfully.</h1>
-    <p>New name: "{{ new_name }}"</p>
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+    <div class="text-center p-4 mt-3 bg-green">
+        <h1>List "{{ old_name }}" has been renamed successfully.</h1>
+        <p>New name: "{{ new_name }}"</p>
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary homepage-buttons margin-rename">Close</a>
+    </div>
 </body>
 {% endblock %}
