@@ -113,22 +113,29 @@ Table of Contents
 - After entering a new name and clicking "Clone list," the new list will be created.
 - Confirmation message and the newly cloned list will be displayed as the final step
 
+![header](docs/testing_images/cloned_list.png)
+
+
 *As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list*
 
-- When clicking on a list marked with the toggle switch positioned to the left and labeled as "public," the switch moves to the right position, and the text is updated from "public" to "private."
-- When clicking on a list marked with the toggle switch positioned to the right and labeled as "private," the switch moves to the left position, and the text is updated from "private" to "public."
-- After logging out and logging in again, I can confirm that the latest saved status (public or private) is correctly maintained.
+- Clicking on a list marked with the toggle switch positioned to the left and labeled as "public" will move the switch to the right position, and the text will be updated from "public" to "private."
+- Clicking on a list marked with the toggle switch positioned to the right and labeled as "private" will move the switch to the left position, and the text will be updated from "private" to "public."
+- After logging out and logging back in, I can confirm that the latest saved status (public or private) is correctly maintained..
+
+![header](docs/testing_images/public_private.png)
 
 *As a Site User, I can see how frequently my lists are copied, so that I can adapt and prioritize sharing lists that are most meaningful.*
 
-- By viewing the "Clone Count" variable I will see number of the time the list has been cloned.
-- By testing to clone a list I can see how the clone count increases by one for the list that was cloned.
+- By viewing the "Clone Count" variable, I can see the number of times the list has been cloned.
+- When testing the cloning of a list, I observe that the clone count increases by one for the list that was cloned.
 
+![header](docs/testing_images/clone_count.png)
 
 ### EPIC Item interaction
 
 *As a Site User, I can add and view items to a list so that I can easily store and find my items.*
 - By viewing the item status on the list item, I will immediately see if there are any items in the list.
+
 
 Add item: Option 1
 - Clicking on the "Edit" button on the list card will display the edit menu. From there, selecting "Items" will show the "Add item" button on a separate page.
@@ -136,13 +143,12 @@ Add item: Option 1
 - Upon entering the name and clicking "Add item", the item will be added to the list.
 
 Add item: Option 2.
-- Clicking on the "Edit" button on the list item will display the edit menu. From there, clicking on "Items" will display the "Add item" button on a separate page.
-- When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
-- Upon entering the name and clicking "Add item", the item will be added to the list.
-
-Add item: Option 3.
 - Clicking on the "Duplicate" button on the list item will display the duplicate item page. From there, enter the name and click "Duplicate Item".
 - A confirmation message will be displayed, and the item will be added to the list.
+
+In the picture below, Option 1 is displayed.
+
+![header](docs/testing_images/add_item.png)
 
 *As a Site User, I can rename an item so that I don't need to delete and recreate a new item if I accidentally named it wrong.*
 
