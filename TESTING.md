@@ -39,24 +39,23 @@ Table of Contents
 
 *As a Site User, I can register an account so that I can create, read, update and delete my lists and items.*
 
-- A "Sign Up" button is prominently displayed on the landing page, serving as a clear call to action for users to begin their journey. Clicking this button redirects users to the sign-up page.
-- Additionally, a "Sign Up" button is available in the header for easy access.
+- A "Register" link is prominently displayed in the header, positioned close to the logo.
+- Furthermore, a "Sign up" button form is - presented when the user selects "Add list".
 
-![header](docs/readme_images/features/call_out.png)
+![header](docs/testing_images/signup_options.png)
+
+![header](docs/testing_images/signup_form.png)
 
 
 *As a Site User, I can log in or log out of my account so that I can keep my account secure.*
 
-If the user has registered an account they can access the login and logout buttons in the Navbar.
-
-![header](docs/readme_images/features/login_dropdown.png)
-
+- If the user has registered an account, they can access the login and logout buttons directly on the Navbar. For smaller screens, these options are available within the hamburger icon.
 
 *As a Site User I can see my login status so that I know if I'm logged in or out.*
 
-- Once the user has logged into their account, their username is displayed on the Navbar alongside a profile icon.
+- After logging into their account, the user's username is prominently displayed on the Navbar. For smaller screens, it appears within the hamburger icon.
 
-![header](docs/readme_images/features/logout_dropdown.png)
+![header](docs/testing_images/signin_status.png)
 
 
 ### EPIC | User Navigation
@@ -65,40 +64,38 @@ If the user has registered an account they can access the login and logout butto
 
 - In the center of the landing page, there is a section entitled with an information message that provides a brief overview of what the site has to offer. Additionally, there is a button labeled "Add list" to further emphasize the message.
 
-![header](docs/readme_images/features/what_we_do.png)
-
+![header](docs/testing_images/homepage.png)
 
 
 *As a user, I can intuitively navigate around the site so that I can find content*
 
 - A navigation bar is visible on every page of the site, which is fully responsive across different screen sizes.
 
-![header](docs/readme_images/features/what_we_do.png)
-
+![header](docs/testing_images/user_navigation.png)
 
 *As a Site User, I can view which items belong to each list so that I don't misunderstand which items belong to which list.*
 
 - The list page displays all lists in the database, initially filtered to show 'My lists' first, followed by other public lists.
 
-![header](docs/readme_images/features/what_we_do.png)
-
+![header](docs/testing_images/user_navigation_lists.png)
 
 
 ### EPIC List interaction
 
-*- As a Site User, I can create lists so that I can easily organize items.*
-- Once the user has logged in, a create recipe button is immediately visible on the landing page as a call to action for the user to add a recipe. When the user clicks the button they are taken to the add recipe form.
+*As a Site User, I can create lists so that I can easily organize items.*
 
-![header](docs/readme_images/features/callout_logged_in.png)
+- After logging in, public shared lists will be displayed. Additionally, an 'Add list' button will appear."
 
-![header](docs/readme_images/features/add_recipe.png)
-
+![header](docs/testing_images/organize_list.png)
 
 
 *As a Site User, I can rename a list so that I don't need to delete and recreate a new list if I accidentally named it wrong*.
 
 - The rename page is accessed from the edit list menu.
-- Clicking the rename button displays the page to rename the list.
+- Clicking the "Rename" button displays the page to rename the list.
+- After entering a new name and confirming the change, the list name is updated.
+
+![header](docs/testing_images/rename_list.png)
 
 
 *As a Site User, I can delete lists so that I can remove ones that are no longer needed*
@@ -107,6 +104,7 @@ If the user has registered an account they can access the login and logout butto
 - Clicking the delete button displays the confirmation message page, allowing the user to confirm the deletion if needed.
 - The deletion of the list is confirmed to the user with a confirmation page.
 
+![header](docs/testing_images/delete_list.png)
 
 *As a Site User, I can view and copy an existing list created by another user so that I can reuse items in my own lists*
 
@@ -266,13 +264,11 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Create list    |           95 |           100 |             100 | 82  |
 | Clone list     |           94 |           100 |             100 | 82  |
 | Clone list cfm |           95 |           100 |             100 | 82  |
+| Items view     |           95 |           100 |             100 | 82  |
 | Rename         |           92 |           100 |             100 | 82  |
 | Rename cfm     |           92 |           100 |             100 | 82  |
 | Add item       |           93 |           100 |             100 | 82  |
-| Items view     |           95 |           100 |             100 | 82 |
-| Update Comment |           99 |           100 |             100 | 100 |
-| Delete Comment |           99 |           100 |             100 | 100 |
-
+| Duplicate item |           95 |           100 |             100 | 82  |
 
 | Mobile         |              |               |                 |     |
 | Home           |           94 |           100 |             100 | 100 |

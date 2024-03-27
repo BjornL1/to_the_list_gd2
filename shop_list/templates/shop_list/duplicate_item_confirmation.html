@@ -13,14 +13,19 @@ Duplicate Item Confirmation
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Duplicate Item Confirmation</title>
 </head>
+
 <body>
-    <h1>Item Duplicated Successfully</h1>
-    <p>The item "{{ item.name }}" has been duplicated successfully with the new name "{{ new_name }}".</p>
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+    <div class="text-center bg-green mt-3 p-4">
+        <h1>Item Duplicated Successfully</h1>
+        <p>The item "{{ item.name }}" has been duplicated successfully with the new name "{{ new_name }}".</p>
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-warning">Close</a>
+    </div>
 </body>
+
 </html>
 {% endblock %}
