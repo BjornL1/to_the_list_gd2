@@ -56,7 +56,7 @@ The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.
 
 ## User Experience (UX)
 
-A typical user of ToTheList is someone who wants to efficiently manage their shopping lists and facilitate seamless sharing with family and friends, allowing others to contribute and update items collaborativel
+A typical user of ToTheList is someone who wants to efficiently manage their shopping lists and facilitate seamless sharing with family and friends, allowing others to contribute and update items collaboratively.
 
 ### User Stories
 

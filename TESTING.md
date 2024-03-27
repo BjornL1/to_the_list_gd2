@@ -1,4 +1,4 @@
-able of Contents
+Table of Contents
 - [User Story Testing](#user-story-testing)
 - [Validator Testing](#validator-testing)
   * [HTML](#html)
@@ -36,120 +36,104 @@ able of Contents
 ## User Story Testing
 
 ### EPIC | User Profile
-*As a Site User I can register an account so that I can add/edit/delete my recipes and comment on and bookmark other people's recipes and add recipes to my meal planner.*
+
+*As a Site User, I can register an account so that I can create, read, update and delete my lists and items.*
+
+- A "Sign Up" button is prominently displayed on the landing page, serving as a clear call to action for users to begin their journey. Clicking this button redirects users to the sign-up page.
+- Additionally, a "Sign Up" button is available in the header for easy access.
 
 ![header](docs/readme_images/features/call_out.png)
 
-- A sign up button is immediately visible on the landing page as a call to action for the user to sign up to get started. When the user clicks the button they are taken to the sign up page.
-- There is also a sign up button in the My Account drop down menu in the Nav bar.
+
+*As a Site User, I can log in or log out of my account so that I can keep my account secure.*
+
+If the user has registered an account they can access the login and logout buttons in the Navbar.
 
 ![header](docs/readme_images/features/login_dropdown.png)
 
-- Once the user has registered an account they can perform all the actions listed above.
 
-*As a Site User, I can login or logout of my account so that I can keep my account secure.*
-- If the user has registered an account they can access the login and logout buttons in the My Account section of the Navbar. 
+*As a Site User I can see my login status so that I know if I'm logged in or out.*
+
+- Once the user has logged into their account, their username is displayed on the Navbar alongside a profile icon.
 
 ![header](docs/readme_images/features/logout_dropdown.png)
 
-*As a Site User I can see my login status so that I know if I'm logged in or out.*
-- Once the user has logged into their account their username displays on the Navbar beside a profile icon.
 
 ### EPIC | User Navigation
+
  *As a User I can immediately understand the purpose of the site so that I can decide if it meets my needs*
-- In the centre of the landing page there is a section entitled "What We Do' which gives a brief overview of what the site has to offer and summarises the basic features with three simple steps illustrated with font-awesome icons.
+
+- In the center of the landing page, there is a section entitled with an information message that provides a brief overview of what the site has to offer. Additionally, there is a button labeled "Add list" to further emphasize the message.
 
 ![header](docs/readme_images/features/what_we_do.png)
 
+
+
 *As a user, I can intuitively navigate around the site so that I can find content*
-- A navigation bar is visible on every page of the site which is fully responsive on different screen sizes.
 
-![header](docs/readme_images/features/header.png)
+- A navigation bar is visible on every page of the site, which is fully responsive across different screen sizes.
 
-*As a Site User, I can view a paginated list of recipes so that I can select a recipe to view.*
-- The Browse Recipes page displays a paginated list of all recipes in the database with a status of published. 
+![header](docs/readme_images/features/what_we_do.png)
 
-![header](docs/readme_images/features/browse_page.png)
 
-*As a Site User, I can click on a recipe so that I can read the full recipe, ingredients required and view comments left by users.*
-- Clicking anywhere inside the recipe card will take you directly to that recipe's detailed page which displays the full recipe details including description, ingredients and method. 
+*As a Site User, I can view which items belong to each list so that I don't misunderstand which items belong to which list.*
 
-![header](docs/readme_images/features/recipe_header.png)
+- The list page displays all lists in the database, initially filtered to show 'My lists' first, followed by other public lists.
 
-![header](docs/readme_images/features/recipe_details.png)
+![header](docs/readme_images/features/what_we_do.png)
 
-- A list of comments is displayed underneath the recipe details.
 
-![header](docs/readme_images/features/comment.png)
 
-### EPIC | Recipe Management
-*As a Site User, I can input my favourite recipes onto the app through an easy to use interface so that I can share them with other users.*
+### EPIC List management
+
+*- As a Site User, I can create lists so that I can easily organize items.*
 - Once the user has logged in, a create recipe button is immediately visible on the landing page as a call to action for the user to add a recipe. When the user clicks the button they are taken to the add recipe form.
 
 ![header](docs/readme_images/features/callout_logged_in.png)
 
 ![header](docs/readme_images/features/add_recipe.png)
 
-- There is also an 'Add Recipe' button on the Nav bar which is visible on every page.
 
-![header](docs/readme_images/features/header.png)
 
-- Once the user has filled out the form details they can choose to 'Publish Recipe Now' which adds the recipe to the Browse Recipes page.
+*As a Site User, I can rename a list so that I don't need to delete and recreate a new list if I accidentally named it wrong*.
 
-*As a Site User, I can edit and delete recipes that I have created so that I can easily make changes without having to start over.*
-- If the logged in user is the recipe author, edit and delete recipe icon buttons will display on the recipe detail page for each recipe allowing the user to edit and delete their recipes.
+- The rename page is accessed from the edit list menu.
+- Clicking the rename button displays the page to rename the list.
 
-![header](docs/readme_images/features/action_buttons.png)
 
-![header](docs/readme_images/features/update_recipe.png)
+*As a Site User, I can delete lists so that I can remove ones that are no longer needed*
 
-![header](docs/readme_images/features/delete_recipe.png)
+- The delete page is accessed from the edit list menu.
+- Clicking the delete button displays the confirmation message page, allowing the user to confirm the deletion if needed.
+- The deletion of the list is confirmed to the user with a confirmation page.
 
-*As a Site User, I can view my recipes so that I can see and manage all recipes I have created in the one location.*
-- All the user's created recipes are available to see on the 'My Recipes' page.
 
-![header](docs/readme_images/features/myrecipes_page.png)
+*As a Site User, I can view and copy an existing list created by another user so that I can reuse items in my own lists*
 
-*As a Site User, I can view my bookmarked recipes so I can find them easily in the one location.*
-- All the user's bookmarked recipes are available to see on the 'My Bookmarks' page.
+- By clicking on the edit button in the list view, the option to clone the list is displayed.
+- Clicking on "Clone list" will display a page for entering a new name.
+- After entering a new name and clicking "Clone list," the new list will be created.
+- Confirmation message and the newly cloned list will be displayed as the final step
 
--![header](docs/readme_images/features/my_bookmarks.png)
+*As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list*
 
-### EPIC | Recipe Interaction
+- When clicking on a list marked with the toggle switch positioned to the left and labeled as "public," the switch moves to the right position, and the text is updated from "public" to "private."
+- When clicking on a list marked with the toggle switch positioned to the right and labeled as "private," the switch moves to the left position, and the text is updated from "private" to "public."
+- After logging out and logging in again, I can confirm that the latest saved status (public or private) is correctly maintained.
+
+*As a Site User, I can see how frequently my lists are copied, so that I can adapt and prioritize sharing lists that are most meaningful.*
+
+- By viewing the "Clone Count" variable I will see number of the time the list has been cloned.
+- By testing to clone a list I can see how the clone count increases by one for the list that was cloned.
+
+
+### EPIC Item management
+
 *As a Site User, I can save other users' recipes to my bookmarks so that I can find them easily at a later date.*
 - Each recipe has a bookmark button which can be toggled by signed in users to bookmark the recipe or remove from bookmarks.
 
-![header](docs/readme_images/features/buttons_not_author.png)
 
-*As a Site User, I can comment on other people's recipes so I can give my feedback.*
-- Each recipe has a comment section where logged in users can leave comments on the recipe.
 
-![header](docs/readme_images/features/add_comment.png)
-
-*As a Site User, I can edit and delete comments that I have created so that I can easily make changes if I have made a mistake.*
-- If the logged in user is the comment author, edit and delete icon buttons will display in the comment header allowing the user to edit or delete their comments.
-
-![header](docs/readme_images/features/comment.png)
-
-![header](docs/readme_images/features/edit_comment.png)
-
-![header](docs/readme_images/features/delete_comment.png)
-
-### EPIC | Mealplan Management
-*As a Site User, I can add/delete recipes to my meal planner for a particular day of the week so that I can create a meal plan for the week ahead.*
-- Each recipe has an 'Add to Meal Plan' button which only displays if the user is logged in.
-
-![header](docs/readme_images/features/action_buttons.png) 
-
-- The user can choose which day of the week they want to add the recipe through a drop down menu.
-- The recipe will display in the user's meal plan for the day selected.
-
-![header](docs/readme_images/features/mealplan_modal.png)
-
-*As a Site User, I can view my meal plan for the week when I log into my account so that I can plan for the week ahead.*
-- All the user's meal plan items are available to see on the 'My Meal Plan' page.
-
-![header](docs/readme_images/features/mealplan_page.png)
 
 ### EPIC | Site Administration
 *As a Site Administrator, I can create, read, update and delete recipes, comments and meal plan items so that I can manage the app content*
