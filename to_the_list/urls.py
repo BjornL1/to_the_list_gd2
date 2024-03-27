@@ -23,6 +23,7 @@ from shop_list.views import add_item, show_items, index, toggle_list_status, edi
 from django.urls import path
 from . import views
 from django.views.defaults import page_not_found
+from shop_list.views import index
 
 urlpatterns = [
     path('', index, name='home'), # Map the home view to the root URL

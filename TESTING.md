@@ -255,7 +255,7 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 | 500.html             | No errors  | No errors |
 
 #### Note 1: Summernote Errors
-When validating the Add Recipe and Edit Recipe forms I received a number of errors which were caused by the installed Summernote library which runs when using the form on these pages. I could not rectify these errors given that they weren't in my own code therefore they are unresolved. 
+
 
  <details>
 
@@ -265,7 +265,7 @@ When validating the Add Recipe and Edit Recipe forms I received a number of erro
  </details>
 
 #### Fixed Errors
-When validating the Recipe Detail page I received an error in relation to an extra `</p>` tag in the 'Recipe Method' field which had been created using the summernote editor. The issue was due to Summernote including `<p>` tags around the form field. I resolved the error by removing the surrounding `<p>` tags in my HTML when rendering a summernote field in my Recipe Detail page.
+
 
 ### CSS
 No errors were found when passing my CSS file through the official [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
@@ -332,7 +332,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 - The Website was tested on Google Chrome, Firefox, Safari browsers with no issues noted.
     
 ## Device Testing
-- The website was viewed on a variety of devices such as Desktop, Laptop, iPhone 8, iPhoneXR and iPad to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
+- The website was viewed on a variety of devices such as Desktop, Laptop, iPhone 11, iPhoneXR and iPad to ensure responsiveness on various screen sizes in both portrait and landscape mode. The website performed as intended. The responsive design was also checked using Chrome developer tools across multiple devices with structural integrity holding for the various sizes.
 
 ## Manual Testing
 
@@ -565,13 +565,8 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Password field             | Insert wrong password                     | Error message displays                     | Pass      |
 | Login button(form valid)   | Click                                     | Form submit                                | Pass      |
 | Login button(form valid)   | Click                                     | Redirect to home page                      | Pass      |
-| Login button(form valid)   | Click                                     | Success message confirming login appears   | Pass      |
-| Login button(form valid)   | Click                                     | Success message fades after 3 seconds      | Pass      |
-|                            |                                           |                                            |           |
-| Log Out Confirmation       |                                           |                                            |           |
 | Logout button              | Click                                     | Redirect to homepage                       | Pass      |
-| Logout button              | Click                                     | Success message confirming log out appears | Pass      |
-| Logout button              | Click                                     | Success message fades after 3 seconds      | Pass      |
+
 
 ## Bugs 
 

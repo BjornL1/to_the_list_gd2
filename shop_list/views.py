@@ -357,6 +357,15 @@ def edit_item(request, item_id):
 
     return render(request, 'shop_list/edit_item.html', context)
 
+from django.shortcuts import redirect
+
+def index(request):
+    if request.user.is_authenticated:
+        return redirect('show_shopping_lists')
+    else:
+        # Render the default home page template for non-authenticated users
+        return render(request, 'shop_list/index.html')
+
 def learn_view(request):
     # Your view logic goes here
     return render(request, 'learn.html')
