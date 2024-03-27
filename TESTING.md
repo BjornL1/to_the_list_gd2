@@ -84,7 +84,7 @@ If the user has registered an account they can access the login and logout butto
 
 
 
-### EPIC List management
+### EPIC List interaction
 
 *- As a Site User, I can create lists so that I can easily organize items.*
 - Once the user has logged in, a create recipe button is immediately visible on the landing page as a call to action for the user to add a recipe. When the user clicks the button they are taken to the add recipe form.
@@ -127,17 +127,60 @@ If the user has registered an account they can access the login and logout butto
 - By testing to clone a list I can see how the clone count increases by one for the list that was cloned.
 
 
-### EPIC Item management
+### EPIC Item interaction
 
-*As a Site User, I can save other users' recipes to my bookmarks so that I can find them easily at a later date.*
-- Each recipe has a bookmark button which can be toggled by signed in users to bookmark the recipe or remove from bookmarks.
+*As a Site User, I can add and view items to a list so that I can easily store and find my items.*
+- By viewing the item status on the list item, I will immediately see if there are any items in the list.
 
+Add item: Option 1
+- Clicking on the "Edit" button on the list card will display the edit menu. From there, selecting "Items" will show the "Add item" button on a separate page.
+- When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
+- Upon entering the name and clicking "Add item", the item will be added to the list.
 
+Add item: Option 2.
+- Clicking on the "Edit" button on the list item will display the edit menu. From there, clicking on "Items" will display the "Add item" button on a separate page.
+- When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
+- Upon entering the name and clicking "Add item", the item will be added to the list.
 
+Add item: Option 3.
+- Clicking on the "Duplicate" button on the list item will display the duplicate item page. From there, enter the name and click "Duplicate Item".
+- A confirmation message will be displayed, and the item will be added to the list.
+
+*As a Site User, I can rename an item so that I don't need to delete and recreate a new item if I accidentally named it wrong.*
+
+- The rename page is accessed from the edit list menu. By clicking the "Edit" button on a list card, the edit menu will be displayed.
+- Clicking the "Items" button will lead to a separate page with items. From there, click on the edit button displayed after each card, and the option "Rename" will be displayed on a separate item edit menu page.
+- Click on the "Rename" button, and a new page is displayed with a name field. Enter the new name and click the "Rename" button.
+- A confirmation of the new name is displayed.
+
+*As a Site User, I can delete items so that I can remove ones that are no longer needed.*
+
+- Clicking on the "Edit" button on the list item will display the edit menu. From there, clicking on "Items" will display the items on a separate page. After each card, click on the edit button displayed, and the option "Delete" will be available on a separate item edit menu page.
+- Clicking on the "Delete" button will prompt a confirmation message.
+- By clicking "OK", the item is deleted, and a confirmation message is displayed.
+
+*As a Site User, I can add/delete/rename my items added to other users' public lists so that I can easily share my items with other users.*
+
+Add item:
+- By clicking on the list title, the separate item page is displayed. From there, I click on "Add item" at the top.
+- When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
+- Upon entering the name and clicking "Add item", the item will be added to the list.
+
+Delete Item:
+
+- By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Delete" will be shown on a separate item edit menu page.
+- Clicking on the "Delete" button will prompt a confirmation message.
+- By clicking "OK", the item is deleted, and a confirmation message is displayed.
+
+Rename Item
+- By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Rename" will be shown on a separate item edit menu page.
+- Clicking on the "Rename" button will prompt a confirmation message.
+- By clicking "OK", the item is renamed, and a confirmation message is displayed.
 
 ### EPIC | Site Administration
-*As a Site Administrator, I can create, read, update and delete recipes, comments and meal plan items so that I can manage the app content*
--  Admins have full access to CRUD functionality for all recipes, comments and meal plans in the admin panel.
+*As a Site Administrator, I can create, read, update and delete recipes, comthat I can manage the app content*
+
+- Admins have full access to CRUD functionality for all lists and items in the admin panel
 
 ![header](docs/readme_images/features/admin_panel.png)
 

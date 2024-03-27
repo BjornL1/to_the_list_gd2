@@ -387,7 +387,7 @@ In the image below, there is an example of a public and private list positioned 
 ### Item management
 
 All items are associated with a list and can be added either by creating them or by cloning existing ones. Moreover, users have the ability to rename and delete items.
-Each item in a list can be marked as 'done' or 'not done'. Users can add items to their own lists or to public lists owned by other users.
+Each item in a list can be marked as 'done' or 'not done'(when the checkbox is not checked). Users can add items to their own lists or to public lists owned by other users.
 The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
 If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
 In below sections the difference between the an item owned by the user and an "external" item are presented.
