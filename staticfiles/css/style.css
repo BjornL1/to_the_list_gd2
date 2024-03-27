@@ -321,7 +321,7 @@ a {
 }
 
 .margin-createbutton {
-    margin: 0 0 0 70px;
+    margin: 10px 0 20px 30px;
     /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
 }
 

@@ -265,8 +265,8 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 
 | Lists view     |           67 |            90 |             100 | 82  |
 | Create list    |           95 |           100 |             100 | 82  |
-| Add Recipe     |           99 |            98 |             100 | 100 |
-| My Recipes     |           99 |           100 |             100 | 100 |
+| Clone list     |           94 |           100 |             100 | 82  |
+| Clone list cfm |           95 |           100 |             100 | 82  |
 | My Bookmarks   |           99 |           100 |             100 | 100 |
 | My Meal Plan   |           99 |           100 |             100 | 100 |
 | Update Recipe  |           99 |            98 |             100 | 100 |

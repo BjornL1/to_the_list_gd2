@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="text-center">
+    <div class="text-center bg-green">
         <h1>Create a New Shopping List</h1>
 
         {% if messages %}
@@ -36,7 +36,7 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="">Create</button>
+            <button type="submit" class="margin-createbutton btn btn-primary homepage-buttons">Create</button>
         </form>
     </div>
 </body>
