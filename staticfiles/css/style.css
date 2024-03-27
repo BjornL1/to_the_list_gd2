@@ -165,7 +165,7 @@ body {
     margin-left: 10px;
 }
 .link {
-    color: red;
+    color: blue;
     text-decoration: none;
 }
 
@@ -321,7 +321,7 @@ a {
 }
 
 .margin-createbutton {
-    margin: 0 0 20px 70px;
+    margin: 0 0 0 70px;
     /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
 }
 

@@ -27,7 +27,7 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}" >
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -61,7 +61,7 @@
                             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link">Logged in as: {{ user.username|slice:":20" }}</a>
+                            <a class="nav-link">Logged in as: {{ user.username|slice:":20" }}</a>
                         </li>
                         <!--
                         <li class="nav-item d-lg-none">
@@ -89,7 +89,7 @@
                     </div>
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav d-none d-lg-flex">
-                        
+
                     </ul>
                     {% endif %}
                 </div>
@@ -97,30 +97,7 @@
         </nav>
 
         <!-- Your other content goes here -->
-        <script>
-            var settingsLink = document.getElementById('settingsLink');
-            var settingsCollapse = document.getElementById('settingsCollapse');
 
-            // Function to toggle collapse when settings link is clicked
-            settingsLink.addEventListener('click', function () {
-                if (settingsCollapse.classList.contains('show')) {
-                    settingsCollapse.classList.remove('show');
-                } else {
-                    settingsCollapse.classList.add('show');
-                }
-            });
-        </script>
-
-        <script>
-            document.getElementById('symbol').addEventListener('click', function () {
-                var linkElement = document.getElementById('link');
-                if (linkElement.style.display === 'none') {
-                    linkElement.style.display = 'block';
-                } else {
-                    linkElement.style.display = 'none';
-                }
-            });
-        </script>
     </body>
 
     <main class="flex-shrink-0">

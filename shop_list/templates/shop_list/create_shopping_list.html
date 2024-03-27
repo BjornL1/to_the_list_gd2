@@ -5,7 +5,7 @@
 {% endblock landing_page_image %}
 
 {% block title %}
-    <title>Items for {{ shopping_list.name }}</title>
+<title>Items for {{ shopping_list.name }}</title>
 {% endblock %}
 
 {% block content %}
@@ -13,28 +13,33 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Create Shopping List</title>
 </head>
+
 <body>
-    <h1>Create a New Shopping List</h1>
-    
-    {% if messages %}
+    <div class="text-center">
+        <h1>Create a New Shopping List</h1>
+
+        {% if messages %}
         <ul>
             {% for message in messages %}
-                {% if message.tags == 'success' %}
-                    <li>{{ message }}</li>
-                {% endif %}
+            {% if message.tags == 'success' %}
+            <li>{{ message }}</li>
+            {% endif %}
             {% endfor %}
         </ul>
-    {% endif %}
-    
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="margin-createbutton">Create</button>
-    </form>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="">Create</button>
+        </form>
+    </div>
 </body>
+
 </html>
 {% endblock %}

@@ -258,9 +258,13 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 |----------------|:------------:|:-------------:|:---------------:|:---:|
 |                |              |               |                 |     |
 | Desktop        |              |               |                 |     |
-| Home           |          100 |           100 |             100 | 100 |
-| Browse Recipes |           98 |           100 |             100 | 100 |
-| Recipe Detail  |           99 |            99 |             100 | 100 |
+| Home           |           97 |           100 |             100 | 91  |
+| Signup         |           95 |           100 |             100 | 91  |
+| Login          |           95 |           100 |             100 | 91  |
+| Logout         |          Tbu |           Tbu |             Tbu | Tbu |
+
+| Lists view     |           67 |            90 |             100 | 82  |
+| Create list    |           95 |           100 |             100 | 82  |
 | Add Recipe     |           99 |            98 |             100 | 100 |
 | My Recipes     |           99 |           100 |             100 | 100 |
 | My Bookmarks   |           99 |           100 |             100 | 100 |
@@ -269,10 +273,8 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Delete Recipe  |           99 |           100 |             100 | 100 |
 | Update Comment |           99 |           100 |             100 | 100 |
 | Delete Comment |           99 |           100 |             100 | 100 |
-| Login          |           99 |           100 |             100 | 100 |
-| Logout         |           99 |           100 |             100 | 100 |
-| Signup         |           99 |           100 |             100 | 100 |
-|                |              |               |                 |     |
+
+
 | Mobile         |              |               |                 |     |
 | Home           |           94 |           100 |             100 | 100 |
 | Browse Recipes |           94 |           100 |             100 | 100 |
