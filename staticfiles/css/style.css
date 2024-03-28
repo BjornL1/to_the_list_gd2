@@ -231,6 +231,10 @@ body {
     text-decoration: underline;
 } 
 
+.nav-link.active {
+    text-decoration: underline;
+}
+
 .ul li {
     list-style-type: none;
 }
