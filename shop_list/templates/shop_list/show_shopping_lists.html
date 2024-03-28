@@ -37,7 +37,9 @@
                     <!-- Other details -->
                     <p class="card-text">Created by: {{ owner_username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
-                    <p class="card-text">Items: {{ done_count }}/{{ shopping_list.items.count }} Done</p>
+                    <p class="card-text" id="done-count" data-done-count="{{ done_count }}"
+                        data-total-count="{{ shopping_list.items.count }}">Items:
+                        {{ done_count }}/{{ shopping_list.items.count }} Done</p>
                     <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between">
                         <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
@@ -272,6 +274,25 @@
                     // Toggle "done" status
                     var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
                     itemLabel.classList.toggle('done');
+
+                    // Increment or decrement doneCount based on checkbox state
+                    var checkbox = document.getElementById(`item_${itemId}`);
+                    var doneCountElement = document.getElementById('done-count');
+                    var doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
+                    var totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
+                    if (checkbox.checked) {
+                        doneCount++;
+                    } else {
+                        doneCount--;
+                    }
+
+                    // Update the displayed doneCount
+                    doneCountElement.textContent = `${doneCount}/${totalCount} Done`;
+                    doneCountElement.setAttribute('data-done-count', doneCount);
+
+                    // Log the updated values
+                    console.log('Updated doneCount:', doneCount);
+                    console.log('Updated totalCount:', totalCount);
                 } else {
                     // Handle error
                     console.error('Error:', data.error);
@@ -282,6 +303,15 @@
             });
     }
 </script>
+<script>
+    var doneCountElement = document.getElementById('done-count');
+    var doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
+    var totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
+
+    console.log("doneCount:", doneCount);
+    console.log("totalCount:", totalCount);
+</script>
+
 <script>
     // Get the button
     var mybutton = document.getElementById("back-to-top-btn");
