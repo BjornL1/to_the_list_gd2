@@ -328,6 +328,15 @@ a {
     border-radius: 4px; /* Adds rounded corners to the box */
 }
 
+.public-other {
+margin: 0 0 15px 30px;
+display: inline-block; /* Ensures the container only takes the necessary space */
+padding: 4px 8px; /* Adjust padding as needed */
+background-color: grey; /* Set the background color to blue */
+color: white; /* Set text color to white */
+border-radius: 4px; /* Adds rounded corners to the box */
+}
+
 .margin-createbutton {
     margin: 10px 0 20px 30px;
     /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
@@ -507,6 +516,29 @@ label[for="id_name"] {
     padding-top: 20px;
     font-weight: bold;
   }
+
+  #back-to-top-btn {
+    /* Other styles for the button */
+    position: fixed;
+    bottom: -80px; /* Start the button off-screen */
+    right: 100px;
+    z-index: 9999;
+    background-color: blue; /* Example background color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    transition: bottom 0.3s ease; /* Apply transition effect to the bottom property */
+    
+  }
+  
+  #back-to-top-btn:hover {
+    background-color: black; /* Example background color on hover */
+  }
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;

@@ -44,29 +44,34 @@ def create_shopping_list(request):
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
 
-@login_required
 def show_shopping_lists(request):
-    # Fetch current user's lists
-    my_lists = ShoppingList.objects.filter(owner=request.user)
+    if request.user.is_authenticated:
+        # Fetch current user's lists
+        my_lists = ShoppingList.objects.filter(owner=request.user)
 
-    # Fetch other public lists excluding the current user's lists
-    other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user)
-    
-    # Sort current user's lists to appear first
-    my_lists = my_lists.order_by('-id')  # Using the primary key as a fallback sorting criteria
-    
-    # Combine both lists, current user's lists first
-    all_lists = list(my_lists) + list(other_lists)
+        # Fetch other public lists excluding the current user's lists
+        other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user)
+        
+        # Sort current user's lists to appear first
+        my_lists = my_lists.order_by('-id')  # Using the primary key as a fallback sorting criteria
+        
+        # Create a list of tuples containing each shopping list, the username of the owner, and the count of done items for both current user's lists and other lists
+        my_lists_with_usernames = []
+        for shopping_list in my_lists:
+            done_count = shopping_list.items.filter(is_done=True).count()
+            my_lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+        
+        other_lists_with_usernames = []
+        for shopping_list in other_lists:
+            done_count = shopping_list.items.filter(is_done=True).count()
+            other_lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+        
+        logged_in_user = request.user  # Get the logged-in user
 
-    # Create a list of tuples containing each shopping list, the username of the owner, and the count of done items
-    lists_with_usernames = []
-    for shopping_list in all_lists:
-        done_count = shopping_list.items.filter(is_done=True).count()
-        lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
-    
-    logged_in_user = request.user  # Get the logged-in user
-
-    return render(request, 'shop_list/show_shopping_lists.html', {'lists_with_usernames': lists_with_usernames, 'logged_in_user': logged_in_user})
+        return render(request, 'shop_list/show_shopping_lists.html', {'my_lists_with_usernames': my_lists_with_usernames, 'other_lists_with_usernames': other_lists_with_usernames, 'logged_in_user': logged_in_user})
+    else:
+        # Redirect to login page if user is not authenticated
+        return redirect('account_login')  # Adjust the URL name if necessary
 
 @login_required
 def add_item(request, list_id):
