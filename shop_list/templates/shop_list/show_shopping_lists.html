@@ -147,9 +147,11 @@
                         <!-- Clone/Edit button -->
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons">Edit</a>
+                            <a href="{% url 'edit' shopping_list.id %}"
+                                class="btn btn-primary homepage-buttons">Edit</a>
                             {% else %}
-                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
+                            <a href="{% url 'clone' shopping_list.id %}"
+                                class="btn btn-primary homepage-buttons">Clone</a>
                             {% endif %}
                         </div>
                     </div>
@@ -162,23 +164,13 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Initialize toggle sliders
         var toggleSliders = document.querySelectorAll('.toggle-slider');
         toggleSliders.forEach(function (slider) {
             var listId = slider.dataset.listId;
             slider.value = slider.classList.contains('private') ? 1 : 0;
         });
 
-        // Add event listener to each item checkbox
-        document.addEventListener("DOMContentLoaded", function () {
-            var itemList = document.querySelectorAll('input[type="checkbox"]');
-            itemList.forEach(function (checkbox) {
-                checkbox.addEventListener('change', function () {
-                    var itemId = checkbox.id.split('_')[
-                        1]; // Extract item ID from checkbox ID
-                    toggleItemDone(itemId);
-                });
-            });
-        });
         // Add event listener to each item checkbox
         var itemList = document.querySelectorAll('input[type="checkbox"]');
         itemList.forEach(function (checkbox) {
@@ -188,7 +180,6 @@
             });
         });
     });
-
     // Add event listener to toggle sliders
     document.addEventListener("change", function (event) {
         console.log('Change event triggered');
