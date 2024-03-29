@@ -100,22 +100,10 @@ def show_items(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
 
     # Retrieve all items associated with the shopping list
-    all_items = shopping_list.items.all()
+    all_items = shopping_list.items.order_by('id')  # Order items by creation date (oldest first)
 
-    # Paginate the items
-    paginator = Paginator(all_items, 5)  # Show 5 items per page
-    page_number = request.GET.get('page')
-    try:
-        items_paginated = paginator.page(page_number)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page
-        items_paginated = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range, deliver last page of results
-        items_paginated = paginator.page(paginator.num_pages)
-
-    # Enumerate the paginated items
-    enumerated_items = [(index + 1, item) for index, item in enumerate(items_paginated)]
+    # Enumerate the items
+    enumerated_items = [(index + 1, item) for index, item in enumerate(all_items)]
 
     context = {
         'shopping_list': shopping_list,
