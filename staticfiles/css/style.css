@@ -521,6 +521,7 @@ label[for="id_name"] {
     /* Other styles for the button */
     position: fixed;
     bottom: -80px; /* Start the button off-screen */
+    margin-bottom: 20px;
     right: 100px;
     z-index: 9999;
     background-color: blue; /* Example background color */
