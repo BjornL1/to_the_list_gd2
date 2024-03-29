@@ -415,6 +415,17 @@ p.card-text {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+li.nav-item a.nav-link {
+    /* Your default styles here */
+    color: blue; /* Change this to your default text color */
+    text-decoration: none; /* Remove default underline */
+}
+
+li.nav-item a.nav-link.active {
+    /* Your active styles here */
+    text-decoration: underline; /* Add underline for active link */
+}
+
 label[for="id_password1"] {
     margin-left: 20px;
     padding-right: 65px;
