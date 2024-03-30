@@ -29,8 +29,9 @@
     Created by: Mr. Smith
     Clone Count: 3/6
     Status: Public
-    Actions: Edit"
-    ### List management
+    Actions: Edit"<br>
+    <br>
+    <h3> List management</h3>
     All lists include the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status, along with an edit/clone button. Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
     
     For a logged-in user, the following information will be presented for all lists (owned by either the logged-in user or other users):
@@ -50,9 +51,9 @@
     
     For public lists shared by other users, the following additional information will be displayed to the logged-in user:
     - External: A text indicating that it belongs to another user.
-    - Clone button: This button allows the logged-in user to clone the list.
-    
-    **My Lists**
+    - Clone button: This button allows the logged-in user to clone the list.<br>
+    <br>
+    <h4>My Lists</h4>
     
     If the logged-in user has created lists, they will be displayed at the top of the page.
     Any items in the list will be linked under the card and will be scrollable directly below the card if the user clicks on the list title.
@@ -61,7 +62,7 @@
     ![header](docs/readme_images/lists.png)
     
     
-    **Other Lists**
+    <h5>Other Lists</h5>
     
     In this section of the page, public lists are listed under 'Other Lists.'
     Any items belonging to the list will be displayed on a separate page by clicking on the title of the list."
@@ -101,7 +102,7 @@
     ![header](docs/readme_images/clonelist_confirmed.png)
     
     
-    **Rename a list**
+   <h5>Rename a list</h5>
     
     A logged-in user can rename a list from the list view by following these steps:
     
@@ -116,7 +117,7 @@
     
     ![header](docs/readme_images/renamelist.png)
     
-    **Delete a list**
+    <h5>Delete a list</h5>
     
     A logged-in user can delete a list from the list view by following these steps:
     
@@ -129,7 +130,7 @@
     
     ![header](docs/readme_images/delete_confirm.png)
     
-    **Change public and private status**
+    <h5>Change public and private status</h5>
     
     The owner of a list can adjust its privacy settings, toggling between public and private modes, by following these steps:
     
@@ -143,7 +144,7 @@
     
     ![header](docs/readme_images/public_private.png)
     
-    **View items in a list**
+    <h5>View items in a list</h5>
     
     1. For a user owning the list:
        - Click on the list title. This action will display all items directly under the list. To hide the items, simply click on the list title again.
@@ -155,7 +156,7 @@
        - Click on the list title in the "Other Lists" section. This will display the list items on a separate page.
        - To return to the previous pages, use the browser's back button.
     
-    ### Item management
+    <h4>Item management</h4>
     
     All items are associated with a list and can be added either by creating them or by cloning existing ones. Moreover, users have the ability to rename and delete items.
     Each item in a list can be marked as 'done' or 'not done'(when the checkbox is not checked). Users can add items to their own lists or to public lists owned by other users.
@@ -163,7 +164,7 @@
     If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
     In below sections the difference between the an item owned by the user and an "external" item are presented.
     <br>
-    **Create and cloning items**
+    <h5>Create and cloning items</h5>
     
     1. From the list view:
        - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
@@ -198,7 +199,7 @@
     
     ![header](docs/readme_images/duplicate_item.png)
     
-    **Rename items**
+    <h5>Rename items</h5>
     
     A logged-in user can rename an item from the list view by following these steps:
     
@@ -225,7 +226,7 @@
     ![header](docs/readme_images/rename_item.png)
     
     
-    **Delete items**
+    <h5>Delete items</h5>
     
     1. From the list view:
        - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
@@ -249,7 +250,7 @@
     
     ![header](docs/readme_images/delete_item_confirmed.png)
     
-    **Change an item to done**
+    <h5>Change an item to done</h5>
     
     Changing an item from not done to done can be done either directly from the list view for a users own list or by accessing 
     the items through edit button on the list view.
@@ -264,7 +265,7 @@
     In the image below, you can see an example of how the two items in the separated page item view, where on itme is marked as done.
     ![header](docs/readme_images/done_separated_itemview.png)
     
-    ### Error Pages
+    <h4>Error Pages</h4>
     
     Custom Error Pages were created to give the user more information on the error and to guide them back to the site.
     
