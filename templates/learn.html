@@ -1,8 +1,8 @@
 {% extends 'base.html'%}
 
 {% block content %}
-
-    <h1>Welcome to the list</h1>
+<div class="text-left bg-green mx-5 p-4">
+    <h2>Welcome to the list</h2>
     <p>This page is designed to help you learn how to use our list management system effectively. Explore the features
         and functionalities to get
         started with organizing your tasks efficiently. As user you will be able to create, copy, edit and share lists
@@ -30,48 +30,252 @@
     Clone Count: 3/6
     Status: Public
     Actions: Edit"
-
-    <ul>
-        <li>
-            <p>1. Create a list</p>
-            <ul>
-                <li>
-                    <p>1.1 Subtask 1</p>
-                </li>
-                <!-- Add more subtasks here if needed -->
-            </ul>
-        </li>
-        <li>
-            <p>2. Rename a list</p>
-            <ul>
-                <li>
-                    <p>2.1 Subtask 1</p>
-                </li>
-                <!-- Add more subtasks here if needed -->
-            </ul>
-        </li>
-        <li>
-            <p>3. Clone a list</p>
-            <ul>
-                <li>
-                    <p>3.1 Subtask 1</p>
-                </li>
-                <!-- Add more subtasks here if needed -->
-            </ul>
-        </li>
-        <li>
-            <p>4. Delete a list</p>
-            <ul>
-                <li>
-                    <p>4.1 Subtask 1</p>
-                </li>
-                <!-- Add more subtasks here if needed -->
-            </ul>
-        </li>
-        <li>
-            <p>5. Share a list</p>
-            <!-- You can add subtasks or details here if needed -->
-        </li>
-    </ul>
+    ### List management
+    All lists include the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status, along with an edit/clone button. Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
+    
+    For a logged-in user, the following information will be presented for all lists (owned by either the logged-in user or other users):
+    
+    - Name: Name of the list.
+    - Created by: The owner of the list.
+    - Clone Count: Displays how many times the list have cloned by other users.
+    - Number of Items: Number of items added to the list.
+    - Status of Items: Whether an item has been marked as done or not.
+    
+    For lists owned by the logged-in user, the following additional information will be displayed:
+    
+    - Public/Private: For each list, a toggle switch displays the status of the list.
+    - Public lists are shared lists visible to any logged-in user.
+    - Private lists are only visible and editable by the logged-in user.
+    - Edit button: This button leads to an editing page where the user can choose to clone, rename, or delete the list, or access the items that belong to the list.
+    
+    For public lists shared by other users, the following additional information will be displayed to the logged-in user:
+    - External: A text indicating that it belongs to another user.
+    - Clone button: This button allows the logged-in user to clone the list.
+    
+    **My Lists**
+    
+    If the logged-in user has created lists, they will be displayed at the top of the page.
+    Any items in the list will be linked under the card and will be scrollable directly below the card if the user clicks on the list title.
+    In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done, indicated by "1/2" in the card. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
+    
+    ![header](docs/readme_images/lists.png)
+    
+    
+    **Other Lists**
+    
+    In this section of the page, public lists are listed under 'Other Lists.'
+    Any items belonging to the list will be displayed on a separate page by clicking on the title of the list."
+    
+    ![header](docs/readme_images/other_lists.png)
+    
+    **Create and cloning lists**
+    
+    A list can be created from four different locations:
+    
+    1. Logged-out users: They can create a list by clicking the "Add list" button on the homepage.
+        - Click the "Add list" button -> Sign-in form is displayed.
+        - Enter login credentials or sign up. Click "Sign in" or "Sign Up" -> Create list form is displayed.
+        - Enter a name for the list and click "Create" -> The newly created list is confirmed with a message.
+        - On the create list page click "View lists" -> The latest created list will be displayed on the list view.
+    
+    2. Logged-in: "Add list" button from list view.
+        - Click the "Add list" button from lists view -> Create list form is displayed.
+        - Repeat the same steps as stated under point nr 1 in previous section.
+    
+    3. Logged-in: By cloning a list using clone via "Edit" button on list view.
+        - From the list view, click on the "Edit" button. -> An edit page will be displayed.
+        - From the edit page, click on the "Clone list" button -> Create list form is displayed.
+        - Repeat the same steps as stated under point number 1 in the previous section.
+    
+    4. Logged-in: By cloning a list using "Clone" button on list view.
+        - From the list view, click on the "Clone" button. -> A clone list page will be displayed.
+        - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
+        - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
+    
+    In the image below, you can see an example of how the list "BjornL List 1" is displayed before cloning the list.
+    
+    ![header](docs/readme_images/clonelist.png)
+    
+    In the image below, the list has been cloned and renamed to "BjornL List 1 Cloned".
+    
+    ![header](docs/readme_images/clonelist_confirmed.png)
+    
+    
+    **Rename a list**
+    
+    A logged-in user can rename a list from the list view by following these steps:
+    
+      - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+      - On the edit options page, locate and click the "Rename list" button. This will bring up a dedicated renaming page.
+      - On the renaming page, enter the desired new name for the list.
+      - After entering the new name, click on the "Rename List" button to confirm the changes.
+      - A message will promptly appear, confirming the successful renaming of the list along with the new name. Additionally, a "Close" button will be provided.
+      - To return to the list view, simply click on the "Close" button.
+    
+    In the image below, there is an example of how the list "BjornL List 1" is displayed before renaming the list.
+    
+    ![header](docs/readme_images/renamelist.png)
+    
+    **Delete a list**
+    
+    A logged-in user can delete a list from the list view by following these steps:
+    
+      - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+      - On the edit options page, locate and click the "Delete list" button. This will prompt a confirmation message box, ensuring the user wants to delete the list.
+      - Click "OK" to proceed with the deletion. After the list is deleted, a confirmation page will be displayed. Additionally, a "Close" button will be provided.
+      - To return to the list view, simply click on the "Close" button.
+    
+    In the image below, there is an example of a confirmation message before deleting the list
+    
+    ![header](docs/readme_images/delete_confirm.png)
+    
+    **Change public and private status**
+    
+    The owner of a list can adjust its privacy settings, toggling between public and private modes, by following these steps:
+    
+    - To change a list from public to private:
+      - Click the toggle symbol. This action will prompt the toggle symbol to move, and the accompanying information text will switch from "public" to "private".
+    
+    - To change a list from private to public:
+      - Click the toggle symbol. Similar to the previous step, this action will cause the toggle symbol to move, and the information text will change from "private" to "public".
+    
+    In the image below, there is an example of a public and private list positioned next to each other. Please note the text displayed in the blue box and the position of the toggle switch.
+    
+    ![header](docs/readme_images/public_private.png)
+    
+    **View items in a list**
+    
+    1. For a user owning the list:
+       - Click on the list title. This action will display all items directly under the list. To hide the items, simply click on the list title again.
+    2. For a user owning the list:
+       - Click on the "Edit" button for the list. This will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This action will display the items on a separate page.
+       - To return to the previous pages, simply use the browser's back button.
+    3. For a user viewing other users' public lists:
+       - Click on the list title in the "Other Lists" section. This will display the list items on a separate page.
+       - To return to the previous pages, use the browser's back button.
+    
+    ### Item management
+    
+    All items are associated with a list and can be added either by creating them or by cloning existing ones. Moreover, users have the ability to rename and delete items.
+    Each item in a list can be marked as 'done' or 'not done'(when the checkbox is not checked). Users can add items to their own lists or to public lists owned by other users.
+    The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
+    If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
+    In below sections the difference between the an item owned by the user and an "external" item are presented.
+    <br>
+    **Create and cloning items**
+    
+    1. From the list view:
+       - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page. 
+       - On the item page, click on the "Add item" button, and an item adding page will be displayed.
+       - Enter a new name and click on the "Add item" button to confirm the changes.
+       - The new item will be displayed on the dedicated items page.
+       - Use the browser's back button to return to the list view.
+    2. From the list view:
+       - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+       - On the items page, locate the item you wish to clone and click on its "Edit" button. This action will display the edit item page.
+       - On the edit item page, click on the "Duplicate Item" button. This will prompt the display of a duplicate item page.
+       - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+       - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+       - Click on the "Close" button to return to the list view.
+    3. From the list view:
+        - From the list view, click on a list containing items.
+        - Click on an item with the "Edit" button visible. This action will display the edit item page.
+        - On the edit item page, click on the "Duplicate Item" button. This will prompt the display of a duplicate item page.
+        - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+        - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+        - Click on the "Close" button to return to the list view.
+    4. From the list view:
+        - Click on a list containing items.
+        - Click on an item with the "Duplicate" button visible. This action will prompt the display of a duplicate item page.
+        - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
+        - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+        - Click on the "Close" button to return to the list view
+    
+    In the image below, you can see an example of how the item "testid" is displayed before duplicating the item.
+    
+    ![header](docs/readme_images/duplicate_item.png)
+    
+    **Rename items**
+    
+    A logged-in user can rename an item from the list view by following these steps:
+    
+    1. From the list view:
+       - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+       - On the items page, locate the item you wish to rename and click on its "Edit" button. This action will display the edit item page.
+       - On the edit item page, click on the "Rename item" button. This will prompt the display of a rename item page.
+       - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
+       - A confirmation page will then be displayed, showing the name of the renamed item along with a "Close" button.
+       - Click on the "Close" button to return to the list view.
+    
+    2. From the list view:
+       - Click on a list containing items.
+       - Click on an item with the "Edit" button visible. This action will display the edit item page.
+       - On the edit item page, click on the "Rename" button. This will prompt the display of a rename item page.
+       - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
+       - A confirmation page will then be displayed, showing the name of the duplicated item along with a "Close" button.
+       - Click on the "Close" button to return to the list view.
+    
+    
+    In the image below, you can see an example of how the item "testid" is displayed before renaming the item.
+    
+    ![header](docs/readme_images/rename_item.png)
+    
+    
+    **Delete items**
+    
+    1. From the list view:
+       - Click on the "Edit" button for the list. This action will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+       - On the items page, locate the item you wish to delete and click on its "Edit" button. This action will display the edit item page.
+       - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
+       - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
+       - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
+       - Click on the "Close" button to return to the list view.
+    
+    2. From the list view:
+       - Click on a list containing items.
+       - Click on an item with the "Edit" button visible. This action will display the edit item page.
+       - On the edit item page, click on the "Delete" button. This will prompt the display of a delete item confirmation page.
+       - Confirm the deletion by clicking on the appropriate button. A message will appear, confirming the deletion.
+       - A confirmation page will then be displayed, showing the deleted item's details along with a "Close" button.
+       - Click on the "Close" button to return to the list view.
+    
+       
+    In the image below, you can see an example of how the item "Bread" is confirmed deleted.
+    
+    ![header](docs/readme_images/delete_item_confirmed.png)
+    
+    **Change an item to done**
+    
+    Changing an item from not done to done can be done either directly from the list view for a users own list or by accessing 
+    the items through edit button on the list view.
+    
+    1. From the list view, logged-in users list:
+       - Click on the title of the list, click on the done checkbox shown for each item.
+    2. From the list view, other lists, item owned by logged-in user:
+       - Click on the "Edit" button. This action will direct the user to a page with various edit options.
+       - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+       - Click on click on the done checkbox shown for the items displayed.  
+    
+    In the image below, you can see an example of how the two items in the separated page item view, where on itme is marked as done.
+    ![header](docs/readme_images/done_separated_itemview.png)
+    
+    ### Error Pages
+    
+    Custom Error Pages were created to give the user more information on the error and to guide them back to the site.
+    
+    Example below for a 404 page.
+    
+    ![header](docs/readme_images/404_error.png)
+    
+    - 400 Bad Request - ToTheList is unable to handle this request.
+    - 403 Page Forbidden - Looks like you're trying to access forbidden content. Please log out and sign in to the correct account.
+    - 404 Page Not Found - The page you're looking for doesn't exist.
+    - 500 Server Error - ToTheList is currently unable to handle this request
+</div>
 
 {% endblock %}
