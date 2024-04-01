@@ -27,17 +27,19 @@ Rename Item
     {% if not_authorized_message %}
     <p>{{ not_authorized_message }}</p>
     {% else %}
-    <div class="text-center p-4 mt-3 bg-green">
-        <div style="margin-right: 50px">
-            <p style="font-weight: bold;">Rename "{{ item.name }}"</p>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 bg-green mt-3 p-4">
+                <p style="font-weight: bold;">Rename "{{ item.name }}"</p>
+                <form id="renameForm" method="post" onsubmit="return confirmRename()">
+                    {% csrf_token %}
+                    <label for="new_name">New Name:</label>
+                    <input type="text" id="new_name" name="new_name" required>
+                    <button id="renameItem" class="btn btn-warning mt-3" type="submit">Rename Item</button>
+                </form>
+            </div>
         </div>
-        <form id="renameForm" method="post" onsubmit="return confirmRename()">
-            {% csrf_token %}
-            <label for="new_name">New Name:</label>
-            <input type="text" id="new_name" name="new_name" required>
-            <button id="renameItem" class="btn btn-warning mt-3" type="submit">Rename Item</button>
-        </form>
-        <div id="infoMessage" style="display: none;">Only the owner can rename this item.</div>
     </div>
     {% endif %}
     <script>
