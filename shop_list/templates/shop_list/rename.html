@@ -28,16 +28,22 @@ Edit
     {% if not_authorized_message %}
     <p>{{ not_authorized_message }}</p>
     {% else %}
-    <div class="text-center p-4 mt-3 bg-green">
-        <p style="font-weight: bold">Rename "{{ shopping_list.name }}"</p>
-        <form id="renameForm" method="post" onsubmit="return confirmRename()">
-            {% csrf_token %}
-            <label for="new_name">New Name:</label>
-            <input type="text" id="new_name" name="new_name" required>
-            <button id="renameButton" class="btn btn-primary homepage-buttons mt-3" type="submit" class="{% if not is_owner %}disabled{% endif %}">Rename
-                List</button>
-        </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 bg-green mt-3 p-4">
+                <p style="font-weight: bold">Rename "{{ shopping_list.name }}"</p>
+                <form id="renameForm" method="post" onsubmit="return confirmRename()">
+                    {% csrf_token %}
+                    <label for="new_name">New Name:</label>
+                    <input type="text" id="new_name" name="new_name" required>
+                    <button id="renameButton" class="btn btn-primary homepage-buttons mt-3" type="submit"
+                        class="{% if not is_owner %}disabled{% endif %}">Rename
+                        List</button>
+                </form>
+            </div>
+        </div>
     </div>
+    
     {% endif %}
 
     <script>
