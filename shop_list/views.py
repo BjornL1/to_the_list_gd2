@@ -242,16 +242,18 @@ def item_rename(request, item_id):
     if not is_owner and not is_creator:
         return render(request, 'shop_list/item_rename.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
     
+    old_name = item.name  # Get the old item name before updating
+    
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
         if new_name:
             item.name = new_name
             item.save()
-            return render(request, 'shop_list/rename_confirmation.html', {'item': item, 'new_name': new_name})
+            return render(request, 'shop_list/item_rename_confirmation.html', {'old_name': old_name, 'new_name': new_name})
         else:
             messages.error(request, 'New name cannot be empty!')
     
-    return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner})
+    return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner, 'old_name': old_name})
 
 @login_required
 def delete(request, list_id):
