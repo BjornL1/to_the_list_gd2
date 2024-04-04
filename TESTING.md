@@ -301,7 +301,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Home           |           97 |           100 |             100 | 91  |
 | Signup         |           95 |           100 |             100 | 91  |
 | Login          |           95 |           100 |             100 | 91  |
-| Logout         |          Tbu |           Tbu |             Tbu | Tbu |
+| Logout         |           97 |           100 |             100 | 82  |
 | Lists view     |           67 |            90 |             100 | 82  |
 | Create list    |           95 |           100 |             100 | 82  |
 | Clone list     |           94 |           100 |             100 | 82  |
@@ -313,20 +313,19 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Duplicate item |           95 |           100 |             100 | 82  |
 
 | Mobile         |              |               |                 |     |
-| Home           |           94 |           100 |             100 | 100 |
-| Browse Recipes |           94 |           100 |             100 | 100 |
-| Recipe Detail  |           93 |            98 |             100 | 100 |
-| Add Recipe     |           86 |            98 |             100 | 100 |
-| My Recipes     |           94 |           100 |             100 | 100 |
-| My Bookmarks   |           95 |           100 |             100 | 100 |
-| My Meal Plan   |           95 |           100 |             100 | 100 |
-| Update Recipe  |           83 |            98 |             100 | 100 |
-| Delete Recipe  |           94 |           100 |             100 | 100 |
-| Update Comment |           94 |           100 |             100 | 100 |
-| Delete Comment |           94 |           100 |             100 | 100 |
-| Login          |           95 |           100 |             100 | 100 |
-| Logout         |           95 |           100 |             100 | 100 |
-| Signup         |           95 |           100 |             100 | 100 |
+| Home           |           93 |           100 |             100 | 91  |
+| Signup         |           95 |           100 |             100 | 91  |
+| Login          |           95 |           100 |             100 | 91  |
+| Logout         |           97 |           100 |             100 | 82  |
+| Lists view     |           83 |           88  |             100 | 82  |
+| Create list    |           92 |           100 |             100 | 82  |
+| Clone list     |           97 |           100 |             100 | 82  |
+| Clone list cfm |           96 |           100 |             100 | 82  |
+| Items view     |           91 |           100 |             100 | 82  |
+| Rename         |           96 |           100 |             100 | 82  |
+| Add item       |           92 |           100 |             100 | 82  |
+| Duplicate item |           89 |           100 |             100 | 82  |
+
 
 ## Browser Testing
 - The Website was tested on Google Chrome, Firefox, Safari browsers with no issues noted.
@@ -359,10 +358,10 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | My Bookmarks Link     | Display    | Only visible if user in session                                    | Pass      |
 | Logout Link           | Click      | Open logout confirm page                                           | Pass      |
 | Logout Link           | Display    | Only visible if user in session                                    | Pass      |
-| All Nav Links         | Hover      | lighten text                                                        | Pass      
+| All Nav Links         | Hover      | Bold text                                                          | Pass      
 |                       |            |                                                                    |           |
 | Mobile View           |            |                                                                    |           |
-| Hamburger Menu        | Responsive | Display when screen size reduces to medium size                       | Pass      |
+| Hamburger Menu        | Responsive | Display when screen size reduces to medium size                    | Pass      |
 | My Account Dropdown   | Responsive | Contents move into hamburger menu when screen size reduces to medium           | Pass      |
 | Site Name (logo area) | Click      | Redirect to home                                                   | Pass      |
 | Home Link             | Click      | Redirect to home                                                   | Pass      |
