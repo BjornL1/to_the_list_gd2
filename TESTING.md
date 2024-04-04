@@ -302,6 +302,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Signup         |           95 |           100 |             100 | 91  |
 | Login          |           95 |           100 |             100 | 91  |
 | Logout         |           97 |           100 |             100 | 82  |
+| Learn          |           95 |           100 |             100 | 82  |
 | Lists view     |           67 |            90 |             100 | 82  |
 | Create list    |           95 |           100 |             100 | 82  |
 | Clone list     |           94 |           100 |             100 | 82  |
@@ -317,6 +318,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Signup         |           95 |           100 |             100 | 91  |
 | Login          |           95 |           100 |             100 | 91  |
 | Logout         |           97 |           100 |             100 | 82  |
+| Learn          |           94 |           100 |             100 | 82  |
 | Lists view     |           83 |           88  |             100 | 82  |
 | Create list    |           92 |           100 |             100 | 82  |
 | Clone list     |           97 |           100 |             100 | 82  |
