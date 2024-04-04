@@ -45,6 +45,9 @@ body {
     background-color: whitesmoke;
 }
 
+.card-title a {
+   margin-left: 0px;
+}
 .image-container {
     margin-top: 20px;
     /* Adjust the top margin as needed */
@@ -367,6 +370,11 @@ p {
 p.card-text {
     margin-left: 30px;
 }
+
+.card-title {
+    margin-left: 30px;
+}
+
 
 .button-container {
     display: flex;
