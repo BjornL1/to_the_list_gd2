@@ -6,8 +6,8 @@ Rename Confirmation
 
 {% block content %}
 <div class="text-center p-4 mt-3 bg-green">
-    <h1>Item "{{ old_name }}" has been renamed successfully.</h1>
-    <p>New name: "{{ new_name }}"</p>
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary homepage-buttons margin-rename">Close</a>
+    <p style="font-weight: bold">The "{{ old_name }}" has been renamed successfully.</p>
+    <p style="font-weight: bold">New name: "{{ new_name }}"</p>
+    <a href="{% url 'show_shopping_lists' %}" class="btn btn-warning">Close</a>
 </div>
 {% endblock %}
