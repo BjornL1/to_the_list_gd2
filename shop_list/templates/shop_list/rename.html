@@ -32,7 +32,7 @@ Edit
         <div class="row justify-content-center">
             <div class="col-md-12 bg-green mt-3 p-4">
                 <p style="font-weight: bold">Rename "{{ shopping_list.name }}"</p>
-                <form id="renameForm" method="post" onsubmit="return confirmRename()">
+                <form id="renameF" method="post" onsubmit="return confirmRename()">
                     {% csrf_token %}
                     <label for="new_name">New Name:</label>
                     <input type="text" id="new_name" name="new_name" required>
@@ -48,11 +48,17 @@ Edit
 
     <script>
         // Function to display confirmation dialog before renaming
-        function confirmRename() {
+        document.getElementById('renameF').addEventListener('submit', function(event) {
             var newName = document.getElementById('new_name').value;
-            var confirmed = confirm("Rename list '{{ shopping_list.name }}' to '" + newName + "'?");
-            return confirmed;
-        }
+            var confirmed = confirm(
+                'Are you sure you want to rename the list with the name "' +
+                newName + '"?'
+            );
+
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
 
         // Check if the current user is the owner of the list
         const isOwner = "{{ is_owner }}";
