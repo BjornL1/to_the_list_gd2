@@ -6,53 +6,43 @@
 <div class="container-fluid bg-green">
     <div class="row transparent-navbar">
 
-    <!-- Navigation -->
-    <nav class="navbar-expand-lg transparent-navbar">
-        <div class="container-fluid">
-            <!-- Custom navbar toggler button without text -->
-            <button class="navbar-toggler d-none d-lg-block" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText2"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <!-- No text here -->
-            </button>
+        <!-- Navigation -->
+        <nav class="navbar-expand-lg transparent-navbar">
+            <div class="container-fluid">
+                <!-- Custom navbar toggler button without text -->
+                <button class="navbar-toggler d-none d-lg-block" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarText2" aria-controls="navbarText" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <!-- No text here -->
+                </button>
 
-            <!-- Navbar links (always visible) -->
-            <div class="homepage-buttons-container">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="btn btn-primary homepage-buttons add-list-btn" href="{% url 'create_shopping_list' %}">
-                            Add List
-                        </a>
-                    </li>
-                    <!-- Add more navbar links here if needed -->
-                </ul>
-            </div>
+                <!-- Navbar links (always visible) -->
+                <div class="homepage-buttons-container">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="btn btn-primary homepage-buttons add-list-btn"
+                                href="{% url 'create_shopping_list' %}">
+                                Add List
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-            <!-- Navbar links (collapsible) -->
-            <div class="collapse navbar-collapse homepage-buttons-container" id="navbarText2">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- Add more navbar links here if needed -->
-                </ul>
+                <!-- Navbar links (collapsible) -->
+                <div class="collapse navbar-collapse homepage-buttons-container" id="navbarText2">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+                </div>
             </div>
+        </nav>
+
+        <!-- Div with text content -->
+        <div class="col-12 text-center mt-5">
+            <h1 class="display-4">One Place for Effortless List Organization</h1>
+            <p class="lead">Stay organized with our easy-to-use lists and items management system. Simplify your life,
+                one list at a time.</p>
         </div>
-    </nav>
 
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-
-    <!-- Div with text content -->
-    <div class="col-12 text-center mt-5">
-        <h1 class="display-4">One Place for Effortless List Organization</h1>
-        <p class="lead">Stay organized with our easy-to-use lists and items management system. Simplify your life, one list at a time.</p>
     </div>
-
-</div>
-<!-- index.html content ends here -->
-{% endblock %}
-
+    <!-- index.html content ends here -->
+    {% endblock %}

@@ -9,83 +9,58 @@ Edit List
 {% endblock %}
 
 {% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-</head>
-
-<body>
-    <div class="d-flex justify-content-center align-items-center flex-column mt-0 bg-green">
-        <!-- Clone List Button -->
-        <div class="mb-4 mt-4"> 
-            <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
-                {% csrf_token %}
-                <button type="submit" onclick="return confirmClone()" class="btn btn-primary homepage-buttons">Clone
-                    List</button>
-            </form>
-        </div>
-
-        <!-- Rename List Button -->
-        <div class="mb-4">
-            {% if is_owner %}
-            <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary homepage-buttons">Rename List</button>
-            </form>
-            {% else %}
-            <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
-                {% csrf_token %}
-                <button type="button" disabled class="btn btn-primary">Rename List</button>
-                <span id="infoIconRename">ℹ️</span>
-            </form>
-            {% endif %}
-        </div>
-
-        <!-- Delete List button -->
-        <div class="mb-4">
-            {% if is_owner %}
-            <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-                onsubmit="return confirmDelete('{{ shopping_list.name }}')">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary homepage-buttons">Delete List</button>
-            </form>
-            {% else %}
-            <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
-                {% csrf_token %}
-                <button type="button" disabled class="btn btn-primary homepage-buttons">Delete List</button>
-                <span id="infoIconDelete">ℹ️</span>
-            </form>
-            {% endif %}
-        </div>
-        <div class="mb-4">
-            <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-warning mt-3">Items</button>
-            </form>
-        </div>
+<!--This page inlcludes edit button functions organized in one place for maintability reason.-->
+<div class="d-flex justify-content-center align-items-center flex-column mt-0 bg-green">
+    <!-- Clone List Button -->
+    <div class="mb-4 mt-4">
+        <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirmClone()" class="btn btn-primary homepage-buttons">Clone
+                List</button>
+        </form>
     </div>
-    <script>
-        // Function to display information message when clicking the info icon for Rename
-        document.getElementById('infoIconRename').addEventListener('click', function () {
-            alert('Only the owner can rename this list.');
-        });
 
-        // Function to display information message when clicking the info icon for Delete
-        document.getElementById('infoIconDelete').addEventListener('click', function () {
-            alert('Only the owner can delete this list.');
-        });
-    </script>
-    <script>
-        function confirmDelete(listName) {
-            return confirm(`Are you sure you want to delete the list "${listName}"?`);
-        }
-    </script>
-</body>
+    <!-- Rename List Button -->
+    <div class="mb-4">
+        {% if is_owner %}
+        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary homepage-buttons">Rename List</button>
+        </form>
+        {% else %}
+        <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="button" disabled class="btn btn-primary">Rename List</button>
+        </form>
+        {% endif %}
+    </div>
 
-</html>
+    <!-- Delete List button -->
+    <div class="mb-4">
+        {% if is_owner %}
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
+            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary homepage-buttons">Delete List</button>
+        </form>
+        {% else %}
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="button" disabled class="btn btn-primary homepage-buttons">Delete List</button>
+        </form>
+        {% endif %}
+    </div>
+    <div class="mb-4">
+        <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning mt-3">Items</button>
+        </form>
+    </div>
+</div>
+<script>
+    function confirmDelete(listName) {
+        return confirm(`Are you sure you want to delete the list "${listName}"?`);
+    }
+</script>
+
 {% endblock %}
