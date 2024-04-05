@@ -12,11 +12,6 @@ Edit Item
 {% if item.created_by == request.user %}
 
 <div class="text-center bg-green mt-3 p-4">
-    <script>
-        console.log("Item created by:", "{{ item.created_by }}");
-        console.log("Current user:", "{{ request.user }}");
-    </script>
-
     <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-warning mb-3">Duplicate Item</button>
@@ -40,6 +35,8 @@ Edit Item
     </form>
 </div>
 {% endif %}
+<!--The delete confirmation is displayed instantly, hence the listname is displayed onclick from the edit page. 
+For users not owning an item, the only choice is cloning, therefore the clone item is added in this page as well.-->
 <script>
     function confirmDelete(listName) {
         return confirm(`Are you sure you want to delete the list "${listName}"?`);
