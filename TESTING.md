@@ -350,75 +350,55 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Log In Link           | Display    | Only if the user is not signed in                                  | Pass      |
 | NavBar Toggler        | Click      | Open header links                                                  | Pass      |
 | NavBar Toggler        | Display    | Display only for small/medium screens, open header links           | Pass      |
-| Add List Link         | Click      | Only if the user is not signed in, open sign-in page               | Pass      |
-| Add List Link         | Display    | Only if the user is not signed in, display on landing page         | Pass      |
 | Log Out Link          | Click      | Open Sign Out confirmation page                                    | Pass      |
 | Log Out Link          | Display    | Only if the user signed in                                         | Pass      |
 | Log In status         | Display    | Only if the user is signed in                                      | Pass      |
-
-| Browse Recipes Link   | Click      | Open Browse Recipes Page                                           | Pass      |
-| Add Recipe Link       | Click      | Open Add Recipe Form                                               | Pass      |
-| Add Recipe Link       | Display    | Only visible if user in session                                    | Pass      |
-| My Meal Plan Link     | Click      | Open My Meal Plan page                                             | Pass      |
-| My Meal Plan Link     | Display    | Only visible if user in session                                    | Pass      |
-| My Account Dropdown   | Click      | Open My Account dropdown                                           | Pass      |
-| My Account Dropdown   | Display    | Text changes to username with profile icon when user is in session | Pass      |
-| Sign Up Link          | Click      | Open Sign up page                                                  | Pass      |
-| Sign Up Link          | Display    | Not visible if user in session                                     | Pass      |
-| Log In Link           | Click      | Open Login page                                                    | Pass      |
-| Log In Link           | Display    | Not visible if user in session                                     | Pass      |
-| My Recipes Link       | Click      | Open My Recipes page                                               | Pass      |
-| My Recipes Link       | Display    | Only visible if user in session                                    | Pass      |
-| My Bookmarks Link     | Click      | Open My Bookmarks page                                             | Pass      |
-| My Bookmarks Link     | Display    | Only visible if user in session                                    | Pass      |
-| Logout Link           | Click      | Open logout confirm page                                           | Pass      |
-| Logout Link           | Display    | Only visible if user in session                                    | Pass      |
-| All Nav Links         | Hover      | Bold text                                                          | Pass      
-|                       |            |                                                                    |           |
-| Mobile View           |            |                                                                    |           |
-| Hamburger Menu        | Responsive | Display when screen size reduces to medium size                    | Pass      |
-| My Account Dropdown   | Responsive | Contents move into hamburger menu when screen size reduces to medium           | Pass      |
-| Site Name (logo area) | Click      | Redirect to home                                                   | Pass      |
-| Home Link             | Click      | Redirect to home                                                   | Pass      |
-| Browse Recipes Link   | Click      | Open Browse Recipes Page                                           | Pass      |
-| Sign Up Link          | Click      | Open Sign up page                                                  | Pass      |
-| Sign Up Link          | Display    | Not visible if user in session                                     | Pass      |
-| Log In Link           | Click      | Open Login page                                                    | Pass      |
-| Log In Link           | Display    | Not visible if user in session                                     | Pass      |
-| Add Recipe Link       | Click      | Open Add Recipe Form                                               | Pass      |
-| Add Recipe Link       | Display    | Only visible if user in session                                    | Pass      |
-| My Meal Plan Link     | Click      | Open My Meal Plan page                                             | Pass      |
-| My Recipes Link       | Click      | Open My Recipes page                                               | Pass      |
-| My Recipes Link       | Display    | Only visible if user in session                                    | Pass      |
-| My Bookmarks Link     | Click      | Open My Bookmarks page                                             | Pass      |
-| My Bookmarks Link     | Display    | Only visible if user in session                                    | Pass      |
-| Logout Link           | Click      | Open logout confirm page                                           | Pass      |
-| Logout Link           | Display    | Only visible if user in session                                    | Pass      |
 |                       |            |                                                                    |           |
 | Footer                |            |                                                                    |           |
 | All links             | Click      | Open in new tab and to correct location                            | Pass      |
 
 ### Home Page
-| Element               | Action  | Expected Result                 | Pass/Fail |
-|-----------------------|---------|---------------------------------|-----------|
-| Hero 'Sign Up' Button | Click   | Open Sign up page               | Pass      |
-| Hero 'Sign Up' Button | Display | Not visible if user in session  | Pass      |
-| Hero 'Create" Button  | Click   | Open Add Recipe page            | Pass      |
-| Hero 'Create" Button  | Display | Only visible if user in session | Pass      |
+| Element                | Action  | Expected Result                           | Pass/Fail |
+|------------------------|---------|-------------------------------------------|-----------|
+| Hero 'Add List" Button | Click   | Open Sign In page                         | Pass      |
+| Hero 'Add List" Button | Display | Only visible if the user is not signed in | Pass      |
 
-### Browse Recipes Page
-| Element     | Action                  | Expected Result                                                                         | Pass/Fail |
+### Sign Up Page
+| Element     | Action             | Expected Result                                                                         | Pass/Fail |
 |-------------|-------------------------|-----------------------------------------------------------------------------------------|-----------|
-| Recipe Card | Display correct content | Display correct image, recipe title and cooktime                                        | Pass      |
-| Recipe Card | Click                   | Clicking anywhere inside the recipe card takes you to the correct recipe's detail page. | Pass      |
-| Recipe Card | Pagination              | Site will paginate 8 recipe cards to a page                                             | Pass      |
-| Recipe Card | Order                   | Recipes are sorted by newest to oldest                                                  | Pass      |
-| Recipe Card | Hover                   | Add gold border                                                                         | Pass      |
-### Recipe Detail Page
+| "Sign Up" Form | Display | Display Sign Up page only if the user is not signed in | Pass      |
+| "Sign In" Link | Click | Display "Sign In" page | Pass      |
+| "Sign Up" Button | Click | Display "List" page, if the user clicked "Sign Up" on the landing page | Pass      |           
+| "Sign Up" Button | Click | Display error message if the user entered wrong credentials | Pass      |
+| "Sign Up" Button | Click | Display message if input fields are left empty | Pass      |
+
+### Sign In Page
+| Element     | Action             | Expected Result                                                                         | Pass/Fail |
+|-------------|-------------------------|-----------------------------------------------------------------------------------------|-----------|
+| "Sign In" Form | Display | Display Sign In page only if the user is not signed in
+| "Sign Up" Link | Click | Display "Sign Up page | Pass      |
+| "Sign In" Button | Click | Display "Create List" page, if the user clicked "Add List" on the landing page                                        | Pass      |
+| "Sign In" Button | Click | Display "List" page, if the user clicked "login" on the landing page | Pass      |           
+| "Sign In" Button | Click | Display error message if the user entered wrong credentials | Pass      |
+| "Sign In" Button | Click | Display message if input fields are left empty | Pass      |
+
+### List view page
 
 | Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
 |--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
-| Recipe Content                 | Display             | Display correct recipe image, title, author, prep time, cook time, description, ingredients and method                  | Pass      |
+| Lists                          | Display             | 1. The users own lists are displayed            | Pass      |
+| Lists                          | Display             | 2. Other users public lists are displayed in a separate section below            | Pass      |
+| Lists                          | Display             | 3. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public/Private, Toggle switch( Private/Public) and an Edit button            | Pass      |
+| Lists                          | Display             | 4. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public, and a Clone button            | Pass      |
+| Lists                          | Display             | All lists are sorted by the newest displayed at the top            | Pass      |
+
+
+
+
+
+
+
+
 | Add to Meal Plan button        | Click               | Meal Plan modal pops up                                                                                                 | Pass      |
 | Add to Meal Plan button        | Display             | Button only visible if user in session                                                                                  | Pass      |
 | Bookmark button (Outline)      | Click               | Clicking the outlined bookmark changes it to a solid bookmark                                                           | Pass      |
