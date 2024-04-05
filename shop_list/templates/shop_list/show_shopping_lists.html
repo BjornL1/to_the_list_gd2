@@ -22,7 +22,7 @@
     </div>
     <!-- My Lists -->
     <!-- Back to Top Button -->
-    <button onclick="topFunction()" id="back-to-top-btn" title="Go to top">Top</button>
+    <button id="back-to-top-btn" title="Go to top">Top</button>
     <div class="row">
         {% for shopping_list, owner_username, done_count in my_lists_with_usernames %}
         <div class="col-lg-6 col-xl-4 mb-4">
@@ -30,7 +30,7 @@
             <div class="card">
                 <div class="card-body">
                     <!-- Card title -->
-                    <h5 class =card-title>
+                    <h5 class=card-title>
                         <a href="javascript:void(0)"
                             onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
@@ -314,12 +314,10 @@
 
 <script>
     // Get the button
-    var mybutton = document.getElementById("back-to-top-btn");
+    const mybutton = document.getElementById("back-to-top-btn");
 
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
+    // Add event listener for scroll events
+    window.addEventListener("scroll", scrollFunction);
 
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -329,9 +327,9 @@
         }
 
         // Get the height of the document and the current scroll position
-        var scrollHeight = document.documentElement.scrollHeight;
-        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        var clientHeight = document.documentElement.clientHeight;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const clientHeight = document.documentElement.clientHeight;
 
         // If the distance from the bottom is less than 50px, move the button up
         if (scrollHeight - scrollTop - clientHeight < 50) {
@@ -341,7 +339,10 @@
         }
     }
 
-    // When the user clicks on the button, scroll to the top of the document
+    // Add event listener for click event on the button
+    mybutton.addEventListener("click", topFunction);
+
+    // Function to scroll to the top of the document
     function topFunction() {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
