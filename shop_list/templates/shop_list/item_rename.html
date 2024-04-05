@@ -32,7 +32,7 @@ Rename Item
         <div class="row justify-content-center">
             <div class="col-md-12 bg-green mt-3 p-4">
                 <p style="font-weight: bold;">Rename "{{ item.name }}"</p>
-                <form id="renameForm" method="post" onsubmit="return confirmRename()">
+                <form id="renameF" method="post" onsubmit="return confirmRename()">
                     {% csrf_token %}
                     <label for="new_name">New Name:</label>
                     <input type="text" id="new_name" name="new_name" required>
@@ -44,12 +44,17 @@ Rename Item
     {% endif %}
     <script>
         // Function to display confirmation dialog with a message before renaming
-        function confirmRename() {
+        document.getElementById('renameF').addEventListener('submit', function(event) {
             var newName = document.getElementById('new_name').value;
-            var message = "Are you sure you want to rename '{{ item.name }}' to '" + newName + "'?";
-            var confirmed = confirm(message);
-            return confirmed;
-        }
+            var confirmed = confirm(
+                'Are you sure you want to rename the item with the name "' +
+                newName + '"?'
+            );
+
+            if (!confirmed) {
+                event.preventDefault();
+            }
+        });
     </script>
 </body>
 
