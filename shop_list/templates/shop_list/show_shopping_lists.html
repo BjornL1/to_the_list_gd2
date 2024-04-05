@@ -31,8 +31,9 @@
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class=card-title>
-                        <a href="javascript:void(0)"
-                            onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
+                        <a id="shopping-list-link" href="javascript:void(0)">
+                            {{ shopping_list.name }}
+                        </a>
                     </h5>
                     <!-- Other details -->
                     <p class="card-text">Created by: {{ owner_username }}</p>
@@ -179,6 +180,13 @@
             checkbox.addEventListener('change', function () {
                 var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
                 toggleItemDone(itemId);
+            });
+        });
+        // Add event listener to each item checkbox
+        document.addEventListener("DOMContentLoaded", function () {
+            var shoppingListLink = document.getElementById('shopping-list-link');
+            shoppingListLink.addEventListener('click', function () {
+                toggleItems('{{ shopping_list.id }}');
             });
         });
     });
