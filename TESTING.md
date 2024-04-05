@@ -462,59 +462,45 @@ Pass      |
 Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
 
-### Update Recipe Page
+**Add item**
 | Element            | Action  | Expected Result                                                                                                         | Pass/Fail |
 |--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|-----------|
-| Update Recipe      | Access  | If a user tries to edit another user's recipe (by changing the url) they receive a custom 403 error. (forbidden access) | Pass      |
-| Update Recipe      | Access  | If a user tries to edit a recipe (by changing the url) without being signed in they are redirected to the login page    | Pass      |
-| Update Recipe Form | Display | Form has all the fields filled out with the original content                                                            | Pass      |
-| Update Button      | Click   | Updated recipe is saved                                                                                                 | Pass      |
-| Update Button      | Click   | Success message appears telling the user that the recipe has been successfully updated                                  | Pass      |
-| Update Button      | Click   | Success message fades after 3 seconds                                                                                   | Pass      |
-| Update Button      | Click   | User is redirected back to the current recipe page                                                                      | Pass      |
-| Cancel Button      | Click   | User is redirected back to the current recipe page                                                                      | Pass      |
-### Confirm Delete Recipe Page
+| "Add item" input field                  | Display               | The list which the item will be added to is displayed    | Pass      |
+| "Add Item" Button                  | Click               |  The item is added to the list  | Pass      |  
+
+
+**Duplicate item: duplicate and confirm**
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Duplicate Item" input field                  | Display               | The duplicate page is displayed and the current item name    | Pass      |
+| "Duplicate Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
+| Confirm message "OK" Button                  | Click               | The item is duplicate, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               |The page is closed, redirect to list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The item is not duplicated, return to the duplicate item page    | Pass      |
+| Input field                  | Click               |  Click | Display message if the input fields is left empty, no duplication will occur | Pass      |   | Pass   
+
+**Rename item: rename and confirm**
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Rename" input field                  | Display               | The rename page is displayed and the current item name    | Pass      |
+| "Rename Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
+| Confirm message "OK" Button                  | Click               | The item is renamed, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               |The page is closed, redirect to list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The item is not renamed, return to the rename item page    | Pass      |
+| Input field                  | Click               | Display message if the input fields is left empty, no renaming will occur | Pass      |   
+
+
+**Delete item: delete and confirm**
 | Element       | Action | Expected Result                                                                                                        | Pass/Fail |
 |---------------|--------|------------------------------------------------------------------------------------------------------------------------|-----------|
-| Delete recipe | Access | If a user tries to delete another user's recipe (by changing the url) they receive a custom 403 error.                 | Pass      |
-| Delete recipe | Access | If a user tries to delete a recipe (by changing the url) without being signed in they are redirected to the login page | Pass      |
-| Delete Button | Click  | Recipe is deleted and removed from user recipes page                                                                   | Pass      |
-| Delete Button | Click  | Success message appears telling the user that the recipe has been successfully deleted                                 | Pass      |
-| Delete Button | Click  | User is redirected back to the My recipes page                                                                         | Pass      |
-| Cancel Button | Click  | Redirect to current recipe page                                                                                        | Pass      |
+| "Delete List" Button                  | Click              |  A confirmation message page is displayed     | Pass      |
+| Confirm message "OK" Button                  | Click               | The list is deleted, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
 
-### My Recipes Page
-| Element         | Action               | Expected Result                                                                                                  | Pass/Fail |
-|-----------------|----------------------|------------------------------------------------------------------------------------------------------------------|-----------|
-| My Recipes Page | Access               | If a user tries to access this page (by changing url) without being signed in they are redirected to the Login page | Pass      |
-| My Recipes Page | Display              | Only displays the recipes that the user is the author for                                                        | Pass      |
-| Recipe Card     | Show Status          | Show if recipe is draft                                                                             | Pass      |
-| Recipe Card     | Card Content Display | Display correct image, recipe title and cooktime                                                                 | Pass      |
-| Recipe Card     | Click                | Clicking anywhere inside the recipe card takes you to the correct recipe's detail page.                          | Pass      |
-| Recipe Card     | Pagination           | Site will paginate 8 recipe cards to a page                                                                      | Pass      |
-| Recipe Card     | Order                | Recipes are sorted by newest to oldest                                                                           | Pass      |
-| Recipe Card     | Hover                | Display gold border                                                                                              | Pass      |
-### My Bookmarks Page
-
-| Element           | Action               | Expected Result                                                                                                  | Pass/Fail |
-|-------------------|----------------------|------------------------------------------------------------------------------------------------------------------|-----------|
-| My Bookmarks Page | Access               | If a user tries to access this page (by changing url) without being signed in they are redirected the Login page | Pass      |
-| My Bookmarks Page | Display              | Only the recipes the user has book marked are shown                                                              | Pass      |
-| Recipe Card       | Card Content Display | Display correct image, recipe title and cook time                                                                | Pass      |
-| Recipe Card       | Click                | Clicking anywhere inside the recipe card takes you to the correct recipe's detail page.                          | Pass      |
-| Recipe Card       | Pagination           | Site will paginate 8 recipe cards to a page                                                                      | Pass      |
-| Recipe Card       | Order                | Recipes are sorted by newest to oldest                                                                           | Pass      |
-| Recipe Card       | Hover                | Display gold border                                                                                              | Pass      |
-### My Meal Plan Page
-| Element           | Action               | Expected Result                                                                                                  | Pass/Fail |
-|-------------------|----------------------|------------------------------------------------------------------------------------------------------------------|-----------|
-| My Meal Plan Page | Access               | If a user tries to access this page (by changing url) without being signed in they are redirected the Login page | Pass      |
-| Meal Plan card    | Order                | Cards are ordered from Monday to Sunday                                                                          | Pass      |
-| Meal Plan card    | Card Content Display | If populated: Display correct image, recipe title                                                                | Pass      |
-| Meal Plan card    | Card Content Display | If unpopulated: display placeholder image and 'Add Recipe'                                                       | Pass      |
-| Meal Plan card    | Click                | If populated: clicking anywhere inside the recipe card takes you to the detailed page for that recipe            | Pass      |
-| Meal Plan card    | Click                | If unpopulated:  clicking anywhere inside the recipe card takes you to the browse recipes page                   | Pass      |
-| Meal Plan card    | Hover                | Display gold border                                                                                              | Pass      |
 
 ### Django All Auth Pages
 | Element                    | Action                                    | Expected Result                            | Pass/Fail |
