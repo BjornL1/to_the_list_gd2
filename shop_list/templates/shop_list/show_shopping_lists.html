@@ -31,11 +31,10 @@
                 <div class="card-body">
                     <!-- Card title -->
                     <h5 class=card-title>
-                        <a id="shopping-list-link" href="javascript:void(0)">
-                            {{ shopping_list.name }}
+                        <a href="javascript:void(0)"
+                            onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                         </a>
                     </h5>
-                    <!-- Other details -->
                     <p class="card-text">Created by: {{ owner_username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count" data-done-count="{{ done_count }}"
@@ -168,25 +167,19 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Initialize toggle sliders
-        var toggleSliders = document.querySelectorAll('.toggle-slider');
+        let toggleSliders = document.querySelectorAll('.toggle-slider');
         toggleSliders.forEach(function (slider) {
-            var listId = slider.dataset.listId;
+            let listId = slider.dataset.listId;
+            console.log(listId);
             slider.value = slider.classList.contains('private') ? 1 : 0;
         });
 
         // Add event listener to each item checkbox
-        var itemList = document.querySelectorAll('input[type="checkbox"]');
+        let itemList = document.querySelectorAll('input[type="checkbox"]');
         itemList.forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
-                var itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+                let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
                 toggleItemDone(itemId);
-            });
-        });
-        // Add event listener to each item checkbox
-        document.addEventListener("DOMContentLoaded", function () {
-            var shoppingListLink = document.getElementById('shopping-list-link');
-            shoppingListLink.addEventListener('click', function () {
-                toggleItems('{{ shopping_list.id }}');
             });
         });
     });
@@ -195,10 +188,10 @@
         console.log('Change event triggered');
         if (event.target && event.target.classList.contains('toggle-slider')) {
             console.log('Toggle slider clicked');
-            var listId = event.target.dataset.listId;
+            let listId = event.target.dataset.listId;
             toggleList(listId, event.target.value);
 
-            var textElement = event.target.parentElement.querySelector('.status-text');
+            let textElement = event.target.parentElement.querySelector('.status-text');
             if (textElement) {
                 // Update the text based on the toggle status
                 textElement.textContent = event.target.value === '1' ? 'Private' : 'Public';
@@ -214,7 +207,7 @@
         console.log('Privacy status toggled successfully!');
 
         // Fetch request to toggle the privacy status
-        var csrftoken = getCookie('csrftoken');
+        let csrftoken = getCookie('csrftoken');
         fetch(`/toggle-list-status/${listId}/`, {
                 method: 'POST',
                 headers: {
@@ -240,11 +233,11 @@
     }
 
     function getCookie(name) {
-        var cookieValue = null;
+        let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
                 // Does this cookie string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
@@ -254,9 +247,9 @@
         }
         return cookieValue;
     }
-
+    // Function to toggle items under each card
     function toggleItems(listId) {
-        var itemsSection = document.getElementById('items_' + listId);
+        let itemsSection = document.getElementById('items_' + listId);
         if (itemsSection.style.display === 'none') {
             itemsSection.style.display = 'block';
         } else {
@@ -284,10 +277,10 @@
                     itemLabel.classList.toggle('done');
 
                     // Increment or decrement doneCount based on checkbox state
-                    var checkbox = document.getElementById(`item_${itemId}`);
-                    var doneCountElement = document.getElementById('done-count');
-                    var doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
-                    var totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
+                    let checkbox = document.getElementById(`item_${itemId}`);
+                    let doneCountElement = document.getElementById('done-count');
+                    let doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
+                    let totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
                     if (checkbox.checked) {
                         doneCount++;
                     } else {
@@ -312,9 +305,9 @@
     }
 </script>
 <script>
-    var doneCountElement = document.getElementById('done-count');
-    var doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
-    var totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
+    let doneCountElement = document.getElementById('done-count');
+    let doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
+    let totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
 
     console.log("doneCount:", doneCount);
     console.log("totalCount:", totalCount);
