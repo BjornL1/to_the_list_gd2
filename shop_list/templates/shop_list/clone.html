@@ -10,46 +10,35 @@ Clone List
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Clone "{{ shopping_list.name }}"</title>
-</head>
-
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 bg-green mt-3 p-4">
-                <p style="font-weight: bold">Clone "{{ shopping_list.name }}"</p>
-                <form id="cloneForm" method="post">
-                    {% csrf_token %}
-                    <label for="new_name">New Name:</label>
-                    <input type="text" id="new_name" name="new_name" required>
-                    <button id="cloneButton" class="btn btn-primary homepage-buttons" type="submit">Clone List</button>
-                </form>
-            </div>
+<!--Added "bg-green and homepage-buttons" as separate styling for background colour and button styling,
+    other styling classes are from bootstrap"-->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 bg-green mt-3 p-4">
+            <p style="font-weight: bold">Clone "{{ shopping_list.name }}"</p>
+            <form id="cloneForm" method="post">
+                {% csrf_token %}
+                <label for="new_name">New Name:</label>
+                <input type="text" id="new_name" name="new_name" required>
+                <button id="cloneButton" class="btn btn-primary homepage-buttons" type="submit">Clone List</button>
+            </form>
         </div>
     </div>
-    <script>
-        // Confirm cloning action before submitting the form
-        document.getElementById('cloneForm').addEventListener('submit', function (event) {
-            // Get the new name entered by the user
-            var newName = document.getElementById('new_name').value;
+</div>
 
-            // Display a confirmation dialog
-            var confirmed = confirm('Are you sure you want to clone the list with the name "' + newName +
-                '"?');
+<!--Confirm cloning action before submitting and cancel possibility, code divided 
+    into two sections to allow edit specific parts if requested-->
+<script>
+    document.getElementById('cloneForm').addEventListener('submit', function (event) {
+        var newName = document.getElementById('new_name').value;
+        var confirmed = confirm(
+            'Are you sure you want to clone the list with the name "' +
+            newName + '"?'
+        );
 
-            // Prevent form submission if user cancels the action
-            if (!confirmed) {
-                event.preventDefault();
-            }
-        });
-    </script>
-    </div>
-</body>
-
-</html>
+        if (!confirmed) {
+            event.preventDefault();
+        }
+    });
+</script>
 {% endblock %}

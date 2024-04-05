@@ -1,45 +1,30 @@
 {% extends 'base.html' %}
-
 {% block landing_page_image %}
-<!-- Empty block to override the landing page image -->
 {% endblock landing_page_image %}
 
 {% block title %}
-<title>Items for {{ shopping_list.name }}</title>
+Create List
 {% endblock %}
 
 {% block content %}
+<!--Added "bg-green, margin-createbutton and " as separate styling for background colour, other styling classes are from bootstrap"-->
+<div class="text-center bg-green">
+    <p style="font-weight: bold">Create a New Shopping List</p>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Create Shopping List</title>
-</head>
-
-<body>
-    <div class="text-center bg-green">
-        <h1>Create a New Shopping List</h1>
-
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            {% if message.tags == 'success' %}
-            <li>{{ message }}</li>
-            {% endif %}
-            {% endfor %}
-        </ul>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <li>{{ message }}</li>
         {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="margin-createbutton btn btn-primary homepage-buttons">Create</button>
-        </form>
-    </div>
-</body>
-
-</html>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="margin-createbutton btn btn-primary homepage-buttons">Create</button>
+    </form>
+</div>
 {% endblock %}
