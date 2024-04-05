@@ -370,7 +370,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Sign In" Link | Click | Display "Sign In" page | Pass      |
 | "Sign Up" Button | Click | Display "List" page, if the user clicked "Sign Up" on the landing page | Pass      |           
 | "Sign Up" Button | Click | Display error message if the user entered wrong credentials | Pass      |
-| "Sign Up" Button | Click | Display message if input fields are left empty | Pass      |
+| "Sign Up" Button | Click | Display message if the input fields are left empty | Pass      |
 
 ### Sign In Page
 | Element     | Action             | Expected Result                                                                         | Pass/Fail |
@@ -380,7 +380,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Sign In" Button | Click | Display "Create List" page, if the user clicked "Add List" on the landing page                                        | Pass      |
 | "Sign In" Button | Click | Display "List" page, if the user clicked "login" on the landing page | Pass      |           
 | "Sign In" Button | Click | Display error message if the user entered wrong credentials | Pass      |
-| "Sign In" Button | Click | Display message if input fields are left empty | Pass      |
+| "Sign In" Button | Click | Display message if the input field are left empty | Pass      |
 
 ### List view
 
@@ -391,7 +391,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Lists                          | Display             | 3. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public/Private, Toggle switch( Private/Public) and an Edit button            | Pass      |
 | Lists                          | Display             | 4. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public, and a Clone button            | Pass      |
 | Lists                          | Display             | All lists are sorted by the newest displayed at the top            | Pass      |
-| "Top" Button                   | Display             | A "to the top button" is displayed if the user scrolls down on list page                              | Pass      |
+| "Top" Button                   | Display             | A "to the top button" is displayed if the user scrolls down on the list page                              | Pass      |
 | "Top" Button                   | Click               | The top of the page is displayed                               | Pass      |
 | "Add List" Button              | Click               | Display "Create List" page                               | Pass      |
 | List title Link (own lists)    | Click               | Items connected to the list display/hide under the list card                 | Pass      |
@@ -408,86 +408,60 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Done" check box               | Display             | Items/done status is updated correctly on page load    | Pass      |
 | "Done" check box               | Click               | Items/done status is updated correctly on page load    | Pass      |
 | "Edit" Button                  | Click               | Edit items page is displayed    | Pass      |
-| "Duplicate" Button             | Click               | Done check box is updated checked/not checked   | Pass      |
-
-
-
-
-
-
-
-
-
-
+| "Duplicate" Button             | Click               | Duplicate items page is displayed   | Pass      |
 
 
 ### Item separate page
  Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
 |--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
-| Bookmark button (Outline)      | Click               | Success message appears informing the user that the recipe has been added to their bookmarks                            | Pass      |
-| Bookmark button (Outline)      | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-| Bookmark button (Solid)        | Click               | Clicking the solid bookmark changes it back to an outlined bookmark                                                     | Pass      |
-| Bookmark button (Solid)        | Click               | Recipe is removed from the user's bookmarks page                                                                        | Pass      |
-| Bookmark button (Solid)        | Click               | Success message appears informing the user that the recipe has been removed from bookmarks                              | Pass      |
-| Bookmark button (Solid)        | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-| Bookmark button                | Display             | Button only visible if user in session                                                                                  | Pass      |
-| Update recipe button           | Click               | Opens Update Recipe Form                                                                                                | Pass      |
-| Update recipe button           | Display             | Button only visible if user is the author                                                                               | Pass      |
-| Delete recipe button           | Click               | Opens Delete Recipe confirmation page                                                                                   | Pass      |
-| Delete recipe button           | Display             | Button only visible if user is the author                                                                               | Pass      |
-| User Comments                  | Display             | Displays correct name date time and comment body                                                                        | Pass      |
-| User Comments                  | Display             | Comments are ordered oldest to newest                                                                                   | Pass      |
-| Update comment button          | Display             | Button only visible if user is the comment author                                                                       | Pass      |
-| Update comment button          | Click               | Opens Update Comment Form                                                                                               | Pass      |
-| Update comment form            | Leave empty         | On submit: form won't submit                                                                                            | Pass      |
-| Update comment form            | Leave empty         | Error message displays                                                                                                  | Pass      |
-| Update comment submit button   | Click               | Form submit - page updates and comment displays in comments section with correct content                                | Pass      |
-| Update comment submit button   | Click               | Success message appears informing the user that the comment has been updated                                            | Pass      |
-| Update comment submit button   | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-| Update comment form            | Access              | If a user tries to edit another user's comment (by changing the url) they receive a 403 error.                          | Pass      |
-| Update comment form            | Access              | If a user tries to edit a comment (by changing the url) without being signed in they are redirected to the login page   | Pass      |
-| Delete comment button          | Display             | Button only visible if user is the comment author                                                                       | Pass      |
-| Delete comment button          | Click               | Opens delete comment confirmation page                                                                                  | Pass      |
-| Confirm delete button          | Click               | Comment is removed from comment section                                                                                 | Pass      |
-| Confirm delete button          | Click               | Success message appears informing the user that the comment has been deleted                                            | Pass      |
-| Confirm delete button          | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-| Confirm delete button          | Click               | Redirect user back to recipe page                                                                                       | Pass      |
-| Cancel delete button           | Click               | Redirect user back to recipe page                                                                                       | Pass      |
-| Delete comment                 | Access              | If a user tries to delete another user's comment (by changing the url) they receive a custom 403 error.                 | Pass      |
-| Delete comment                 | Access              | If a user tries to delete a comment (by changing the url) without being signed in they are redirected to the login page | Pass      |
-| Add comment Form               | Display             | Form only visible if user in session                                                                                    | Pass      |
-| Add comment Form submit button | Leave empty               | On submit: form won't submit                                                                                            | Pass      |
-| Add comment Form submit button | Leave empty               | Error message displays                                                                                                  | Pass      |
-| Add comment Form submit button | Filled in               | Form submit - page updates and comment displays in comments section with correct content                                | Pass      |
-| Add comment Form submit button | Click               | Success message appears informing the user that the comment has been added                                              | Pass      |
-| Add comment Form submit button | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-|                                |                     |                                                                                                                         |           |
-| Meal plan model                |                     |                                                                                                                         |           |
-| Modal cancel button            | Click               | Close modal                                                                                                             | Pass      |
-| Days drop down menu            | Click               | Display list of the days of the week                                                                                    | Pass      |
-| Days drop down menu            | Click               | Default day is Monday                                                                                                   | Pass      |
-| Add to Meal Plan submit button | Click               | Form Submit                                                                                                             | Pass      |
-| Add to Meal Plan submit button | Click               | Correct recipe is added to the user's Meal Plan page for the correct day                                                | Pass      |
-| Add to Meal Plan submit button | Click               | Success message appears telling the user that the recipe has been added to their meal plan                              | Pass      |
-| Add to Meal Plan submit button | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
-| Add to Meal Plan submit button | Click               | If meal plan item already exists for that day, the success message tells the user that meal plan has been updated       | Pass      |
-| Add to Meal Plan submit button | Click               | Modal closes                                                                                                            | Pass      |
-| Meal Plan modal                | Click outside modal | Close modal                                                                                                             | Pass      |
-### Add Recipe Page
+| Items                          | Display             | Each list owned by the logged in user displays: Index number, Title, Quantity, Done status check box, "Edit/Duplicate" Button             | Pass      |
+| "Top" Button                   | Display             | A "to the top button" is displayed if the user scrolls down on the item page                              | Pass      |
+| "Top" Button                   | Click               | The top of the page is displayed                               | Pass      |
+| "Add Item" Button              | Click               | Add items page is displayed   | Pass      |
+| "Done" check box               | Display             | Items/done status is updated correctly on page load    | Pass      |
+| "Done" check box               | Click               | Items/done status is updated correctly on page load    | Pass      |
+| "Edit" Button                  | Click               | Edit items page is displayed    | Pass      |
+| "Duplicate" Button             | Click               | Duplicate items page is displayed   | Pass      |
+
+#### Edit lists and items page
 | Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
 |-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
-| Add Recipe                    | Access                | If a user tries to add a recipe (by changing the url) without being signed in they are redirected to the login page | Pass      |
-| Form Text Input (if required) | Leave blank           | On Submit: Warning appears, form won't submit                                                                       | Pass      |
-| Form Text Input (if required) | Just input whitespace | On Submit: Form won't submit                                                                                        | Pass      |
-| Recipe Title                  | Duplicate Entry       | On Submit: Warning appears, form won't submit                                                                       | Pass      |
-| Form image select button      | Click                 | Open device storage                                                                                                 | Pass      |
-| Form image select button      | Display               | Chosen image name displayed once selected                                                                           | Pass      |
-| Form image select button      | Display               | Default image is used if no image is selected                                                                       | Pass      |
-| Cancel button                 | Click                 | Redirect to Browse Recipes page                                                                                     | Pass      |
-| Add Recipe button(form valid) | Click                 | Form submit                                                                                                         | Pass      |
-| Add Recipe button(form valid) | Click                 | Redirect to Recipe detail page for new recipe with all information displaying correctly                             | Pass      |
-| Add Recipe button(form valid) | Click                 | Success message appears informing the user that the recipe has been created                                         | Pass      |
-| Add Recipe button(form valid) | Click                 | Success message fades after 3 seconds                                                                               | Pass      |
+| "Clone List" Button                  | Click               | Clone list page is displayed    | Pass      |
+| "Rename List" Button                 | Click               | Rename list items page is displayed    | Pass      |
+| "Delete list" Button                 | Click               | A confirmation message page is displayed    | Pass      |
+| "Items" Button                       | Click               | A separate edit items page is displayed    | Pass      |
+
+**Clone list: Create and confirm**
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Clone List" input field                  | Display               | Clone list page is displayed and the current list name    | Pass      |
+| "Clone List" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
+| Confirm message "OK" Button                  | Click               | The list is cloned, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               | Page is closed, redirect to list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The list is not cloned, return to the clone list page    | Pass      |
+| Input field                  | Click               |  Click | Display message if the input fields is left empty, no cloning will occur | Pass      |   | Pass   
+
+**Rename list: Create and confirm**
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Rename List" input field                  | Display               | Rename list page is displayed and the current list name    | Pass      |
+| "Rename List" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
+| Confirm message "OK" Button                  | Click               | The list is renamed, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The list is not renamed, return to the rename list page    | Pass      |
+| Input field                  | Click               |  Click | Display message if the input fields is left empty, no renaming will occur | Pass      |
+
+**Delete list: Delete and confirm**
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Delete List" Button                  | Click              |  A confirmation message page is displayed     | Pass      |
+| Confirm message "OK" Button                  | Click               | The list is deleted, a confirmation page is displayed    | Pass      |
+| "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
+Pass      |
+| Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
+
 ### Update Recipe Page
 | Element            | Action  | Expected Result                                                                                                         | Pass/Fail |
 |--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|-----------|
