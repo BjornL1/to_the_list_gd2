@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required  # Importing login_required decorator
+from django.contrib.auth.decorators import login_required
 from .forms import ShoppingListForm, ItemForm
 from .models import ShoppingList, Item, ShoppingListPreference
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse, HttpResponseForbidden, HttpResponseNotFound
+from django.http import JsonResponse, HttpResponseForbidden
+from django.http import HttpResponseNotFound
 from django.utils.text import slugify
 from .forms import CloneForm, DuplicateItemForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -14,6 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def index(request):
     return render(request, 'shop_list/index.html')
 
+
 @login_required
 def create_shopping_list(request):
     # Clear any existing messages if the user is authenticated
@@ -21,27 +23,31 @@ def create_shopping_list(request):
         storage = messages.get_messages(request)
         new_messages = []
         for message in storage:
-            if "You have signed out." not in message.message and "Successfully signed in as" not in message.message:
+            if "You have signed out." not in message.message and \
+               "Successfully signed in as" not in message.message:
                 new_messages.append(message)
         # Replace the messages in the storage with the filtered messages
         request._messages._loaded_data = new_messages
 
     if 'form_page_visited' in request.session:
         del request.session['form_page_visited']
-        
+
     if request.method == 'POST':
         form = ShoppingListForm(request.POST)
         if form.is_valid():
             shopping_list = form.save(commit=False)
-            shopping_list.owner_id = request.user.id  
+            shopping_list.owner_id = request.user.id
             shopping_list.save()
             shopping_list_name = shopping_list.name
-            messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
+            messages.success(request, f'Shopping list "{shopping_list_name}" '
+                                      'created successfully!')
             return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
-    
-    return render(request, 'shop_list/create_shopping_list.html', {'form': form})
+
+
+return render(request, 'shop_list/create_shopping_list.html',
+              {'form': form})
 
 
 def show_shopping_lists(request):
@@ -50,28 +56,40 @@ def show_shopping_lists(request):
         my_lists = ShoppingList.objects.filter(owner=request.user)
 
         # Fetch other public lists excluding the current user's lists
-        other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user)
-        
+        other_lists = ShoppingList.objects.filter(is_private=False)\
+                                          .exclude(owner=request.user)
+
         # Sort current user's lists to appear first
-        my_lists = my_lists.order_by('-id')  # Using the primary key as a fallback sorting criteria
-        
-        # Create a list of tuples containing each shopping list, the username of the owner, and the count of done items for both current user's lists and other lists
+        my_lists = my_lists.order_by('-id')  # Sort by ID
+
+        # Create a list of tuples containing each shopping list, the
+        # # username of the owner, and
+        # the count of done items for both current user's lists and other lists
         my_lists_with_usernames = []
         for shopping_list in my_lists:
             done_count = shopping_list.items.filter(is_done=True).count()
-            my_lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+            my_lists_with_usernames.append(
+                (shopping_list, shopping_list.owner.username, done_count)
+            )
         
         other_lists_with_usernames = []
         for shopping_list in other_lists:
             done_count = shopping_list.items.filter(is_done=True).count()
-            other_lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+            other_lists_with_usernames.append(
+                (shopping_list, shopping_list.owner.username, done_count)
+            )
         
         logged_in_user = request.user  # Get the logged-in user
 
-        return render(request, 'shop_list/show_shopping_lists.html', {'my_lists_with_usernames': my_lists_with_usernames, 'other_lists_with_usernames': other_lists_with_usernames, 'logged_in_user': logged_in_user})
+        return render(request, 'shop_list/show_shopping_lists.html', {
+            'my_lists_with_usernames': my_lists_with_usernames,
+            'other_lists_with_usernames': other_lists_with_usernames,
+             'logged_in_user': logged_in_user
+            })
     else:
         # Redirect to login page if user is not authenticated
-        return redirect('account_login')  # Adjust the URL name if necessary
+        return redirect('account_login')  
+
 
 @login_required
 def add_item(request, list_id):
@@ -88,13 +106,17 @@ def add_item(request, list_id):
             item.created_by = request.user
             print("Item created by:", item.created_by)
             item.save()
-            return redirect('show_items', list_id=list_id)  # Redirect to the show_items page
+            return redirect('show_items', list_id=list_id)
     else:
         form = ItemForm()
     
-    return render(request, 'shop_list/add_item.html', {'form': form, 'shopping_list': shopping_list})
+    return render(request, 'shop_list/add_item.html', {
+        'form': form,
+        'shopping_list': shopping_list
+    })
 
-@login_required  # Applying login_required decorator
+
+@login_required 
 def show_items(request, list_id):
     # Retrieve the shopping list object
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
@@ -114,7 +136,8 @@ def show_items(request, list_id):
 
     return render(request, 'shop_list/show_items.html', context)
 
-@login_required # Disable CSRF protection for this view (for demonstration purposes only)
+
+@login_required 
 def toggle_list_status(request, list_id):
     if request.method == 'POST':
         try:
@@ -176,6 +199,7 @@ def clone(request, list_id):
 
     return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
 
+
 @login_required
 def duplicate_item(request, item_id):
     original_item = get_object_or_404(Item, pk=item_id)
@@ -207,6 +231,7 @@ def duplicate_item(request, item_id):
 
     return render(request, 'shop_list/duplicate_item.html', {'form': form, 'item': original_item})
 
+
 @login_required
 def rename(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
@@ -229,6 +254,7 @@ def rename(request, list_id):
             messages.error(request, 'New name cannot be empty!')
     
     return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
+
 
 @login_required
 def item_rename(request, item_id):
@@ -255,6 +281,7 @@ def item_rename(request, item_id):
     
     return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner, 'old_name': old_name})
 
+
 @login_required
 def delete(request, list_id):
     try:
@@ -280,6 +307,7 @@ def delete(request, list_id):
         # If the shopping list does not exist, return a 404 response
         return HttpResponseNotFound("Shopping List not found.")
 
+
 @login_required
 def delete_item(request, item_id):
     try:
@@ -294,9 +322,14 @@ def delete_item(request, item_id):
             # Delete the item
             item.delete()
             # Render the deletion confirmation template
-            return render(request, 'shop_list/delete_item_confirmation.html', {'item': item})
+            return render(
+                request,
+                'shop_list/delete_item_confirmation.html',
+                {'item': item}
+            )
 
-        # If the request method is GET, it means the user is viewing the confirmation page
+        # If the request method is GET, it means the user is viewing
+        # # the confirmation page
         else:
             # Redirect to the confirmation page
             return redirect('delete_item_confirmation', item_id=item_id)
@@ -304,6 +337,7 @@ def delete_item(request, item_id):
     except Item.DoesNotExist:
         # If the item does not exist, return a 404 response
         return HttpResponseNotFound("Item not found.")
+
 
 def edit(request, list_id):
     shopping_list = ShoppingList.objects.get(pk=list_id)
@@ -314,13 +348,17 @@ def edit(request, list_id):
 
     if request.method == 'POST':
         # Handle checkbox state changes
-        item_ids = request.POST.getlist('item_ids')  
+        item_ids = request.POST.getlist('item_ids')
         for item_id in item_ids:
             item = Item.objects.get(pk=item_id)
             item.is_done = not item.is_done  # Toggle the state of the checkbox
             item.save()  # Save the changes to the database
 
-    return render(request, 'shop_list/edit.html', {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner})
+    return render(
+        request,
+        'shop_list/edit.html',
+        {'shopping_list': shopping_list, 'items': items, 'is_owner': is_owner}
+    )
 
 
 def toggle_item_done(request, item_id):
@@ -331,28 +369,29 @@ def toggle_item_done(request, item_id):
             item.save()
             return JsonResponse({'status': 'success'})
         except Item.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Item not found'}, status=404)
+            return JsonResponse(
+                {'status': 'error', 'message': 'Item not found'},
+                status=404
+            )
     else:
-        return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
+        return JsonResponse(
+            {'status': 'error', 'message': 'Only POST requests are allowed'},
+            status=405
+        )
+
 
 def edit_item(request, item_id):
     # Retrieve the item object
     item = get_object_or_404(Item, pk=item_id)
-
-    # Assuming you have code to get the associated shopping list
     shopping_list = item.shopping_list
-
-    # Other view logic...
 
     context = {
         'item': item,
-        'shopping_list': shopping_list,  # Pass the shopping_list object to the context
-        # Other context variables...
+        'shopping_list': shopping_list,
     }
 
     return render(request, 'shop_list/edit_item.html', context)
 
-from django.shortcuts import redirect
 
 def index(request):
     if request.user.is_authenticated:
@@ -361,7 +400,6 @@ def index(request):
         # Render the default home page template for non-authenticated users
         return render(request, 'shop_list/index.html')
 
-def learn_view(request):
-    # Your view logic goes here
-    return render(request, 'learn.html')
 
+def learn_view(request):
+    return render(request, 'learn.html')
