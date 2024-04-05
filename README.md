@@ -75,7 +75,7 @@ A typical user of ToTheList is someone who wants to efficiently manage their sho
 - As a Site User, I can rename a list so that I don't need to delete and recreate a new list if I accidentally named it wrong.
 - As a Site User, I can delete lists so that I can remove ones that are no longer needed.
 - As a Site User, I can view and copy an existing list created by another user so that I can reuse items in my own lists.
-- As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list.
+- As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and let other users add items to my public list.
 - As a Site User, I can see how frequently my lists are copied, so that I can adapt and prioritize sharing lists that are most meaningful. 
 
 #### EPIC Items interaction
@@ -90,10 +90,10 @@ A typical user of ToTheList is someone who wants to efficiently manage their sho
 
 #### User stories not yet implemented
 
-The following user stories were scoped out of the project due to time constraints and labelled as "Won't Have" on the project board on Github. It is intended that these user stories will be implemented at a later date. 
+The following user stories were scoped out of the project due to time constraints and labeled as "Won't Have" on the project board on Github. It is intended that these user stories will be implemented at a later date. 
 
 - As a Site User, I can move items between different lists so that I can increase flexibility of item management.
-- As a Site User, I can search and filter lists so that i can find lists based on specific search criteria.
+- As a Site User, I can search and filter lists so that I can find lists based on specific search criteria.
 
 ### Design
 
@@ -102,7 +102,7 @@ The site's intentionally simple and clean design reflects its overarching goal: 
 #### Colour Scheme
 Colour created in Coolors.
 
-The color scheme of the site predominantly features a blend of green and celadon (light grey). The primary focus was on maintaining a distinct header while ensuring that the background color for sign-in/up/out pages and list/item views is calm yet clearly delineates and distinguishes the content for the user.
+The color scheme of the site predominantly features a blend of green and celadon (light gray). The primary focus was on maintaining a distinct header while ensuring that the background color for sign-in/up/out pages and list/item views is calm yet clearly delineates and distinguishes the content for the user.
 
 The color palette was created using Coolors, while extracting the colors from the website was accomplished using Pick Color Online
 ![header](docs/readme_images/background_colour.png)
@@ -141,7 +141,7 @@ The Montserrat font is the main font used for the body of the website with the P
 
 Github projects was used to manage the development process using an agile approach. Please see link to project board [here](https://github.com/users/BjornL1/projects/6)
 
-The 5 Epics listed above were documented within the Github project as Milestones. A Github Issue was created for each User Story which was then allocated to a milestone(Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Story's execution.
+The 5 Epics listed above were documented within the Github project as Milestones. A Github Issue was created for each User Story which was then allocated to a milestone(Epic). Each User Story has defined acceptance criteria to make it clear when the User Story has been completed. The acceptance criteria are further broken down into tasks to facilitate the User Stories execution.
 
 ## Data Model
 I used principles of Object-Oriented Programming throughout this project and Django’s Class-Based Generic Views.  
@@ -257,7 +257,7 @@ The header offers various options, including: Home, Learn, Register, Login, Logg
 
 ![header](docs/readme_images/signout.png)
 
-- Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
+- Django allauth was installed and used to create the Sign up, Login and Log out functionality. 
 
 ### List management
 All lists include the following information: Name, Number of Items (quantity), Status of Items (Done or Not Done), and Public/Private or External status, along with an edit/clone button. Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
@@ -266,7 +266,7 @@ For a logged-in user, the following information will be presented for all lists 
 
 - Name: Name of the list.
 - Created by: The owner of the list.
-- Clone Count: Displays how many times the list have cloned by other users.
+- Clone Count: Displays how many times the list has been cloned by other users.
 - Number of Items: Number of items added to the list.
 - Status of Items: Whether an item has been marked as done or not.
 
@@ -308,15 +308,15 @@ A list can be created from four different locations:
     - On the create list page click "View lists" -> The latest created list will be displayed on the list view.
 
 2. Logged-in: "Add list" button from list view.
-    - Click the "Add list" button from lists view -> Create list form is displayed.
-    - Repeat the same steps as stated under point nr 1 in previous section.
+    - Click the "Add list" button from list view -> Create list form is displayed.
+    - Repeat the same steps as stated under point nr 1 in the previous section.
 
-3. Logged-in: By cloning a list using clone via "Edit" button on list view.
+3. Logged-in: By cloning a list using clone via the "Edit" button on the list view.
     - From the list view, click on the "Edit" button. -> An edit page will be displayed.
     - From the edit page, click on the "Clone list" button -> Create list form is displayed.
     - Repeat the same steps as stated under point number 1 in the previous section.
 
-4. Logged-in: By cloning a list using "Clone" button on list view.
+4. Logged-in: By cloning a list using the "Clone" button on the list view.
     - From the list view, click on the "Clone" button. -> A clone list page will be displayed.
     - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
     - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
@@ -390,7 +390,7 @@ All items are associated with a list and can be added either by creating them or
 Each item in a list can be marked as 'done' or 'not done'(when the checkbox is not checked). Users can add items to their own lists or to public lists owned by other users.
 The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
 If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
-In below sections the difference between the an item owned by the user and an "external" item are presented.
+In below sections the difference between an item owned by the user and an "external" item are presented.
 
 **Create and cloning items**
 
@@ -474,14 +474,14 @@ In the image below, you can see an example of how the item "testid" is displayed
    - Click on the "Close" button to return to the list view.
 
    
-In the image below, you can see an example of how the item "Bread" is confirmed deleted.
+In the image below, you can see an example of how the item "Bread" is confirmed to be deleted.
 
 ![header](docs/readme_images/delete_item_confirmed.png)
 
 **Change an item to done**
 
-Changing an item from not done to done can be done either directly from the list view for a users own list or by accessing 
-the items through edit button on the list view.
+Changing an item from not done to done can be done either directly from the list view for a user's own list or by accessing 
+the items through the edit button on the list view.
 
 1. From the list view, logged-in users list:
    - Click on the title of the list, click on the done checkbox shown for each item.
@@ -490,7 +490,7 @@ the items through edit button on the list view.
    - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
    - Click on click on the done checkbox shown for the items displayed.  
 
-In the image below, you can see an example of how the two items in the separated page item view, where on itme is marked as done.
+In the image below, you can see an example of how the two items in the separated page item view, where one item is marked as done.
 ![header](docs/readme_images/done_separated_itemview.png)
 
 ### Error Pages
@@ -507,10 +507,10 @@ Example below for a 404 page.
 - 500 Server Error - ToTheList is currently unable to handle this request
 
 ### Future Features
-The following user stories were scoped out of the project due to time constraints and labelled as "Could Have" on the project board in Github. It is intended that these user stories will be implemented at a later date. 
+The following user stories were scoped out of the project due to time constraints and labeled as "Could Have" on the project board in Github. It is intended that these user stories will be implemented at a later date. 
 
 - As a Site User, I can move items between different lists so that I can increase flexibility of item management.
-- As a Site User, I can search and filter lists so that i can find lists based on specific search criteria.
+- As a Site User, I can search and filter lists so that I can find lists based on specific search criteria.
 
 Other potential features include:
 - Adding additional functionality, such as creating a flexible template that includes the ten most popular items currently. This template would be continuously updated based on statistics.
@@ -522,9 +522,9 @@ To deploy this page to Heroku from its GitHub repository, the following steps we
 
 ### Create the Heroku App:
 - Log in to [Heroku](https://dashboard.heroku.com/apps) or create an account.
-- On the main page click the button labelled New in the top right corner and from the drop-down menu select "Create New App".
+- On the main page click the button labeled New in the top right corner and from the drop-down menu select "Create New App".
 - Enter a unique and meaningful app name.
-- Next select your region.
+- Next, select your region.
 - Click on the Create App button.
 
 ### Attach the Postgres database:
@@ -569,7 +569,7 @@ The site is now live and operational.
 To clone this repository follow the below steps: 
 
 1. Locate the repository at this link [ToTheList](https://github.com/BjornL1/to_the_list_gd2). 
-2. Under **'Code'**, see the different cloning options, HTTPS, SSH, and GitHub CLI. Click the prefered cloning option, and then copy the link provided. 
+2. Under **'Code'**, see the different cloning options, HTTPS, SSH, and GitHub CLI. Click the preferred cloning option, and then copy the link provided. 
 3. Open **Terminal**.
 4. In Terminal, change the current working directory to the desired location of the cloned directory.
 5. Type **'git clone'**, and then paste the URL copied from GitHub earlier. 
@@ -587,17 +587,17 @@ To clone this repository follow the below steps:
 - [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html): authentication library used to create the user accounts
 - [PostgreSQL](https://www.postgresql.org/) was used as the database for this project.
 - [Heroku](https://dashboard.heroku.com/login) - was used as the cloud based platform to deploy the site on.
-- [Responsinator](http://www.responsinator.com/) - Used to verify responsiveness of website on different devices.
+- [Responsinator](http://www.responsinator.com/) - Used to verify responsiveness of the website on different devices.
 - [Balsamiq](https://balsamiq.com/) - Used to generate Wireframe images.
 - [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Used for overall development and tweaking, including testing responsiveness and performance.
-- [Font Awesome](https://fontawesome.com/) - Used for icons in information bar.
+- [Font Awesome](https://fontawesome.com/) - Used for icons in the information bar.
 - [GitHub](https://github.com/) - Used for version control and agile tool.
 - [Google Fonts](https://fonts.google.com/) - Used to import and alter fonts on the page.
 - [W3C](https://www.w3.org/) - Used for HTML & CSS Validation.
 - [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
 - [Jshint](https://jshint.com/) - used to validate javascript
-- [Coolors](https://coolors.co/) - Used to create colour palette.
-- [Pick Color Online](https://pickcoloronline.com/) - Used for extracting colour sample from the website.
+- [Coolors](https://coolors.co/) - Used to create a colour palette.
+- [Pick Color Online](https://pickcoloronline.com/) - Used for extracting colour samples from the website.
 - [Favicon](https://favicon.io/) - Used to create the favicon symbol next to the logo.
 - [Summernote](https://summernote.org/): A WYSIWYG editor to allow users to edit their posts
 - [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to manage Django Forms
