@@ -234,14 +234,18 @@ def duplicate_item(request, item_id):
                 quantity=original_item.quantity,
                 shopping_list=original_item.shopping_list,  # Associate the 
                 # duplicated item with the same shopping list
-                created_by=request.user  # Set the created_by field to the current user
+                created_by=request.user
             )
 
             # Render the duplicate confirmation template
-            return render(request, 'shop_list/duplicate_item_confirmation.html', {
-                'item': original_item, 
-                'new_name': new_name
-            })
+            return render(
+                request, 
+                'shop_list/duplicate_item_confirmation.html', 
+                {
+                    'item': original_item, 
+                    'new_name': new_name
+                }
+            )
     else:
         form = DuplicateItemForm()
 
@@ -259,11 +263,15 @@ def rename(request, list_id):
     is_owner = request.user == shopping_list.owner
     
     if not is_owner:
-        return render(request, 'shop_list/rename.html', {
-        'not_authorized_message': 'You are not authorized to rename this list.', 
-        'is_owner': False
-    })
-    
+        return render(
+        request, 
+        'shop_list/rename.html', 
+        {
+            'not_authorized_message': 'You are unauthorized for this list.', 
+            'is_owner': False
+        }
+    )
+
     old_name = shopping_list.name  # Get the old name before updating
     
     if request.method == 'POST':
@@ -294,10 +302,14 @@ def item_rename(request, item_id):
     is_creator = request.user == item.created_by
     
     if not is_owner and not is_creator:
-       return render(request, 'shop_list/item_rename.html', {
-           'not_authorized_message': 'You are not authorized to rename this item.',
-           'is_owner': False
-        })
+       return render(
+           request, 
+           'shop_list/item_rename.html', 
+           {
+                'not_authorized_message': 'You are unauthorized for the item.',
+                'is_owner': False
+           }
+        )
     
     old_name = item.name  # Get the old item name before updating
     
@@ -327,9 +339,12 @@ def delete(request, list_id):
 
         # Check if the current user is the owner of the list
         if request.user != shopping_list.owner:
-            return HttpResponseForbidden("You are not authorized to delete this list.")
+            return HttpResponseForbidden(
+                "You are not authorized to delete this list."
+        )
 
-        # If the request method is POST, it means the user has confirmed the deletion
+        # If the request method is POST, it means the user 
+        # has confirmed the deletion
         if request.method == 'POST':
             # Delete the list
             shopping_list.delete()
@@ -338,7 +353,8 @@ def delete(request, list_id):
                'shopping_list': shopping_list
             })
 
-        # If the request method is GET, it means the user is viewing the confirmation page
+        # If the request method is GET, it means the user is 
+        # viewing the confirmation page
         else:
             # Redirect to the confirmation page
             return redirect('delete_confirmation', list_id=list_id)
