@@ -341,8 +341,21 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Element               | Action     | Expected Result                                                    | Pass/Fail |
 |-----------------------|------------|--------------------------------------------------------------------|-----------|
 | NavBar                |            |                                                                    |           |
-| Site Name (logo area) | Click      | Redirect to home                                                   | Pass      |
-| Home Link             | Click      | Redirect to home                                                   | Pass      |
+| Site Name (logo area) | Click      | Redirect to home landing page if the user is not signed in         | Pass      |
+| Home Link             | Click      | Redirect to home landing page if the user is not signed in         | Pass      |
+| Learn Link            | Click      | Open Learn page                                                    | Pass      |
+| Register Link         | Click      | Open Sign Up page                                                  | Pass      |
+| Register Link         | Display    | Only if the user is not signed in                                  | Pass      |
+| Log In Link           | Click      | Open Login page                                                    | Pass      |
+| Log In Link           | Display    | Only if the user is not signed in                                  | Pass      |
+| NavBar Toggler        | Click      | Open header links                                                  | Pass      |
+| NavBar Toggler        | Display    | Display only for small/medium screens, open header links           | Pass      |
+| Add List Link         | Click      | Only if the user is not signed in, open sign-in page               | Pass      |
+| Add List Link         | Display    | Only if the user is not signed in, display on landing page         | Pass      |
+| Log Out Link          | Click      | Open Sign Out confirmation page                                    | Pass      |
+| Log Out Link          | Display    | Only if the user signed in                                         | Pass      |
+| Log In status         | Display    | Only if the user is signed in                                      | Pass      |
+
 | Browse Recipes Link   | Click      | Open Browse Recipes Page                                           | Pass      |
 | Add Recipe Link       | Click      | Open Add Recipe Form                                               | Pass      |
 | Add Recipe Link       | Display    | Only visible if user in session                                    | Pass      |
