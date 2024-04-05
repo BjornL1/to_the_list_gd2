@@ -122,10 +122,12 @@ def show_items(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
 
     # Retrieve all items associated with the shopping list
-    all_items = shopping_list.items.order_by('id')  # Order items by creation date (oldest first)
+    all_items = shopping_list.items.order_by('id')
 
     # Enumerate the items
-    enumerated_items = [(index + 1, item) for index, item in enumerate(all_items)]
+    enumerated_items = [
+    (index + 1, item) for index, item in enumerate(all_items)
+    ]
 
     context = {
         'shopping_list': shopping_list,
@@ -143,7 +145,10 @@ def toggle_list_status(request, list_id):
         try:
             shopping_list = get_object_or_404(ShoppingList, pk=list_id)
             # Check if the user has a preference for the list's privacy status
-            user_preference = ShoppingListPreference.objects.filter(user=request.user, shopping_list=shopping_list).first()
+            user_preference = ShoppingListPreference.objects.filter(
+                user=request.user, 
+                shopping_list=shopping_list
+            ).first()
             if user_preference:
                 # Use the user's preference if available
                 shopping_list.is_private = user_preference.is_private
@@ -151,11 +156,16 @@ def toggle_list_status(request, list_id):
                 # Otherwise, toggle the privacy status as before
                 shopping_list.is_private = not shopping_list.is_private
             shopping_list.save()
-            return JsonResponse({'status': 'success', 'is_public': not shopping_list.is_private})
+            return JsonResponse({'status': 'success', 
+                     'is_public': not shopping_list.is_private})
         except ShoppingList.DoesNotExist:
-            return JsonResponse({'status': 'error', 'message': 'Shopping list not found'}, status=404)
+            return JsonResponse({'status': 'error', 
+                     'message': 'Shopping list not found'}, 
+                    status=404)
     else:
-        return JsonResponse({'status': 'error', 'message': 'Only POST requests are allowed'}, status=405)
+        return JsonResponse({'status': 'error', 
+                     'message': 'Only POST requests are allowed'}, 
+                    status=405)
 
 
 @login_required
@@ -188,16 +198,18 @@ def clone(request, list_id):
                 cloned_item = Item.objects.create(
                     name=item.name,
                     quantity=item.quantity,
-                    shopping_list=cloned_list,  # Associate the cloned item with the newly created cloned list
-                    created_by=request.user  # Set the created_by field to the current user
+                    shopping_list=cloned_list,  
+                    created_by=request.user
                 )
 
             # Render the clone confirmation template
-            return render(request, 'shop_list/clone_confirmation.html', {'shopping_list': original_list, 'new_name': new_name})
+            return render(request, 'shop_list/clone_confirmation.html', 
+              {'shopping_list': original_list, 'new_name': new_name})
     else:
         form = CloneForm()
 
-    return render(request, 'shop_list/clone.html', {'form': form, 'shopping_list': original_list})
+    return render(request, 'shop_list/clone.html', 
+              {'form': form, 'shopping_list': original_list})
 
 
 @login_required
@@ -220,16 +232,23 @@ def duplicate_item(request, item_id):
             duplicated_item = Item.objects.create(
                 name=new_name,
                 quantity=original_item.quantity,
-                shopping_list=original_item.shopping_list,  # Associate the duplicated item with the same shopping list
+                shopping_list=original_item.shopping_list,  # Associate the 
+                # duplicated item with the same shopping list
                 created_by=request.user  # Set the created_by field to the current user
             )
 
             # Render the duplicate confirmation template
-            return render(request, 'shop_list/duplicate_item_confirmation.html', {'item': original_item, 'new_name': new_name})
+            return render(request, 'shop_list/duplicate_item_confirmation.html', {
+                'item': original_item, 
+                'new_name': new_name
+            })
     else:
         form = DuplicateItemForm()
 
-    return render(request, 'shop_list/duplicate_item.html', {'form': form, 'item': original_item})
+    return render(request, 'shop_list/duplicate_item.html', {
+        'form': form, 
+        'item': original_item
+    })
 
 
 @login_required
@@ -240,7 +259,10 @@ def rename(request, list_id):
     is_owner = request.user == shopping_list.owner
     
     if not is_owner:
-        return render(request, 'shop_list/rename.html', {'not_authorized_message': 'You are not authorized to rename this list.', 'is_owner': False})
+        return render(request, 'shop_list/rename.html', {
+        'not_authorized_message': 'You are not authorized to rename this list.', 
+        'is_owner': False
+    })
     
     old_name = shopping_list.name  # Get the old name before updating
     
@@ -249,11 +271,17 @@ def rename(request, list_id):
         if new_name:
             shopping_list.name = new_name
             shopping_list.save()
-            return render(request, 'shop_list/rename_confirmation.html', {'old_name': old_name, 'new_name': new_name})
+            return render(request, 'shop_list/rename_confirmation.html', {
+                'old_name': old_name, 
+                'new_name': new_name
+            })
         else:
             messages.error(request, 'New name cannot be empty!')
     
-    return render(request, 'shop_list/rename.html', {'shopping_list': shopping_list, 'is_owner': is_owner})
+    return render(request, 'shop_list/rename.html', {
+        'shopping_list': shopping_list, 
+        'is_owner': is_owner
+    })
 
 
 @login_required
@@ -266,7 +294,10 @@ def item_rename(request, item_id):
     is_creator = request.user == item.created_by
     
     if not is_owner and not is_creator:
-        return render(request, 'shop_list/item_rename.html', {'not_authorized_message': 'You are not authorized to rename this item.', 'is_owner': False})
+       return render(request, 'shop_list/item_rename.html', {
+           'not_authorized_message': 'You are not authorized to rename this item.',
+           'is_owner': False
+        })
     
     old_name = item.name  # Get the old item name before updating
     
@@ -275,11 +306,18 @@ def item_rename(request, item_id):
         if new_name:
             item.name = new_name
             item.save()
-            return render(request, 'shop_list/item_rename_confirmation.html', {'old_name': old_name, 'new_name': new_name})
+            return render(request, 'shop_list/item_rename_confirmation.html', {
+                'old_name': old_name,
+                'new_name': new_name
+            })
         else:
             messages.error(request, 'New name cannot be empty!')
     
-    return render(request, 'shop_list/item_rename.html', {'item': item, 'is_owner': is_owner, 'old_name': old_name})
+    return render(request, 'shop_list/item_rename.html', {
+        'item': item,
+        'is_owner': is_owner,
+        'old_name': old_name
+    })
 
 
 @login_required
@@ -296,7 +334,9 @@ def delete(request, list_id):
             # Delete the list
             shopping_list.delete()
             # Render the deletion confirmation template
-            return render(request, 'shop_list/delete_confirmation.html', {'shopping_list': shopping_list})
+            return render(request, 'shop_list/delete_confirmation.html', {
+               'shopping_list': shopping_list
+            })
 
         # If the request method is GET, it means the user is viewing the confirmation page
         else:
@@ -315,9 +355,11 @@ def delete_item(request, item_id):
 
         # Check if the current user is the owner of the item's shopping list
         if request.user != item.shopping_list.owner:
-            return HttpResponseForbidden("You are not authorized to delete this item.")
+            return HttpResponseForbidden(
+                "You are not authorized to delete this item.")
 
-        # If the request method is POST, it means the user has confirmed the deletion
+        # If the request method is POST, it means the user
+        # has confirmed the deletion
         if request.method == 'POST':
             # Delete the item
             item.delete()
