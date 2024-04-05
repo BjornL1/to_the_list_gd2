@@ -9,19 +9,10 @@ Delete List Confirmation
 {% endblock %}
 
 {% block content %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Confirmation</title>
-    <!-- Add your CSS links or styles here if needed -->
-</head>
-<body>
-    <div class="text-center bg-green mt-3 p-4">
-        <p style="font-weight: bold">The list "{{ shopping_list.name }}" has been deleted successfully.</p>
-        <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
-    </div>
+<!--Added "bg-green", other styling classes are from bootstrap"-->
+<div class="text-center bg-green mt-3 p-4">
+    <p style="font-weight: bold">The list "{{ shopping_list.name }}" has been deleted successfully.</p>
+    <a href="{% url 'show_shopping_lists' %}" class="btn btn-primary">Close</a>
+</div>
 </body>
 {% endblock %}
