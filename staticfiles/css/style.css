@@ -1,12 +1,17 @@
 body {
     background-color: green;
     color: black;
-    background-image: url('../images/land_page_t.png'); 
-    background-size: 1000px auto; /* Set the background image width to 700px and height to auto */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-position: center; /* Center the background image */
-    margin: 0; /* Reset default margin */
-    padding-top: 0; /* Adjust padding to make room for fixed navbar */
+    background-image: url('../images/land_page_t.png');
+    background-size: 1000px auto;
+    /* Set the background image width to 700px and height to auto */
+    background-repeat: no-repeat;
+    /* Prevent the background image from repeating */
+    background-position: center;
+    /* Center the background image */
+    margin: 0;
+    /* Reset default margin */
+    padding-top: 0;
+    /* Adjust padding to make room for fixed navbar */
 
 
 }
@@ -17,7 +22,8 @@ body {
     font-weight: 700;
     font-style: italic;
     color: yellow;
-    text-decoration: underline; /* Underline the text "To TheList" */
+    text-decoration: underline;
+    /* Underline the text "To TheList" */
 }
 
 .red-o {
@@ -46,8 +52,9 @@ body {
 }
 
 .card-title a {
-   margin-left: 0px;
+    margin-left: 0px;
 }
+
 .image-container {
     margin-top: 20px;
     /* Adjust the top margin as needed */
@@ -167,6 +174,7 @@ body {
 .margin-but-left {
     margin-left: 10px;
 }
+
 .link {
     color: blue;
     text-decoration: none;
@@ -232,7 +240,7 @@ body {
 
 .navbar-nav .nav-link.active {
     text-decoration: underline;
-} 
+}
 
 .nav-link.active {
     text-decoration: underline;
@@ -240,7 +248,7 @@ body {
 
 .nav-link:hover {
     font-weight: bold;
-    opacity: 1; 
+    opacity: 1;
     color: red;
 }
 
@@ -249,8 +257,8 @@ body {
 }
 
 .homepage-buttons {
- background-color: #d83f11;
- border: 2px;
+    background-color: #d83f11;
+    border: 2px;
 }
 
 a {
@@ -330,20 +338,30 @@ a {
 
 .status-text {
     margin: 0 0 15px 30px;
-    display: inline-block; /* Ensures the container only takes the necessary space */
-    padding: 4px 8px; /* Adjust padding as needed */
-    background-color: blue; /* Set the background color to blue */
-    color: white; /* Set text color to white */
-    border-radius: 4px; /* Adds rounded corners to the box */
+    display: inline-block;
+    /* Ensures the container only takes the necessary space */
+    padding: 4px 8px;
+    /* Adjust padding as needed */
+    background-color: blue;
+    /* Set the background color to blue */
+    color: white;
+    /* Set text color to white */
+    border-radius: 4px;
+    /* Adds rounded corners to the box */
 }
 
 .public-other {
-margin: 0 0 15px 30px;
-display: inline-block; /* Ensures the container only takes the necessary space */
-padding: 4px 8px; /* Adjust padding as needed */
-background-color: grey; /* Set the background color to blue */
-color: white; /* Set text color to white */
-border-radius: 4px; /* Adds rounded corners to the box */
+    margin: 0 0 15px 30px;
+    display: inline-block;
+    /* Ensures the container only takes the necessary space */
+    padding: 4px 8px;
+    /* Adjust padding as needed */
+    background-color: grey;
+    /* Set the background color to blue */
+    color: white;
+    /* Set text color to white */
+    border-radius: 4px;
+    /* Adds rounded corners to the box */
 }
 
 .margin-createbutton {
@@ -402,14 +420,14 @@ p.card-text {
     /* Remove background image for navbar */
     background-color: green;
     /* Optional: Set a background color for the navbar */
-   
+
 }
 
 .homepage-buttons-container {
     margin-left: 150px;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link  {
+.navbar-expand-lg .navbar-nav .nav-link {
     color: white;
 }
 
@@ -425,19 +443,23 @@ p.card-text {
 .transparent {
     background-color: rgba(255, 255, 255, 0.8);
 }
+
 .transparent-navbar {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
 li.nav-item a.nav-link {
     /* Your default styles here */
-    color: blue; /* Change this to your default text color */
-    text-decoration: none; /* Remove default underline */
+    color: blue;
+    /* Change this to your default text color */
+    text-decoration: none;
+    /* Remove default underline */
 }
 
 li.nav-item a.nav-link.active {
     /* Your active styles here */
-    text-decoration: underline; /* Add underline for active link */
+    text-decoration: underline;
+    /* Add underline for active link */
 }
 
 label[for="id_password1"] {
@@ -481,6 +503,7 @@ label[for="id_name"] {
     margin: 5px 0 20px 20px;
     padding-right: 20px;
 }
+
 #duplicateButton {
     margin: 5px 0 20px 20px;
     padding-right: 20px;
@@ -494,13 +517,14 @@ label[for="id_name"] {
 #renameItem {
     padding-left: 10px;
     margin-bottom: 20px;
-    
+
 }
 
 #new_name {
     margin-left: 35px;
     margin-right: 35px
 }
+
 .signup-text {
     margin: 0 20px 30px 20px;
 }
@@ -514,42 +538,50 @@ label[for="id_name"] {
 }
 
 .btn-warning:hover {
-    background-color: #212529; /* Change to your desired color */
-    border-color: #212529; /* Change to your desired color */
-    color: #fff; /* Change to your desired text color */
-  }
+    background-color: #212529;
+    /* Change to your desired color */
+    border-color: #212529;
+    /* Change to your desired color */
+    color: #fff;
+    /* Change to your desired text color */
+}
 
 .margin-signin {
     margin-top: 20px;
 }
 
 .quantity-container {
-    width: 30px; /* Adjust the width and height as needed */
+    width: 30px;
+    /* Adjust the width and height as needed */
     height: 30px;
-    background-color: blue; /* Adjust the background color as needed */
+    background-color: blue;
+    /* Adjust the background color as needed */
     display: inline-flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .quantity {
-    color: #fff; /* Adjust the text color as needed */
-  }
+}
 
-  .list-title {
+.quantity {
+    color: #fff;
+    /* Adjust the text color as needed */
+}
+
+.list-title {
     font-size: 20px;
     padding-top: 20px;
     font-weight: bold;
-  }
+}
 
-  #back-to-top-btn {
+#back-to-top-btn {
     /* Other styles for the button */
     position: fixed;
-    bottom: -80px; /* Start the button off-screen */
+    bottom: -80px;
+    /* Start the button off-screen */
     margin-bottom: 20px;
     right: 100px;
     z-index: 9999;
-    background-color: blue; /* Example background color */
+    background-color: blue;
+    /* Example background color */
     color: white;
     border: none;
     border-radius: 50%;
@@ -557,13 +589,15 @@ label[for="id_name"] {
     padding: 15px;
     text-align: center;
     font-size: 18px;
-    transition: bottom 0.3s ease; /* Apply transition effect to the bottom property */
-    
-  }
-  
-  #back-to-top-btn:hover {
-    background-color: black; /* Example background color on hover */
-  }
+    transition: bottom 0.3s ease;
+    /* Apply transition effect to the bottom property */
+
+}
+
+#back-to-top-btn:hover {
+    background-color: black;
+    /* Example background color on hover */
+}
 
 @media only screen and (max-width: 992px) {
     .edit-button {
@@ -594,10 +628,28 @@ label[for="id_name"] {
     .navbar {
         display: white;
     }
+
     .custom-toggler {
         background-color: #E84610;
     }
+
     .add-list-btn {
         margin-left: -135px;
     }
 }
+
+@media only screen and (max-width: 532px) {
+    #renameButton {
+        margin: 5px 0 20px 0px;
+        padding-right: 20px;
+    }
+}
+
+/* For smallest screen align all items to the left */
+@media only screen and (max-width: 392px) {
+    #new_name {
+        margin-left: 0px;
+        margin-right: 35px
+    }
+}
+

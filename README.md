@@ -1,6 +1,6 @@
 # TO THE LIST
 
-TheList is a website whichs primary goal is to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
+ToTheList is a website intended to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
 
 
 The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
@@ -115,8 +115,38 @@ The Montserrat font is the main font used for the body of the website with the P
 
 #### Wireframes
 
+
+<details>
+ <summary>Landing Page Browser</summary>
+
+![Landing page](docs/readme_images/wireframe_landingpage_browser.png)
+</details>
+
 <details>
 
+<summary>Sign Up/Sign In Browser</summary>
+
+![Sign Up /Sign In](docs/readme_images/wireframe_signup_browser.png)
+</details>
+
+
+<details>
+<summary>Lists and Items Browser</summary>
+
+![Lists and Items](docs/readme_images/wireframe_lists_browser.png)
+</details>
+
+
+
+
+
+
+
+
+
+
+
+<details>
  <summary>Landing Page</summary>
 
 ![Landing page](docs/readme_images/wireframe_landingpage.png)

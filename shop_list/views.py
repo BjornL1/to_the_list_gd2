@@ -44,9 +44,8 @@ def create_shopping_list(request):
             return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
-
-
-return render(request, 'shop_list/create_shopping_list.html',
+    
+    return render(request, 'shop_list/create_shopping_list.html',
               {'form': form})
 
 
