@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block landing_page_image %}
-<!-- Empty block to override the landing page image -->
+
 {% endblock landing_page_image %}
 
 {% block title %}
@@ -9,25 +9,25 @@ Add Item
 {% endblock %}
 
 {% block content %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block landing_page_image %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Add Item to Shopping List</title>
-</head>
+{% endblock landing_page_image %}
 
-<body>
-    <div class="text-center bg-green mt-3 p-4">
-        <h1>Add Item to "{{ shopping_list.name }}"</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-warning margin-rename">Add Item</button>
-        </form>
-    </div>
-</body>
+{% block title %}
+Add Item
+{% endblock %}
 
-</html>
+{% block content %}
+<!--Added "bg-green and margin-rename" as separate styling for background colour, other styling classes are from bootstrap"-->
+<div class="text-center bg-green mt-3 p-4">
+    <h1>Add Item to "{{ shopping_list.name }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-warning margin-rename">Add Item</button>
+    </form>
+</div>
+
 {% endblock %}
