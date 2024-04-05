@@ -547,27 +547,10 @@ Pass      |
 
 ### Fixed Bugs
 
-- #### Overwrite Meal Plan Items
-     - **Bug**: When I initially wrote the code to add a recipe to a meal plan item, if a meal plan item already existed for the current user for a particular day and then they added another recipe to that day, the meal plan item wouldn't update and the user's meal plan would still display the original meal plan item for that day.
-     - **Fix**: in order to rectify this I queried the database to return all meal plan items for the current user and for the day selected. Through an if statement I could then check if a meal plan item already existed for the user for that day, and if it did then to overwrite it. 
-This solved the problem whereby now if a user adds a meal plan item to a particular day, it just overwrites the previous meal plan item. 
-
-- #### Required fields using Summernote extension submit with just whitespace entered
-     - **Bug**: In the Add Recipe form, the Ingredients and Method fields both use the summernote extension. Both fields are required fields however the form still submitted when only whitespace was entered due to summernote rendering the html `<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>` on submit and therefore the form validation didn't pick up the empty field. 
-     - **Fix**: My first attempt at the solution was to write a custom django `clean_<fieldname>() method` which would replace any `&nbsp` with blank, `strip()` whitespace and `strip_tags()`. The solution did prevent the form submitting with only whitespace however it wasn't a good solution due to fact that stripping the HTML tags meant the summernote editor didn't format valid inputs as expected. 
-     - After posting the question on Slack Ian Meigh_5P proposed a working solution to create a custom validator for textfields and implement this in the Model. I have utilised Ian's custom validator in my code [here](eateasy/validators.py) and have credited him in my Readme. Thanks Ian!
-
-- #### No Reverse Match Error
-     - **Bug**: When I first implemented the Add Recipe form I kept getting a no reverse match error when trying to submit a new recipe due to the slug field not populating properly. 
-     - **Fix**: After some research on stack overflow I learned about AutoSlugField which is a Django Model Field extension which will automatically create a unique slug and you can choose which field to populate the slug from. Utilising this extension I was able to create a unique slug populated from the recipe title.
-
-- #### Cloudinary Images not Displaying
-     - **Bug**: Cloudinary images not displaying after uploading. 
-     - **Fix**: After searching the issue on slack I realised that I needed to include enctype="multipart/form-data in the opening form HTML tag and this solved the problem. 
-
-- #### Footer not staying at bottom of screen
-     - **Bug**: Footer not staying at the bottom of the screen when displaying on pages without fullscreen content and didn't want to use a sticky footer. 
-     - **Fix**: Was able to utilise the calc() CSS function and make the page content 100% of the viewport height less the height of the footer and this solved the problem. 
+- #### Access items by logged in user
+     - **Bug**: Only the logged in user should be able to fully edit an item, if they now own the item they should not be allowed to edit it. The code handled this but not correctly, instead of blocking the non-authorized user to access e.g. "delete" button the user can click delete and then a back - up message is presented: "You are not authorized to delete this item. This stops the deletion of the item but is not user friendly. 
+     - **Fix**: In order to solve this ihad to revisit the logic in the views file and by ...
+- 
 
 ### Unfixed bugs:
 There are no known unfixed bugs. 
