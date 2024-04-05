@@ -382,7 +382,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Sign In" Button | Click | Display error message if the user entered wrong credentials | Pass      |
 | "Sign In" Button | Click | Display message if input fields are left empty | Pass      |
 
-### List view page
+### List view
 
 | Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
 |--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
@@ -391,6 +391,24 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Lists                          | Display             | 3. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public/Private, Toggle switch( Private/Public) and an Edit button            | Pass      |
 | Lists                          | Display             | 4. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public, and a Clone button            | Pass      |
 | Lists                          | Display             | All lists are sorted by the newest displayed at the top            | Pass      |
+| "Top" Button                   | Display             | A "to the top button" is displayed if the user scrolls down on list page                              | Pass      |
+| "Top" Button                   | Click               | The top of the page is displayed                               | Pass      |
+| "Add List" Button              | Click               | Display "Create List" page                               | Pass      |
+| List title Link (own lists)    | Click               | Items connected to the list display/hide under the list card                 | Pass      |
+| List title Link (other lists)  | Click               | Items connected to the list is displayed on a separate page                 | Pass      |
+| Public/Private text box        | Display             | List status is correctly displayed in the text box       | Pass      |
+| "Public/Private" Toggle switch | Click               | Toggle switch change position, Private/Public text box is updated       | Pass      |
+| "Edit" Button                  | Click               | Display "Edit List" and "Items" page           | Pass      |
+| "Clone" Button                 | Click               | Display "Clone List" page                      | Pass      |
+
+### Item view from list page
+ Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
+|--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
+| Items                          | Display             | Each list owned by the logged in user displays: Index number, Title, Quantity, Done status check box, "Edit/Duplicate" Button             | Pass      |
+| "Done" check box               | Display             | Items/done status is updated correctly on page load    | Pass      |
+| "Done" check box               | Click               | Items/done status is updated correctly on page load    | Pass      |
+| "Edit" Button                  | Click               | Edit items page is displayed    | Pass      |
+| "Duplicate" Button             | Click               | Done check box is updated checked/not checked   | Pass      |
 
 
 
@@ -399,10 +417,13 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 
 
 
-| Add to Meal Plan button        | Click               | Meal Plan modal pops up                                                                                                 | Pass      |
-| Add to Meal Plan button        | Display             | Button only visible if user in session                                                                                  | Pass      |
-| Bookmark button (Outline)      | Click               | Clicking the outlined bookmark changes it to a solid bookmark                                                           | Pass      |
-| Bookmark button (Outline)      | Click               | Recipe is added to the user's bookmarks page                                                                            | Pass      |
+
+
+
+
+### Item separate page
+ Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
+|--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
 | Bookmark button (Outline)      | Click               | Success message appears informing the user that the recipe has been added to their bookmarks                            | Pass      |
 | Bookmark button (Outline)      | Click               | Success message fades after 3 seconds                                                                                   | Pass      |
 | Bookmark button (Solid)        | Click               | Clicking the solid bookmark changes it back to an outlined bookmark                                                     | Pass      |
