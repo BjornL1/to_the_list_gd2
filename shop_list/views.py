@@ -44,9 +44,9 @@ def create_shopping_list(request):
             return redirect('create_shopping_list')
     else:
         form = ShoppingListForm()
-    
+
     return render(request, 'shop_list/create_shopping_list.html',
-              {'form': form})
+                  {'form': form})
 
 
 def show_shopping_lists(request):
@@ -70,24 +70,24 @@ def show_shopping_lists(request):
             my_lists_with_usernames.append(
                 (shopping_list, shopping_list.owner.username, done_count)
             )
-        
+
         other_lists_with_usernames = []
         for shopping_list in other_lists:
             done_count = shopping_list.items.filter(is_done=True).count()
             other_lists_with_usernames.append(
                 (shopping_list, shopping_list.owner.username, done_count)
             )
-        
+
         logged_in_user = request.user  # Get the logged-in user
 
         return render(request, 'shop_list/show_shopping_lists.html', {
             'my_lists_with_usernames': my_lists_with_usernames,
             'other_lists_with_usernames': other_lists_with_usernames,
-             'logged_in_user': logged_in_user
+            'logged_in_user': logged_in_user
             })
     else:
         # Redirect to login page if user is not authenticated
-        return redirect('account_login')  
+        return redirect('account_login')
 
 
 @login_required
@@ -100,7 +100,7 @@ def add_item(request, list_id):
         if form.is_valid():
             item = form.save(commit=False)
             item.shopping_list = shopping_list
-            
+
             # Set the created_by field to the current user
             item.created_by = request.user
             print("Item created by:", item.created_by)
@@ -108,14 +108,14 @@ def add_item(request, list_id):
             return redirect('show_items', list_id=list_id)
     else:
         form = ItemForm()
-    
+
     return render(request, 'shop_list/add_item.html', {
         'form': form,
         'shopping_list': shopping_list
     })
 
 
-@login_required 
+@login_required
 def show_items(request, list_id):
     # Retrieve the shopping list object
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
@@ -125,7 +125,7 @@ def show_items(request, list_id):
 
     # Enumerate the items
     enumerated_items = [
-    (index + 1, item) for index, item in enumerate(all_items)
+        (index + 1, item) for index, item in enumerate(all_items)
     ]
 
     context = {
@@ -138,14 +138,14 @@ def show_items(request, list_id):
     return render(request, 'shop_list/show_items.html', context)
 
 
-@login_required 
+@login_required
 def toggle_list_status(request, list_id):
     if request.method == 'POST':
         try:
             shopping_list = get_object_or_404(ShoppingList, pk=list_id)
             # Check if the user has a preference for the list's privacy status
             user_preference = ShoppingListPreference.objects.filter(
-                user=request.user, 
+                user=request.user,
                 shopping_list=shopping_list
             ).first()
             if user_preference:
@@ -155,16 +155,16 @@ def toggle_list_status(request, list_id):
                 # Otherwise, toggle the privacy status as before
                 shopping_list.is_private = not shopping_list.is_private
             shopping_list.save()
-            return JsonResponse({'status': 'success', 
-                     'is_public': not shopping_list.is_private})
+            return JsonResponse({'status': 'success',
+                                 'is_public': not shopping_list.is_private})
         except ShoppingList.DoesNotExist:
-            return JsonResponse({'status': 'error', 
-                     'message': 'Shopping list not found'}, 
-                    status=404)
+            return JsonResponse({'status': 'error',
+                                 'message': 'Shopping list not found'},
+                                status=404)
     else:
-        return JsonResponse({'status': 'error', 
-                     'message': 'Only POST requests are allowed'}, 
-                    status=405)
+        return JsonResponse({'status': 'error',
+                             'message': 'Only POST requests are allowed'},
+                            status=405)
 
 
 @login_required
@@ -197,18 +197,21 @@ def clone(request, list_id):
                 cloned_item = Item.objects.create(
                     name=item.name,
                     quantity=item.quantity,
-                    shopping_list=cloned_list,  
+                    shopping_list=cloned_list,
                     created_by=request.user
                 )
 
             # Render the clone confirmation template
-            return render(request, 'shop_list/clone_confirmation.html', 
-              {'shopping_list': original_list, 'new_name': new_name})
+            return render(
+                request,
+                'shop_list/clon on.html',
+                {'shopping_list': original_list, 'new_name': new_name}
+            )
     else:
         form = CloneForm()
 
-    return render(request, 'shop_list/clone.html', 
-              {'form': form, 'shopping_list': original_list})
+    return render(request, 'shop_list/clone.html',
+                  {'form': form, 'shopping_list': original_list})
 
 
 @login_required
@@ -231,17 +234,17 @@ def duplicate_item(request, item_id):
             duplicated_item = Item.objects.create(
                 name=new_name,
                 quantity=original_item.quantity,
-                shopping_list=original_item.shopping_list,  # Associate the 
+                shopping_list=original_item.shopping_list,  # Associate the
                 # duplicated item with the same shopping list
                 created_by=request.user
             )
 
             # Render the duplicate confirmation template
             return render(
-                request, 
-                'shop_list/duplicate_item_confirmation.html', 
+                request,
+                'shop_list/duplicate_item_confirmation.html',
                 {
-                    'item': original_item, 
+                    'item': original_item,
                     'new_name': new_name
                 }
             )
@@ -249,7 +252,7 @@ def duplicate_item(request, item_id):
         form = DuplicateItemForm()
 
     return render(request, 'shop_list/duplicate_item.html', {
-        'form': form, 
+        'form': form,
         'item': original_item
     })
 
@@ -257,36 +260,36 @@ def duplicate_item(request, item_id):
 @login_required
 def rename(request, list_id):
     shopping_list = get_object_or_404(ShoppingList, pk=list_id)
-    
+
     # Check if the current user is the owner of the list
     is_owner = request.user == shopping_list.owner
-    
+
     if not is_owner:
         return render(
-        request, 
-        'shop_list/rename.html', 
-        {
-            'not_authorized_message': 'You are unauthorized for this list.', 
-            'is_owner': False
-        }
-    )
+            request,
+            'shop_list/rename.html',
+            {
+                'not_authorized_message': 'You are unauthorized for the list.',
+                'is_owner': False
+            }
+        )
 
     old_name = shopping_list.name  # Get the old name before updating
-    
+
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
         if new_name:
             shopping_list.name = new_name
             shopping_list.save()
             return render(request, 'shop_list/rename_confirmation.html', {
-                'old_name': old_name, 
+                'old_name': old_name,
                 'new_name': new_name
             })
         else:
             messages.error(request, 'New name cannot be empty!')
-    
+
     return render(request, 'shop_list/rename.html', {
-        'shopping_list': shopping_list, 
+        'shopping_list': shopping_list,
         'is_owner': is_owner
     })
 
@@ -299,19 +302,19 @@ def item_rename(request, item_id):
     # Check if the current user is the owner of the item
     is_owner = request.user == shopping_list.owner
     is_creator = request.user == item.created_by
-    
+
     if not is_owner and not is_creator:
-       return render(
-           request, 
-           'shop_list/item_rename.html', 
-           {
+        return render(
+            request,
+            'shop_list/item_rename.html',
+            {
                 'not_authorized_message': 'You are unauthorized for the item.',
                 'is_owner': False
-           }
+            }
         )
-    
+
     old_name = item.name  # Get the old item name before updating
-    
+
     if request.method == 'POST':
         new_name = request.POST.get('new_name')
         if new_name:
@@ -323,7 +326,7 @@ def item_rename(request, item_id):
             })
         else:
             messages.error(request, 'New name cannot be empty!')
-    
+
     return render(request, 'shop_list/item_rename.html', {
         'item': item,
         'is_owner': is_owner,
@@ -340,9 +343,9 @@ def delete(request, list_id):
         if request.user != shopping_list.owner:
             return HttpResponseForbidden(
                 "You are not authorized to delete this list."
-        )
+            )
 
-        # If the request method is POST, it means the user 
+        # If the request method is POST, it means the user
         # has confirmed the deletion
         if request.method == 'POST':
             # Delete the list
@@ -352,7 +355,7 @@ def delete(request, list_id):
                'shopping_list': shopping_list
             })
 
-        # If the request method is GET, it means the user is 
+        # If the request method is GET, it means the user is
         # viewing the confirmation page
         else:
             # Redirect to the confirmation page
