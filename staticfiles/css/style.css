@@ -3,17 +3,10 @@ body {
     color: black;
     background-image: url('../images/land_page_t.png');
     background-size: 1000px auto;
-    /* Set the background image width to 700px and height to auto */
     background-repeat: no-repeat;
-    /* Prevent the background image from repeating */
     background-position: center;
-    /* Center the background image */
     margin: 0;
-    /* Reset default margin */
     padding-top: 0;
-    /* Adjust padding to make room for fixed navbar */
-
-
 }
 
 .brand {
@@ -23,7 +16,7 @@ body {
     font-style: italic;
     color: yellow;
     text-decoration: underline;
-    /* Underline the text "To TheList" */
+    
 }
 
 .light-bg {
@@ -49,13 +42,10 @@ body {
 
 .image-container {
     margin-top: 20px;
-    /* Adjust the top margin as needed */
     margin-bottom: 20px;
-    /* Adjust the bottom margin as needed */
     margin-left: 100px;
-    /* Center the image horizontally */
     max-width: 100%;
-    /* Ensure the image doesn't exceed the container width */
+
 }
 
 .image-flash {
@@ -355,10 +345,9 @@ a {
     border-radius: 4px;
     /* Adds rounded corners to the box */
 }
-
+/* Specific button positioning */
 .margin-createbutton {
     margin: 10px 0 20px 30px;
-    /* Sets 0 margin for top, right, and bottom, and 20 pixels for the left margin */
 }
 
 .margin-rename {
@@ -385,7 +374,6 @@ p.card-text {
     margin-left: 30px;
 }
 
-
 .button-container {
     display: flex;
     flex-wrap: wrap;
@@ -398,7 +386,7 @@ p.card-text {
 .button-container form {
     margin-bottom: 5px;
 }
-
+/* Colour for favicon pen symbol */
 .pen-icon {
     color: yellow;
 }
@@ -427,11 +415,10 @@ p.card-text {
     color: white;
 }
 
-
 .home-colour {
     color: white;
 }
-
+/* To balance background colour and image */
 .transparent {
     background-color: rgba(255, 255, 255, 0.8);
 }
@@ -454,6 +441,11 @@ li.nav-item a.nav-link.active {
     /* Add underline for active link */
 }
 
+.margin-signup {
+    margin: 20px 0 20px 20px;
+    padding-top: 20px;
+}
+/* Label specific custom positioning */
 label[for="id_password1"] {
     margin-left: 20px;
     padding-right: 65px;
@@ -462,11 +454,6 @@ label[for="id_password1"] {
 label[for="id_password2"] {
     margin-left: 20px;
     padding-right: 5px;
-}
-
-.margin-signup {
-    margin: 20px 0 20px 20px;
-    padding-top: 20px;
 }
 
 label[for="id_password"] {
@@ -491,6 +478,7 @@ label[for="id_name"] {
     margin-left: 20px;
 }
 
+/* Button specific positioning */
 #cloneButton {
     margin: 5px 0 20px 20px;
     padding-right: 20px;
@@ -582,8 +570,6 @@ label[for="id_name"] {
     text-align: center;
     font-size: 18px;
     transition: bottom 0.3s ease;
-    /* Apply transition effect to the bottom property */
-
 }
 
 #back-to-top-btn:hover {
@@ -591,6 +577,7 @@ label[for="id_name"] {
     /* Example background color on hover */
 }
 
+  /* For medium size screens */
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;
@@ -616,11 +603,6 @@ label[for="id_name"] {
         /* Remove border */
         margin-bottom: 20px;
     }
-
-    .navbar {
-        display: white;
-    }
-
     .custom-toggler {
         background-color: #E84610;
     }
@@ -630,6 +612,7 @@ label[for="id_name"] {
     }
 }
 
+/* For medium small screen align all items to the left */
 @media only screen and (max-width: 532px) {
     #renameButton {
         margin: 5px 0 20px 0px;
