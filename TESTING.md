@@ -270,35 +270,35 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 |----------------|:------------:|:-------------:|:---------------:|:---:|
 |                |              |               |                 |     |
 | Desktop        |              |               |                 |     |
-| Home           |           97 |           100 |             100 | 91  |
-| Signup         |           95 |           100 |             100 | 91  |
-| Login          |           95 |           100 |             100 | 91  |
-| Logout         |           97 |           100 |             100 | 82  |
-| Learn          |           95 |           100 |             100 | 82  |
-| Lists view     |           67 |            90 |             100 | 82  |
-| Create list    |           95 |           100 |             100 | 82  |
-| Clone list     |           94 |           100 |             100 | 82  |
-| Clone list cfm |           95 |           100 |             100 | 82  |
-| Items view     |           95 |           100 |             100 | 82  |
-| Rename         |           92 |           100 |             100 | 82  |
-| Rename cfm     |           92 |           100 |             100 | 82  |
-| Add item       |           93 |           100 |             100 | 82  |
-| Duplicate item |           95 |           100 |             100 | 82  |
+| Home           |           97 |           100 |             100 | 100 |
+| Signup         |           95 |           100 |             100 | 100 |
+| Login          |           95 |           100 |             100 | 100 |
+| Logout         |           97 |           100 |             100 | 100 |
+| Learn          |           95 |           100 |             100 | 100 |
+| Lists view     |           81 |            90 |             100 | 91  |
+| Create list    |           95 |           100 |             100 | 100 |
+| Clone list     |           94 |           100 |             100 | 100 |
+| Clone list cfm |           95 |           100 |             100 | 100 |
+| Items view     |           95 |           100 |             100 | 100 |
+| Rename         |           92 |           100 |             100 | 100 |
+| Rename cfm     |           92 |           100 |             100 | 100 |
+| Add item       |           93 |           100 |             100 | 100 |
+| Duplicate item |           95 |           100 |             100 | 100 |
 
 | Mobile         |              |               |                 |     |
-| Home           |           93 |           100 |             100 | 91  |
-| Signup         |           95 |           100 |             100 | 91  |
-| Login          |           95 |           100 |             100 | 91  |
-| Logout         |           97 |           100 |             100 | 82  |
-| Learn          |           94 |           100 |             100 | 82  |
-| Lists view     |           83 |           88  |             100 | 82  |
-| Create list    |           92 |           100 |             100 | 82  |
-| Clone list     |           97 |           100 |             100 | 82  |
-| Clone list cfm |           96 |           100 |             100 | 82  |
-| Items view     |           91 |           100 |             100 | 82  |
-| Rename         |           96 |           100 |             100 | 82  |
-| Add item       |           92 |           100 |             100 | 82  |
-| Duplicate item |           89 |           100 |             100 | 82  |
+| Home           |           93 |           100 |             100 | 100 |
+| Signup         |           95 |           100 |             100 | 100 |
+| Login          |           95 |           100 |             100 | 100 |
+| Logout         |           97 |           100 |             100 | 100 |
+| Learn          |           94 |           100 |             100 | 100 |
+| Lists view     |           83 |           88  |             100 | 91  |
+| Create list    |           92 |           100 |             100 | 100 |
+| Clone list     |           97 |           100 |             100 | 100 |
+| Clone list cfm |           96 |           100 |             100 | 100 |
+| Items view     |           91 |           100 |             100 | 100 |
+| Rename         |           96 |           100 |             100 | 100 |
+| Add item       |           92 |           100 |             100 | 100 |
+| Duplicate item |           89 |           100 |             100 | 100 |
 
 
 ## Browser Testing
