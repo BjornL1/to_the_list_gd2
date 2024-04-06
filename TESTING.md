@@ -13,25 +13,17 @@ Table of Contents
 - [Manual Testing](#manual-testing)
   * [Site Navigation](#site-navigation)
   * [Home Page](#home-page)
-  * [Browse Recipes Page](#browse-recipes-page)
-  * [Recipe Detail Page](#recipe-detail-page)
-  * [Add Recipe Page](#add-recipe-page)
-  * [Update Recipe Page](#update-recipe-page)
-  * [Confirm Delete Recipe Page](#confirm-delete-recipe-page)
-  * [My Recipes Page](#my-recipes-page)
-  * [My Bookmarks Page](#my-bookmarks-page)
-  * [My Meal Plan Page](#my-meal-plan-page)
-  * [Django All Auth Pages](#django-all-auth-pages)
+  * [Sign Up Page](#sign-up-page)
+  * [Sign In Page](#sign-in-page)
+  * [Sign Out Page](#sign-out-page)
+  * [List view](#list-view)
+  * [Item view from list page](#item-view-from-list-page)
+  * [Item separate page](#item-separate-page)
+  * [Edit lists and items page](#edit-lists-and-items-page)
 - [Bugs](#bugs)
   * [Fixed Bugs](#fixed-bugs)
-    + [Overwrite Meal Plan Items](#overwrite-meal-plan-items)
-    + [Required fields using Summernote extension submit with just whitespace entered](#required-fields-using-summernote-extension-submit-with-just-whitespace-entered)
-    + [No Reverse Match Error](#no-reverse-match-error)
-    + [Cloudinary Images not Displaying](#cloudinary-images-not-displaying)
-    + [Footer not staying at bottom of screen](#footer-not-staying-at-bottom-of-screen)
+    + [Access items by logged in user](#Access-items-by-logged-in-user)
   * [Unfixed bugs:](#unfixed-bugs-)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 ## User Story Testing
 
@@ -231,38 +223,30 @@ Rename Item
 
 All HTML pages were run through the [W3C HTML Validator](https://validator.w3.org/). See results in below table.
 
-| Page                 | Logged Out | Logged In |
-|----------------------|------------|-----------|
-| add_recipe.html      | N/A        | Note 1    |
-| base.html            | No errors  | No errors |
-| browse_receipes.html | No errors  | No errors |
-| delete_comment.html  | N/A        | No errors |
-| delete_recipes.html  | N/A        | No errors |
-| index.html           | No errors  | No errors |
-| my_bookmarks.html    | N/A        | No errors |
-| my_mealplan.html     | N/A        | No errors |
-| my_recipes.html      | N/A        | No errors |
-| paginator.html       | No errors  | No errors |
-| recipe_detail.html   | No errors  | No errors |
-| update_comment.html  | N/A        | No errors |
-| update_recipe.html   | N/A        | Note 1    |
-| login.html           | No errors  | N/A       |
-| logout.html          | N/A        | No errors |
-| signup.html          | No errors  | N/A       |
-| 400.html             | No errors  | No errors |
-| 403.html             | N/A        | No errors |
-| 404.html             | No errors  | No errors |
-| 500.html             | No errors  | No errors |
-
-#### Note 1: Summernote Errors
+| Page (html)                       | Logged Out | Logged In |
+|----------------------             |------------|-----------|
+| add_item.html                     | No errors  |           |
+| base.html                         | No errors  |           |
+| clone.html                        | N/A        | No errors |
+| clone_confirmation.html           | N/A        | No errors |
+| delete_confirmation.html          | N/A        | No errors |
+| delete_item_confirmation.html     | N/A        | No errors |
+| duplicate_item_confirmation.html  | N/A        | No errors |
+| duplicate_item.html               | N/A        | No errors |
+| index.html                        | No errors  | No errors |
+| item_rename.html                  | N/A        | No errors |
+| item_rename_confirmation.html     | N/A        | No errors |
+| learn.html                        | No errors  | No errors |
+| rename.html                       | N/A        | No errors |
+| rename_confirmation.html          | N/A        | No errors |
+| show_items.html                   | N/A        | No errors |
+| show_shopping_lists.html          | No errors  | No errors |
+| 400.html                          | No errors  | No errors |
+| 403.html                          | N/A        | No errors |
+| 404.html                          | No errors  | No errors |
+| 500.html                          | No errors  | No errors |
 
 
- <details>
-
- <summary>Summernote Errors</summary>
-
-![Summernote Errors](docs/readme_images/summernote_errors.png)
- </details>
 
 #### Fixed Errors
 
@@ -382,6 +366,13 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Sign In" Button | Click | Display error message if the user entered wrong credentials | Pass      |
 | "Sign In" Button | Click | Display message if the input field are left empty | Pass      |
 
+### Sign Out Page
+| Element     | Action             | Expected Result                                                                         | Pass/Fail |
+|-------------|-------------------------|-----------------------------------------------------------------------------------------|-----------|
+| "Sign Out" Form | Display | Display Sign Out page only if the user is signed in
+| "Sign Out" Link | Click | Display "Sign Out" page | Pass      |
+| "Sign Out" Button | Click | Display landing page | Pass      |
+| "Sign Out" browser back | Click | Display list view, sign out is cancelled | Pass      |
 ### List view
 
 | Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
@@ -423,7 +414,7 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Edit" Button                  | Click               | Edit items page is displayed    | Pass      |
 | "Duplicate" Button             | Click               | Duplicate items page is displayed   | Pass      |
 
-#### Edit lists and items page
+### Edit lists and items page
 | Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
 |-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
 | "Clone List" Button                  | Click               | Clone list page is displayed    | Pass      |
@@ -502,55 +493,15 @@ Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
 
 
-### Django All Auth Pages
-| Element                    | Action                                    | Expected Result                            | Pass/Fail |
-|----------------------------|-------------------------------------------|--------------------------------------------|-----------|
-| Sign Up                    |                                           |                                            |           |
-| Log in link                | Click                                     | Redirect to login page                     | Pass      |
-| Username field             | Leave empty                               | On submit: form won't submit               | Pass      |
-| Username field             | Leave empty                               | Error message displays                     | Pass      |
-| Username field             | Insert correct format                     | On submit: form submit                     | Pass      |
-| Username field             | Insert duplicate username                 | On submit: form won't submit               | Pass      |
-| Username field             | Insert duplicate username                 | Error message displays                     | Pass      |
-| Email field                | Insert incorrect format                   | On submit: form won't submit               | Pass      |
-| Email field                | Insert incorrect format                   | Error message displays                     | Pass      |
-| Email field                | Insert correct format                     | On submit: form submit                     | Pass      |
-| Email field                | Leave empty                               | On submit: form submit                     | Pass      |
-| Email field                | Insert duplicate email                    | On submit: form won't submit               | Pass      |
-| Email field                | Insert duplicate email                    | Error message displays                     | Pass      |
-| Password field             | Insert incorrect format                   | On submit: form won't submit               | Pass      |
-| Password field             | Insert incorrect format                   | Error message displays                     | Pass      |
-| Password field             | Passwords don't match                     | On submit: form won't submit               | Pass      |
-| Password field             | Passwords don't match                     | Error message displays                     | Pass      |
-| Password field             | Insert correct format and passwords match | On submit: form submit                     | Pass      |
-| Sign Up button(form valid) | Click                                     | Form submit                                | Pass      |
-| Sign Up button(form valid) | Click                                     | Redirect to home page                      | Pass      |
-| Sign Up button(form valid) | Click                                     | Success message confirming login appears   | Pass      |
-| Sign Up button(form valid) | Click                                     | Success message fades after 3 seconds      | Pass      |
-|                            |                                           |                                            |           |
-| Log in                     |                                           |                                            |           |
-| Sign up link               | Click                                     | Redirect to sign up page                   | Pass      |
-| Username field             | Leave empty                               | On submit: form won't submit               | Pass      |
-| Username field             | Leave empty                               | Error message displays                     | Pass      |
-| Username field             | Insert wrong username                     | On submit: form won't submit               | Pass      |
-| Username field             | Insert wrong username                     | Error message displays                     | Pass      |
-| Password field             | Leave empty                               | On submit: form won't submit               | Pass      |
-| Password field             | Leave empty                               | Error message displays                     | Pass      |
-| Password field             | Insert wrong password                     | On submit: form won't submit               | Pass      |
-| Password field             | Insert wrong password                     | Error message displays                     | Pass      |
-| Login button(form valid)   | Click                                     | Form submit                                | Pass      |
-| Login button(form valid)   | Click                                     | Redirect to home page                      | Pass      |
-| Logout button              | Click                                     | Redirect to homepage                       | Pass      |
-
-
 ## Bugs 
 
 ### Fixed Bugs
 
-- #### Access items by logged in user
-     - **Bug**: Only the logged in user should be able to fully edit an item, if they now own the item they should not be allowed to edit it. The code handled this but not correctly, instead of blocking the non-authorized user to access e.g. "delete" button the user can click delete and then a back - up message is presented: "You are not authorized to delete this item. This stops the deletion of the item but is not user friendly. 
-     - **Fix**: In order to solve this ihad to revisit the logic in the views file and by ...
-- 
+### Access items by logged in user
+     - **Bug**: Originally, the application allowed non-authorized users to access and attempt actions like deleting an item they didn't own. Although a message prevented the action, it was presented after the attempt, resulting in a poor user experience.
+
+    - **Fix**: To address this, I revisited the logic in the views file to ensure that only authorized users could access actions like deletion. By returning the correct context data from the views, I improved the user experience by preventing non-authorized users from attempting unauthorized actions in the first place.
+
 
 ### Unfixed bugs:
 There are no known unfixed bugs. 

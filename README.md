@@ -137,15 +137,6 @@ The Montserrat font is the main font used for the body of the website with the P
 </details>
 
 
-
-
-
-
-
-
-
-
-
 <details>
  <summary>Landing Page</summary>
 
@@ -197,7 +188,6 @@ Testing and results can be found [here](/TESTING.md)
 ### User Authentication
 
 - Django's LoginRequiredMixin is used to make sure that any requests to access secure pages by non-authenticated users are redirected to the login page. 
-- Django's UserPassesTestMixin is used to limit access based on certain permissions i.e. to ensure users can only edit/delete recipes and comments for which they are the author. If the user doesn't pass the test they are shown an HTTP 403 Forbidden error.
 
 ### Form Validation
 If incorrect or empty data is added to a form, the form won't submit and a warning will appear to the user informing them what field raised the error. 
@@ -234,6 +224,10 @@ Homepage Information: Informative content provides users with an overview of the
 
 
 ### Header
+
+All navigation links will appear in bold when hovered over, and they will be underlined when active.
+
+![header](docs/readme_images/header_appearance.png)
 
 **Logo**
 - The logo is positioned in the top left of the navigation bar. The logo is linked to the home page for ease of navigation for the user.
@@ -311,6 +305,7 @@ For public lists shared by other users, the following additional information wil
 - External: A text indicating that it belongs to another user.
 - Clone button: This button allows the logged-in user to clone the list.
 
+At the bottom of the page, a "Back to Top" button will appear when the user scrolls down, providing an effortless way to return to the top of the page.
 **My Lists**
 
 If the logged-in user has created lists, they will be displayed at the top of the page.
@@ -421,6 +416,8 @@ Each item in a list can be marked as 'done' or 'not done'(when the checkbox is n
 The owner of an item has full editing access to it, whether it's in their own lists or in public lists created by other users.
 If an item ('IA') is added to a public list by user 'A' within a list owned by another user ('B'), the owner of the list ('B') can only clone the item 'IA' (they cannot rename or delete it). However, the new item created ('IB') through cloning based on 'IA' will be owned by user 'B', thus allowing full editing privileges to this user.
 In below sections the difference between an item owned by the user and an "external" item are presented.
+
+At the bottom of the separated item page, a "Back to Top" button will appear when the user scrolls down, providing an effortless way to return to the top of the page.
 
 **Create and cloning items**
 
