@@ -254,25 +254,13 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 ### CSS
 No errors were found when passing my CSS file through the official [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
 
- <details>
-
- <summary>CSS</summary>
-
-![CSS Validation](docs/readme_images/css_validation.png)
- </details>
 
 ### Javascript
 No errors were found when passing my javascript through [Jshint](https://jshint.com/) 
 
-<details>
-
-<summary>Jshint</summary>
-
-![Jshint](docs/readme_images/jshint_validation.png)
-</details>
 
 ### Python
-All Python files were run through [Pep8](http://pep8online.com/) with no errors found. 
+All Python files were run through [Pep8](https://pep8ci.herokuapp.com/) with no errors found. 
 
 ### Lighthouse
 
