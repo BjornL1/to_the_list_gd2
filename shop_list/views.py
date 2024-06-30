@@ -204,7 +204,7 @@ def clone(request, list_id):
             # Render the clone confirmation template
             return render(
                 request,
-                'shop_list/clon on.html',
+                'shop_list/clone_confirmation.html',
                 {'shopping_list': original_list, 'new_name': new_name}
             )
     else:
