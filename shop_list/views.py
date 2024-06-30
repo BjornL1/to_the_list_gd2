@@ -39,9 +39,7 @@ def create_shopping_list(request):
             shopping_list.owner_id = request.user.id
             shopping_list.save()
             shopping_list_name = shopping_list.name
-            messages.success(request, f'Shopping list "{shopping_list_name}" '
-                                      'created successfully!')
-            return redirect('create_shopping_list')
+            return redirect('add_item', list_id=shopping_list.id)
     else:
         form = ShoppingListForm()
 
