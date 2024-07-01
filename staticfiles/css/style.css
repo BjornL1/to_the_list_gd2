@@ -598,8 +598,7 @@ label[for="id_name"] {
     background-color: #0056b3;
     border-color: #0056b3;
 }
-
-  /* For medium size screens */
+/* For medium size screens */
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;

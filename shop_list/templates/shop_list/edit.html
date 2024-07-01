@@ -9,6 +9,12 @@ Edit List
 {% endblock %}
 
 {% block content %}
+
+<div class="container mt-5">
+    <!-- Back Button -->
+    <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary mb-4 mt-4 ml-4" type="button">Back</a>
+</div>
+
 <!--This page inlcludes edit button functions organized in one place for maintability reason.-->
 <div class="d-flex justify-content-center align-items-center flex-column mt-0 bg-green">
     <!-- Clone List Button -->
