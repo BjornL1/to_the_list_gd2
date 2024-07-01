@@ -298,6 +298,28 @@ p.card-text {
 .margin-signin {
     margin-top: 20px;
 }
+
+#createListForm {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #b2dcaf;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#createListForm button.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    width: 190px; /* Adjust button width */
+    margin-left:70px; /* Center button horizontally */
+}
+
+#createListForm button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
 @media only screen and (max-width: 992px) {
     .edit-button {
         display: none;

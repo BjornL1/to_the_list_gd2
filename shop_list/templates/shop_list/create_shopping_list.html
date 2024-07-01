@@ -1,32 +1,46 @@
 {% extends 'base.html' %}
-{% block landing_page_image %}
-{% endblock landing_page_image %}
 
 {% block title %}
-Create List
+Create Shopping List
 {% endblock %}
 
 {% block content %}
-<!--Added "bg-green, margin-createbutton and " as separate styling for background colour, other styling classes are from bootstrap"-->
-<div class="text-center bg-green">
-    <p style="font-weight: bold">Create a New Shopping List</p>
-
-<!--The below code is written to give direct feedback to user when a list is created"-->
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        {% if message.tags == 'success' %}
-        <li>{{ message }}</li>
-        {% endif %}
-        {% endfor %}
-    </ul>
-    {% endif %}
-
-<!--Code for sending the form"-->
-    <form method="post">
+<div class="container mt-5">
+    <!-- Form to create a new shopping list -->
+    <form id="createListForm" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="margin-createbutton btn btn-primary homepage-buttons">Create</button>
+        <button type="submit" class="btn btn-primary">Create Shopping List</button>
     </form>
+    
+    <!-- Error message section -->
+    <div id="errorMessage" class="alert alert-danger" style="display: none;">
+        <p id="errorMessageText"></p>
+        <button id="okButton" class="btn btn-primary">OK</button>
+    </div>
 </div>
+
+<script>
+    // Check if there's an error message to display
+    let errorMessageText = "{{ error_message }}" || "";  // Replace with your actual error message variable
+
+    if (errorMessageText) {
+        displayErrorMessage(errorMessageText);
+    }
+
+    // Function to display the error message and bind click event to OK button
+    function displayErrorMessage(message) {
+        document.getElementById('errorMessageText').textContent = message;
+        document.getElementById('errorMessage').style.display = 'block';
+        
+        document.getElementById('okButton').addEventListener('click', function() {
+            document.getElementById('errorMessage').style.display = 'none';
+        });
+    }
+
+    // Optional: Remove error message after 5 seconds (auto-dismiss)
+    setTimeout(function() {
+        document.getElementById('errorMessage').style.display = 'none';
+    }, 5000); // Adjust the time (in milliseconds) as needed
+</script>
 {% endblock %}

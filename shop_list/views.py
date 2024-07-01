@@ -35,16 +35,25 @@ def create_shopping_list(request):
     if request.method == 'POST':
         form = ShoppingListForm(request.POST)
         if form.is_valid():
-            shopping_list = form.save(commit=False)
-            shopping_list.owner_id = request.user.id
-            shopping_list.save()
-            shopping_list_name = shopping_list.name
-            return redirect('add_item', list_id=shopping_list.id)
+            shopping_list_name = form.cleaned_data['name']
+
+            # Check if a shopping list with the same name already exists
+            if ShoppingList.objects.filter(name=shopping_list_name).exists():
+                error_message = f'A shopping list with the name "{shopping_list_name}" already exists. Please use another name.'
+                messages.error(request, f'A shopping list with the name "{shopping_list_name}" already exists. Please use another name.')
+                return render(request, 'shop_list/create_shopping_list.html', {'form': form, 'error_message': error_message})
+            else:
+                shopping_list = form.save(commit=False)
+                shopping_list.owner_id = request.user.id
+                shopping_list.save()
+
+                messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
+                return redirect('add_item', list_id=shopping_list.id)
+
     else:
         form = ShoppingListForm()
 
-    return render(request, 'shop_list/create_shopping_list.html',
-                  {'form': form})
+    return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
 
 def show_shopping_lists(request):
