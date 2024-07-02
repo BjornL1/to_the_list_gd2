@@ -38,10 +38,12 @@
                                 <!-- Checkbox input for each item -->
                                 <div class="form-check mr-3">
                                     <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
-                                        name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
-                                    <label class="form-check-label" for="item_{{ item.id }}">
-                                        Done
-                                    </label>
+                                           name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}
+                                           {% if not is_owner %}disabled{% endif %}>
+                                    <label class="form-check-label" for="item_{{ item.id }}">Done</label>
+                                        {% if not is_owner %}
+                                            <i class="fas fa-info-circle ml-2" title="Only the owner of the list can change the status. Clone the list to update items."></i>
+                                        {% endif %}
                                 </div>
                                 <!-- Edit or Duplicate button based on the creator -->
                                 <div>
@@ -61,6 +63,17 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var infoIcons = document.querySelectorAll('.info-icon');
+        infoIcons.forEach(function (icon) {
+            icon.addEventListener('click', function () {
+                alert(icon.getAttribute('title'));
+            });
+        });
+    });
+</script>
 
 <script>
     // Add event listener to each item checkbox
