@@ -49,9 +49,6 @@
                                 <div>
                                     {% if logged_in_user == item.created_by %}
                                     <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning">Edit</a>
-                                    {% else %}
-                                    <a href="{% url 'duplicate_item' item_id=item.id %}"
-                                        class="btn btn-warning">Duplicate</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -70,6 +67,10 @@
         infoIcons.forEach(function (icon) {
             icon.addEventListener('click', function () {
                 alert(icon.getAttribute('title'));
+            });
+            icon.addEventListener('touchend', function (event) {
+                alert(icon.getAttribute('title'));
+                event.preventDefault(); // Prevents triggering click event after touchend
             });
         });
     });
