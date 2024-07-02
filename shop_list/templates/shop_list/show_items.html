@@ -12,9 +12,13 @@
 <div class="container bg-green">
     <h4 class="custom-container">Items for {{ shopping_list.name }}</h4>
 
-    <!-- Add Item button -->
+     <!-- Conditionally render the Add Item button -->
+    {% if is_owner %}
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-warning mb-3">Add Item</a>
+    {% endif %}
+
     <button id="back-to-top-btn" title="Go to top">Top</button>
+
     <!-- Iterate over all items -->
     <div class="container">
         {% for index, item in enumerated_items %}

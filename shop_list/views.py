@@ -138,11 +138,15 @@ def show_items(request, list_id):
         (index + 1, item) for index, item in enumerate(all_items)
     ]
 
+    # Determine if the logged-in user is the owner of the shopping list
+    is_owner = shopping_list.owner == request.user
+
     context = {
         'shopping_list': shopping_list,
         'enumerated_items': enumerated_items,
         'logged_in_user': request.user,
         'all_items': all_items,  # Include all_items in the context
+        'is_owner': is_owner  # Add is_owner to the context
     }
 
     return render(request, 'shop_list/show_items.html', context)
