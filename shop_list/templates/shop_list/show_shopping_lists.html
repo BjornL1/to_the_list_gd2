@@ -21,49 +21,36 @@
         </div>
     </div>
     <!-- My Lists -->
-    <!-- Back to Top Button -->
-    <button id="back-to-top-btn" title="Go to top">Top</button>
     <div class="row">
-        {% for shopping_list, owner_username, done_count in my_lists_with_usernames %}
+        {% for shopping_list, username, done_count in my_lists_with_usernames %}
         <div class="col-lg-6 col-xl-4 mb-4">
-            <!-- Adjusted Bootstrap classes -->
             <div class="card">
                 <div class="card-body">
-                    <!-- Card title -->
-                    <h5 class=card-title>
-                        <a href="javascript:void(0)"
-                            onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
-                        </a>
+                    <h5 class="card-title">
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
-                    <p class="card-text">Created by: {{ owner_username }}</p>
+                    <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
-                    <p class="card-text" id="done-count" data-done-count="{{ done_count }}"
-                        data-total-count="{{ shopping_list.items.count }}">Items:
-                        {{ done_count }}/{{ shopping_list.items.count }} Done</p>
-                    <!-- Public/Private text and toggle -->
+                    <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
+                        Items: {{ done_count }}/{{ shopping_list.items.count }} Done
+                    </p>
                     <div class="d-flex align-items-center justify-content-between">
-                        <span class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                        <span id="status-text-{{ shopping_list.id }}" class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                             {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
                         </span>
-                        <!--Toggle-->
-                        <input type="range"
-                            class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
-                            data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-                        <!-- Clone/Edit button -->
+                        <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}"
-                                class="btn btn-primary homepage-buttons mt-1">Edit</a>
+                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Edit</a>
                             {% else %}
-                            <a href="{% url 'clone' shopping_list.id %}"
-                                class="btn btn-primary homepage-buttons mt-1">Clone</a>
+                            {% if shopping_list.id %}
+                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Clone</a>
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Items under each card -->
             <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
                 <div class="item-list" style="max-height: 200px; overflow-y: auto;">
                     <ul>
@@ -71,34 +58,26 @@
                         <li>
                             <div class="card mb-1 mt-1">
                                 <div class="card-body">
-                                    <!-- First row: Title -->
                                     <div class="row mb-2">
                                         <div class="col">
                                             <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
                                         </div>
                                     </div>
-                                    <!-- Second row: Quantity, Checkbox, and Edit/Duplicate buttons -->
                                     <div class="row">
                                         <div class="col">
-                                            <!-- Quantity -->
                                             <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
                                         </div>
                                         <div class="col-auto ml-auto">
-                                            <!-- Checkbox input for each item -->
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}"
-                                                    name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %}>
+                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
                                                 <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                             </div>
                                         </div>
                                         <div class="col-auto ms-auto mb-2">
-                                            <!-- Edit or Duplicate button based on the creator -->
                                             {% if logged_in_user == item.created_by %}
-                                            <a href="{% url 'edit_item' item_id=item.id %}"
-                                                class="btn btn-warning btn-sm mt-0">Edit</a>
+                                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
                                             {% else %}
-                                            <a href="{% url 'duplicate_item' item_id=item.id %}"
-                                                class="btn btn-warning btn-sm mt-0">Duplicate</a>
+                                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -112,21 +91,44 @@
         </div>
         {% endfor %}
     </div>
-    <!-- Public Lists -->
+
+    <!-- Pagination for My Lists -->
+    <nav aria-label="My Lists pagination">
+        <ul class="pagination justify-content-center mt-4">
+            {% if my_lists_page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for num in my_lists_page_obj.paginator.page_range %}
+            <li class="page-item {% if num == my_lists_page_obj.number %}active{% endif %}">
+                <a class="page-link" href="?page_my_lists={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            {% if my_lists_page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+
     <span class="custom-container list-title">Other Lists</span>
-    {% for shopping_list, owner_username, done_count in other_lists_with_usernames %}
-    <div class="row mb-4 mt-2">
-        <div class="col-12">
+    <div class="row">
+        {% for shopping_list, username, done_count in other_lists_with_usernames %}
+        <div class="col-lg-6 col-xl-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <!-- Card title -->
                     <h5 class="card-title">
+                        {% if shopping_list.id %}
                         <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a>
+                        {% else %}
+                        {{ shopping_list.name }}
+                        {% endif %}
                     </h5>
-                    <!-- Other details in a row -->
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Created by: {{ owner_username }}</p>
+                            <p class="card-text">Created by: {{ username }}</p>
                         </div>
                         <div class="col-md-6 col-lg-4">
                             <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
@@ -135,33 +137,46 @@
                             <p>Items: {{ done_count }}/{{ shopping_list.items.count }} Done</p>
                         </div>
                     </div>
-                    <!-- Public/Private text and toggle -->
                     <div class="d-flex align-items-center justify-content-between mt-3">
                         <div>
-                            <span class="public-other">Public
-                            </span>
-                            <!-- Toggle 
-                            <input type="range"
-                                class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler"
-                                data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
-                                -->
+                            <span id="status-text-{{ shopping_list.id }}" class="public-other">{% if shopping_list.is_private %}Private{% else %}Public{% endif %}</span>
                         </div>
-                        <!-- Clone/Edit button -->
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}"
-                                class="btn btn-primary homepage-buttons">Edit</a>
+                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons">Edit</a>
                             {% else %}
-                            <a href="{% url 'clone' shopping_list.id %}"
-                                class="btn btn-primary homepage-buttons">Clone</a>
+                            {% if shopping_list.id %}
+                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <!-- Pagination for Other Lists -->
+    <nav aria-label="Other Lists pagination">
+        <ul class="pagination justify-content-center mt-4">
+            {% if other_lists_page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page_other_lists={{ other_lists_page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for num in other_lists_page_obj.paginator.page_range %}
+            <li class="page-item {% if num == other_lists_page_obj.number %}active{% endif %}">
+                <a class="page-link" href="?page_other_lists={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+            {% if other_lists_page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page_other_lists={{ other_lists_page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 
 <script>
@@ -179,10 +194,11 @@
         itemList.forEach(function (checkbox) {
             checkbox.addEventListener('change', function () {
                 let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
-                toggleItemDone(itemId);
+                toggleItemDone(itemId, checkbox.dataset.listId);
             });
         });
     });
+
     // Add event listener to toggle sliders
     document.addEventListener("change", function (event) {
         console.log('Change event triggered');
@@ -247,6 +263,7 @@
         }
         return cookieValue;
     }
+
     // Function to toggle items under each card
     function toggleItems(listId) {
         let itemsSection = document.getElementById('items_' + listId);
@@ -258,13 +275,14 @@
     }
 
     // Function to toggle "done" status of an item
-    function toggleItemDone(itemId) {
+    function toggleItemDone(itemId, listId) {
         // Send AJAX request to update "done" status
+        let csrftoken = getCookie('csrftoken');
         fetch(`/toggle-item-done/${itemId}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
+                    'X-CSRFToken': csrftoken
                 },
             })
             .then(response => response.json())
@@ -278,7 +296,7 @@
 
                     // Increment or decrement doneCount based on checkbox state
                     let checkbox = document.getElementById(`item_${itemId}`);
-                    let doneCountElement = document.getElementById('done-count');
+                    let doneCountElement = document.getElementById('done-count-' + listId);
                     let doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
                     let totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
                     if (checkbox.checked) {
@@ -303,18 +321,8 @@
                 console.error('Error:', error);
             });
     }
-</script>
-<script>
-    let doneCountElement = document.getElementById('done-count');
-    let doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
-    let totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
 
-    console.log("doneCount:", doneCount);
-    console.log("totalCount:", totalCount);
-</script>
-
-<script>
-    // Get the button
+    // Back to top button functionality
     const mybutton = document.getElementById("back-to-top-btn");
 
     // Add event listener for scroll events

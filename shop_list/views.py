@@ -56,45 +56,48 @@ def create_shopping_list(request):
     return render(request, 'shop_list/create_shopping_list.html', {'form': form})
 
 
+@login_required
 def show_shopping_lists(request):
-    if request.user.is_authenticated:
-        # Fetch current user's lists
-        my_lists = ShoppingList.objects.filter(owner=request.user)
+    # Fetch current user's lists
+    my_lists = ShoppingList.objects.filter(owner=request.user).order_by('-id')
+    
+    # Fetch other public lists excluding the current user's lists
+    other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user).order_by('-id')
 
-        # Fetch other public lists excluding the current user's lists
-        other_lists = ShoppingList.objects.filter(is_private=False)\
-                                          .exclude(owner=request.user)
+    # Paginate my lists and other lists with 10 items per page
+    paginator_my_lists = Paginator(my_lists, 5)
+    paginator_other_lists = Paginator(other_lists, 5)
 
-        # Sort current user's lists to appear first
-        my_lists = my_lists.order_by('-id')  # Sort by ID
+    # Get the current page numbers from the request
+    page_number_my_lists = request.GET.get('page_my_lists')
+    page_number_other_lists = request.GET.get('page_other_lists')
 
-        # Create a list of tuples containing each shopping list, the
-        # # username of the owner, and
-        # the count of done items for both current user's lists and other lists
-        my_lists_with_usernames = []
-        for shopping_list in my_lists:
+    # Get the paginated objects
+    my_lists_page_obj = paginator_my_lists.get_page(page_number_my_lists)
+    other_lists_page_obj = paginator_other_lists.get_page(page_number_other_lists)
+
+    # Prepare the lists with usernames and done counts for display
+    def get_list_data(page_obj):
+        lists_with_usernames = []
+        for shopping_list in page_obj:
             done_count = shopping_list.items.filter(is_done=True).count()
-            my_lists_with_usernames.append(
-                (shopping_list, shopping_list.owner.username, done_count)
-            )
+            lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+        return lists_with_usernames
 
-        other_lists_with_usernames = []
-        for shopping_list in other_lists:
-            done_count = shopping_list.items.filter(is_done=True).count()
-            other_lists_with_usernames.append(
-                (shopping_list, shopping_list.owner.username, done_count)
-            )
+    my_lists_with_usernames = get_list_data(my_lists_page_obj)
+    other_lists_with_usernames = get_list_data(other_lists_page_obj)
 
-        logged_in_user = request.user  # Get the logged-in user
+    # Get the logged-in user
+    logged_in_user = request.user
 
-        return render(request, 'shop_list/show_shopping_lists.html', {
-            'my_lists_with_usernames': my_lists_with_usernames,
-            'other_lists_with_usernames': other_lists_with_usernames,
-            'logged_in_user': logged_in_user
-            })
-    else:
-        # Redirect to login page if user is not authenticated
-        return redirect('account_login')
+    # Render the template with the context
+    return render(request, 'shop_list/show_shopping_lists.html', {
+        'my_lists_with_usernames': my_lists_with_usernames,
+        'other_lists_with_usernames': other_lists_with_usernames,
+        'my_lists_page_obj': my_lists_page_obj,
+        'other_lists_page_obj': other_lists_page_obj,
+        'logged_in_user': logged_in_user,
+    })
 
 
 @login_required
