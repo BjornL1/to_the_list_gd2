@@ -1,14 +1,18 @@
 body {
     background-color: green;
     color: black;
-    background-image: url('../images/land_page_t.png'); 
-    background-size: 700px auto; /* Set the background image width to 700px and height to auto */
-    background-repeat: no-repeat; /* Prevent the background image from repeating */
-    background-position: center; /* Center the background image */
-    margin: 0; /* Reset default margin */
-    padding-top: 0; /* Adjust padding to make room for fixed navbar */
+    margin: 0;
+    padding-top: 0;
+}
 
-
+.index-background {
+    background-image: url('../images/land_page_tlmin.png');
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat;
+    background-position: center center; /* Center the background image */
+    min-height: 100vh; /* Ensure the container takes at least the full height of the viewport */
+    padding-bottom: 100px; /* Add padding to create space at the bottom */
+    padding-top:500px;
 }
 
 .brand {

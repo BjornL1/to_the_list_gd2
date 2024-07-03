@@ -3,9 +3,8 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid bg-green">
+<div class="index-background">
     <div class="row transparent-navbar">
-
         <!-- Navigation -->
         <nav class="navbar-expand-lg transparent-navbar">
             <div class="container-fluid">
@@ -14,18 +13,6 @@
                     data-bs-target="#navbarText2" aria-controls="navbarText" aria-expanded="false"
                     aria-label="Toggle navigation">
                 </button>
-
-                <!-- Navbar links (always visible) -->
-                <div class="homepage-buttons-container">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="btn btn-primary homepage-buttons add-list-btn"
-                                href="{% url 'create_shopping_list' %}">
-                                Add List
-                            </a>
-                        </li>
-                    </ul>
-                </div>
 
                 <!-- Navbar links (collapsible) -->
                 <div class="collapse navbar-collapse homepage-buttons-container" id="navbarText2">
@@ -40,9 +27,22 @@
             <h1 class="display-4">Easily Organize Your Grocery Shopping</h1>
             <p class="lead">Create, manage, and share your grocery lists effortlessly. 
                 Make your shopping trips faster and more efficient.</p>
-            
+            <p class="lead">Create, manage, and share your grocery lists effortlessly. 
+                    Make your shopping trips faster and more efficient.</p>
         </div>
 
+        <!-- Navbar links (always visible) -->
+        <div class="homepage-buttons-container">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="btn btn-primary homepage-buttons add-list-btn"
+                        href="{% url 'create_shopping_list' %}">
+                        Add List
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <!-- index.html content ends here -->
-    {% endblock %}
+</div>
+<!-- index.html content ends here -->
+{% endblock %}
