@@ -27,20 +27,13 @@
             <h1 class="display-4">Easily Organize Your Grocery Shopping</h1>
             <p class="lead">Create, manage, and share your grocery lists effortlessly. 
                 Make your shopping trips faster and more efficient.</p>
-            <p class="lead">Create, manage, and share your grocery lists effortlessly. 
-                    Make your shopping trips faster and more efficient.</p>
         </div>
 
         <!-- Navbar links (always visible) -->
-        <div class="homepage-buttons-container">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="btn btn-primary homepage-buttons add-list-btn"
-                        href="{% url 'create_shopping_list' %}">
-                        Add List
-                    </a>
-                </li>
-            </ul>
+        <div class="d-flex justify-content-center mt-3 landingpage-button-container">
+            <a class="btn btn-primary homepage-buttons add-list-btn" href="{% url 'create_shopping_list' %}">
+                Add List
+            </a>
         </div>
     </div>
 </div>
