@@ -6,6 +6,18 @@
 <div class="index-background">
     <div class="row transparent-navbar">
         <!-- Navigation -->
+         <!-- Div with text content -->
+     <div class="col-12 text-center mt-5 white-background">
+        <h1 class="display-4">Easily Organize Your Grocery Shopping</h1>
+        <p class="lead">Create, manage, and share your grocery lists effortlessly. 
+            Make your shopping trips faster and more efficient.</p>
+            <!-- Navbar links (always visible) -->
+        <div class="d-flex mt-3 landingpage-button-container">
+            <a class="btn btn-primary homepage-buttons add-list-btn" href="{% url 'create_shopping_list' %}">
+                Add List
+            </a>
+        </div>
+    </div>
         <nav class="navbar-expand-lg transparent-navbar">
             <div class="container-fluid">
                 <!-- Custom navbar toggler button without text -->
@@ -21,20 +33,6 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Div with text content -->
-        <div class="col-12 text-center mt-5">
-            <h1 class="display-4">Easily Organize Your Grocery Shopping</h1>
-            <p class="lead">Create, manage, and share your grocery lists effortlessly. 
-                Make your shopping trips faster and more efficient.</p>
-        </div>
-
-        <!-- Navbar links (always visible) -->
-        <div class="d-flex justify-content-center mt-3 landingpage-button-container">
-            <a class="btn btn-primary homepage-buttons add-list-btn" href="{% url 'create_shopping_list' %}">
-                Add List
-            </a>
-        </div>
     </div>
 </div>
 <!-- index.html content ends here -->
