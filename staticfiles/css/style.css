@@ -610,7 +610,7 @@ label[for="id_name"] {
 
 .step1-create {
     background-image: url('../images/step1_create.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -618,8 +618,17 @@ label[for="id_name"] {
 }
 
 .step2-signup {
-    background-image: url('../images/step2_signup.png');
-    background-size: cover;
+    background-image: url('../images/step2_create_user.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step2b-signup {
+    background-image: url('../images/step2b_create_user.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -628,7 +637,7 @@ label[for="id_name"] {
 
 .step3-add-list {
     background-image: url('../images/step3_add_list.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -636,8 +645,8 @@ label[for="id_name"] {
 }
 
 .step4-create-list {
-    background-image: url('../images/step4_create_list.png');
-    background-size: cover;
+    background-image: url('../images/step4_reg_list.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -646,7 +655,7 @@ label[for="id_name"] {
 
 .step5-add-item {
     background-image: url('../images/step5_add_item.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -655,7 +664,7 @@ label[for="id_name"] {
 
 .step6-view-item {
     background-image: url('../images/step6_view_item.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -663,8 +672,8 @@ label[for="id_name"] {
 }
 
 .step7-show-list {
-    background-image: url('../images/step7_show_list.png');
-    background-size: cover;
+    background-image: url('../images/step7_return_list_view.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -672,17 +681,17 @@ label[for="id_name"] {
 }
 
 .step8-view-item-list {
-    background-image: url('../images/step8_view_item_list.png');
-    background-size: cover;
+    background-image: url('../images/step8_view_list.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    height: 200px;
+    height: 300px;
 }
 
 .step9-done-status {
-    background-image: url('../images/step9_done_status.png');
-    background-size: cover;
+    background-image: url('../images/step10_item_done.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -690,8 +699,8 @@ label[for="id_name"] {
 }
 
 .private-share {
-    background-image: url('../images/private_share.png');
-    background-size: cover;
+    background-image: url('../images/step11_private_list.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
@@ -699,8 +708,8 @@ label[for="id_name"] {
 }
 
 .public-share {
-    background-image: url('../images/public_share.png');
-    background-size: cover;
+    background-image: url('../images/step11_public_list.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
