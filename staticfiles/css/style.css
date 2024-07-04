@@ -608,6 +608,106 @@ label[for="id_name"] {
     justify-content: center;
 }
 
+.step1-create {
+    background-image: url('../images/step1_create.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step2-signup {
+    background-image: url('../images/step2_signup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step3-add-list {
+    background-image: url('../images/step3_add_list.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step4-create-list {
+    background-image: url('../images/step4_create_list.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step5-add-item {
+    background-image: url('../images/step5_add_item.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step6-view-item {
+    background-image: url('../images/step6_view_item.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step7-show-list {
+    background-image: url('../images/step7_show_list.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step8-view-item-list {
+    background-image: url('../images/step8_view_item_list.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.step9-done-status {
+    background-image: url('../images/step9_done_status.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.private-share {
+    background-image: url('../images/private_share.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+.public-share {
+    background-image: url('../images/public_share.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+}
+
+
 /* For medium size screens */
 @media only screen and (max-width: 992px) {
     .edit-button {
