@@ -267,52 +267,73 @@ a {
     align-items: center;
 }
 
-.toggle-slider {
-    width: 50px;
-    /* Adjust width as needed */
-    height: 20px;
-    /* Adjust height as needed */
-    margin: 0 20px 0 0px;
-    /* Adjust the spacing between the link and the slider */
-    position: relative;
-    top: 3px;
-    /* Adjust vertical positioning if needed */
-    /* Other styles as needed */
-}
-
+/* Updated toggle switch styles */
 .toggle-container {
     position: relative;
     display: inline-block;
+    width: 120px; /* Adjust width as needed */
+    height: 34px;
+}
+
+.toggle-slider {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 .toggle-shape {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100px;
-    /* Adjust width as needed */
-    height: 100px;
-    /* Adjust height as needed */
-    background-color: blue;
+    cursor: pointer;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+    height: 34px;
+    width: 100%; /* Use full width of the container */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px; /* Adjust padding as needed */
+    box-sizing: border-box;
 }
 
-
-.public .toggle-shape {
-    background-color: green;
+.toggle-slider:checked + .toggle-shape {
+    background-color: #2196F3;
+    position: right;
 }
 
-.private .toggle-shape {
-    background-color: yellow;
+.label-public, .label-private {
+    width: 50%;
+    text-align: center;
+    font-size: 14px; /* Adjust font size as needed */
+    color: white; /* Adjust text color as needed */
 }
 
-.private {
+.toggle-slider:checked + .toggle-shape .label-public {
+    color: white;
+}
+
+.toggle-slider + .toggle-shape .label-private {
     color: black;
-    /* Change to the color you want for private status */
 }
 
-.public {
-    color: rgb(10, 153, 13);
-    /* Change to the color you want for public status */
+.toggle-slider:checked + .toggle-shape .label-private {
+    color: white;
+}
+
+.toggle-shape:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 50%; /* Full width when checked */
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:checked + .toggle-shape:before {
+    transform: translateX(52px); /* Adjust as needed */
 }
 
 .bottom-right-button {

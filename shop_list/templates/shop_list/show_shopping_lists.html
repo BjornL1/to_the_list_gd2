@@ -32,65 +32,71 @@
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
-                        Items: {{ done_count }}/{{ shopping_list.items.count }} Done
+                    Items: {{ done_count }}/{{ shopping_list.items.count }} Done
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
-                        <span id="status-text-{{ shopping_list.id }}" class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
+                        <!-- <span id="status-text-{{ shopping_list.id }}" class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
                             {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
-                        </span>
-                        <input type="range" class="toggle-slider {% if shopping_list.is_private %}private{% else %}public{% endif %} custom-toggler" data-list-id="{{ shopping_list.id }}" min="0" max="1" step="1">
+                        </span> -->
+                        <div class="toggle-container">
+                            <input type="checkbox" class="toggle-slider" id="toggle-{{ shopping_list.id }}" data-list-id="{{ shopping_list.id }}" {% if shopping_list.is_private %}checked{% endif %}>
+                            <label for="toggle-{{ shopping_list.id }}" class="toggle-shape">
+                                <span class="label-public">Public</span>
+                                <span class="label-private">Private</span>
+                            </label>
+                        </div>
                         <div>
                             {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Edit</a>
+                                <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Edit</a>
                             {% else %}
-                            {% if shopping_list.id %}
-                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Clone</a>
-                            {% endif %}
+                                {% if shopping_list.id %}
+                                <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Clone</a>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
-                <div class="item-list" style="max-height: 200px; overflow-y: auto;">
-                    <ul>
-                        {% for item in shopping_list.items.all %}
-                        <li>
-                            <div class="card mb-1 mt-1">
-                                <div class="card-body">
-                                    <div class="row mb-2">
-                                        <div class="col">
-                                            <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
+        <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
+            <div class="item-list" style="max-height: 200px; overflow-y: auto;">
+                <ul>
+                    {% for item in shopping_list.items.all %}
+                    <li>
+                        <div class="card mb-1 mt-1">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
+                                    </div>
+                                    <div class="col-auto ml-auto">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
+                                            <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
-                                        </div>
-                                        <div class="col-auto ml-auto">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
-                                                <label class="form-check-label" for="item_{{ item.id }}">Done</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto ms-auto mb-2">
-                                            {% if logged_in_user == item.created_by %}
-                                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
-                                            {% else %}
-                                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
-                                            {% endif %}
-                                        </div>
+                                    <div class="col-auto ms-auto mb-2">
+                                        {% if logged_in_user == item.created_by %}
+                                        <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
+                                        {% else %}
+                                        <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div><!-- My Lists -->
 
     <!-- Pagination for My Lists -->
     <nav aria-label="My Lists pagination">
