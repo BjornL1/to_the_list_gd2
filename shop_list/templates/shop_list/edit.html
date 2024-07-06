@@ -10,9 +10,8 @@ Edit List
 
 {% block content %}
 
-<div class="container mt-5">
-    <!-- Back Button -->
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary mb-4 mt-4 ml-4" type="button">Back</a>
+<div class="mb-4 text-center">
+    <h3>Select an option for your list "{{ shopping_list.name }}"</h3>
 </div>
 
 <!--This page inlcludes edit button functions organized in one place for maintability reason.-->
@@ -59,7 +58,7 @@ Edit List
     <div class="mb-4">
         <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-warning mt-3">Items</button>
+            <button type="submit" class="btn btn-warning mt-3">Show Items</button>
         </form>
     </div>
 </div>

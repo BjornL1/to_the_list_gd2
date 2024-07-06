@@ -12,6 +12,11 @@ Edit Item
 {% if item.created_by == request.user %}
 
 <div class="text-center bg-green mt-3 p-4">
+    <!-- Message at the top -->
+    <div class="mb-4">
+        <h3>Select an option for your item "{{ item.name }}"</h3>
+    </div>
+
     <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-warning mb-3">Duplicate Item</button>
@@ -27,6 +32,7 @@ Edit Item
         {% csrf_token %}
         <button type="submit" class="btn btn-warning">Delete Item</button>
     </form>
+
     {% else %}
     <!-- Display button for non-creators -->
     <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
