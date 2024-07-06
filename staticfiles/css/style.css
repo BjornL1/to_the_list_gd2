@@ -5,6 +5,31 @@ body {
     padding-top: 0;
 }
 
+#loadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#loadingOverlay .spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+#loadingOverlay.show {
+    display: flex;
+}
+
 .index-background {
     background-image: url('../images/land_page_tlmin.png');
     background-size: 1000px auto;
@@ -20,6 +45,43 @@ body {
     color: yellow;
     text-decoration: underline;
     
+}
+
+card {
+    transition: all 0.1s ease-in-out;
+}
+
+/* Make links look like buttons */
+.view-items-link {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    text-decoration: none;
+}
+
+.view-items-link:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+    text-decoration: none;
 }
 
 .light-bg {

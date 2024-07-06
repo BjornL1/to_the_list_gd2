@@ -9,7 +9,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container bg-green">
+<div id="loadingOverlay">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Synchronizing data...</span>
+    </div>
+    <div>Synchronizing data...</div>
+</div>
+
+<div class="container bg-green" id="content">
     <div class="row">
         <div class="col d-flex align-items-center">
             <span class="custom-container list-title">My Lists</span>
@@ -26,12 +33,9 @@
         <div class="col-lg-6 col-xl-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">
-                            <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
-                        </h5>
-                        <button class="btn btn-info btn-sm ml-2" onclick="toggleItems('{{ shopping_list.id }}')">View Items</button>
-                    </div>
+                    <h5 class="card-title">
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">View Items: {{ shopping_list.name }}</a>
+                    </h5>
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
@@ -75,7 +79,7 @@
                                     </div>
                                     <div class="col-auto ml-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
                                             <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                         </div>
                                     </div>
@@ -125,16 +129,9 @@
         <div class="col-lg-6 col-xl-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title mb-0">
-                            {% if shopping_list.id %}
-                            <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
-                            {% else %}
-                            {{ shopping_list.name }}
-                            {% endif %}
-                        </h5>
-                        <button class="btn btn-info btn-sm ml-2" onclick="toggleItems('{{ shopping_list.id }}')">View Items</button>
-                    </div>
+                    <h5 class="card-title">
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">View Items: {{ shopping_list.name }}</a>
+                    </h5>
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
                             <p class="card-text">Created by: {{ username }}</p>
@@ -180,7 +177,7 @@
                                     </div>
                                     <div class="col-auto ml-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
                                             <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                         </div>
                                     </div>
@@ -201,7 +198,7 @@
         </div>
     </div>
     {% endfor %}
-</div><!-- My Lists -->
+</div><!-- Other Lists -->
 
     <!-- Pagination for Other Lists -->
     <nav aria-label="Other Lists pagination">
@@ -227,6 +224,16 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Restore the scroll position from localStorage when the page loads
+        let scrollPosition = localStorage.getItem('scrollPosition');
+        if (scrollPosition !== null) {
+            window.scrollTo(0, parseInt(scrollPosition));
+            localStorage.removeItem('scrollPosition'); // Clean up
+        }
+
+        // Show the body content after restoring the scroll position
+        document.body.style.visibility = 'visible';
+
         // Initialize toggle sliders
         let toggleSliders = document.querySelectorAll('.toggle-slider');
         toggleSliders.forEach(function (slider) {
@@ -255,6 +262,7 @@
         window.addEventListener('pageshow', function () {
             console.log('pageshow event fired');
             refreshDoneCounts();
+            refreshPrivacyStatus();
         });
     });
 
@@ -365,8 +373,8 @@
         console.log(`Done count for list ${listId}: ${doneCount}`);
 
         // Update the displayed doneCount
-        doneCountElement.textContent = `Items: ${totalCount - 1}`;
-        console.log(`Done count for list ${listId} refreshed: ${doneCount}/${totalCount - 1}`);
+        doneCountElement.textContent = `${totalCount - 1} Items`;
+        console.log(`Done count for list ${listId} refreshed: ${totalCount - 1}`);
     }
 
     function toggleItemDone(itemId, listId) {
@@ -417,11 +425,18 @@
     function forceRefreshOnBack() {
         window.onunload = function () { };
         if (performance.navigation.type == 2) {
+            // Show loading overlay
+            document.getElementById('loadingOverlay').style.display = 'flex';
             location.reload(true);
         }
     }
 
     document.addEventListener('DOMContentLoaded', forceRefreshOnBack);
+
+    // Store the scroll position in localStorage before navigating away
+    window.addEventListener('beforeunload', function () {
+        localStorage.setItem('scrollPosition', window.scrollY);
+    });
 </script>
 
 {% endblock %}
