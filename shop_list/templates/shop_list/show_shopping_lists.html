@@ -32,12 +32,9 @@
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
-                    Items: {{ done_count }}/{{ shopping_list.items.count }} Done
+                    Items: {{ shopping_list.items.count }} <!-- Hiding done_count and slash -->
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
-                        <!-- <span id="status-text-{{ shopping_list.id }}" class="status-text {% if shopping_list.is_private %}private{% else %}public{% endif %}">
-                            {% if shopping_list.is_private %}Private{% else %}Public{% endif %}
-                        </span> -->
                         <div class="toggle-container">
                             <input type="checkbox" class="toggle-slider" id="toggle-{{ shopping_list.id }}" data-list-id="{{ shopping_list.id }}" {% if shopping_list.is_private %}checked{% endif %}>
                             <label for="toggle-{{ shopping_list.id }}" class="toggle-shape">
@@ -140,7 +137,7 @@
                             <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <p>Items: {{ done_count }}/{{ shopping_list.items.count }} Done</p>
+                            <p>Items: {{ shopping_list.items.count }}</p> <!-- Hiding done_count and slash -->
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mt-3">
@@ -191,17 +188,31 @@
         let toggleSliders = document.querySelectorAll('.toggle-slider');
         toggleSliders.forEach(function (slider) {
             let listId = slider.dataset.listId;
-            console.log(listId);
+            console.log(`Slider for list ${listId} initialized.`);
             slider.value = slider.classList.contains('private') ? 1 : 0;
         });
 
         // Add event listener to each item checkbox
         let itemList = document.querySelectorAll('input[type="checkbox"]');
         itemList.forEach(function (checkbox) {
+            let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+            let listId = checkbox.dataset.listId;
+            let savedState = localStorage.getItem(`item_${itemId}`);
+            if (savedState !== null) {
+                checkbox.checked = savedState === 'true';
+            }
+
             checkbox.addEventListener('change', function () {
-                let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
-                toggleItemDone(itemId, checkbox.dataset.listId);
+                console.log(`Checkbox for item ${itemId} in list ${listId} changed.`);
+                toggleItemDone(itemId, listId);
             });
+        });
+
+        // Add event listener for browser navigation
+        window.addEventListener('pageshow', function () {
+            console.log('pageshow event fired');
+            refreshDoneCounts();
+            refreshPrivacyStatus();
         });
     });
 
@@ -225,8 +236,10 @@
 
     function toggleList(listId) {
         console.log('Toggling list with ID:', listId);
-        // Simulate toggling the privacy status
-        console.log('Privacy status toggled successfully!');
+
+        // Log current done counts before toggling
+        let doneCountElement = document.getElementById('done-count-' + listId);
+        console.log(`Current done count before toggling: ${doneCountElement.textContent}`);
 
         // Fetch request to toggle the privacy status
         let csrftoken = getCookie('csrftoken');
@@ -244,6 +257,11 @@
                     var slider = document.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
                     slider.classList.toggle('public');
                     slider.classList.toggle('private');
+                    refreshPrivacyStatus();
+                    refreshDoneCount(listId); // Ensure done count is refreshed
+
+                    // Log updated done counts after toggling
+                    console.log(`Updated done count after toggling: ${doneCountElement.textContent}`);
                 } else {
                     // Handle error
                     console.error('Error:', data.error);
@@ -270,7 +288,6 @@
         return cookieValue;
     }
 
-    // Function to toggle items under each card
     function toggleItems(listId) {
         let itemsSection = document.getElementById('items_' + listId);
         if (itemsSection.style.display === 'none') {
@@ -280,8 +297,43 @@
         }
     }
 
-    // Function to toggle "done" status of an item
+    function refreshDoneCounts() {
+        console.log('Refreshing done counts');
+        let lists = document.querySelectorAll('.card');
+        lists.forEach(function (list) {
+            let listId = list.querySelector('.toggle-slider').dataset.listId;
+            refreshDoneCount(listId);
+        });
+    }
+
+    function refreshDoneCount(listId) {
+        let doneCountElement = document.getElementById('done-count-' + listId);
+        let doneCount = 0;
+        let totalCount = 0; // Initialize totalCount to zero
+        let checkboxes = document.querySelectorAll(`input[data-list-id="${listId}"]`);
+        checkboxes.forEach(function (checkbox) {
+            totalCount++; // Increment totalCount for each checkbox
+            if (checkbox.checked) {
+                doneCount++;
+            }
+        });
+
+        // Log counts before updating the display
+        console.log(`Total count for list ${listId}: ${totalCount}`);
+        console.log(`Done count for list ${listId}: ${doneCount}`);
+
+        // Update the displayed doneCount
+        doneCountElement.textContent = `Items: ${totalCount - 1}`; // Hiding done_count and slash
+        console.log(`Done count for list ${listId} refreshed: ${doneCount}/${totalCount - 1}`);
+    }
+
     function toggleItemDone(itemId, listId) {
+        console.log(`Toggling done status for item ${itemId} in list ${listId}`);
+        let checkbox = document.getElementById(`item_${itemId}`);
+
+        // Save the state to localStorage
+        localStorage.setItem(`item_${itemId}`, checkbox.checked);
+
         // Send AJAX request to update "done" status
         let csrftoken = getCookie('csrftoken');
         fetch(`/toggle-item-done/${itemId}/`, {
@@ -295,29 +347,8 @@
             .then(data => {
                 // Update UI based on response
                 if (data.status === 'success') {
-                    console.log('Item status toggled successfully.');
-                    // Toggle "done" status
-                    var itemLabel = document.querySelector(`label[for="item_${itemId}"]`);
-                    itemLabel.classList.toggle('done');
-
-                    // Increment or decrement doneCount based on checkbox state
-                    let checkbox = document.getElementById(`item_${itemId}`);
-                    let doneCountElement = document.getElementById('done-count-' + listId);
-                    let doneCount = parseInt(doneCountElement.getAttribute('data-done-count'));
-                    let totalCount = parseInt(doneCountElement.getAttribute('data-total-count'));
-                    if (checkbox.checked) {
-                        doneCount++;
-                    } else {
-                        doneCount--;
-                    }
-
-                    // Update the displayed doneCount
-                    doneCountElement.textContent = `${doneCount}/${totalCount} Done`;
-                    doneCountElement.setAttribute('data-done-count', doneCount);
-
-                    // Log the updated values
-                    console.log('Updated doneCount:', doneCount);
-                    console.log('Updated totalCount:', totalCount);
+                    console.log(`Item status toggled successfully for item ${itemId}`);
+                    refreshDoneCount(listId);
                 } else {
                     // Handle error
                     console.error('Error:', data.error);
@@ -328,40 +359,27 @@
             });
     }
 
-    // Back to top button functionality
-    const mybutton = document.getElementById("back-to-top-btn");
+    function refreshPrivacyStatus() {
+        console.log('Refreshing privacy status');
+        let lists = document.querySelectorAll('.card');
+        lists.forEach(function (list) {
+            let listId = list.querySelector('.toggle-slider').dataset.listId;
+            let slider = list.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
+            let textElement = list.querySelector('.status-text');
+            if (slider && textElement) {
+                textElement.textContent = slider.classList.contains('private') ? 'Private' : 'Public';
+            }
+        });
+    }
 
-    // Add event listener for scroll events
-    window.addEventListener("scroll", scrollFunction);
-
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
-
-        // Get the height of the document and the current scroll position
-        const scrollHeight = document.documentElement.scrollHeight;
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const clientHeight = document.documentElement.clientHeight;
-
-        // If the distance from the bottom is less than 50px, move the button up
-        if (scrollHeight - scrollTop - clientHeight < 50) {
-            mybutton.style.bottom = "50px"; // Adjust this value as needed
-        } else {
-            mybutton.style.bottom = "20px"; // Adjust this value as needed
+    function forceRefreshOnBack() {
+        window.onunload = function () { };
+        if (performance.navigation.type == 2) {
+            location.reload(true);
         }
     }
 
-    // Add event listener for click event on the button
-    mybutton.addEventListener("click", topFunction);
-
-    // Function to scroll to the top of the document
-    function topFunction() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    }
+    document.addEventListener('DOMContentLoaded', forceRefreshOnBack);
 </script>
 
 {% endblock %}

@@ -5,7 +5,6 @@ Add Item
 {% endblock %}
 
 {% block content %}
-<!--Added "bg-green and margin-rename" as separate styling for background colour, other styling classes are from bootstrap"-->
 <div class="text-center bg-green mt-3 p-4">
     <h1>Add Item to "{{ shopping_list.name }}"</h1>
     <form method="post">
@@ -13,6 +12,6 @@ Add Item
         {{ form.as_p }}
         <button type="submit" class="btn btn-warning margin-rename">Add Item</button>
     </form>
+    <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary mt-3">Later, Show All Lists</a>
 </div>
-
 {% endblock %}
