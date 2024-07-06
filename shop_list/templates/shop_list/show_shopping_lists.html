@@ -26,13 +26,16 @@
         <div class="col-lg-6 col-xl-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
-                    </h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
+                        </h5>
+                        <button class="btn btn-info btn-sm ml-2" onclick="toggleItems('{{ shopping_list.id }}')">View Items</button>
+                    </div>
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
-                    Items: {{ shopping_list.items.count }} <!-- Hiding done_count and slash -->
+                    Items: {{ shopping_list.items.count }}
                     </p>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="toggle-container">
@@ -72,7 +75,7 @@
                                     </div>
                                     <div class="col-auto ml-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
                                             <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                         </div>
                                     </div>
@@ -122,13 +125,16 @@
         <div class="col-lg-6 col-xl-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        {% if shopping_list.id %}
-                        <a href="{% url 'show_items' list_id=shopping_list.id %}">{{ shopping_list.name }}</a>
-                        {% else %}
-                        {{ shopping_list.name }}
-                        {% endif %}
-                    </h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            {% if shopping_list.id %}
+                            <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
+                            {% else %}
+                            {{ shopping_list.name }}
+                            {% endif %}
+                        </h5>
+                        <button class="btn btn-info btn-sm ml-2" onclick="toggleItems('{{ shopping_list.id }}')">View Items</button>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
                             <p class="card-text">Created by: {{ username }}</p>
@@ -137,7 +143,7 @@
                             <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <p>Items: {{ shopping_list.items.count }}</p> <!-- Hiding done_count and slash -->
+                            <p>Items: {{ shopping_list.items.count }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mt-3">
@@ -156,9 +162,46 @@
                     </div>
                 </div>
             </div>
+        <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
+            <div class="item-list" style="max-height: 200px; overflow-y: auto;">
+                <ul>
+                    {% for item in shopping_list.items.all %}
+                    <li>
+                        <div class="card mb-1 mt-1">
+                            <div class="card-body">
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
+                                    </div>
+                                    <div class="col-auto ml-auto">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
+                                            <label class="form-check-label" for="item_{{ item.id }}">Done</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto ms-auto mb-2">
+                                        {% if logged_in_user == item.created_by %}
+                                        <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
+                                        {% else %}
+                                        <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div><!-- My Lists -->
 
     <!-- Pagination for Other Lists -->
     <nav aria-label="Other Lists pagination">
@@ -212,7 +255,6 @@
         window.addEventListener('pageshow', function () {
             console.log('pageshow event fired');
             refreshDoneCounts();
-            refreshPrivacyStatus();
         });
     });
 
@@ -323,7 +365,7 @@
         console.log(`Done count for list ${listId}: ${doneCount}`);
 
         // Update the displayed doneCount
-        doneCountElement.textContent = `Items: ${totalCount - 1}`; // Hiding done_count and slash
+        doneCountElement.textContent = `Items: ${totalCount - 1}`;
         console.log(`Done count for list ${listId} refreshed: ${doneCount}/${totalCount - 1}`);
     }
 
