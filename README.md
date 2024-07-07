@@ -1,7 +1,12 @@
 # TO THE LIST
 
 ToTheList is a website intended to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
+feat: Add "View Items" button to card headers
 
+Updated card headers to include a "View Items" button
+that toggles the visibility of the list items. This
+button is positioned in the upper right corner of each
+card and functions identically to the previous link.
 
 The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
 

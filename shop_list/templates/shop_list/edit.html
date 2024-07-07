@@ -14,14 +14,13 @@ Edit List
     <h3>Select an option for your list "{{ shopping_list.name }}"</h3>
 </div>
 
-<!--This page inlcludes edit button functions organized in one place for maintability reason.-->
+<!-- This page includes edit button functions organized in one place for maintainability reasons. -->
 <div class="d-flex justify-content-center align-items-center flex-column mt-0 bg-green">
     <!-- Clone List Button -->
     <div class="mb-4 mt-4">
         <form method="post" action="{% url 'clone' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="submit" onclick="return confirmClone()" class="btn btn-primary homepage-buttons">Clone
-                List</button>
+            <button type="submit" onclick="return confirmClone()" class="btn btn-primary homepage-buttons custom-button">Clone List</button>
         </form>
     </div>
 
@@ -30,35 +29,34 @@ Edit List
         {% if is_owner %}
         <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary homepage-buttons">Rename List</button>
+            <button type="submit" class="btn btn-primary homepage-buttons custom-button">Rename List</button>
         </form>
         {% else %}
         <form method="post" action="{% url 'rename' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="button" disabled class="btn btn-primary">Rename List</button>
+            <button type="button" disabled class="btn btn-primary custom-button">Rename List</button>
         </form>
         {% endif %}
     </div>
 
-    <!-- Delete List button -->
+    <!-- Delete List Button -->
     <div class="mb-4">
         {% if is_owner %}
-        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}"
-            onsubmit="return confirmDelete('{{ shopping_list.name }}')">
+        <form method="post" action="{% url 'delete' list_id=shopping_list.id %}" onsubmit="return confirmDelete('{{ shopping_list.name }}')">
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary homepage-buttons">Delete List</button>
+            <button type="submit" class="btn btn-primary homepage-buttons custom-button">Delete List</button>
         </form>
         {% else %}
         <form method="post" action="{% url 'delete' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="button" disabled class="btn btn-primary homepage-buttons">Delete List</button>
+            <button type="button" disabled class="btn btn-primary custom-button">Delete List</button>
         </form>
         {% endif %}
     </div>
     <div class="mb-4">
         <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-warning mt-3">Show Items</button>
+            <button type="submit" class="btn btn-warning mt-3 custom-button">Show Items</button>
         </form>
     </div>
 </div>
