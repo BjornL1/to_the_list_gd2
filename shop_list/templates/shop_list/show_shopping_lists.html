@@ -36,10 +36,10 @@
                     <h5 class="card-title">
                         <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
-                    <div class="position-absolute top-0 end-0 mt-2 me-2">
+                    <div class="position-absolute top-0 end-0 mt-3 me-3">
                         <span>View Items</span>
                         <button class="btn btn-link p-0" onclick="toggleItems('{{ shopping_list.id }}')" aria-label="Toggle items">
-                            <i class="fas fa-chevron-down"></i>
+                            <i class="fas fa-chevron-down fa-2x"></i>
                         </button>
                     </div>
                     <p class="card-text">Created by: {{ username }}</p>
@@ -47,7 +47,7 @@
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
                     Items: {{ shopping_list.items.count }}
                     </p>
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex justify-content-between">
                         <div class="toggle-container">
                             <input type="checkbox" class="toggle-slider" id="toggle-{{ shopping_list.id }}" data-list-id="{{ shopping_list.id }}" {% if shopping_list.is_private %}checked{% endif %}>
                             <label for="toggle-{{ shopping_list.id }}" class="toggle-shape">
@@ -57,10 +57,10 @@
                         </div>
                         <div>
                             {% if shopping_list.owner == request.user %}
-                                <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Edit</a>
+                                <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-4 mb-0">Edit</a>
                             {% else %}
                                 {% if shopping_list.id %}
-                                <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-1">Clone</a>
+                                <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-4 mb-0">Clone</a>
                                 {% endif %}
                             {% endif %}
                         </div>
