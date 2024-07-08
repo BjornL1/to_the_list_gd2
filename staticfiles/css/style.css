@@ -5,6 +5,22 @@ body {
     padding-top: 0;
 }
 
+.view-items-linklist {
+    display: inline-block;
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #2196F3;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.view-items-linklist:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #fff;
+}
+
 .custom-button {
     min-width: 200px; /* Adjust the width as needed */
     white-space: normal; /* Allow text to wrap */

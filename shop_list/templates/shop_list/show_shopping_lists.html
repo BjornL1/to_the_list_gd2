@@ -47,10 +47,9 @@
                         <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <span>View Items</span>
-                        <button class="btn btn-link p-0" onclick="toggleItems('{{ shopping_list.id }}')" aria-label="Toggle items">
-                            <i class="fas fa-chevron-down fa-2x"></i>
-                        </button>
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')" class="d-flex align-items-center view-items-linklist">
+                            <span>View Items</span>
+                        </a>
                     </div>
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
