@@ -48,7 +48,7 @@ def create_shopping_list(request):
                 shopping_list.save()
 
                 messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
-                return redirect('add_item', list_id=shopping_list.id)
+                return redirect('show_items', list_id=shopping_list.id)  # Redirect to the show_items view
 
     else:
         form = ShoppingListForm()

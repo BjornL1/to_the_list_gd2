@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/shop_list/'
+LOGIN_REDIRECT_URL = '/shop_list/create/'
 LOGOUT_REDIRECT_URL = '/'
 
 MESSAGE_TAGS = {

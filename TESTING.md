@@ -163,6 +163,7 @@ Option 3.
 
 In the picture below, Option 3 is displayed.
 
+
 ![header](docs/testing_images/rename_item.png)
 
 

@@ -12,6 +12,9 @@ Create Shopping List
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Create Shopping List</button>
     </form>
+    <div class="d-flex justify-content-center mt-3">
+        <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary">Later, Show All Lists</a>
+    </div>
     
     <!-- Error message section -->
     <div id="errorMessage" class="alert alert-danger" style="display: none;">
