@@ -39,21 +39,32 @@ def create_shopping_list(request):
 
             # Check if a shopping list with the same name already exists
             if ShoppingList.objects.filter(name=shopping_list_name).exists():
-                error_message = f'A shopping list with the name "{shopping_list_name}" already exists. Please use another name.'
-                messages.error(request, f'A shopping list with the name "{shopping_list_name}" already exists. Please use another name.')
-                return render(request, 'shop_list/create_shopping_list.html', {'form': form, 'error_message': error_message})
+                error_message = (
+                    f'A shopping list with the name "{shopping_list_name}" '
+                    'already exists. Please use another name.')
+                messages.error(
+                    request,
+                    f'A shopping list with the name "{shopping_list_name}" '
+                    'already exists. Please use another name.')
+                return render(
+                    request,
+                    'shop_list/create_shopping_list.html',
+                    {'form': form, 'error_message': error_message})
             else:
                 shopping_list = form.save(commit=False)
                 shopping_list.owner_id = request.user.id
                 shopping_list.save()
 
-                messages.success(request, f'Shopping list "{shopping_list_name}" created successfully!')
-                return redirect('show_items', list_id=shopping_list.id)  # Redirect to the show_items view
+                messages.success(
+                    request,
+                    f'Shopping list "{shopping_list_name}" is created!')
+                return redirect('show_items', list_id=shopping_list.id)
 
     else:
         form = ShoppingListForm()
 
-    return render(request, 'shop_list/create_shopping_list.html', {'form': form})
+    return render(
+        request, 'shop_list/create_shopping_list.html', {'form': form})
 
 
 @login_required
