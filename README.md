@@ -291,7 +291,6 @@ For a logged-in user, the following information will be presented for all lists 
 - Created by: The owner of the list.
 - Clone Count: Displays how many times the list has been cloned by other users.
 - Number of Items: Number of items added to the list.
-- Status of Items: Whether an item has been marked as done or not.
 
 For lists owned by the logged-in user, the following additional information will be displayed:
 
@@ -304,12 +303,12 @@ For public lists shared by other users, the following additional information wil
 - External: A text indicating that it belongs to another user.
 - Clone button: This button allows the logged-in user to clone the list.
 
-At the bottom of the page, a "Back to Top" button will appear when the user scrolls down, providing an effortless way to return to the top of the page.
+
 **My Lists**
 
 If the logged-in user has created lists, they will be displayed at the top of the page.
 Any items in the list will be linked under the card and will be scrollable directly below the card if the user clicks on the list title.
-In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done, indicated by "1/2" in the card. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
+In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
 
 ![header](docs/readme_images/lists.png)
 
