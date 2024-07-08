@@ -247,8 +247,6 @@ All HTML pages were run through the [W3C HTML Validator](https://validator.w3.or
 | 404.html                          | No errors  | No errors |
 | 500.html                          | No errors  | No errors |
 
-
-
 #### Fixed Errors
 
 

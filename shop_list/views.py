@@ -71,9 +71,10 @@ def create_shopping_list(request):
 def show_shopping_lists(request):
     # Fetch current user's lists
     my_lists = ShoppingList.objects.filter(owner=request.user).order_by('-id')
-    
+
     # Fetch other public lists excluding the current user's lists
-    other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user).order_by('-id')
+    other_lists = ShoppingList.objects.filter(is_private=False).exclude(
+        owner=request.user).order_by('-id')
 
     # Paginate my lists and other lists with 10 items per page
     paginator_my_lists = Paginator(my_lists, 3)
@@ -85,14 +86,16 @@ def show_shopping_lists(request):
 
     # Get the paginated objects
     my_lists_page_obj = paginator_my_lists.get_page(page_number_my_lists)
-    other_lists_page_obj = paginator_other_lists.get_page(page_number_other_lists)
+    other_lists_page_obj = paginator_other_lists.get_page(
+        page_number_other_lists)
 
     # Prepare the lists with usernames and done counts for display
     def get_list_data(page_obj):
         lists_with_usernames = []
         for shopping_list in page_obj:
             done_count = shopping_list.items.filter(is_done=True).count()
-            lists_with_usernames.append((shopping_list, shopping_list.owner.username, done_count))
+            lists_with_usernames.append(
+                (shopping_list, shopping_list.owner.username, done_count))
         return lists_with_usernames
 
     my_lists_with_usernames = get_list_data(my_lists_page_obj)
@@ -242,17 +245,18 @@ def clone(request, list_id):
 @login_required
 def duplicate_item(request, item_id):
     original_item = get_object_or_404(Item, pk=item_id)
-    shopping_list = original_item.shopping_list  # Get the associated shopping list
+    shopping_list = original_item.shopping_list  # Get the associated list
 
     if request.method == 'POST':
         form = DuplicateItemForm(request.POST)
         if form.is_valid():
             new_name = form.cleaned_data['new_name']
 
-            # Check if an item with the same name already exists in the same list
             base_name = new_name
             suffix = 1
-            while Item.objects.filter(name=new_name, shopping_list=shopping_list).exists():
+            while Item.objects.filter(
+                name=new_name, shopping_list=shopping_list
+            ).exists():
                 new_name = f"{base_name} Copy {suffix}"
                 suffix += 1
 
@@ -271,7 +275,7 @@ def duplicate_item(request, item_id):
                 {
                     'item': original_item,
                     'new_name': new_name,
-                    'list_id': shopping_list.id  # Pass the list_id to the template
+                    'list_id': shopping_list.id
                 }
             )
     else:
@@ -280,7 +284,7 @@ def duplicate_item(request, item_id):
     return render(request, 'shop_list/duplicate_item.html', {
         'form': form,
         'item': original_item,
-        'shopping_list': shopping_list  # Pass the shopping list to the template
+        'shopping_list': shopping_list
     })
 
 
