@@ -5,6 +5,12 @@ body {
     padding-top: 0;
 }
 
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .view-items-linklist {
     display: inline-block;
     padding: 5px 10px;
@@ -197,6 +203,7 @@ card {
 .page-link {
     color: #E84610;
     margin-top: 0;
+    margin-left: 0;
 }
 
 .post-title {
