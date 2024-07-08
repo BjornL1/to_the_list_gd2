@@ -541,7 +541,7 @@ p.card-textother {
 }
 /* To balance background colour and image */
 .transparent-navbar {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.4);
     padding-top: 130px; /* More transparent */
 }
 

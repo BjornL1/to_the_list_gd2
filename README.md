@@ -1,11 +1,7 @@
 # TO THE LIST
 
 ToTheList is a website intended to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
-"style: improve pagination responsiveness
 
-- Adjust margin and padding for pagination links for better fit on small screens
-- Use flexbox to handle pagination layout, enabling horizontal scrolling
-- Add media queries to adjust pagination styling for devices with a width of 767px"
 
 The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
 
@@ -86,7 +82,6 @@ A typical user of ToTheList is someone who wants to efficiently manage their sho
 - As a Site User, I can add and view items to a list so that I can easily store and find my items.
 - As a Site User, I can rename an item so that I don't need to delete and recreate a new item if I accidentally named it wrong.
 - As a Site User, I can delete items so that I can remove ones that are no longer needed.
-- As a Site User, I can duplicate an item so that I can reuse the name and quantity and quickly create a similar item which can easily be adapted if needed instead of creating a new one.
 - As a Site User, I can add/delete/rename my items added to other users' public lists so that I can easily share my items with other users.
 
 #### EPIC Site Administration
@@ -112,7 +107,7 @@ The color palette was created using Coolors, while extracting the colors from th
 ![header](docs/readme_images/background_colour.png)
 
 #### Imagery
-The site features a singular static image, portraying a wall adorned with lists, effectively accentuating the site's core purpose.
+The site features a singular static image of a person holding a shopping basket filled with groceries in one hand and a phone in the other, symbolizing the concept of a shopping list.
 
 #### Fonts
 The Montserrat font is the main font used for the body of the website with the Playfair Display font used for the main headings on the home page. These fonts were imported via Google Fonts. Sans Serif is the backup font, in case for any reason the main font isn't being imported into the site correctly.
