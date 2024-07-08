@@ -30,4 +30,3 @@ class CloneForm(forms.Form):
 
 class DuplicateItemForm(forms.Form):
     new_name = forms.CharField(label='New Name', max_length=100)
-
