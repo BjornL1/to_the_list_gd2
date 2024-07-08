@@ -231,16 +231,17 @@ def clone(request, list_id):
 @login_required
 def duplicate_item(request, item_id):
     original_item = get_object_or_404(Item, pk=item_id)
+    shopping_list = original_item.shopping_list  # Get the associated shopping list
 
     if request.method == 'POST':
         form = DuplicateItemForm(request.POST)
         if form.is_valid():
             new_name = form.cleaned_data['new_name']
 
-            # Check if an item with the same name already exists
+            # Check if an item with the same name already exists in the same list
             base_name = new_name
             suffix = 1
-            while Item.objects.filter(name=new_name).exists():
+            while Item.objects.filter(name=new_name, shopping_list=shopping_list).exists():
                 new_name = f"{base_name} Copy {suffix}"
                 suffix += 1
 
@@ -248,8 +249,7 @@ def duplicate_item(request, item_id):
             duplicated_item = Item.objects.create(
                 name=new_name,
                 quantity=original_item.quantity,
-                shopping_list=original_item.shopping_list,  # Associate the
-                # duplicated item with the same shopping list
+                shopping_list=shopping_list,
                 created_by=request.user
             )
 
@@ -259,7 +259,8 @@ def duplicate_item(request, item_id):
                 'shop_list/duplicate_item_confirmation.html',
                 {
                     'item': original_item,
-                    'new_name': new_name
+                    'new_name': new_name,
+                    'list_id': shopping_list.id  # Pass the list_id to the template
                 }
             )
     else:
@@ -267,7 +268,8 @@ def duplicate_item(request, item_id):
 
     return render(request, 'shop_list/duplicate_item.html', {
         'form': form,
-        'item': original_item
+        'item': original_item,
+        'shopping_list': shopping_list  # Pass the shopping list to the template
     })
 
 
@@ -336,7 +338,8 @@ def item_rename(request, item_id):
             item.save()
             return render(request, 'shop_list/item_rename_confirmation.html', {
                 'old_name': old_name,
-                'new_name': new_name
+                'new_name': new_name,
+                'list_id': shopping_list.id  # Pass the list_id to the template
             })
         else:
             messages.error(request, 'New name cannot be empty!')

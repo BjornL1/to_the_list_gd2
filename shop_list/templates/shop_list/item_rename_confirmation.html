@@ -5,10 +5,10 @@ Rename Confirmation
 {% endblock %}
 
 {% block content %}
-<!--Added "bg-green", other styling classes are from bootstrap"-->
+<!-- Added "bg-green", other styling classes are from bootstrap -->
 <div class="text-center p-4 mt-3 bg-green">
     <p style="font-weight: bold">The "{{ old_name }}" has been renamed successfully.</p>
     <p style="font-weight: bold">New name: "{{ new_name }}"</p>
-    <a href="{% url 'show_shopping_lists' %}" class="btn btn-warning">Close</a>
+    <a href="{% url 'show_items' list_id %}" class="btn btn-warning">Close</a>
 </div>
 {% endblock %}
