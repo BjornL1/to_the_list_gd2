@@ -1,7 +1,12 @@
 # TO THE LIST
 
 ToTheList is a website intended to empower users with functionality for tracking, sharing, and editing shopping items. Additionally, the platform is well-suited for planning activities, including managing to-do tasks. 
+"Fix item count display format issue
 
+- Ensure item counts are displayed as 'Items: X'
+- Update JavaScript to format item count correctly
+- Remove unnecessary call to `refreshDoneCounts'
+- Maintain consistency in Django template and JavaScript
 
 The live link can be found here - [ToTheList](https://tothelist-gd-20bd5040c185.herokuapp.com/)
 

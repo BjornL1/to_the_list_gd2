@@ -32,7 +32,7 @@
                     {% endif %}
                 </ul>
             </nav>
-            <a class="btn btn-primary btn-sm" href="{% url 'create_shopping_list' %}">
+            <a class="btn btn-primary homepage-buttons" href="{% url 'create_shopping_list' %}">
                 Add List
             </a>
         </div>
@@ -115,7 +115,7 @@
         </div>
     </div>
     {% endfor %}
-</div><!-- My Lists -->
+</div><!-- Other Lists -->
     <span class="custom-container list-title">Other Lists</span>
     <div class="row">
         {% for shopping_list, username, done_count in other_lists_with_usernames %}
@@ -126,10 +126,9 @@
                         <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
                     </h5>
                     <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <span>View Items</span>
-                        <button class="btn btn-link p-0" onclick="toggleItems('{{ shopping_list.id }}')" aria-label="Toggle items">
-                            <i class="fas fa-chevron-down fa-2x"></i>
-                        </button>
+                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')" class="d-flex align-items-center view-items-linklist">
+                            <span>View Items</span>
+                        </a>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-lg-4">
@@ -139,7 +138,7 @@
                             <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                         </div>
                         <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Items: {{ shopping_list.items.count }}</p>
+                            <p class="card-textother mt-5">Items: {{ shopping_list.items.count }}</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-center justify-content-between mt-3">
