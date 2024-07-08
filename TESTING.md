@@ -87,7 +87,7 @@ Table of Contents
 - Clicking the "Rename" button displays the page to rename the list.
 - After entering a new name and confirming the change, the list name is updated.
 
-![header](docs/testing_images/rename_list.png)
+![header](docs/testing_images/renamelist.png)
 
 
 *As a Site User, I can delete lists so that I can remove ones that are no longer needed*
