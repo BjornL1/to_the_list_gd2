@@ -390,7 +390,6 @@ a {
 
 .toggle-slider:checked + .toggle-shape {
     background-color: #2196F3;
-    position: right;
 }
 
 .label-public, .label-private {
