@@ -312,11 +312,9 @@ In the example below, a list has been cloned once. It contains 2 items, one of w
 
 ![header](docs/readme_images/lists.png)
 
-
 **Other Lists**
 
 In this section of the page, public lists are listed under 'Other Lists.'
-Any items belonging to the list will be displayed on a separate page by clicking on the title of the list."
 
 ![header](docs/readme_images/other_lists.png)
 
