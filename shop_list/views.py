@@ -65,8 +65,8 @@ def show_shopping_lists(request):
     other_lists = ShoppingList.objects.filter(is_private=False).exclude(owner=request.user).order_by('-id')
 
     # Paginate my lists and other lists with 10 items per page
-    paginator_my_lists = Paginator(my_lists, 5)
-    paginator_other_lists = Paginator(other_lists, 5)
+    paginator_my_lists = Paginator(my_lists, 3)
+    paginator_other_lists = Paginator(other_lists, 3)
 
     # Get the current page numbers from the request
     page_number_my_lists = request.GET.get('page_my_lists')

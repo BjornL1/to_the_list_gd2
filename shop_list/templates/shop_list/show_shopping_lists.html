@@ -9,20 +9,30 @@
 {% endblock %}
 
 {% block content %}
-<div id="loadingOverlay">
-    <div class="spinner-border" role="status">
-        <span class="sr-only">Synchronizing data...</span>
-    </div>
-    <div>Synchronizing data...</div>
-</div>
-
 <div class="container bg-green" id="content">
     <div class="row">
-        <div class="col d-flex align-items-center">
+        <div class="col d-flex align-items-center justify-content-between">
             <span class="custom-container list-title">My Lists</span>
-        </div>
-        <div class="col-auto d-flex align-items-center justify-content-end">
-            <a class="btn btn-primary homepage-buttons" href="{% url 'create_shopping_list' %}">
+            <nav aria-label="My Lists pagination">
+                <ul class="pagination justify-content-center mb-0">
+                    {% if my_lists_page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                    {% endif %}
+                    {% for num in my_lists_page_obj.paginator.page_range %}
+                    <li class="page-item {% if num == my_lists_page_obj.number %}active{% endif %}">
+                        <a class="page-link" href="?page_my_lists={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+                    {% if my_lists_page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.next_page_number }}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <a class="btn btn-primary btn-sm" href="{% url 'create_shopping_list' %}">
                 Add List
             </a>
         </div>
@@ -107,28 +117,6 @@
     </div>
     {% endfor %}
 </div><!-- My Lists -->
-
-    <!-- Pagination for My Lists -->
-    <nav aria-label="My Lists pagination">
-        <ul class="pagination justify-content-center mt-4">
-            {% if my_lists_page_obj.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.previous_page_number }}">Previous</a>
-            </li>
-            {% endif %}
-            {% for num in my_lists_page_obj.paginator.page_range %}
-            <li class="page-item {% if num == my_lists_page_obj.number %}active{% endif %}">
-                <a class="page-link" href="?page_my_lists={{ num }}">{{ num }}</a>
-            </li>
-            {% endfor %}
-            {% if my_lists_page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page_my_lists={{ my_lists_page_obj.next_page_number }}">Next</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-
     <span class="custom-container list-title">Other Lists</span>
     <div class="row">
         {% for shopping_list, username, done_count in other_lists_with_usernames %}
@@ -236,16 +224,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Restore the scroll position from localStorage when the page loads
-        let scrollPosition = localStorage.getItem('scrollPosition');
-        if (scrollPosition !== null) {
-            window.scrollTo(0, parseInt(scrollPosition));
-            localStorage.removeItem('scrollPosition'); // Clean up
-        }
-
-        // Show the body content after restoring the scroll position
-        document.body.style.visibility = 'visible';
-
         // Initialize toggle sliders
         let toggleSliders = document.querySelectorAll('.toggle-slider');
         toggleSliders.forEach(function (slider) {
@@ -259,10 +237,6 @@
         itemList.forEach(function (checkbox) {
             let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
             let listId = checkbox.dataset.listId;
-            let savedState = localStorage.getItem(`item_${itemId}`);
-            if (savedState !== null) {
-                checkbox.checked = savedState === 'true';
-            }
 
             checkbox.addEventListener('change', function () {
                 console.log(`Checkbox for item ${itemId} in list ${listId} changed.`);
@@ -338,7 +312,7 @@
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
             let cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
+            for (let i = 0; cookies.length > i; i++) {
                 let cookie = cookies[i].trim();
                 // Does this cookie string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
@@ -437,17 +411,13 @@
     function forceRefreshOnBack() {
         window.onunload = function () { };
         if (performance.navigation.type == 2) {
-            // Show loading overlay
-            document.getElementById('loadingOverlay').style.display = 'flex';
             location.reload(true);
         }
     }
 
-    document.addEventListener('DOMContentLoaded', forceRefreshOnBack);
-
-    // Store the scroll position in localStorage before navigating away
-    window.addEventListener('beforeunload', function () {
-        localStorage.setItem('scrollPosition', window.scrollY);
+    document.addEventListener('DOMContentLoaded', function() {
+        forceRefreshOnBack();
+        window.scrollTo(0, 0);
     });
 </script>
 
