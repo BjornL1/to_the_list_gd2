@@ -182,8 +182,6 @@
                                     <div class="col-auto ms-auto mb-2">
                                         {% if logged_in_user == item.created_by %}
                                         <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
-                                        {% else %}
-                                        <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -291,7 +289,7 @@
                     slider.classList.toggle('public');
                     slider.classList.toggle('private');
                     refreshPrivacyStatus();
-                    refreshDoneCount(listId); // Ensure done count is refreshed
+                     // Ensure done count is refreshed
 
                     // Log updated done counts after toggling
                     console.log(`Updated done count after toggling: ${doneCountElement.textContent}`);
@@ -330,36 +328,7 @@
         }
     }
 
-    function refreshDoneCounts() {
-        console.log('Refreshing done counts');
-        let lists = document.querySelectorAll('.card');
-        lists.forEach(function (list) {
-            let listId = list.querySelector('.toggle-slider').dataset.listId;
-            refreshDoneCount(listId);
-        });
-    }
-
-    function refreshDoneCount(listId) {
-        let doneCountElement = document.getElementById('done-count-' + listId);
-        let doneCount = 0;
-        let totalCount = 0; // Initialize totalCount to zero
-        let checkboxes = document.querySelectorAll(`input[data-list-id="${listId}"]`);
-        checkboxes.forEach(function (checkbox) {
-            totalCount++; // Increment totalCount for each checkbox
-            if (checkbox.checked) {
-                doneCount++;
-            }
-        });
-
-        // Log counts before updating the display
-        console.log(`Total count for list ${listId}: ${totalCount}`);
-        console.log(`Done count for list ${listId}: ${doneCount}`);
-
-        // Update the displayed doneCount
-        doneCountElement.textContent = `${totalCount - 1} Items`;
-        console.log(`Done count for list ${listId} refreshed: ${totalCount - 1}`);
-    }
-
+    
     function toggleItemDone(itemId, listId) {
         console.log(`Toggling done status for item ${itemId} in list ${listId}`);
         let checkbox = document.getElementById(`item_${itemId}`);
