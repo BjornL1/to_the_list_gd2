@@ -265,7 +265,6 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | Rename cfm     |           92 |           100 |             100 | 100 |
 | Add item       |           93 |           100 |             100 | 100 |
 | Duplicate item |           95 |           100 |             100 | 100 |
-
 | Mobile         |              |               |                 |     |
 | Home           |           93 |           100 |             100 | 100 |
 | Signup         |           95 |           100 |             100 | 100 |
