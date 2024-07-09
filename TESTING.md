@@ -139,12 +139,12 @@ Table of Contents
 - By viewing the item status on the list item, I will immediately see if there are any items in the list.
 
 Add item: Option 1
-- Clicking on the "Edit" button on the list card will display the edit menu. From there, selecting "Items" will show the "Add item" button on a separate page.
+- Clicking on the "Edit" button on the list card will display the edit menu. From there, selecting "Show Items" will show the "Add item" button on a separate page.
 - When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
 - Upon entering the name and clicking "Add item", the item will be added to the list.
 
 Add item: Option 2.
-- Clicking on the list title under the "Other Lists" section will open the items in the list on a separate page. From there, locate the "Duplicate" button displayed on the page.
+- Clicking on the View Items on the lis. From there, locate an item and click edit button.
 - Clicking on the "Duplicate" button on the list item will display the duplicate item page. From there, enter the name and click "Duplicate Item".
 - A confirmation message is displayed. By clicking "OK", the new item is created and displayed.
 
@@ -156,18 +156,13 @@ In the picture below, Option 1 is displayed.
 
 Option 1.
 - By clicking the "Edit" button on a list card, the edit menu will be displayed.
-- Clicking the "Items" button will lead to a separate page with items. From there, click on the edit button displayed after each card, and the option "Rename" will be displayed on a separate item edit menu page.
+- Clicking the "Show Items" button will lead to a separate page with items. From there, click on the edit button displayed after each card, and the option "Rename" will be displayed on a separate item edit menu page.
 - Click on the "Rename" button, and a new page is displayed with a name field. Enter the new name and click the "Rename" button.
 - A confirmation message is displayed. By clicking "OK", the new name is updated and displayed.
 
 Option 2. 
 - By clicking the list title in a list card and locate the edit button for any item displayed directly, from there click the "edit" button and locate the "Rename Item" button that is displayed one the page.
 - Click on the "Rename" button, and a new page is displayed with a name field. Enter the new name and click the "Rename" button.
-- A confirmation message is displayed. By clicking "OK", the new name is updated and displayed.
-
-Option 3.
-- Clicking on the list title under the "Other Lists" section will open the items in the list on a separate page. From there, locate the "Rename Item" button displayed on the page.
-- Click on the "Rename" button, and a new page will be displayed with a field for entering the new name. Enter the new name and click the "Rename" button.
 - A confirmation message is displayed. By clicking "OK", the new name is updated and displayed.
 
 
@@ -181,46 +176,20 @@ In the picture below, Option 3 is displayed.
 
 Option 1.
 - By clicking the "Edit" button on a list card, the edit menu will be displayed.
-- Clicking the "Items" button will lead to a separate page with items. From there, click on the edit button displayed after each card, and the option "Delete" will be displayed on a separate item edit menu page.
+- Clicking the "Show Items" button will lead to a separate page with items. From there, click on the edit button displayed after each card, and the option "Delete" will be displayed on a separate item edit menu page.
 - Clicking the "Delete" button prompts a confirmation message. Upon clicking "OK", the item is deleted, and a confirmation message is displayed.
 
 Option 2. 
-- Click the list title in a list card to access the edit button for any item displayed. From there, click the "edit" button and locate the "Delete" button displayed on the page.
+- Click the "View Items" button in a list card to access the edit button for any item displayed. From there, click the "Edit" button and locate the "Delete" button displayed on the page.
 - Clicking the "Delete" button prompts a confirmation message. Upon clicking "OK", the item is deleted, and a confirmation message is displayed.
 
 Option 3.
-- By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Delete" will be shown on a separate item edit menu page.
+- By clicking on the "View Items" button, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Delete" will be shown on a separate item edit menu page.
 - Clicking on the "Delete" button will prompt a confirmation message.
 - By clicking "OK", the item is deleted, and a confirmation message is displayed.
 
 ![header](docs/testing_images/item_deleted.png)
 
-*As a Site User, I can add/delete/rename my items added to other users' public lists so that I can easily share my items with other users.*
-
-The following options have already been presented in previous sections. The content below displays the options available to a user who does not own a list and wants to edit public lists.
-
-Add item:
-- By clicking on the list title, the separate item page is displayed. From there, I click on "Add item" at the top.
-- When clicking "Add item", a page will prompt the user to enter the name for the new item and click the "Add item" button.
-- Upon entering the name and clicking "Add item", the item will be added to the list.
-
-Duplicate item:
-- Clicking on the list title under the "Other Lists" section will open the items in the list on a separate page. From there, locate the "Duplicate" button displayed on the page.
-- Clicking on the "Duplicate" button on the list item will display the duplicate item page. From there, enter the name and click "Duplicate Item".
-- A confirmation message is displayed. By clicking "OK", the new item is created and displayed.
-
-Delete Item:
-- By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Delete" will be shown on a separate item edit menu page.
-- Clicking on the "Delete" button will prompt a confirmation message.
-- By clicking "OK", the item is deleted, and a confirmation message is displayed.
-
-Rename Item
-- By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Rename" will be shown on a separate item edit menu page.
-- Clicking on the "Rename" button will prompt a confirmation message.
-- By clicking "OK", the item is renamed, and a confirmation message is displayed.
-
-Relocate from item to list
-- By clicking 'Show Lists' the list page is displayed.
 
 
 ### EPIC | Site Administration

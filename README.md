@@ -92,6 +92,7 @@ The following user stories were scoped out of the project due to time constraint
 
 - As a Site User, I can move items between different lists so that I can increase flexibility of item management.
 - As a Site User, I can search and filter lists so that I can find lists based on specific search criteria.
+- USER STORY: Item updates in public lists, will not be implemented due to poor user intuitiveness.
 
 ### Design
 
@@ -459,12 +460,13 @@ A logged-in user can rename an item from the list view by following these steps:
    - On the edit options page, locate and click the "Show Items" button. This will bring up a dedicated items page.
    - On the items page, locate the item you wish to rename and click on its "Edit" button. This action will display the edit item page.
    - On the edit item page, click on the "Rename item" button. This will prompt the display of a rename item page.
-   - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
+   - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the name change.
    - A confirmation page will then be displayed, showing the name of the renamed item along with a "Close" button.
    - Click on the "Close" button to return to the item view.
 
 2. From the list view:
    - Click on a list containing items.
+   - Click on View Items button.
    - Click on an item with the "Edit" button visible. This action will display the edit item page.
    - On the edit item page, click on the "Rename" button. This will prompt the display of a rename item page.
    - Enter a name for the duplicated item and click on "Rename item". A message will appear, confirming the duplication.
@@ -507,10 +509,10 @@ Changing an item from not done to done can be done either directly from the list
 the items through the edit button on the list view.
 
 1. From the list view, logged-in users list:
-   - Click on the title of the list, click on the done checkbox shown for each item.
+   - Click on the View Items button on the list, click on the done checkbox shown for each item.
 2. From the list view, other lists, item owned by logged-in user:
    - Click on the "Edit" button. This action will direct the user to a page with various edit options.
-   - On the edit options page, locate and click the "Items" button. This will bring up a dedicated items page.
+   - On the edit options page, locate and click the "Show Items" button. This will bring up a dedicated items page.
    - Click on click on the done checkbox shown for the items displayed.  
 
 In the image below, you can see an example of how the two items in the separated page item view, where one item is marked as done.
