@@ -633,4 +633,3 @@ To clone this repository follow the below steps:
 ## Acknowledgments
 
 Thanks to my mentor Antonio for his support and advice.
-

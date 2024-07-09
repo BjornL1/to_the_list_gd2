@@ -402,14 +402,12 @@ def delete(request, list_id):
 def delete_item(request, item_id):
     try:
         item = Item.objects.get(pk=item_id)
+        list_id = item.shopping_list.id  # Extract list_id
 
         # Check if the current user is the owner of the item's shopping list
         if request.user != item.shopping_list.owner:
-            return HttpResponseForbidden(
-                "You are not authorized to delete this item.")
+            return HttpResponseForbidden("Not authorized to delete this item.")
 
-        # If the request method is POST, it means the user
-        # has confirmed the deletion
         if request.method == 'POST':
             # Delete the item
             item.delete()
@@ -417,11 +415,9 @@ def delete_item(request, item_id):
             return render(
                 request,
                 'shop_list/delete_item_confirmation.html',
-                {'item': item}
+                {'item': item, 'list_id': list_id}  # Pass list_id to context
             )
 
-        # If the request method is GET, it means the user is viewing
-        # # the confirmation page
         else:
             # Redirect to the confirmation page
             return redirect('delete_item_confirmation', item_id=item_id)
