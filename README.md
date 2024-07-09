@@ -282,6 +282,11 @@ The header offers various options, including: Home, Learn, Register, Login, Logg
 - Django allauth was installed and used to create the Sign up, Login and Log out functionality. 
 
 ### List management
+The top row of the list overview includes a heading, pagination controls, and an 'Add List' button.
+A pagination control is also provided at the bottom of the page for other (public) lists.
+
+![header](docs/readme_images/list_top_row.png)
+
 All lists include the following information: Name, Number of Items (quantity), Clone Count, Public/Private status (button for list owner), View Items button, Edit/Clone Button.
 Their presentation and options depend on whether the user owns the list or not. All lists owned by the logged-in user will be displayed first under the heading 'My Lists,' while public lists owned by other users are displayed under 'Other Lists'."
 
@@ -633,3 +638,4 @@ To clone this repository follow the below steps:
 ## Acknowledgments
 
 Thanks to my mentor Antonio for his support and advice.
+

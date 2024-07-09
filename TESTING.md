@@ -54,8 +54,11 @@ Table of Contents
 
  *As a User I can immediately understand the purpose of the site so that I can decide if it meets my needs*
 
-- In the center of the landing page, there is a section entitled with an information message that provides a brief overview of what the site has to offer. Additionally, there is a button labeled "Add list" to further emphasize the message.
+- In the center of the landing page, there is a section entitled with an information message that provides a brief overview of what the site has to offer. Additionally, there is a button labeled "Create Your List Now! " to further emphasize the message.
 
+- After signing in the user can can create using 'Create Shopping List' a list or go to list view by clicking 'Later, Show All Lists' Button. 
+
+![header](docs/testing_images/after_login.png)
 ![header](docs/testing_images/homepage.png)
 
 
@@ -63,7 +66,11 @@ Table of Contents
 
 - A navigation bar is visible on every page of the site, which is fully responsive across different screen sizes.
 
+- Pagination controls implemented for user owned list and other lists.
+
 ![header](docs/testing_images/user_navigation.png)
+
+
 
 *As a Site User, I can view which items belong to each list so that I don't misunderstand which items belong to which list.*
 
@@ -76,6 +83,8 @@ Table of Contents
 
 *As a Site User, I can create lists so that I can easily organize items.*
 
+- The user can create the list directly from there, the user will be redirected direclty to items sections.
+![header](docs/testing_images/after_login_list.png)
 - After logging in, public shared lists will be displayed. Additionally, an 'Add list' button will appear."
 
 ![header](docs/testing_images/organize_list.png)
@@ -110,8 +119,8 @@ Table of Contents
 
 *As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list*
 
-- Clicking on a list marked with the toggle switch positioned to the left and labeled as "public" will move the switch to the right position, and the text will be updated from "public" to "private."
-- Clicking on a list marked with the toggle switch positioned to the right and labeled as "private" will move the switch to the left position, and the text will be updated from "private" to "public."
+- Clicking on a list marked with the toggle switch positioned to the left and labeled as "private" will move the switch to the right position, and the text will be updated from "private" to "public."
+- Clicking on a list marked with the toggle switch positioned to the right and labeled as "private" will move the switch to the left position, and the text will be updated from "public" to "private."
 - After logging out and logging back in, I can confirm that the latest saved status (public or private) is correctly maintained..
 
 ![header](docs/testing_images/public_private.png)
@@ -208,6 +217,9 @@ Rename Item
 - By clicking on the list title, the separate item page is displayed. From there, click on the edit button displayed after each card, and the option "Rename" will be shown on a separate item edit menu page.
 - Clicking on the "Rename" button will prompt a confirmation message.
 - By clicking "OK", the item is renamed, and a confirmation message is displayed.
+
+Relocate from item to list
+- By clicking 'Show Lists' the list page is displayed.
 
 
 ### EPIC | Site Administration
@@ -331,8 +343,8 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 ### Home Page
 | Element                | Action  | Expected Result                           | Pass/Fail |
 |------------------------|---------|-------------------------------------------|-----------|
-| Hero 'Add List" Button | Click   | Open Sign In page                         | Pass      |
-| Hero 'Add List" Button | Display | Only visible if the user is not signed in | Pass      |
+| Hero 'Create Your List Now!' Button | Click   | Open Sign In page                         | Pass      |
+| Hero 'Create Your List Now!' Button | Display | Only visible if the user is not signed in | Pass      |
 
 ### Sign Up Page
 | Element     | Action             | Expected Result                                                                         | Pass/Fail |
@@ -378,6 +390,8 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Public/Private" Toggle switch | Click               | Toggle switch change position, Private/Public text box is updated       | Pass      |
 | "Edit" Button                  | Click               | Display "Edit List" and "Items" page           | Pass      |
 | "Clone" Button                 | Click               | Display "Clone List" page                      | Pass      |
+| "Pagination" Button (my list)                | Click               | Display next page                      | Pass      |
+| "Pagination" Button (other list)                | Click               | Display next page                      | Pass      |
 
 ### Item view from list page
  Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
