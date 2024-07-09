@@ -5,6 +5,9 @@ body {
     padding-top: 0;
 }
 
+.margin-login {
+    margin-right: 30px;
+}
 .pagination {
     display: flex;
     flex-wrap: wrap;

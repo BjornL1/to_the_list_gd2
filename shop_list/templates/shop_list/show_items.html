@@ -15,6 +15,7 @@
      <!-- Conditionally render the Add Item button -->
     {% if is_owner %}
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-warning mb-3">Add Item</a>
+    <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary homepage-buttons mb-3">Show Lists</a>
     {% endif %}
 
     <button id="back-to-top-btn" title="Go to top">Top</button>
