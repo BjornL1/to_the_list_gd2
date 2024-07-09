@@ -86,7 +86,7 @@ Table of Contents
 
 - The user can create the list directly from there, the user will be redirected direclty to items sections.
 ![header](docs/testing_images/after_login_list.png)
-- After logging in, public shared lists will be displayed. Additionally, an 'Add list' button will appear."
+- After logging in, public shared lists will be displayed besides the logged in users lists. Additionally, an 'Add list' button will appear along with a pagination control"
 
 ![header](docs/testing_images/organize_list.png)
 
@@ -121,7 +121,7 @@ Table of Contents
 *As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and letting other users adding items to my public list*
 
 - Clicking on a list marked with the toggle switch positioned to the left and labeled as "private" will move the switch to the right position, and the text will be updated from "private" to "public."
-- Clicking on a list marked with the toggle switch positioned to the right and labeled as "private" will move the switch to the left position, and the text will be updated from "public" to "private."
+- Clicking on a list marked with the toggle switch positioned to the right and labeled as "public" will move the switch to the left position, and the text will be updated from "public" to "private."
 - After logging out and logging back in, I can confirm that the latest saved status (public or private) is correctly maintained..
 
 ![header](docs/testing_images/public_private.png)
