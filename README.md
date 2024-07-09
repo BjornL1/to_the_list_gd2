@@ -75,7 +75,7 @@ A typical user of ToTheList is someone who wants to efficiently manage their sho
 - As a Site User, I can rename a list so that I don't need to delete and recreate a new list if I accidentally named it wrong.
 - As a Site User, I can delete lists so that I can remove ones that are no longer needed.
 - As a Site User, I can view and copy an existing list created by another user so that I can reuse items in my own lists.
-- As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists and let other users add items to my public list.
+- As a Site User, I can set my lists to be private or public so that I can control whether I want to share my lists.
 - As a Site User, I can see how frequently my lists are copied, so that I can adapt and prioritize sharing lists that are most meaningful. 
 
 #### EPIC Items interaction
@@ -169,7 +169,7 @@ Django AllAuth was used for the user authentication system.
 
 To facilitate the management of shopping lists, a custom ShoppingList model was developed. Each shopping list is associated with a single user who acts as its owner. Therefore, the owner attribute of the ShoppingList model is a foreign key to the User model.
 
-In addition to the ShoppingList model, a ShoppingListPreference model was implemented to handle user preferences related to shopping lists. This model allows users to specify whether a shopping list should be deleted or retained. . The user attribute of the ShoppingListPreference model is a foreign key to the User model, indicating that each preference setting is linked to a single user. Similarly, the shopping_list attribute is a foreign key to the ShoppingList model, indicating that each preference setting corresponds to a specific shopping list.
+In addition to the ShoppingList model, a ShoppingListPreference model was implemented to handle user preferences related to shopping lists. This model allows users to specify whether a shopping list should be deleted or retained. The user attribute of the ShoppingListPreference model is a foreign key to the User model, indicating that each preference setting is linked to a single user. Similarly, the shopping_list attribute is a foreign key to the ShoppingList model, indicating that each preference setting corresponds to a specific shopping list.
 
 Furthermore, the Item model represents individual items within a shopping list. Each item is associated with a single shopping list, represented by the shopping_list attribute, which is a foreign key to the ShoppingList model. Additionally, the created_by attribute of the Item model signifies the user who created the item, and it is a foreign key to the User model, indicating that each item is linked to its creator.
 
@@ -315,7 +315,7 @@ For a logged-in user, the following information will be presented for lists in t
 
 If the logged-in user has created lists, they will be displayed at the top of the page.
 Any items in the list will be linked under the card and will be scrollable directly below the card if the user clicks on the list title.
-In the example below, a list has been cloned once. It contains 2 items, one of which has been marked as done. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
+In the example below, a list has been cloned once. It contains 6 items, one of which has been marked as done. The list is set to "public" and the edit button is visible since the logged-in user owns the list. 
 
 ![header](docs/readme_images/lists.png)
 
@@ -351,11 +351,11 @@ A list can be created from four different locations:
     - Enter a name for the list and click "Clone list" -> The newly created list is confirmed with a message and a close button.
     - Click the "Close" button-> The latest created list will be displayed on the list view, the clone count for the list that was cloned will increase by 1.
 
-In the image below, you can see an example of how the list "BjornL List 1" is displayed before cloning the list.
+In the image below, you can see an example of how the list "TestList" is displayed before cloning the list.
 
 ![header](docs/readme_images/clonelist.png)
 
-In the image below, the list has been cloned and renamed to "BjornL List 1 Cloned".
+In the image below, the list has been cloned and renamed to "TestListCloned".
 
 ![header](docs/readme_images/clonelist_confirmed.png)
 
@@ -371,7 +371,7 @@ A logged-in user can rename a list from the list view by following these steps:
   - A message will promptly appear, confirming the successful renaming of the list along with the new name. Additionally, a "Close" button will be provided.
   - To return to the list view, simply click on the "Close" button.
 
-In the image below, there is an example of how the list "BjornL List 1" is displayed before renaming the list.
+In the image below, there is an example of how the list "TestList" is displayed before renaming the list to "FinalList"
 
 ![header](docs/readme_images/renamelist.png)
 
@@ -405,17 +405,15 @@ In the image below, there is an example of a public and private list positioned 
 **View items in a list**
 
 1. For a user owning the list:
-   - Click on the list title. This action will display all items directly under the list. To hide the items, simply click on the list title again.
+   - Click on the View Items button (or list title). This action will display all items directly under the list. To hide the items, simply click on the View Items button again.
 2. For a user owning the list:
    - Click on the "Edit" button for the list. This will direct the user to a page with various edit options.
-   - On the edit options page, locate and click the "Items" button. This action will display the items on a separate page.
+   - On the edit options page, locate and click the "Show Items" button. This action will display the items on a separate page.
    - To return to the previous pages, simply use the browser's back button.
-3. For a user viewing other users' public lists:
-   - Click on the list title in the "Other Lists" section. This will display the list items on a separate page.
-   - To return to the previous pages, use the browser's back button.
+3. For a user viewing other users' the same procedure however only the   "Clone" option is displayed for the list instead of "Edit" button.
 
 ### Item management
-All items are associated with a list and can be added either by creating them or by cloning other lists and their items.
+All items are associated with a list can be added either by creating them or by cloning other lists and their items.
 Moreover, users have the ability to rename and delete items.
 Each item in a list owned by the logged-in user can be marked as 'done' or 'not done' (when the checkbox is not checked).
 The owner of an item has full editing access to it. For public lists (the "other lists" section), a logged-in user can only view the items in these lists.
@@ -441,6 +439,7 @@ At the bottom of the separated item page, a "Back to Top" button will appear whe
    - Click on the "Close" button to return to the item view.
 3. From the list view:
     - From the list view, click on a list containing items.
+    - Click View Items button.
     - Click on an item with the "Edit" button visible. This action will display the edit item page.
     - On the edit item page, click on the "Duplicate Item" button. This will prompt the display of a duplicate item page.
     - Enter a name for the duplicated item and click on "Duplicate Item". A message will appear, confirming the duplication.
