@@ -16,6 +16,7 @@ Table of Contents
   * [Sign Up Page](#sign-up-page)
   * [Sign In Page](#sign-in-page)
   * [Sign Out Page](#sign-out-page)
+  * [Create List Initial](#sign-out-page)
   * [List view](#list-view)
   * [Item view from list page](#item-view-from-list-page)
   * [Item separate page](#item-separate-page)
@@ -372,21 +373,29 @@ Lighthouse validation was run on all pages (both mobile and desktop) in order to
 | "Sign Out" Link | Click | Display "Sign Out" page | Pass      |
 | "Sign Out" Button | Click | Display landing page | Pass      |
 | "Sign Out" browser back | Click | Display list view, sign out is cancelled | Pass      |
-### List view
 
+### Create List Initial 
+| Element     | Action             | Expected Result                                                                         | Pass/Fail |
+|-------------|-------------------------|-----------------------------------------------------------------------------------------|-----------|
+| "Create Shopping List" Button | Display | Button is displayed at login | Pass      |
+| "Create Shopping List" Button | Click | Prevent list creation if input field is empty | Pass      |
+| "Create Shopping List" Button | Click | Create list and redirect to add item page | Pass      |
+| "Later, Show All Lists" Button | Display | Button is displayed at login | Pass      |
+| "Later, Show All Lists" Button | Click | Redirect to add item page | Pass      |
+
+### List view
 | Element                        | Action              | Expected Result                                                                                                         | Pass/Fail |
 |--------------------------------|---------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
 | Lists                          | Display             | 1. The users own lists are displayed            | Pass      |
 | Lists                          | Display             | 2. Other users public lists are displayed in a separate section below            | Pass      |
-| Lists                          | Display             | 3. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public/Private, Toggle switch( Private/Public) and an Edit button            | Pass      |
-| Lists                          | Display             | 4. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items/Done, Public, and a Clone button            | Pass      |
+| Lists                          | Display             | 3. Each list owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items, Public/Private, Toggle switch( Private/Public) View Items and an Edit button            | Pass      |
+| Lists                          | Display             | 4. Each list not owned by the logged in user displays: Title, Created by:, Clone Count, Number of Items, Public, and a Clone button            | Pass      |
 | Lists                          | Display             | All lists are sorted by the newest displayed at the top            | Pass      |
-| "Top" Button                   | Display             | A "to the top button" is displayed if the user scrolls down on the list page                              | Pass      |
-| "Top" Button                   | Click               | The top of the page is displayed                               | Pass      |
 | "Add List" Button              | Click               | Display "Create List" page                               | Pass      |
-| List title Link (own lists)    | Click               | Items connected to the list display/hide under the list card                 | Pass      |
-| List title Link (other lists)  | Click               | Items connected to the list is displayed on a separate page                 | Pass      |
-| Public/Private text box        | Display             | List status is correctly displayed in the text box       | Pass      |
+| List title Link and Viev I
+tems button (own lists)    | Click               | Items connected to the list display/hide under the list card                 | Pass      |
+| List title Link (other lists)  | Click               | Items connected to the list display/hide under the list car              | Pass      |
+| Public/Private Toggle Switch (textbox for other lists)        | Display             | List status is correctly displayed in the text box       | Pass      |
 | "Public/Private" Toggle switch | Click               | Toggle switch change position, Private/Public text box is updated       | Pass      |
 | "Edit" Button                  | Click               | Display "Edit List" and "Items" page           | Pass      |
 | "Clone" Button                 | Click               | Display "Clone List" page                      | Pass      |
@@ -467,7 +476,7 @@ Pass      |
 | "Duplicate Item" input field                  | Display               | The duplicate page is displayed and the current item name    | Pass      |
 | "Duplicate Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The item is duplicate, a confirmation page is displayed    | Pass      |
-| "Close"  Button                  | Click               |The page is closed, redirect to list view    | Pass      |
+| "Close"  Button                  | Click               |The page is closed, redirect to item view    | Pass      |
 Pass      |
 | Confirm message "Cancel" Button                  | Click               | The item is not duplicated, return to the duplicate item page    | Pass      |
 | Input field                  | Click               |  Click | Display message if the input fields is left empty, no duplication will occur | Pass      |   | Pass   
@@ -478,7 +487,7 @@ Pass      |
 | "Rename" input field                  | Display               | The rename page is displayed and the current item name    | Pass      |
 | "Rename Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The item is renamed, a confirmation page is displayed    | Pass      |
-| "Close"  Button                  | Click               |The page is closed, redirect to list view    | Pass      |
+| "Close"  Button                  | Click               |The page is closed, redirect to item view    | Pass      |
 Pass      |
 | Confirm message "Cancel" Button                  | Click               | The item is not renamed, return to the rename item page    | Pass      |
 | Input field                  | Click               | Display message if the input fields is left empty, no renaming will occur | Pass      |   
@@ -493,6 +502,15 @@ Pass      |
 Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
 
+**Navigation: **
+
+| Element                         | Action   | Expected Result                                               | Pass/Fail |
+|---------------------------------|----------|---------------------------------------------------------------|-----------|
+| "Delete List" Button            | Click    | A confirmation message page is displayed                      | Pass      |
+| Confirm message "OK" Button     | Click    | The list is deleted, a confirmation page is displayed         | Pass      |
+| "Close" Button                  | Click    | The page is closed, redirect to the list view                 | Pass      |
+| Confirm message "Cancel" Button | Click    | The list is not deleted, return to the edit list page         | Pass      |
+
 
 ## Bugs 
 
@@ -502,7 +520,12 @@ Pass      |
      - **Bug**: Originally, the application allowed non-authorized users to access and attempt actions like deleting an item they didn't own. Although a message prevented the action, it was presented after the attempt, resulting in a poor user experience.
 
     - **Fix**: To address this, I revisited the logic in the views file to ensure that only authorized users could access actions like deletion. By returning the correct context data from the views, I improved the user experience by preventing non-authorized users from attempting unauthorized actions in the first place.
+    
 
+  
+  - **Bug**: In the initial version, users could enter negative values in the quantity field for items.
+
+    Fix: Updated the form (forms.py file) to restrict negative values by setting a minimum value of 1 and adding validation.
 
 ### Unfixed bugs:
 There are no known unfixed bugs. 
