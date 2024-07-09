@@ -791,15 +791,6 @@ label[for="id_name"] {
     height: 200px;
 }
 
-.step7-show-list {
-    background-image: url('../images/step7_return_list_view.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 200px;
-}
-
 .step8-view-item-list {
     background-image: url('../images/step8_view_list.png');
     background-size: contain;

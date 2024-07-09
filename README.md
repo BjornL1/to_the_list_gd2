@@ -329,11 +329,13 @@ In this section of the page, public lists are listed under 'Other Lists.'
 
 A list can be created from four different locations:
 
-1. Logged-out users: They can create a list by clicking the "Add list" button on the homepage.
+1. Logged-out users: They can create a list by clicking the ""Create Your List Now!" button on the homepage.
     - Click the "Create Your List Now!" button on the landing page-> Sign-in form is displayed.
     - Enter login credentials or sign up. Click "Sign in" or "Sign Up" -> Create list form is displayed.
-    - Enter a name for the list and click "Create" -> The list is created and user is directed to an add items page.
+    - Enter a name for the list and click "Create Shopping List" -> The list is created and user is directed to an add items page.
     - On the add item list page click "Show Lists" -> The latest created list will be displayed on the list view.
+
+![header](docs/readme_images/after_login.png)
 
 2. Logged-in: "Add list" button from list view.
     - Click the "Add list" button from list view -> Create list form is displayed.
@@ -634,6 +636,7 @@ To clone this repository follow the below steps:
 - [Bootstrap 5.0 Docs](https://getbootstrap.com/docs/5.0/getting-started/introduction//)
 - [Stack Overflow](https://stackoverflow.com/)
 - [Code Institute - Blog Walkthrough Project](https://github.com/Code-Institute-Solutions/Django3blog)
+- [iStockPhoto](https://www.istockphoto.com/se/foto/trying-not-to-forget-to-buy-everything-gm474481130-64696411)
 
 ## Acknowledgments
 

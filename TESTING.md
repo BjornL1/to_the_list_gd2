@@ -409,7 +409,6 @@ tems button (own lists)    | Click               | Items connected to the list d
 | "Done" check box               | Display             | Items/done status is updated correctly on page load    | Pass      |
 | "Done" check box               | Click               | Items/done status is updated correctly on page load    | Pass      |
 | "Edit" Button                  | Click               | Edit items page is displayed    | Pass      |
-| "Duplicate" Button             | Click               | Duplicate items page is displayed   | Pass      |
 
 
 ### Item separate page
@@ -430,7 +429,7 @@ tems button (own lists)    | Click               | Items connected to the list d
 | "Clone List" Button                  | Click               | Clone list page is displayed    | Pass      |
 | "Rename List" Button                 | Click               | Rename list items page is displayed    | Pass      |
 | "Delete list" Button                 | Click               | A confirmation message page is displayed    | Pass      |
-| "Items" Button                       | Click               | A separate edit items page is displayed    | Pass      |
+| "Show Items" Button                       | Click               | A separate edit items page is displayed    | Pass      |
 
 **Clone list: Create and confirm**
 | Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
@@ -439,9 +438,8 @@ tems button (own lists)    | Click               | Items connected to the list d
 | "Clone List" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The list is cloned, a confirmation page is displayed    | Pass      |
 | "Close"  Button                  | Click               | Page is closed, redirect to list view    | Pass      |
-Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not cloned, return to the clone list page    | Pass      |
-| Input field                  | Click               |  Click | Display message if the input fields is left empty, no cloning will occur | Pass      |   | Pass   
+| Input field                  | Click               | Display message if the input fields is left empty, no cloning will occur | Pass      |   
 
 **Rename list: Create and confirm**
 | Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
@@ -450,7 +448,6 @@ Pass      |
 | "Rename List" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The list is renamed, a confirmation page is displayed    | Pass      |
 | "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
-Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not renamed, return to the rename list page    | Pass      |
 | Input field                  | Click               |  Click | Display message if the input fields is left empty, no renaming will occur | Pass      |
 
@@ -460,15 +457,24 @@ Pass      |
 | "Delete List" Button                  | Click              |  A confirmation message page is displayed     | Pass      |
 | Confirm message "OK" Button                  | Click               | The list is deleted, a confirmation page is displayed    | Pass      |
 | "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
-Pass      |
 | Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
+
+### Edit Items page
+| Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
+|-------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|-----------|
+| "Duplicate Item" Button                  | Click               | Clone list page is displayed    | Pass      |
+| "Rename Item" Button                 | Click               | Rename list items page is displayed    | Pass      |
+| "Delete Item" Button                 | Click               | A confirmation message page is displayed    | Pass      |
+| "Show Items" Button                       | Click               | A separate edit items page is displayed    | Pass      |
+
 
 **Add item**
 | Element            | Action  | Expected Result                                                                                                         | Pass/Fail |
 |--------------------|---------|-------------------------------------------------------------------------------------------------------------------------|-----------|
 | "Add item" input field                  | Display               | The list which the item will be added to is displayed    | Pass      |
 | "Add Item" Button                  | Click               |  The item is added to the list  | Pass      |  
-
+| "Show Lists Button                 | Click               |  The user is redirected to list view  | Pass      | 
+| "Quantity" Input field values        | Click               | Only numeric positive values allowed for add item action  | Pass      |
 
 **Duplicate item: duplicate and confirm**
 | Element                       | Action                | Expected Result                                                                                                     | Pass/Fail |
@@ -477,7 +483,6 @@ Pass      |
 | "Duplicate Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The item is duplicate, a confirmation page is displayed    | Pass      |
 | "Close"  Button                  | Click               |The page is closed, redirect to item view    | Pass      |
-Pass      |
 | Confirm message "Cancel" Button                  | Click               | The item is not duplicated, return to the duplicate item page    | Pass      |
 | Input field                  | Click               |  Click | Display message if the input fields is left empty, no duplication will occur | Pass      |   | Pass   
 
@@ -488,28 +493,18 @@ Pass      |
 | "Rename Item"" Button                  | Click               |  A confirmation message page is displayed    | Pass      |  Pass      |
 | Confirm message "OK" Button                  | Click               | The item is renamed, a confirmation page is displayed    | Pass      |
 | "Close"  Button                  | Click               |The page is closed, redirect to item view    | Pass      |
-Pass      |
 | Confirm message "Cancel" Button                  | Click               | The item is not renamed, return to the rename item page    | Pass      |
 | Input field                  | Click               | Display message if the input fields is left empty, no renaming will occur | Pass      |   
 
 
 **Delete item: delete and confirm**
-| Element       | Action | Expected Result                                                                                                        | Pass/Fail |
-|---------------|--------|------------------------------------------------------------------------------------------------------------------------|-----------|
-| "Delete List" Button                  | Click              |  A confirmation message page is displayed     | Pass      |
-| Confirm message "OK" Button                  | Click               | The list is deleted, a confirmation page is displayed    | Pass      |
-| "Close"  Button                  | Click               | The page is closed, redirect to the list view    | Pass      |
-Pass      |
-| Confirm message "Cancel" Button                  | Click               | The list is not deleted, return to the edit list page    | Pass      |
-
-**Navigation: **
 
 | Element                         | Action   | Expected Result                                               | Pass/Fail |
 |---------------------------------|----------|---------------------------------------------------------------|-----------|
 | "Delete List" Button            | Click    | A confirmation message page is displayed                      | Pass      |
 | Confirm message "OK" Button     | Click    | The list is deleted, a confirmation page is displayed         | Pass      |
-| "Close" Button                  | Click    | The page is closed, redirect to the list view                 | Pass      |
-| Confirm message "Cancel" Button | Click    | The list is not deleted, return to the edit list page         | Pass      |
+| "Close" Button                  | Click    | The page is closed, redirect to the item page view            | Pass      |
+| Confirm message "Cancel" Button | Click    | The list is not deleted, return to the edit item page         | Pass      |
 
 
 ## Bugs 

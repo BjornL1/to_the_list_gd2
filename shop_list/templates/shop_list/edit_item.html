@@ -33,6 +33,10 @@ Edit Item
         <button type="submit" class="btn btn-warning custom-button">Delete Item</button>
     </form>
 
+    <form method="post" action="{% url 'show_items' list_id=shopping_list.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning mt-3 custom-button">Show Items</button>
+    </form>
     {% else %}
     <!-- Display button for non-creators -->
     <form method="post" action="{% url 'duplicate_item' item_id=item.id %}">
