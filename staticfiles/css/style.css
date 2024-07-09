@@ -677,30 +677,23 @@ label[for="id_name"] {
 }
 
 #back-to-top-btn {
-    /* Other styles for the button */
-    position: fixed;
-    bottom: -80px;
-    /* Start the button off-screen */
-    margin-bottom: 20px;
-    right: 100px;
-    z-index: 9999;
-    background-color: blue;
-    /* Example background color */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 15px;
-    text-align: center;
-    font-size: 18px;
-    transition: bottom 0.3s ease;
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button 20px from the bottom */
+    right: 20px; /* Place the button 20px from the right */
+    z-index: 100; /* Ensure it is above other elements */
+    background-color: #0621b8; /* Black background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer/hand icon */
+    font-size: 18px; /* Increase font size */
 }
 
 #back-to-top-btn:hover {
-    background-color: black;
-    /* Example background color on hover */
+    background-color: #555; /* Add a dark-grey background on hover */
 }
-
 
 #createListForm {
     max-width: 370px;

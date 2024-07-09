@@ -54,7 +54,7 @@
                     <p class="card-text">Created by: {{ username }}</p>
                     <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     <p class="card-text" id="done-count-{{ shopping_list.id }}" data-done-count="{{ done_count }}" data-total-count="{{ shopping_list.items.count }}">
-                    Items: {{ shopping_list.items.count }}
+                        Items: {{ shopping_list.items.count }}
                     </p>
                     <div class="d-flex justify-content-between">
                         <div class="toggle-container">
@@ -65,98 +65,87 @@
                             </label>
                         </div>
                         <div>
-                            {% if shopping_list.owner == request.user %}
-                                <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-4 mb-0">Edit</a>
-                            {% else %}
-                                {% if shopping_list.id %}
-                                <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-4 mb-0">Clone</a>
-                                {% endif %}
-                            {% endif %}
+                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons mt-4 mb-0">Edit</a>
                         </div>
                     </div>
                 </div>
             </div>
-        <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
-            <div class="item-list" style="max-height: 200px; overflow-y: auto;">
-                <ul>
-                    {% for item in shopping_list.items.all %}
-                    <li>
-                        <div class="card mb-1 mt-1">
-                            <div class="card-body">
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
-                                    </div>
-                                    <div class="col-auto ml-auto">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
-                                            <label class="form-check-label" for="item_{{ item.id }}">Done</label>
+            <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
+                <div class="item-list" style="max-height: 200px; overflow-y: auto;">
+                    <ul>
+                        {% for item in shopping_list.items.all %}
+                        <li>
+                            <div class="card mb-1 mt-1">
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            <h6 class="card-title">{{ forloop.counter }}. {{ item.name }}</h6>
                                         </div>
                                     </div>
-                                    <div class="col-auto ms-auto mb-2">
-                                        {% if logged_in_user == item.created_by %}
-                                        <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
-                                        {% else %}
-                                        <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
-                                        {% endif %}
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-text quantity quantity-container">({{ item.quantity }})</p>
+                                        </div>
+                                        <div class="col-auto ml-auto">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}">
+                                                <label class="form-check-label" for="item_{{ item.id }}">Done</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto ms-auto mb-2">
+                                            {% if logged_in_user == item.created_by %}
+                                            <a href="{% url 'edit_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Edit</a>
+                                            {% else %}
+                                            <a href="{% url 'duplicate_item' item_id=item.id %}" class="btn btn-warning btn-sm mt-0">Duplicate</a>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div><!-- Other Lists -->
+    <!-- Other Lists -->
     <span class="custom-container list-title">Other Lists</span>
-    <div class="row">
-        {% for shopping_list, username, done_count in other_lists_with_usernames %}
-        <div class="col-lg-6 col-xl-4 mb-4">
-            <div class="card">
-                <div class="card-body position-relative">
-                    <h5 class="card-title">
-                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
-                    </h5>
-                    <div class="position-absolute top-0 end-0 mt-3 me-3">
-                        <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')" class="d-flex align-items-center view-items-linklist">
-                            <span>View Items</span>
-                        </a>
+<div class="row">
+    {% for shopping_list, username, done_count in other_lists_with_usernames %}
+    <div class="col-lg-6 col-xl-4 mb-4">
+        <div class="card">
+            <div class="card-body position-relative">
+                <h5 class="card-title">
+                    <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')">{{ shopping_list.name }}</a>
+                </h5>
+                <div class="position-absolute top-0 end-0 mt-3 me-3">
+                    <a href="javascript:void(0)" onclick="toggleItems('{{ shopping_list.id }}')" class="d-flex align-items-center view-items-linklist">
+                        <span>View Items</span>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <p class="card-text">Created by: {{ username }}</p>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Created by: {{ username }}</p>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <p class="card-textother mt-5">Items: {{ shopping_list.items.count }}</p>
-                        </div>
+                    <div class="col-md-6 col-lg-4">
+                        <p class="card-text">Clone Count: {{ shopping_list.clone_count }}</p>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mt-3">
-                        <div>
-                            <span id="status-text-{{ shopping_list.id }}" class="public-other">{% if shopping_list.is_private %}Private{% else %}Public{% endif %}</span>
-                        </div>
-                        <div>
-                            {% if shopping_list.owner == request.user %}
-                            <a href="{% url 'edit' shopping_list.id %}" class="btn btn-primary homepage-buttons">Edit</a>
-                            {% else %}
-                            {% if shopping_list.id %}
-                            <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
-                            {% endif %}
-                            {% endif %}
-                        </div>
+                    <div class="col-md-6 col-lg-4">
+                        <p class="card-textother mt-5">Items: {{ shopping_list.items.count }}</p>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-3">
+                    <div>
+                        <span class="public-other">Public</span>
+                    </div>
+                    <div>
+                        <a href="{% url 'clone' shopping_list.id %}" class="btn btn-primary homepage-buttons">Clone</a>
                     </div>
                 </div>
             </div>
+        </div>
         <div id="items_{{ shopping_list.id }}" class="items-section" style="display: none;">
             <div class="item-list" style="max-height: 200px; overflow-y: auto;">
                 <ul>
@@ -175,7 +164,7 @@
                                     </div>
                                     <div class="col-auto ml-auto">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" {% if shopping_list.owner != request.user %}disabled{% endif %}>
+                                            <input class="form-check-input" type="checkbox" id="item_{{ item.id }}" name="item_{{ item.id }}" {% if item.is_done %}checked{% endif %} data-list-id="{{ shopping_list.id }}" disabled>
                                             <label class="form-check-label" for="item_{{ item.id }}">Done</label>
                                         </div>
                                     </div>
@@ -194,7 +183,8 @@
         </div>
     </div>
     {% endfor %}
-</div><!-- Other Lists -->
+</div>
+    <!-- Other Lists -->
 
     <!-- Pagination for Other Lists -->
     <nav aria-label="Other Lists pagination">
@@ -219,172 +209,134 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initialize toggle sliders
-        let toggleSliders = document.querySelectorAll('.toggle-slider');
-        toggleSliders.forEach(function (slider) {
-            let listId = slider.dataset.listId;
-            console.log(`Slider for list ${listId} initialized.`);
-            slider.value = slider.classList.contains('private') ? 1 : 0;
-        });
-
-        // Add event listener to each item checkbox
-        let itemList = document.querySelectorAll('input[type="checkbox"]');
-        itemList.forEach(function (checkbox) {
-            let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
-            let listId = checkbox.dataset.listId;
-
-            checkbox.addEventListener('change', function () {
-                console.log(`Checkbox for item ${itemId} in list ${listId} changed.`);
-                toggleItemDone(itemId, listId);
-            });
-        });
-
-        // Add event listener for browser navigation
-        window.addEventListener('pageshow', function () {
-            console.log('pageshow event fired');
-            refreshPrivacyStatus();
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize toggle sliders and set their state from localStorage
+    let toggleSliders = document.querySelectorAll('.toggle-slider');
+    toggleSliders.forEach(function (slider) {
+        let listId = slider.dataset.listId;
+        let savedState = localStorage.getItem(`toggle-${listId}`);
+        if (savedState !== null) {
+            slider.checked = savedState === '1';
+            updateToggleText(slider);
+        }
+        slider.addEventListener('change', function () {
+            console.log(`Toggle slider for list ${listId} changed.`);
+            localStorage.setItem(`toggle-${listId}`, slider.checked ? '1' : '0');
+            updateToggleText(slider);
+            toggleList(listId, slider.checked);
         });
     });
 
-    // Add event listener to toggle sliders
-    document.addEventListener("change", function (event) {
-        console.log('Change event triggered');
-        if (event.target && event.target.classList.contains('toggle-slider')) {
-            console.log('Toggle slider clicked');
-            let listId = event.target.dataset.listId;
-            toggleList(listId, event.target.value);
+    // Add event listener to each item checkbox
+    let itemList = document.querySelectorAll('input[type="checkbox"]:not([disabled])');
+    itemList.forEach(function (checkbox) {
+        let itemId = checkbox.id.split('_')[1]; // Extract item ID from checkbox ID
+        let listId = checkbox.dataset.listId;
 
-            let textElement = event.target.parentElement.querySelector('.status-text');
-            if (textElement) {
-                // Update the text based on the toggle status
-                textElement.textContent = event.target.value === '1' ? 'Private' : 'Public';
-            } else {
-                console.error('Status text element not found.');
-            }
-        }
+        checkbox.addEventListener('change', function () {
+            console.log(`Checkbox for item ${itemId} in list ${listId} changed.`);
+            toggleItemDone(itemId, listId);
+        });
     });
 
-    function toggleList(listId) {
-        console.log('Toggling list with ID:', listId);
+    // Add event listener for browser navigation
+    window.addEventListener('pageshow', function () {
+        console.log('pageshow event fired');
+        window.scrollTo(0, 0);
+    });
+});
 
-        // Log current done counts before toggling
-        let doneCountElement = document.getElementById('done-count-' + listId);
-        console.log(`Current done count before toggling: ${doneCountElement.textContent}`);
-
-        // Fetch request to toggle the privacy status
-        let csrftoken = getCookie('csrftoken');
-        fetch(`/toggle-list-status/${listId}/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // Toggle the color of the button
-                    var slider = document.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
-                    slider.classList.toggle('public');
-                    slider.classList.toggle('private');
-                    refreshPrivacyStatus();
-                     // Ensure done count is refreshed
-
-                    // Log updated done counts after toggling
-                    console.log(`Updated done count after toggling: ${doneCountElement.textContent}`);
-                } else {
-                    // Handle error
-                    console.error('Error:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+function updateToggleText(slider) {
+    let textElement = slider.closest('.card').querySelector('.status-text');
+    if (textElement) {
+        textElement.textContent = slider.checked ? 'Private' : 'Public';
     }
+}
 
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            let cookies = document.cookie.split(';');
-            for (let i = 0; cookies.length > i; i++) {
-                let cookie = cookies[i].trim();
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
+function toggleList(listId, isPrivate) {
+    console.log('Toggling list with ID:', listId);
 
-    function toggleItems(listId) {
-        let itemsSection = document.getElementById('items_' + listId);
-        if (itemsSection.style.display === 'none') {
-            itemsSection.style.display = 'block';
+    // Fetch request to toggle the privacy status
+    let csrftoken = getCookie('csrftoken');
+    fetch(`/toggle-list-status/${listId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({ is_private: isPrivate })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log(`List ${listId} toggled successfully.`);
         } else {
-            itemsSection.style.display = 'none';
+            // Handle error
+            console.error('Error:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
         }
     }
+    return cookieValue;
+}
 
-    
-    function toggleItemDone(itemId, listId) {
-        console.log(`Toggling done status for item ${itemId} in list ${listId}`);
-        let checkbox = document.getElementById(`item_${itemId}`);
+function toggleItemDone(itemId, listId) {
+    console.log(`Toggling done status for item ${itemId} in list ${listId}`);
+    let checkbox = document.getElementById(`item_${itemId}`);
 
-        // Save the state to localStorage
+    // Save the state to localStorage
+    if (checkbox) {
         localStorage.setItem(`item_${itemId}`, checkbox.checked);
 
         // Send AJAX request to update "done" status
         let csrftoken = getCookie('csrftoken');
         fetch(`/toggle-item-done/${itemId}/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Update UI based on response
-                if (data.status === 'success') {
-                    console.log(`Item status toggled successfully for item ${itemId}`);
-                    refreshDoneCount(listId);
-                } else {
-                    // Handle error
-                    console.error('Error:', data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-    function refreshPrivacyStatus() {
-        console.log('Refreshing privacy status');
-        let lists = document.querySelectorAll('.card');
-        lists.forEach(function (list) {
-            let listId = list.querySelector('.toggle-slider').dataset.listId;
-            let slider = list.querySelector(`.toggle-slider[data-list-id="${listId}"]`);
-            let textElement = list.querySelector('.status-text');
-            if (slider && textElement) {
-                textElement.textContent = slider.classList.contains('private') ? 'Private' : 'Public';
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update UI based on response
+            if (data.status === 'success') {
+                console.log(`Item status toggled successfully for item ${itemId}`);
+            } else {
+                // Handle error
+                console.error('Error:', data.error);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
     }
+}
 
-    function forceRefreshOnBack() {
-        window.onunload = function () { };
-        if (performance.navigation.type == 2) {
-            location.reload(true);
-        }
+// Define the missing toggleItems function
+function toggleItems(listId) {
+    console.log(`Toggling items for list ID: ${listId}`);
+    let itemsSection = document.getElementById(`items_${listId}`);
+    if (itemsSection) {
+        itemsSection.style.display = itemsSection.style.display === 'none' ? 'block' : 'none';
     }
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        forceRefreshOnBack();
-        window.scrollTo(0, 0);
-    });
 </script>
 
 {% endblock %}

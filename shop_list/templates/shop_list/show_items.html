@@ -12,13 +12,13 @@
 <div class="container bg-green">
     <h4 class="custom-container">Items for {{ shopping_list.name }}</h4>
 
-     <!-- Conditionally render the Add Item button -->
+    <!-- Conditionally render the Add Item button -->
     {% if is_owner %}
     <a href="{% url 'add_item' list_id=shopping_list.id %}" class="btn btn-warning mb-3">Add Item</a>
     <a href="{% url 'show_shopping_lists' %}" class="btn btn-secondary homepage-buttons mb-3">Show Lists</a>
     {% endif %}
 
-    <button id="back-to-top-btn" title="Go to top">Top</button>
+    <button id="back-to-top-btn" title="Go to top" class="btn btn-primary" display: none; position: fixed; bottom: 20px; right: 20px; z-index: 100;">Top</button>
 
     <!-- Iterate over all items -->
     <div class="container">
@@ -75,9 +75,7 @@
             });
         });
     });
-</script>
 
-<script>
     // Add event listener to each item checkbox
     document.addEventListener("DOMContentLoaded", function () {
         var itemList = document.querySelectorAll('input[type="checkbox"]');
@@ -133,8 +131,7 @@
                 console.error('Error:', error);
             });
     }
-</script>
-<script>
+
     // Get the button
     const mybutton = document.getElementById("back-to-top-btn");
 
